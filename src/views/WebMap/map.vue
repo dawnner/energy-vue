@@ -4,9 +4,10 @@
     center="山东"
     ak="YOUR_APP_KEY"
     @ready="getMap2"
-    :zoom="10"
+    :zoom=10
     :scroll-wheel-zoom="true"
   >
+  <bm-view style="width: 100%; height:100%; flex: 1"></bm-view>
     <div class="message">
       <h5
         v-for="(item, index) in mapMessage"
@@ -32,6 +33,7 @@
       </bm-auto-complete>
       <el-button type="primary" @click="getBaiduMapPoint">搜索</el-button>
     </div>
+    <bml-marker-clusterer :averageCenter="true">
     <bm-marker
       v-for="(item, index) in mapMessage"
       :position="{ lng: item.Longitude, lat: item.Latitude }"
@@ -45,6 +47,7 @@
         :offset="{ width: -35, height: 30 }"
       />
     </bm-marker>
+    </bml-marker-clusterer>
     <bm-info-window
       :position="{ lng: Longitude, lat: Latitude }"
       :show="infoWindowShow"
@@ -75,6 +78,7 @@
 
 <script>
 // 写在自己需要用到的组件中src\views\system\user\profile\map.vue
+import {BmlMarkerClusterer} from 'vue-baidu-map'
 import mapJson from "../WebMap/map.json";
 import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 import DistanceTool from "bmaplib.distancetool";
@@ -82,7 +86,8 @@ import DistanceTool from "bmaplib.distancetool";
 export default {
   components: {
     BaiduMap,
-    DistanceTool
+    DistanceTool,
+    BmlMarkerClusterer
   },
   data() {
     return {
@@ -112,7 +117,7 @@ export default {
     // }
   },
   unmount() {
-    distanceTool && distanceTool.close();
+    distanceTool && distanceTool.close()
   },
   methods: {
     getBaiduMapPoint(item, i) {

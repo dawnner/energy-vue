@@ -68,7 +68,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" href="">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -189,23 +189,25 @@
                     <span>碳排放特征信息</span>
                   </div>
                   <div>
-                    <div
-                      style="border-bottom: 1px dotted #ccc;display:flex;align-items: center;"
-                    >
+                    <div style="border-bottom: 1px dotted #ccc;display:flex;">
                       <img
-                        style="width:100%"
-                        src="../assets/webimg/Snipaste_2023-05-26_09-58-59.jpg"
+                        src="../assets/webimg/xlsx.jpg"
                         alt=""
+                        style="margin-right:10px"
                       />
+                      <a href="" style="margin-top:10px;font-size:13px"
+                        >华东-发电-纳入国家碳排放信息(02014).xls</a
+                      >
                     </div>
-                    <div
-                      style="border-bottom: 1px dotted #ccc;display:flex;align-items: center;"
-                    >
+                    <div style="border-bottom: 1px dotted #ccc;display:flex;">
                       <img
-                        style="width:100%"
-                        src="../assets/webimg/Snipaste_2023-05-26_09-58-59.jpg"
+                        src="../assets/webimg/xlsx.jpg"
                         alt=""
+                        style="margin-right:10px"
                       />
+                      <a href="" style="margin-top:10px;font-size:13px"
+                        >华东-发电-纳入企业单位变动(02014).xls</a
+                      >
                     </div>
                   </div>
                   <div class="right-two">
@@ -214,10 +216,122 @@
                   </div>
                   <div class="right-three">
                     <div class="right-three01">
-                      <div style="">山西潞光发电有限公司</div>
+                      <a style="margin-bottom:10px;font-weight: 700;"
+                        >山西潞光发电有限公司</a
+                      >
                       <div class="three-new1">
-                        <img src="../assets/webimg/Snipaste_1.jpg" alt="" />
-                        <div></div>
+                        <a
+                          href=""
+                          style="display: flex;align-items: center;width:103px;height:90px;overflow: hidden;margin-right:10px"
+                        >
+                          <img
+                            class="new1-tupian"
+                            src="../assets/webimg/Snipaste_1.jpg"
+                            alt=""
+                          />
+                        </a>
+                        <div style="font-size:13px;width:100%;color:#555555">
+                          <div>
+                            | 成立于2015年1月，位于山西省长治市长子县宋村乡
+                          </div>
+                          <div>| 控股股东为格盟国际能源有限公司</div>
+                          <div
+                            style="margin-top:10px;display:flex;justify-content: space-between;"
+                          >
+                            <span>2023-05-23</span
+                            ><span><i class="el-icon-view"></i> 0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right-three01">
+                      <a style="margin-bottom:10px;font-weight: 700;"
+                        >大唐东营发电有限公司</a
+                      >
+                      <div class="three-new1">
+                        <a
+                          href=""
+                          style="display: flex;align-items: center;width:103px;height:90px;overflow: hidden;margin-right:10px"
+                        >
+                          <img
+                            class="new1-tupian"
+                            src="../assets/webimg/Snipaste_2.png"
+                            alt=""
+                          />
+                        </a>
+                        <div style="font-size:13px;width:100%;color:#555555">
+                          <div>
+                            |
+                            成立于2013年6月，位于山东省东营港经济开发区东港路以西海滨路以北
+                          </div>
+                          <div>| 控股股东为大唐山东发电有限公司</div>
+                          <div
+                            style="margin-top:10px;display:flex;justify-content: space-between;"
+                          >
+                            <span>2023-05-23</span
+                            ><span><i class="el-icon-view"></i> 30</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right-three01">
+                      <a style="margin-bottom:10px;font-weight: 700;"
+                        >三河发电有限责任公司</a
+                      >
+                      <div class="three-new1">
+                        <a
+                          href=""
+                          style="display: flex;align-items: center;width:103px;height:90px;overflow: hidden;margin-right:10px"
+                        >
+                          <img
+                            class="new1-tupian"
+                            src="../assets/webimg/Snipaste_3.png"
+                            alt=""
+                          />
+                        </a>
+                        <div style="font-size:13px;width:100%;color:#555555">
+                          <div>
+                            | 成立于1994年7月，位于河北省廊坊市三河市燕郊
+                          </div>
+                          <div>| 控股股东为神华国华国际电力股份有限公司</div>
+                          <div
+                            style="margin-top:10px;display:flex;justify-content: space-between;"
+                          >
+                            <span>2023-05-23</span
+                            ><span><i class="el-icon-view"></i> 0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right-three01">
+                      <a style="margin-bottom:10px;font-weight: 700;"
+                        >华能太仓发电有限责任公司</a
+                      >
+                      <div class="three-new1">
+                        <a
+                          href=""
+                          style="display: flex;align-items: center;width:103px;height:90px;overflow: hidden;margin-right:10px"
+                        >
+                          <img
+                            class="new1-tupian"
+                            src="../assets/webimg/Snipaste_1.jpg"
+                            alt=""
+                          />
+                        </a>
+                        <div style="font-size:13px;width:100%;color:#555555">
+                          <div>
+                            | 成立于2004年6月，位于江苏省太仓市浮桥镇金浪浪港村
+                          </div>
+                          <div>
+                            | 控股股东为华能国际电力江苏能源开发有限公司
+                          </div>
+                          <div
+                            style="margin-top:10px;display:flex;justify-content: space-between;"
+                          >
+                            <span>2023-05-23</span
+                            ><span><i class="el-icon-view"></i> 0</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -581,7 +695,7 @@ div /deep/.is-active {
 .newspaper {
   width: 100%;
   display: flex;
-  padding: 10px 0px;
+  padding: 0px 0px 10px;
 }
 .newspaper-img {
   width: 24%;
@@ -650,5 +764,22 @@ div /deep/.is-active {
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+.three-new1 {
+  display: flex;
+  width: 100%;
+  padding-right: 10px;
+}
+a:hover {
+  text-decoration: underline;
+}
+.new1-tupian {
+  width: 100%;
+  transition: all 0.5s ease 0.1s;
+}
+.new1-tupian:hover {
+  transform: scale(1.1);
 }
 </style>

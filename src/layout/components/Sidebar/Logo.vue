@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      title: "区域能源互联网技术支持服务平台",
+      title: "山东省新能源云平台",
       logo: logoImg
     };
   }
