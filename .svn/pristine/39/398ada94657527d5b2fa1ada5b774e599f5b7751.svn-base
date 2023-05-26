@@ -1,0 +1,737 @@
+<template>
+  <div class="dashboard-editor-container">
+    <div class="top_time">
+      <span>{{dayTime}}</span>
+      <div class="weizhi">
+        <img src="../../../assets/images/location.svg">
+        当前位置：<span style="color:#3ee5ec;">基本信息</span> > 总体信息
+      </div>
+    </div>
+    <div class="box-contain">
+      <el-row :gutter="20" class="contain_top">
+        <el-col :span="7" class="top_left box_bg1">
+          <div style="margin-top: -8px; margin-left: -8px;font-size: 0.9rem;">总体情况</div>
+          <div style="width: 100%;height:92%;">
+            <div class="whole_box">
+              <div class="whole_content">
+                <span>光伏接入台区总数</span>
+                <whole-chart1 style="width: 100%;height:40%;"></whole-chart1>
+                <div class="whole_value">4589<span>台</span></div>
+                <div class="whole_bottom">
+                  <div class="left_title">
+                    <div class="add_title">上月增加</div>
+                    <div>15%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                  <div class="right_title">
+                    <div class="add_title">去年增加</div>
+                    <div>50%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="whole_content">
+                <span>光伏接入用户总数</span>
+                <whole-chart2 style="width: 100%;height:40%;" />
+                <div class="whole_value1">12352<span>人</span></div>
+                <div class="whole_bottom">
+                  <div class="left_title">
+                    <div class="add_title">上月增加</div>
+                    <div>15%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                  <div class="right_title">
+                    <div class="add_title">去年增加</div>
+                    <div>50%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="whole_box">
+              <div class="whole_content">
+                <span>总容量</span>
+                <whole-chart3 style="width: 100%;height:40%;" />
+                <div class="whole_value2">33002.35<span>kw</span></div>
+                <div class="whole_bottom">
+                  <div class="left_title">
+                    <div class="add_title">上月增加</div>
+                    <div>15%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                  <div class="right_title">
+                    <div class="add_title">去年增加</div>
+                    <div>50%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="whole_content">
+                <span>累计发电量</span>
+                <whole-chart4 style="width: 100%;height:40%;" />
+                <div class="whole_value3">483亿<span>kw</span></div>
+                <div class="whole_bottom">
+                  <div class="left_title">
+                    <div class="add_title">上月增加</div>
+                    <div>15%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                  <div class="right_title">
+                    <div class="add_title">去年增加</div>
+                    <div>50%<i class="el-icon-top" style="color: #717DA1;"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="10" class="top_center"> 
+          <el-cascader v-model="form.options" popper-class="map-cascader" ref="elcascader" @change="elcascader" class="cascader" change-on-select :options="options" filterable :show-all-levels="false" :props="{ checkStrictly: true}">
+          </el-cascader>
+          <map-shandong style="width: 100%;height:100%;"></map-shandong>
+          <div class="map_box">
+            <div style="border-bottom: 1px solid #0D3A81;padding-bottom: 10px;">
+              <span style="padding-right: 20px;">颜色</span>
+              <span>容量</span>
+            </div>
+            <div class="map_color">
+              <img src="../../../assets/images/map_i0.png">
+              <span>5000-10000</span>
+            </div>
+            <div class="map_color">
+              <img src="../../../assets/images/map_i1.png">
+              <span>4000-5000</span>
+            </div>
+            <div class="map_color">
+              <img src="../../../assets/images/map_i2.png">
+              <span>3000-4000</span>
+            </div>
+            <div class="map_color">
+              <img src="../../../assets/images/map_i3.png">
+              <span>0-3000</span>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="7" class="top_right box_bg1">
+          <div style="margin-top: -8px; margin-left: -8px;font-size: 0.9rem;">分布情况</div>
+          <div class="growth_topbtn" style="margin-top: 10px;">
+            <div v-for="(item,index) in growthbtnList" :key="index" @click="choosebtn1(index)"
+              :class="distributionIndex==index?'growthfocus':'growthbtn'">
+              <div style="transform: skew(30deg);">{{item}}</div>
+            </div>
+          </div>
+          <div style="width: 100%;height:87%;">
+            <pie-chart ref="distribut" style="width: 100%;height:100%;" />
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" class="contain_bottom">
+        <el-col :span="9" class="bottom_left box_bg2">
+          <div style="margin-top: -8px; margin-left: -8px;font-size: 0.9rem;">城市排名</div>
+          <div style="width: 100%;height:87%;">
+            <div class="growth_top" style="padding: 0;width: 100%;">
+              <span style="color:#9c95a4;font-size: 12px;">单位（{{yName}}）</span>
+              <div class="growth_topbtn">
+                <div v-for="(item,index) in growthbtnList" :key="index" @click="choosebtn2(index)"
+                  :class="cityIndex==index?'growthfocus':'growthbtn'"><span>
+                    <div style="transform: skew(30deg);">{{item}}</div>
+                  </span></div>
+              </div>
+            </div>
+            <city-chart ref="city" style="width: 100%;height:85%;" />
+          </div>
+        </el-col>
+        <el-col :span="6" class="bottom_center box_bg3">
+          <div style="margin-top: -8px; margin-left: -8px;font-size: 0.9rem;">累计减排</div>
+          <div style="width: 100%;height:89%;" class="reduction_box">
+            <!-- <reduction-chart style="width: 40%;height:80%;"></reduction-chart> -->
+            <div class="reduction_top">
+              <div class="reduction_right">
+                <img src="../../../assets/images/leiji_00.png" />
+                <div class="reduction_title">节约煤炭</div>
+                <div class="reduction_value1 reduction_value">{{coal}}万吨</div>
+              </div>
+              <div class="reduction_right">
+                <img src="../../../assets/images/leiji_01.png" />
+                <div class="reduction_title">减排二氧化碳</div>
+                <div class="reduction_value2 reduction_value">{{carbon}}万吨</div>
+              </div>
+              <div class="reduction_right">
+                <img src="../../../assets/images/leiji_02.png" />
+                <div class="reduction_title">减排二氧化硫</div>
+                <div class="reduction_value3 reduction_value">{{sulfur}}万吨</div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="9" class="bottom_right box_bg2">
+          <div style="margin-top: -8px; margin-left: -8px;font-size: 0.9rem;">增长情况</div>
+          <div class="growth_top">
+            <span style="color:#9c95a4;font-size: 12px;">单位（{{yName1}}）</span>
+            <div class="growth_topbtn" style="padding: 0;">
+              <div v-for="(item,index) in growthbtnList" :key="index" @click="choosebtn3(index)"
+                :class="growthIndex==index?'growthfocus':'growthbtn'">
+                <div style="transform: skew(30deg);">{{item}}</div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 100%;height:73%;">
+            <growth-chart ref="growth" style="width: 100%;height:100%;" />
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+
+<script>
+  import WholeChart1 from '../../dashboard/WholeChart1'
+  import WholeChart2 from '../../dashboard/WholeChart2'
+  import WholeChart3 from '../../dashboard/WholeChart3'
+  import WholeChart4 from '../../dashboard/WholeChart4'
+  import GrowthChart from '../../dashboard/GrowthChart'
+  import PieChart from '../../dashboard/PieChart'
+  import ReductionChart from '../../dashboard/ReductionChart'
+  import CityChart from '../../dashboard/CityChart'
+  import MapShandong from '../../dashboard/MapShandong'
+
+  function getDate() {
+    var date = new Date();
+    var str = "星期" + "日一二三四五六".charAt(new Date().getDay());
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let today = date.getDate();
+    let hours = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    return `${year}年 ${month}月 ${today}日 ${str}`
+  }
+
+  export default {
+    name: 'Index',
+    components: {
+      GrowthChart,
+      PieChart,
+      ReductionChart,
+      CityChart,
+      WholeChart1,
+      WholeChart2,
+      WholeChart3,
+      WholeChart4,
+      MapShandong
+    },
+    data() {
+      return {
+        yName: '台',
+        yName1: '台',
+        dayTime: getDate(),
+        coal: 853,
+        carbon: 18,
+        sulfur: 1.5,
+        options: [{
+          value:'山东省',
+          label:'山东省',
+          children: [{
+            value: '选项1',
+            label: '济南'
+          }, {
+            value: '选项2',
+            label: '青岛'
+          }, {
+            value: '选项3',
+            label: '烟台'
+          }, {
+            value: '选项4',
+            label: '威海'
+          }, {
+            value: '选项5',
+            label: '东营'
+          },
+          {
+            value: '选项6',
+            label: '淄博'
+          },
+          {
+            value: '选项7',
+            label: '潍坊'
+          },
+          {
+            value: '选项8',
+            label: '日照'
+          },
+          {
+            value: '选项9',
+            label: '菏泽'
+          },
+          {
+            value: '选项10',
+            label: '枣庄'
+          },
+          {
+            value: '选项11',
+            label: '德州'
+          },
+          {
+            value: '选项12',
+            label: '滨州'
+          },
+          {
+            value: '选项13',
+            label: '临沂'
+          },
+          {
+            value: '选项14',
+            label: '济宁'
+          },
+          {
+            value: '选项15',
+            label: '聊城'
+          },
+          {
+            value: '选项16',
+            label: '泰安'
+          }]
+        }
+        ],
+         form:{
+           options:['山东省'],
+         },
+        nongli: '',
+        growthbtnList: ['台区数', '用户数', '容量'],
+        distributionIndex: 0,
+        cityIndex: 0,
+        growthIndex: 0,
+        reductionList: [{
+          name: '节约煤炭',
+          value: 853
+        }, {
+          name: '减排二氧化碳',
+          value: 18
+        }, {
+          name: '减排二氧化硫',
+          value: 1.5
+        }]
+      }
+    },
+    mounted() {
+    },
+    methods: {
+      choosebtn1(index) {
+        this.distributionIndex = index;
+        if (index == 0) {
+          this.$refs.distribut.initChart()
+        } else if (index == 1) {
+          this.$refs.distribut.initChart()
+        } else if (index == 2) {
+          this.$refs.distribut.initChart()
+        }
+      },
+      choosebtn2(index) {
+        this.cityIndex = index;
+        if (index == 0) {
+          this.yName = '台';
+          this.$refs.city.initChart(index)
+        } else if (index == 1) {
+          this.yName = '人';
+          this.$refs.city.initChart(index)
+        } else if (index == 2) {
+          this.yName = 'KW';
+          this.$refs.city.initChart(index)
+        }
+      },
+      choosebtn3(index) {
+        this.growthIndex = index;
+        if (index == 0) {
+          this.yName1 = '台';
+          this.$refs.growth.initChart()
+        } else if (index == 1) {
+          this.yName1 = '人';
+          this.$refs.growth.initChart()
+        } else if (index == 2) {
+          this.yName1 = 'KW';
+          this.$refs.growth.initChart()
+        }
+      }
+    },
+    methods:{
+      elcascader:function(){
+         this.$refs.elcascader.dropDownVisible = false;
+      }
+    },
+    mounted(){
+      this.elcascader;
+    }
+  }
+</script>
+
+<style scoped>
+  /deep/.el-input--medium .el-input__inner {
+    background: transparent !important;
+    width: 5.2rem;
+    border-color: #3adee1;
+    border-radius: 18px;
+    color: #fff !important;
+    font-size: 0.75rem;
+    text-align: center;
+    height: 1.6rem;
+  }
+
+  /deep/.el-input__suffix {
+    top: 5px;
+    width: 1.4rem;
+  }
+
+  /deep/.el-select-dropdown__list {
+    background: red !important;
+  }
+</style>
+<style scoped lang="scss">
+  .reduction_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .weizhi {
+    color: #FFFFFF;
+    width: 25%;
+    position: absolute;
+    left: 10%;
+    margin-left: 130px;
+    font-size: 0.8rem;
+    color: #efefef;
+  }
+
+  .reduction_right {
+    width: 100%;
+    display: flex;
+    margin: 8px 0;
+    justify-content: center;
+    background-image: linear-gradient(to right, transparent, #0b4395);
+  }
+
+  .reduction_value {
+    width: 50%;
+    // height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1rem;
+    font-weight: 580;
+    padding-right: 10px;
+    /* font-weight: 600; */
+  }
+
+  .reduction_title {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    color: #b7dbf0;
+    padding-right: 1rem;
+  }
+
+  .reduction_value1 {
+    color: #90ba25;
+  }
+
+  .reduction_value2 {
+    color: #05b693;
+  }
+
+  .reduction_value3 {
+    color: #04a6cb;
+  }
+
+  .reduction_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 83%;
+  }
+
+  .top_time {
+    color: #3adee1;
+    font-size: 0.9rem;
+    padding: 0 0 20px 20px;
+    width: 30%;
+    height: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dashboard-editor-container {
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px 0 20px;
+  }
+
+  .box-contain {
+    width: 100%;
+    height: 94%;
+    color: #44ffff;
+    padding: 5px 0px 0 0px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+
+  .contain_top {
+    width: 100%;
+    height: 63%;
+    display: flex;
+
+    .box_bg1 {
+      height: 100%;
+      background-image: url('../../../assets/images/z_upk.png');
+      background-size: 100% 100%;
+    }
+  }
+
+  .contain_bottom {
+    width: 100%;
+    height: 37%;
+    display: flex;
+    padding-top: 20px;
+
+    .box_bg2 {
+      height: 100%;
+      background-image: url('../../../assets/images/z_downk.png');
+      background-size: 100% 100%;
+    }
+
+    .box_bg3 {
+      height: 100%;
+      margin: 0 15px;
+      background-image: url('../../../assets/images/z_mk.png');
+      background-size: 100% 100%;
+    }
+  }
+
+  .growth_top {
+    width: 95%;
+    margin: auto;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+
+    span {
+      width: 20%;
+    }
+  }
+
+  .growth_topbtn {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 0.9rem;
+    padding-right: 20px;
+  }
+
+  .growthbtn {
+    width: 60px;
+    height: 22px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #B6DBF0;
+    margin: 0 5px;
+    cursor: pointer;
+    line-height: 22px;
+    background-color: #055FA2;
+    border-radius: 3px;
+    transform: skew(-30deg);
+  }
+
+  .growthbtn:hover {
+    color: #44FFFF;
+  }
+
+  .growthfocus {
+    width: 60px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 0.75rem;
+    color: #333;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #44FFFF;
+    border-radius: 3px;
+    transform: skew(-30deg);
+  }
+
+  .whole_box {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-grow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+
+    .whole_value {
+      color: #00EDFF;
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      span {
+        color: #00EDFF;
+        font-size: 0.9rem;
+        font-weight: 400;
+        padding-left: 2px;
+      }
+    }
+
+    .whole_value1 {
+      color: #FFD725;
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      span {
+        color: #FFD725;
+        font-size: 0.9rem;
+        font-weight: 400;
+        padding-left: 2px;
+      }
+    }
+
+    .whole_value2 {
+      color: #A552F5;
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      span {
+        color: #A552F5;
+        font-size: 0.9rem;
+        font-weight: 400;
+        padding-left: 2px;
+      }
+    }
+
+    .whole_value3 {
+      color: #0DDE79;
+      font-size: 1.55rem;
+      font-weight: 500;
+
+      span {
+        color: #0DDE79;
+        font-size: 0.9rem;
+        font-weight: 400;
+        padding-left: 4px;
+      }
+    }
+  }
+
+  .whole_content {
+    width: 46%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+  }
+
+  .whole_bottom {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.96rem;
+    background-color: #021959;
+    border: 1px solid #04468D;
+    border-radius: 5px;
+    padding: 6px 0;
+    margin-top: 6px;
+  }
+
+  .add_title {
+    font-size: 0.7rem;
+  }
+
+  .whole_box span {
+    color: #b6dbf0;
+    font-size: 0.9rem;
+    /* font-weight: 580; */
+  }
+
+  .left_title {
+    width: 50%;
+    color: #D49824;
+    text-align: center;
+    line-height: 20px;
+    border-right: 1.5px dashed #032A7B;
+  }
+
+  .right_title {
+    width: 50%;
+    color: #0DDE79;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .map_box {
+    color: #B6DBF0;
+    font-size: 0.7rem;
+    width: 10rem;
+    height: 39%;
+    background-color: rgba(8, 31, 101, 0.7);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 32%;
+    padding: 15px 20px;
+
+    .map_color {
+      display: flex;
+      align-items: center;
+      height: 21%;
+
+      img {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  .cascader {
+    position: absolute;
+    z-index: 9999;
+    left: 32%;
+    top: -6px;
+  }
+
+
+  @media (max-width:1024px) {
+    .chart-wrapper {
+      padding: 8px;
+    }
+  }
+
+</style>
+<style lang="scss">
+.map-cascader{
+  color: #fff;
+  border: 1px solid #157cce !important;
+  .el-cascader-panel {
+    color: #fff !important;
+    .el-cascader-menu {
+      width: 100% !important;
+      color: #fff !important;
+      background-color: #0648bb !important;
+      .el-cascader-menu__wrap {
+        .el-cascader-menu__list {
+          .el-cascader-node:not(.is-disabled):focus, .el-cascader-node:not(.is-disabled):hover{
+            background: #006dc3 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+</style>
+
+
+
+

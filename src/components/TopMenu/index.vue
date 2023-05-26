@@ -1,0 +1,204 @@
+<template>
+	<div class="topMenu">
+		<div style="width:42%;display: flex;align-items: center;justify-content: flex-end;">
+			<div class="volatic">首页</div>
+			<el-menu :default-active="activeIndex" style="width: 75%;" class="el-menu-demo" mode="horizontal"
+				@select="handleSelect" active-text-color="#44FFFF" text-color="#fff" background-color="#055FA2">
+				<el-submenu index="1">
+					<template slot="title">基本信息</template>
+					<el-menu-item index="1-1">总体信息
+					</el-menu-item>
+					<el-menu-item index="1-2">台区信息
+					</el-menu-item>
+					<!-- <el-menu-item index="1-3">台区列表查询</el-menu-item> -->
+					<el-menu-item index="1-4">用户信息</el-menu-item>
+					<!-- <el-menu-item index="1-5">用户列表查询</el-menu-item> -->
+				</el-submenu>
+				<el-submenu index="2">
+					<template slot="title">态势感知</template>
+					<el-menu-item index="2-1">整体实时监测</el-menu-item>
+					<el-menu-item index="2-2">台区实时监测
+					</el-menu-item>
+					<el-menu-item index="2-3">运行分析</el-menu-item>
+					<el-menu-item index="2-4">台区监测</el-menu-item>
+					<!-- <el-menu-item index="2-3">用户实时检测</el-menu-item> -->
+				</el-submenu>
+				<el-submenu index="3">
+					<template slot="title">态势利导</template>
+					<el-menu-item index="3-1">态势利导</el-menu-item>
+					<!-- <el-menu-item index="3-2">查询</el-menu-item> -->
+				</el-submenu>
+
+			</el-menu>
+		</div>
+		<div class="top_title">区域能源互联网技术支持服务平台</div>
+		<div style="width:33%;display: flex;align-items: center;justify-content: center;">
+			<el-menu :default-active="activeIndex1" class="el-menu-demo" style="width: 77%;" mode="horizontal"
+				@select="handleSelect" active-text-color="#44FFFF" text-color="#fff" background-color="#055FA2">
+				<el-submenu index="4">
+					<template slot="title">规划接入</template>
+					<el-menu-item index="4-1">规划接入</el-menu-item>
+					<el-menu-item index="4-2">可开发容量</el-menu-item>
+					<!-- <el-menu-item index="3-2">查询</el-menu-item> -->
+				</el-submenu>
+				<el-submenu index="5">
+					<template slot="title">数字孪生</template>
+					<el-menu-item index="5-1">设备管理</el-menu-item>
+					<el-menu-item index="5-2">模型管理</el-menu-item>
+					<el-menu-item index="5-3">场景管理</el-menu-item>
+					<el-menu-item index="5-4">仿真展示</el-menu-item>
+				</el-submenu>
+				<el-submenu index="6">
+					<template slot="title">典型场景</template>
+					<el-menu-item index="6-1">示范应用展示</el-menu-item>
+				</el-submenu>
+				<!-- <el-submenu index="3">
+        <template slot="title">系统管理</template>
+        <el-menu-item index="3-1">选项1</el-menu-item>
+      </el-submenu> -->
+			</el-menu>
+			<div class="volatic" @click="goVolatic">光伏运维</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				activeIndex: '1',
+				activeIndex1: '-1',
+			}
+		},
+		methods: {
+			handleSelect(key, keyPath) {
+				if (key == '1-1') {
+					this.$router.push({
+						path: '/basic/wholeInfo'
+					})
+				} else if (key == '1-2') {
+					this.$router.push({
+						path: '/basic/platformArea'
+					})
+
+				} else if (key == '1-4') {
+					this.$router.push({
+						path: '/basic/userInfo'
+					})
+				} else if (key == '2-1') {
+					this.$router.push({
+						path: '/WholeMonitore/wholeMonitore'
+					})
+				} else if (key == '2-2') {
+					this.$router.push({
+						path: '/basic/StationMonitoring'
+					})
+				} else if (key == '2-3') {
+					this.$router.push({
+						path: '/analysis/OperationAnalysis'
+					})
+				} else if (key == '2-4') {
+					this.$router.push({
+						path: '/basic/platformInfo'
+					})
+				} else if (key == '4-1') {
+					this.$router.push({
+						path: '/PlanningAccess/plan'
+					})
+				}
+				else if (key == '4-2') {
+					this.$router.push({
+						path: '/DevelopmentCapacity/Capacity'
+					})
+				}
+			},
+			goVolatic() {
+				this.$router.push({
+					path: '/basic/photovoltaic'
+				})
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	/deep/.el-menu {
+		background-color: transparent !important;
+		border: none !important;
+		color: #fff;
+		width: 28%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	/deep/.el-submenu>.el-submenu__title {
+		background-color: transparent !important;
+		border: none !important;
+		color: #fff;
+	}
+
+	/deep/.el-submenu>.el-submenu__title:hover {
+		color: #6fced2 !important;
+	}
+
+	/deep/.el-submenu__title i {
+		color: #fff !important;
+	}
+
+	/deep/.el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
+		color: #34CBD1 !important;
+	}
+
+	/deep/.el-menu--horizontal>.el-submenu:focus .el-submenu__title,
+	.el-menu--horizontal>.el-submenu:hover .el-submenu__title {
+		color: #fff !important;
+	}
+
+	/deep/.el-menu--horizontal>.el-submenu {
+		width: 33% !important;
+		text-align: center;
+	}
+
+	.topMenu {
+		width: 92%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		color: #fff;
+		/* padding-left: 5%; */
+		height: 60%;
+		padding-left: 10px;
+	}
+
+	.top_title {
+		width: 30%;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #fff;
+		background-image: -webkit-linear-gradient(bottom, #47BFC5, #C7F2F0, #fff);
+		text-shadow: none !important;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		text-align: center;
+		padding-top: 3px;
+		margin: 0 20px;
+	}
+
+	.volatic {
+		width: 22%;
+		font-size: 14px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.volatic:hover {
+		color: #34CBD1;
+	}
+
+	.volatic:focus {
+		color: #34CBD1;
+	}
+</style>

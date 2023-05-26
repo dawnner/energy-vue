@@ -1,0 +1,851 @@
+<template>
+  <div class="dashboard-editor-container">
+    <div class="top_time">
+      <span>{{ dayTime }}</span>
+      <div class="weizhi">
+        <img src="../../../assets/images/location.svg" />
+        当前位置：<span style="color:#3ee5ec;">光伏运维</span>
+      </div>
+      <div style="position: absolute;right: 40px;color: #fff;">
+        <img style="width: 2rem;" src="../../../assets/voltaic/wheather.png" />
+        25°c
+      </div>
+    </div>
+    <div class="box-contain">
+      <el-row :gutter="20" class="contain_top">
+        <el-col :span="7" style="width: 25%;">
+          <div style="width: 100%;height:97%;">
+            <div class="whole_box box_bg1" style="margin-bottom:5%;">
+              <div class="whole_top">
+                <img src="../../../assets/voltaic/tb1.png" />
+                发电信息统计
+              </div>
+              <div class="top-time">
+                <el-date-picker
+                  v-model="date1"
+                  type="date"
+                  placeholder="开始时间"
+                >
+                </el-date-picker>
+                <div style="margin: 0 15px 0 0;">—</div>
+                <el-date-picker
+                  v-model="date2"
+                  type="date"
+                  placeholder="结束时间"
+                >
+                </el-date-picker>
+                <div class="search" @click="searchInfo">查询</div>
+              </div>
+              <voltaic-bar
+                ref="volBar"
+                style="width: 98%;height: 68%;margin: auto;"
+              ></voltaic-bar>
+            </div>
+            <div class="whole_box  box_bg1">
+              <div class="whole_top">
+                <img src="../../../assets/voltaic/tb2.png" />当日发电量排名
+              </div>
+              <div class="power-sort">
+                <div
+                  style="width: 50%;"
+                  @click="choosePower(0)"
+                  :class="powerIndex == 0 ? 'isPower1' : ''"
+                >
+                  50kw发电量
+                </div>
+                <div
+                  style="width: 50%;"
+                  @click="choosePower(1)"
+                  :class="powerIndex == 1 ? 'isPower2' : ''"
+                >
+                  100kw发电量
+                </div>
+              </div>
+              <sort-bar
+                ref="power"
+                style="width: 98%;height: 70%;margin: auto;"
+              ></sort-bar>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="10" class="top_center" style="width: 50%;">
+          <div class="top_power">
+            <div class="power_box">
+              <div class="text1">18205</div>
+              <div class="text2">KWh</div>
+              <div>今日发电量</div>
+            </div>
+            <div class="power_box">
+              <div class="text1">849963</div>
+              <div class="text2">KWh</div>
+              <div>本月发电量</div>
+            </div>
+            <div class="power_box">
+              <div class="text1">11161810</div>
+              <div class="text2">KWh</div>
+              <div>本年发电量</div>
+            </div>
+            <div class="power_box">
+              <div class="text1">90619384</div>
+              <div class="text2">KWh</div>
+              <div>累计发电量</div>
+            </div>
+          </div>
+          <div class="reback" @click="back">返回</div>
+          <map-shandong
+            @changeCitys="changeCitys"
+            ref="mapBack"
+            style="width: 100%;height:60%;margin-top: 12px;"
+          >
+          </map-shandong>
+          <div class="map_box">
+            <div class="map_color">
+              <span>100-300</span>
+              <div class="color1"></div>
+            </div>
+            <div class="map_color">
+              <span>300-600</span>
+              <div class="color2"></div>
+            </div>
+          </div>
+          <div
+            style="display: flex;align-items: flex-end;width: 90%;margin: auto;"
+          >
+            <div class="map_value">
+              <img src="../../../assets/voltaic/zkh.png" />
+              <div class="city_name">
+                <img src="../../../assets/voltaic/dwtb.png" />
+                {{ platformList[0] }}
+              </div>
+              <div class="plaform_title">
+                <i class="el-icon-caret-right" style="font-size: 1.2rem;"></i>
+                台区数量
+                <span>{{ platformList[1] }}</span>
+              </div>
+              <img src="../../../assets/voltaic/ykh.png" />
+            </div>
+            <div style="margin-left: 4rem;">
+              <div style="color: #fff;text-align: center;">
+                安全运行累计天数
+              </div>
+              <div style="display: flex;margin: 12px 0;">
+                <div
+                  class="safe_value"
+                  v-for="(item, index) in safeDay"
+                  :key="index"
+                >
+                  {{ item }}
+                </div>
+              </div>
+              <div style="color: #fff;font-size: 0.8rem;text-align: center;">
+                ( 装机规模：15050KW )
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="7" style="width: 25%;">
+          <div style="width: 100%;height:97%;">
+            <div class="whole_box box_bg1" style="margin-bottom:5%;">
+              <div class="whole_top">
+                <img src="../../../assets/voltaic/tb3.png" />运行状态
+              </div>
+              <div class="status_row">
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbdz.png" />
+                  </div>
+                  <div>
+                    <div>全部数量</div>
+                    <div class="status_value">
+                      <span style="color: #06d99f">288</span>个
+                    </div>
+                  </div>
+                </div>
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbyx.png" />
+                  </div>
+                  <div>
+                    <div>正常运行</div>
+                    <div class="status_value">
+                      <span style="color: #06d99f">261</span>个
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="status_row">
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbtx.png" />
+                  </div>
+                  <div>
+                    <div>通讯关闭</div>
+                    <div class="status_value">
+                      <span style="color: #06d99f">13</span>个
+                    </div>
+                  </div>
+                </div>
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbgj.png" />
+                  </div>
+                  <div>
+                    <div>电站警告</div>
+                    <div class="status_value">
+                      <span style="color: #da2646">3</span>个
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="status_row">
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbww.png" />
+                  </div>
+                  <div>
+                    <div>外网提示</div>
+                    <div class="status_value">
+                      <span style="color: #e67c15">3</span>个
+                    </div>
+                  </div>
+                </div>
+                <div class="status_box">
+                  <div class="status_bg">
+                    <img src="../../../assets/voltaic/tbyw.png" />
+                  </div>
+                  <div>
+                    <div>运维提示</div>
+                    <div class="status_value">
+                      <span style="color: #06d99f">0</span>个
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="whole_box  box_bg1">
+              <div class="whole_top">
+                <img src="../../../assets/voltaic/tb4.png" />社会贡献
+              </div>
+              <div class="social_row">
+                <div class="social_box">
+                  <div>
+                    <div><img src="../../../assets/voltaic/gxh.png" /></div>
+                    <div style="margin-top: 5px;">代替标煤</div>
+                    <div class="social_title1">36610.23<span>T</span></div>
+                    <div><img src="../../../assets/voltaic/jbl.png" /></div>
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <img src="../../../assets/voltaic/gxs.png" />
+                </div>
+                <div class="social_box">
+                  <div>
+                    <div><img src="../../../assets/voltaic/gxh.png" /></div>
+                    <div style="margin-top: 5px;">SO2减排量</div>
+                    <div class="social_title2">2718.58<span>T</span></div>
+                    <div><img src="../../../assets/voltaic/jbz.png" /></div>
+                  </div>
+                </div>
+              </div>
+              <div class="social_row">
+                <div class="social_box">
+                  <div>
+                    <div><img src="../../../assets/voltaic/gxh.png" /></div>
+                    <div style="margin-top: 5px;">CO2减排量</div>
+                    <div class="social_title3">90347.53<span>T</span></div>
+                    <div><img src="../../../assets/voltaic/jbsl.png" /></div>
+                  </div>
+                </div>
+                <div style="margin-top: 10px;">
+                  <img src="../../../assets/voltaic/gxs.png" />
+                </div>
+                <div class="social_box">
+                  <div>
+                    <div><img src="../../../assets/voltaic/gxh.png" /></div>
+                    <div style="margin-top: 5px;">粉尘减排量</div>
+                    <div class="social_title4">24648.47<span>T</span></div>
+                    <div><img src="../../../assets/voltaic/jbc.png" /></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+
+<script>
+import voltaicBar from "../../dashboard/voltaic/voltaicBar";
+import sortBar from "../../dashboard/voltaic/sortBar";
+import MapShandong from "../../dashboard/voltaic/MapShandong";
+
+function getDate() {
+  var date = new Date();
+  var str = "星期" + "日一二三四五六".charAt(new Date().getDay());
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let today = date.getDate();
+  let hours = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+  return `${year}年 ${month}月 ${today}日 ${str}`;
+}
+
+export default {
+  name: "Index",
+  components: {
+    voltaicBar,
+    sortBar,
+    MapShandong
+  },
+  data() {
+    return {
+      dayTime: getDate(),
+      date1: "",
+      date2: "",
+      platformList: ["济南市", 320],
+      powerBtn: ["50kw发电量", "100kw发电量"],
+      powerIndex: 0,
+      city: "济南市",
+      platform: 320,
+      safeDay: [2, 5, 6]
+    };
+  },
+  mounted() {
+    this.getSafeDay();
+  },
+  methods: {
+    choosePower(index) {
+      this.powerIndex = index;
+      this.$refs.power.initChart();
+    },
+    changeCitys(e) {
+      this.platformList = e;
+    },
+    back() {
+      this.$refs.mapBack.backUp();
+    },
+    searchInfo() {
+      this.$refs.volBar.initChart();
+    },
+    getSafeDay() {
+      // for(var i=0;i<safeDay.length;i++){
+      // }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.top-time /deep/.el-input--medium .el-input__inner {
+  background: transparent !important;
+  /* width:6.5rem; */
+  /* border-color: #3adee1; */
+  border: none;
+  /* border-radius: 18px; */
+  color: #fff !important;
+  font-size: 0.75rem;
+  text-align: center;
+  /* height: 1.3rem; */
+  display: flex;
+  align-items: center;
+}
+
+.top-time /deep/.el-input--medium .el-input__inner ::placeholder {
+  color: #fff;
+  font-weight: bold;
+}
+
+.top-time /deep/ .el-input__prefix {
+  color: #3adee1;
+}
+
+/deep/.el-input__suffix {
+  top: 5px;
+  width: 1.4rem;
+}
+
+/deep/.el-select-dropdown__list {
+  /* background: red !important; */
+}
+</style>
+<style scoped lang="scss">
+.reduction_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.weizhi {
+  color: #ffffff;
+  width: 25%;
+  position: absolute;
+  left: 10%;
+  margin-left: 130px;
+  font-size: 0.8rem;
+  color: #efefef;
+}
+
+.top_time {
+  color: #3adee1;
+  font-size: 0.9rem;
+  padding: 0 0 20px 20px;
+  width: 30%;
+  height: 4.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-editor-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 0 20px;
+}
+
+.box-contain {
+  width: 100%;
+  height: 95%;
+  color: #44ffff;
+  padding: 5px 0px 0 0px;
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.contain_top {
+  width: 100%;
+  height: 98%;
+  display: flex;
+
+  .box_bg1 {
+    background-image: url("../../../assets/voltaic/dks.png");
+    background-size: 100% 100%;
+  }
+
+  .whole_top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    line-height: 2rem;
+    background-image: url("../../../assets/voltaic/xb.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin-bottom: 10px;
+
+    img {
+      margin: 0 10px;
+    }
+  }
+}
+
+.safe_value {
+  width: 45px;
+  height: 60px;
+  background-color: #009ae5;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-right: 5px;
+  line-height: 60px;
+  text-align: center;
+  font-weight: 530;
+  // font-family:"黑体";
+}
+
+.map_value {
+  width: 58%;
+  height: 5rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  .city_name {
+    font-size: 1.25rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-family: "黑体";
+    // width: 30%;
+  }
+
+  .plaform_title {
+    color: #06b8f3;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    font-family: "黑体";
+
+    span {
+      color: #fe8b21;
+      font-family: regular-font;
+      font-size: 1.5rem;
+      margin-left: 15px;
+      letter-spacing: 1.5px;
+    }
+  }
+}
+
+.whole_box {
+  width: 100%;
+  height: 50%;
+  font-size: 0.9rem;
+
+  .social_row {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 0.95rem;
+
+    .social_box {
+      width: 49%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .social_title1 {
+        font-size: 1.7rem;
+        margin-top: 3px;
+        color: #1fcff1;
+        font-weight: bold;
+        font-family: "黑体";
+
+        span {
+          font-size: 1rem;
+          color: #1fcff1;
+          margin-left: 3px;
+        }
+      }
+
+      .social_title2 {
+        font-size: 1.7rem;
+        margin-top: 3px;
+        color: #c429f2;
+        font-weight: bold;
+        font-family: "黑体";
+
+        span {
+          font-size: 1rem;
+          color: #c429f2;
+          margin-left: 3px;
+        }
+      }
+
+      .social_title3 {
+        font-size: 1.7rem;
+        margin-top: 3px;
+        color: #0264fe;
+        font-weight: bold;
+        font-family: "黑体";
+
+        span {
+          font-size: 1rem;
+          color: #0264fe;
+          margin-left: 3px;
+        }
+      }
+
+      .social_title4 {
+        font-size: 1.7rem;
+        margin-top: 3px;
+        color: #fc8a22;
+        font-weight: bold;
+        font-family: "黑体";
+
+        span {
+          font-size: 1rem;
+          color: #fc8a22;
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+
+  .status_row {
+    width: 100%;
+    height: 28%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    // margin-top: 15px;
+
+    .status_box {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      .status_bg {
+        width: 3.7rem;
+        height: 3.7rem;
+        border-radius: 100%;
+        border: 1px solid #22d9fe;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .status_value {
+        margin-top: 10px;
+
+        span {
+          font-size: 1.5rem;
+          letter-spacing: 1px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .power-sort {
+    width: 60%;
+    border: 1px solid #28e3ef;
+    border-radius: 1rem;
+    height: 1.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.8rem;
+    background-image: linear-gradient(to bottom, #00537a, #01638d);
+    cursor: pointer;
+    margin: 20px auto 15px auto;
+    text-align: center;
+    color: #25d5e5;
+
+    .isPower1 {
+      background-color: #28e3ef;
+      color: #003864;
+      font-weight: bold;
+      width: 50%;
+      height: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+
+    .isPower2 {
+      background-color: #28e3ef;
+      color: #003864;
+      font-weight: bold;
+      width: 50%;
+      height: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+  }
+
+  .top-time {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 0 auto;
+    border: 1px solid #5cdce4;
+    border-radius: 1rem;
+    height: 1.9rem;
+    align-items: center;
+    color: #eee;
+    margin-bottom: 25px;
+    background: rgba(1, 56, 107, 0.8);
+
+    .search {
+      color: #013553;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #25e4f1;
+      width: 6rem;
+      height: 1.9rem;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      text-align: center;
+      line-height: 1.9rem;
+    }
+  }
+
+  .whole_value {
+    color: #00edff;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    span {
+      color: #00edff;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding-left: 2px;
+    }
+  }
+
+  .whole_value1 {
+    color: #ffd725;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    span {
+      color: #ffd725;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding-left: 2px;
+    }
+  }
+
+  .whole_value2 {
+    color: #a552f5;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    span {
+      color: #a552f5;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding-left: 2px;
+    }
+  }
+
+  .whole_value3 {
+    color: #0dde79;
+    font-size: 1.55rem;
+    font-weight: 500;
+
+    span {
+      color: #0dde79;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding-left: 4px;
+    }
+  }
+}
+
+.whole_content {
+  width: 46%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.whole_box span {
+  color: #b6dbf0;
+  font-size: 0.9rem;
+  /* font-weight: 580; */
+}
+
+.reback {
+  position: absolute;
+  left: 33%;
+  bottom: 75%;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  z-index: 999;
+  // border: 1px solid #00ffff;
+  // width: 5rem;
+  // height: 2rem;
+  // border-radius: 15px;
+}
+
+.reback:hover {
+  color: #00ffff;
+}
+
+.top_power {
+  width: 100%;
+  height: 19%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  color: #fff;
+  font-size: 0.9rem;
+
+  .power_box {
+    width: 16%;
+    background-image: url("../../../assets/voltaic/power.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-bottom: 13px;
+
+    .text1 {
+      font-size: 1.5rem;
+      color: #23d9fb;
+      text-align: center;
+    }
+
+    .text2 {
+      font-size: 0.8rem;
+      color: #23d9fb;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.map_box {
+  color: #b6dbf0;
+  font-size: 0.7rem;
+  width: 10rem;
+  // height: 39%;
+  // background-color: rgba(8, 31, 101, 0.7);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 23%;
+  right: 25%;
+  padding: 15px 20px;
+
+  .map_color {
+    display: flex;
+    align-items: center;
+    height: 21%;
+    margin-top: 13px;
+
+    .color1 {
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background-color: #00fdf9;
+      margin-left: 10px;
+    }
+
+    .color2 {
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background-color: #fbc601;
+      margin-left: 10px;
+    }
+
+    img {
+      margin-right: 30px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .chart-wrapper {
+    padding: 8px;
+  }
+}
+</style>

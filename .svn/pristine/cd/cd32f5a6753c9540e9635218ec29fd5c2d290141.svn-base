@@ -1,0 +1,694 @@
+<template>
+  <div class="panel">
+    <div class="top_time">
+      <span>{{dayTime}}</span>
+      <div class="weizhi">
+        <img src="../../../assets/images/location.svg">
+        当前位置：<span style="color:#3ee5ec;">态势感知</span> > 用户信息</div>
+    </div>
+    <div class="back">
+      <el-row class="changeBtn">
+        <div class="real_time">切换用户</div>
+      </el-row>
+      <el-row :gutter="10" style="width: 100%;height: 96%;justify-content: space-between;display: flex;">
+        <el-col :span="8" style="height: 100%;">
+          <el-row :gutter="10" style="width: 100%;height:28%;display: flex">
+            <el-col :span="7">
+              <div class="user-img">
+                <img src="../../../assets/images-yonghu/yhtx.png" width="70px" height="70px" />
+              </div>
+            </el-col>
+            <el-col :span="17" class="text-topleft">
+              <div class="left-title">
+                <span class="title-left">
+                  光伏用户：
+                </span>
+                <div class="username">
+                  张三
+                </div>
+              </div>
+              <div class="left-title">
+                <span class="title-left">
+                  所属台区：
+                </span>
+                <span class="title-right">
+                  10KV怀东线生张村04号台架变
+                </span>
+              </div>
+              <div class="left-title">
+                <span class="title-left">
+                  所属地市：
+                </span>
+                <span class="title-right">
+                  泰安
+                </span>
+              </div>
+              <div class="left-title">
+                <span class="title-left">
+                  供电单位：
+                </span>
+                <span class="title-right">
+                  泰安供电公司
+                </span>
+              </div>
+            </el-col>
+          </el-row>
+          <div class="left_center">
+            <div class="bigtitle">
+              同台区其他光伏用户列表
+            </div>
+            <div class="juxing">
+            </div>
+          </div>
+          <div class="left-bottom">
+            <el-col style="padding: 0 10px;" :span="6" class="col" v-for="(item,index) in userList" :key="index">
+              <div class="listname">{{item.name1}}</div>
+            </el-col>
+          </div>
+        </el-col>
+        <el-col :span="14" style="height: 100%;margin-left: 35px;">
+          <div class="right-top">
+            <div class="row-1">
+              <img src="../../../assets/images-yonghu/jtou.png" />
+              用户信息
+            </div>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>末</span><span>端</span><span>ID:</span></div>
+                <div class="title-right">10321010032</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>报</span><span>装</span><span>容</span><span>量:</span></div>
+                <div class="title-right">10kw</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>消</span><span>纳</span><span>方</span><span>式:</span></div>
+                <div class="title-right">金额消纳</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>相</span><span>别:</span></div>
+                <div class="title-right">三相</div>
+              </el-col>
+            </el-row>
+            <div class="row-1">
+              <img src="../../../assets/images-yonghu/jtou.png" />
+              运行监测
+            </div>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>今</span><span>日</span><span>发</span><span>电</span><span>量:</span></div>
+                <div class="title-right">89.15kw-h</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>A</span><span>相</span><span>电</span><span>流:</span></div>
+                <div class="title-right">11.66A</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>B</span><span>相</span><span>电</span><span>流:</span></div>
+                <div class="title-right">11.56A</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>C</span><span>相</span><span>电</span><span>流:</span></div>
+                <div class="title-right">11.66A</div>
+              </el-col>
+            </el-row>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>当</span><span>前</span><span>有</span><span>功</span><span>率:</span></div>
+                <div class="title-right">8.02kw</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>A</span><span>相</span><span>电</span><span>压:</span></div>
+                <div class="title-right">230.00V</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>B</span><span>相</span><span>电</span><span>压:</span></div>
+                <div class="title-right">227.80V</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>C</span><span>相</span><span>电</span><span>压:</span></div>
+                <div class="title-right">234.50V</div>
+              </el-col>
+            </el-row>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>视</span><span>在</span><span>功</span><span>率:</span></div>
+                <div class="title-right">8.03kVA</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>电</span><span>压</span><span>合</span><span>格</span><span>率:</span></div>
+                <div class="title-right">97.69%</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>无</span><span>功</span><span>功</span><span>率:</span></div>
+                <div class="title-right">0.39kVar</div>
+              </el-col>
+            </el-row>
+            <div class="row-1">
+              <div class="row">
+                <img src="../../../assets/images-yonghu/jtou.png" />
+                状态警告
+              </div>
+            </div>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>孤</span><span>岛</span><span>发</span><span>电:</span></div>
+                <div class="title-right">否</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>用/</span><span>发</span><span>电</span><span>状</span><span>态:</span></div>
+                <div class="title-right">发电</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>功</span><span>率</span><span>因</span><span>数:</span></div>
+                <div class="title-right">0.99kVA</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR">
+                  <span>电</span><span>流</span><span>谐</span><span>波</span><span>含</span><span>量:</span>
+                </div>
+                <div class="title-right">— —%</div>
+              </el-col>
+
+            </el-row>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR">
+                  <span>电</span><span>压</span><span>谐</span><span>波</span><span>含</span><span>量:</span>
+                </div>
+                <div class="title-right">— —%</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR">
+                  <span>三</span><span>相</span><span>不</span><span>平</span><span>衡</span><span>率:</span>
+                </div>
+                <div class="title-right">3.09%</div>
+              </el-col>
+            </el-row>
+            <div class="row-1">
+              <div class="row">
+                <img src="../../../assets/images-yonghu/jtou.png" />当月保护信号
+              </div>
+            </div>
+            <el-row class="user_row">
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>过</span><span>压:</span></div>
+                <div class="title-right">0次</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>欠</span><span>压:</span></div>
+                <div class="title-right">0次</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>失</span><span>压:</span></div>
+                <div class="title-right">0次</div>
+              </el-col>
+              <el-col :span="6" class="user_right">
+                <div class="title-leftR"><span>断</span><span>相:</span></div>
+                <div class="title-right">0次</div>
+              </el-col>
+            </el-row>
+          </div>
+          <div class="right-buttom">
+            <div class="left_center" style="margin: 10px 0;">
+              <div class="bigtitle">
+                日发电量变化
+              </div>
+              <div class="juxing">
+              </div>
+            </div>
+            <span style="color:#9c95a4;font-size: 11px;padding-left: 10px;">单位（KW）</span>
+            <power-line style="height:80%;width: 100%;"></power-line>
+          </div>
+
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+
+<script>
+  import PowerLine from '../../dashboard/PowerLine.vue'
+
+  function getDate() {
+    var date = new Date();
+    var str = "星期" + "日一二三四五六".charAt(new Date().getDay());
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let today = date.getDate();
+    let hours = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    return `${year}年 ${month}月 ${today}日 ${str}`
+    // return `${year}-${month}-${today} ${hours}:${minute}:${second}`
+  }
+  export default {
+    components: {
+      PowerLine
+    },
+    data() {
+      return {
+        dayTime: getDate(),
+        options: [{
+          value: '选项1',
+          label: '山东省'
+        }, {
+          value: '选项2',
+          label: '北京市'
+        }, {
+          value: '选项3',
+          label: '重庆市'
+        }, {
+          value: '选项4',
+          label: '河北省'
+        }, {
+          value: '选项5',
+          label: '黑龙江省'
+        }],
+        value: '山东省',
+        userList: [{
+            name1: '任文文',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '罗华娜',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '任文文',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '罗华娜',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '任文文',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '罗华娜',
+          },
+          {
+            name1: '童同娜',
+          },
+          {
+            name1: '王丽丽',
+          },
+          {
+            name1: '李四',
+          },
+          {
+            name1: '张志强',
+          },
+          {
+            name1: '李梅梅',
+          },
+          {
+            name1: '罗志强',
+          },
+          {
+            name1: '李永娜',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '罗华华',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '王萌萌',
+          },
+          {
+            name1: '张雅丽',
+          },
+          {
+            name1: '陈美惠',
+          },
+          {
+            name1: '孙一鸣',
+          },
+          {
+            name1: '张明明',
+          },
+          {
+            name1: '枭雄',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '李思思',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '郭本宝',
+          },
+          {
+            name1: '张某某',
+          },
+          {
+            name1: '章志强',
+          },
+          {
+            name1: '李四',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '罗萌萌',
+          },
+          {
+            name1: '张萌萌',
+          },
+          {
+            name1: '张萌萌',
+          }
+        ],
+      }
+    }
+
+  }
+</script>
+<style scoped>
+  /deep/.el-input--medium .el-input__inner {
+    background: transparent !important;
+    width: 6rem;
+    border-color: #3adee1;
+    border-radius: 18px;
+    color: #fff !important;
+    font-size: 0.75rem;
+    text-align: center;
+    height: 2rem;
+  }
+
+  /deep/.el-input__suffix {
+    top: 2px;
+  }
+</style>
+<style scoped lang="scss">
+  .panel {
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 0 20px;
+  }
+
+  .weizhi {
+    color: #FFFFFF;
+    width: 25%;
+    position: absolute;
+    left: 10%;
+    margin-left: 130px;
+    color: #efefef;
+    font-size: 0.8rem;
+  }
+
+  .top_time {
+    color: #3adee1;
+    font-size: 0.9rem;
+    padding: 0 0 20px 20px;
+    width: 25%;
+    height: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back {
+    width: 93%;
+    height: 93%;
+    margin: 5px auto;
+    padding: 25px 0.8% 55px 3%;
+    background-image: url('../../../assets/images-yonghu/bgk.png');
+    background-size: 100% 100%;
+
+    .changeBtn {
+      // height: 10%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 40px;
+      margin-bottom: 10px;
+
+      .real_time {
+        width: 110px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background-image: url('../../../assets/images-tq/tqxi_05.png');
+        background-size: 100% 100%;
+        cursor: pointer;
+        margin-left: 20px;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .username {
+    width: 62px;
+    height: 23px;
+    line-height: 23px;
+    background-color: #3EBBC2;
+    border-radius: 12px;
+    margin-left: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  /* .el-button--primary {
+    background-color: #00C9D0;
+
+  } */
+
+  .el-button--info {
+    background-color: rgb(1, 1, 1, 0);
+  }
+
+  .user-img {
+    width: 8rem;
+    height: 8rem;
+    background-size: 100% 100%;
+    background-image: url('../../../assets/images-yonghu/yongh.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .col {
+    height: 12.5%;
+  }
+
+  .listname {
+    width: 100%;
+    height: 80%;
+    // border: #7594BB solid 1px;
+    background-image: url(../../../assets/images-yonghu/yhu_07.png);
+    background-size: 100% 100%;
+    // margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #B6DBF0;
+    border-radius: 2px;
+
+  }
+
+  .title-left {
+    width: 4.6rem;
+    color: #B6DBF0;
+    font-size: 14px;
+  }
+
+  .title-leftR {
+    font-size: 0.78rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #B6DBF0;
+  }
+
+  .text-jus {
+    text-align: justify;
+    text-align-last: justify;
+    text-justify: inter-ideograph;
+
+  }
+
+
+
+  .title-right {
+    width: 70%;
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 5px;
+  }
+
+  .left_center {
+    color: #FFFFFF;
+    margin: 20px 0;
+
+  }
+
+  .juxing {
+    width: 94%;
+    height: 10px;
+    background: -webkit-linear-gradient(left, #435CFC, #14B8EA, #14B8EA, #8207CF, #8207CF, #111f65, rgb(39, 42, 136, 0.5), rgb(39, 42, 136, 0));
+  }
+
+
+  .left_top {
+    display: flex;
+  }
+
+  .text-topleft {
+    margin-left: 20px;
+  }
+
+  .name {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    //justify-content: space-between;
+  }
+
+  .col_left {
+    margin-left: 40px;
+  }
+
+  .col_right {
+    margin-right: 40px;
+
+  }
+
+  .left-bottom {
+    width: 100%;
+    height: 60%;
+    margin-left: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    align-content: space-around;
+
+  }
+
+  .text {
+    font-size: 14px;
+    color: #FFFFFF;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+
+  .clearfix:after {
+    clear: both
+  }
+
+  .clearfix {
+    border-style: hidden;
+  }
+
+  .box-card {
+
+    background-color: rgb(1, 1, 1, 0);
+    width: 480px;
+
+  }
+
+  .right-top {
+    width: 100%;
+    height: 62%;
+    padding-bottom: 25px;
+  }
+
+  .user_row {
+    width: 100%;
+    padding-left: 23px;
+    height: 9%;
+    display: flex;
+    align-items: center;
+  }
+
+  .user_right {
+    display: flex;
+    align-items: center;
+  }
+
+  .right-buttom {
+    height: 37%;
+  }
+
+  .el-tag {
+    color: #00C9D0;
+    opacity: 0.8;
+    width: 100%;
+  }
+
+  .row-1 {
+    width: 100%;
+    height: 9.5%;
+    background-color: rgba(24, 78, 146, 0.7);
+    color: #3EBBC2;
+    font-size: 0.82rem;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+    }
+
+  }
+
+  .bigtitle {
+    font-size: 18px;
+    margin-left: 10px;
+    line-height: 0.9px;
+    margin-bottom: 3px;
+    font-weight: bold;
+  }
+</style>

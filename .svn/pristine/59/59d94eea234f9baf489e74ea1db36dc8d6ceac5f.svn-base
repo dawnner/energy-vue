@@ -1,0 +1,591 @@
+<template>
+  <div class="dashboard-editor-container">
+    <div class="top_time">
+      <span>{{dayTime}}</span>
+      <div class="weizhi">
+        <img src="../../../assets/images/location.svg">
+        当前位置：<span style="color:#3ee5ec;">态势感知</span> > 台区实时监测</div>
+      <div class="top_right">
+        <div class="change">切换台区</div>
+        <div class="real_time">实时监测</div>
+      </div>
+    </div>
+    <div class="box_contain">
+      <el-col :span="17">
+        <el-row :gutter="10" class="contain_top">
+          <el-col :span="8" class="box_bg1">
+            <div style="margin-top: -10px; margin-left: -3px;font-size: 0.9rem;">实时监测</div>
+            <div class="info">
+              <div v-for="(item,index) in inforList" :key="index" class="info_box">
+                <i class="el-icon-caret-right" style="color: #055FA2;"></i>
+                <div style="padding-left: 15px;">{{item.name}}:</div>
+                <div class="info_value">{{item.value}}</div>
+              </div>
+              <div class="info_box">
+                <i class="el-icon-caret-right" style="color: #055FA2;"></i>
+                <span style="padding-left: 15px;">异常告警（户）: 1</span>
+                <span style="padding-left: 15px;">保护信号（次）: 0</span>
+              </div>
+              <div class="info_box">
+                <i class="el-icon-caret-right" style="color: #055FA2;"></i>
+                <span style="padding-left: 15px;">储能动作（次）: 3</span>
+                <span style="padding-left: 15px;">开关动作（次）: 0</span>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="16" class="box_bg2">
+            <div style="margin-top: -10px; margin-left: -3px;font-size: 0.9rem;">运行情况</div>
+            <div class="photovoltaic_box">
+              <div class="photovoltaic">
+                <satisfied-chart style="width: 100%;height: 55%;"></satisfied-chart>
+                <div class="evaluate_title">
+                  并网对配网影响程度：<span>98</span>分
+                  <el-rate v-model="4.5" disabled-void-color="#7c7d7f" disabled text-color="#FFBC00"
+                    score-template="{value}">
+                  </el-rate>
+                </div>
+              </div>
+              <div class="photovoltaic">
+                <div class="month_index">
+                  <div class="line"></div>
+                  <div>本月各项指标数量 ：</div>
+                </div>
+                <various-indicators style="height: 88%;width: 100%;"></various-indicators>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10" class="contain_bottom">
+          <el-col :span="8" class="box_bg3">
+            <div style="margin-top: -10px; margin-left: -3px;font-size: 0.9rem;">拓扑识别</div>
+            <div class="tuopu_img">
+              <img src="../../../assets/images-jianc/tu01.jpg">
+            </div>
+          </el-col>
+          <el-col :span="16" class="box_bg4">
+            <div style="margin-top: -10px; margin-left: -3px;font-size: 0.9rem;">负荷曲线</div>
+            <div class="growth_top">
+              <div>
+                <span>日期1: </span>
+                <el-date-picker v-model="dayTime1" type="date" placeholder="选择日期">
+                </el-date-picker>
+              </div>
+              <div style="margin: 0 10px 0 20px;">
+                <span>日期2: </span>
+                <el-date-picker v-model="dayTime2" type="date" placeholder="选择日期">
+                </el-date-picker>
+              </div>
+              <div class="search_btn" @click="search">查询</div>
+            </div>
+            <div class="growth_top" style="color: #fff;">光伏台区负荷曲线（10kV怀东线生张村04号台架变-2021-06-07）</div>
+            <span style="font-size: 0.6rem;color:#B0A8B1;padding-left: 10px;">单位（%）</span>
+            <div style="width: 100%;height:58%;">
+              <line-chart ref="linechart" style="width: 100%;height:96%;" />
+            </div>
+          </el-col>
+
+        </el-row>
+      </el-col>
+      <el-col :span="7" class="box_bg5">
+        <div style="margin-top: -10px; margin-left: 1px;font-size: 0.9rem;">预警事件</div>
+        <el-row class="user_box" style="margin:32px auto 10px auto;">
+          <el-col :span="8" style="padding-left: 20px;">时间轴</el-col>
+          <el-col :span="11">预警事件描述</el-col>
+          <el-col :span="4">状态</el-col>
+        </el-row>
+        <div class="warn">
+          <div v-for="(item,index) in warnList" :key="index" class="warn_box" style="margin:0 auto;">
+            <!-- <el-row style="display: flex;align-items: center;">
+              <el-col :span="8" style="padding-left: 36px;">
+                <div class="warn_line"></div>
+              </el-col>
+            </el-row> -->
+            <el-row style="display: flex;align-items: flex-end;">
+              <el-col :span="8" style="padding-left: 20px;height: 100%;">
+                <img style="width: 6rem;height:4rem;" v-if="index%5==0" src="@/assets/images-jianc/jianc_03.png">
+                <img style="width: 6rem;height:4rem;" v-if="index%5==1" src="@/assets/images-jianc/jianc_05.png">
+                <img style="width: 6rem;height:4rem;" v-if="index%5==2" src="@/assets/images-jianc/jianc_06.png">
+                <img style="width: 6rem;height:4rem;" v-if="index%5==3" src="@/assets/images-jianc/jianc_07.png">
+                <img style="width: 6rem;height:4rem;" v-if="index%5==4" src="@/assets/images-jianc/jianc_08.png">
+              </el-col>
+              <el-col :span="11">
+                <div style="color: #B6DBF0;font-size: 0.3rem;">{{item.time}}</div>
+                <div class="describe">{{item.content}}</div>
+              </el-col>
+              <el-col :span="4" :style="item.status=='未解决'?'color:#F8B62D':'color:#3EBBC2'">{{item.status}}</el-col>
+            </el-row>
+          </div>
+        </div>
+      </el-col>
+    </div>
+  </div>
+</template>
+
+<script>
+  import VariousIndicators from '../../dashboard/VariousIndicators'
+  import satisfiedChart from '../../dashboard/satisfiedChart'
+  import LineChart from '../../dashboard/LineChart'
+
+  function getDate() {
+    var date = new Date();
+    var str = "星期" + "日一二三四五六".charAt(new Date().getDay());
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let today = date.getDate();
+    let hours = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    return `${year}年 ${month}月 ${today}日 ${str}`
+    // return `${year}-${month}-${today} ${hours}:${minute}:${second}`
+  }
+
+  function getDate1() {
+    var date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let today = date.getDate();
+    let hours = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    return `${year}-${month}-${today}`
+    // return `${year}-${month}-${today} ${hours}:${minute}:${second}`
+  }
+  export default {
+    components: {
+      VariousIndicators,
+      satisfiedChart,
+      LineChart
+    },
+    data() {
+      return {
+        dayTime: getDate(),
+        btnList: ['台区数', '用户数', '容量'],
+        userbtnList: ['光伏用户列表', '非光伏用户列表'],
+        btnIndex: 0,
+        userIndex: 0,
+        dayTime1: getDate1(),
+        dayTime2: getDate1(),
+        warnList: [{
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '未解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '未解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }, {
+          time: '2018.06.31 12:08:34',
+          content: '电压负相序告警',
+          status: '已解决'
+        }],
+        inforList: [{
+          name: '台区名称',
+          value: '10KV怀东线生张村04号台架变'
+        }, {
+          name: '所属地市',
+          value: '泰安'
+        }, {
+          name: '供电单位',
+          value: '泰安供电公司'
+        }, {
+          name: '台区负责人',
+          value: '张三'
+        }, {
+          name: '联系电话',
+          value: '18877776666'
+        }, {
+          name: '当日发电量',
+          value: '1080.40kW-h'
+        }, {
+          name: '当月发电量',
+          value: '2080.40kW-h'
+        }, {
+          name: '当年发电量',
+          value: '4080.40kW-h'
+        }]
+      }
+    },
+    methods: {
+      choosebtn1(index) {
+        this.btnIndex = index
+      },
+      choosebtn2(index) {
+        this.userIndex = index
+      },
+      search() {
+        this.$refs.linechart.initChart()
+      }
+    }
+  }
+</script>
+<style scoped>
+  /deep/.el-rate__icon {
+    font-size: 1.6rem;
+  }
+
+  /deep/.el-input--medium .el-input__inner {
+    background: transparent !important;
+    width: 9rem;
+    border-color: #1D5A95;
+    border-radius: 3px;
+    color: #fff !important;
+    font-size: 0.75rem;
+    text-align: center;
+    height: 1.8rem;
+  }
+
+  /deep/.el-date-editor.el-input,
+  .el-date-editor.el-input__inner {
+    width: 9rem;
+  }
+
+  /deep/.el-input--medium .el-input__icon {
+    line-height: 1.8rem;
+  }
+</style>
+<style scoped lang="scss">
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .weizhi {
+    color: #FFFFFF;
+    width: 25%;
+    position: absolute;
+    left: 10%;
+    margin-left: 130px;
+    color: #efefef;
+    font-size: 0.8rem;
+  }
+
+  .dashboard-editor-container {
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px 0 20px;
+
+    .top_time {
+      color: #3adee1;
+      font-size: 0.9rem;
+      padding: 0 0 20px 20px;
+      width: 100%;
+      height: 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .top_right {
+        display: flex;
+        color: #fff;
+
+        .change {
+          width: 110px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background-image: url('../../../assets/images-tq/tqxi_03.png');
+          background-size: 100% 100%;
+          cursor: pointer;
+        }
+
+        .real_time {
+          width: 110px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background-image: url('../../../assets/images-tq/tqxi_05.png');
+          background-size: 100% 100%;
+          cursor: pointer;
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .box_contain {
+      width: 100%;
+      height: 94%;
+      color: #44ffff;
+      padding: 5px 0px 0 0px;
+      display: flex;
+      flex-direction: column;
+      flex-flow: row wrap;
+      align-content: space-around;
+      justify-content: space-around;
+
+      .contain_top {
+        width: 100%;
+        height: 55%;
+        display: flex;
+        margin-bottom: 15px;
+      }
+
+      .box_bg1 {
+        height: 100%;
+        background-image: url('../../../assets/images-jianc/bgk_zs.png');
+        background-size: 100% 100%;
+      }
+
+      .box_bg2 {
+        height: 100%;
+        background-image: url('../../../assets/images-jianc/bgk_mid.png');
+        background-size: 100% 100%;
+        margin: 0 10px 0 14px;
+      }
+
+      .box_bg3 {
+        height: 100%;
+        background-image: url('../../../assets/images-jianc/bgk_zx.png');
+        background-size: 100% 100%;
+      }
+
+      .box_bg4 {
+        height: 100%;
+        background-image: url('../../../assets/images-jianc/bgk_mid_x.png');
+        background-size: 100% 100%;
+        margin: 0 10px 0 14px;
+      }
+
+      .box_bg5 {
+        height: 100%;
+        background-image: url('../../../assets/images-jianc/bgk_you.png');
+        background-size: 100% 100%;
+      }
+
+      .warn {
+        height: 82%;
+        width: 92%;
+        margin: auto;
+        overflow-y: auto;
+        font-size: 0.8rem;
+        color: #fff;
+
+        .warn_box {
+          height: 10.8%;
+
+          .warn_line {
+            width: 1px;
+            height: 1.3rem;
+            background-color: #1D75AC;
+            margin-bottom: 10px;
+          }
+
+          .describe {
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+
+          img {
+            width: 90%;
+          }
+        }
+      }
+
+      .user_box {
+        font-size: 0.8rem;
+        color: #fff;
+        height: 38px;
+        line-height: 38px;
+        width: 92%;
+        background-color: rgba(5, 43, 110, 0.7);
+      }
+
+      .tuopu_img {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 86%;
+        }
+      }
+
+      .growth_top {
+        width: 90%;
+        margin: auto;
+        padding-top: 25px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        font-size: 0.7rem;
+        justify-content: center;
+        color: #B2D8F0;
+
+        .search_btn {
+          width: 3.5rem;
+          height: 1.6rem;
+          line-height: 1.6rem;
+          background-color: #3EBBC2;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 0.8rem;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+
+      .photovoltaic_box {
+        width: 100%;
+        height: 90%;
+        margin: auto;
+        display: flex;
+        padding-top: 20px;
+        justify-content: space-around;
+        align-items: center;
+
+        .photovoltaic {
+          width: 50%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .evaluate_title {
+            width: 100%;
+            height: 43%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #AFD3EA;
+
+            span {
+              font-family: regular-font;
+              font-size: 2.3rem;
+              color: #F8B62D;
+
+            }
+          }
+
+          .month_index {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #AFD3EA;
+            letter-spacing: 1px;
+            margin-left: 10px;
+
+            .line {
+              width: 4px;
+              height: 0.85rem;
+              border-radius: 3px;
+              background-color: #44FFFF;
+              margin-right: 8px;
+            }
+          }
+
+        }
+      }
+
+      .generation {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .generation_box {
+          font-size: 0.7rem;
+          color: #AFD3EA;
+          letter-spacing: 1px;
+          line-height: 28px;
+
+          .generation_value1 {
+            color: #fff;
+            font-size: 1.7rem;
+            color: #B1205C;
+            font-family: regular-font;
+          }
+
+          .generation_value2 {
+            color: #fff;
+            font-size: 1.7rem;
+            font-family: regular-font;
+            color: #F8B62D;
+          }
+
+          .generation_value3 {
+            color: #fff;
+            font-size: 1.7rem;
+            color: #0AA0EE;
+            font-family: regular-font;
+            // font-weight: 600;
+          }
+
+          .generation_value4 {
+            color: #fff;
+            font-size: 1.7rem;
+            color: #0CD272;
+            font-family: regular-font;
+          }
+        }
+      }
+
+      .info {
+        width: 92%;
+        height: 93%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        justify-content: center;
+        margin-top: 12px;
+
+        .info_box {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          color: #D4D7DF;
+          font-size: 0.75rem;
+          height: 8%;
+          background-color: #022664;
+          padding: 0 10px 0 0;
+          border-left: 4px solid #055FA2;
+          margin-bottom: 5px;
+
+          .info_value {
+            width: 63%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-left: 3px;
+          }
+
+        }
+      }
+
+
+      .contain_bottom {
+        width: 100%;
+        height: 41%;
+        display: flex;
+        margin-top: 20px;
+      }
+
+    }
+  }
+</style>

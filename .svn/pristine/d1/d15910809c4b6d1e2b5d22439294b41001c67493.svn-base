@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a971b98d-f23a-4f65-bdcc-8290d83e37d7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/views/system/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/system/role/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1vhx0Fms9O1TQgKH73ol39WJUvS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../software/nodejs/node.exe" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../../software/nodejs/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\lenovo\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+    <option name="runUnderTerminal" value="true" />
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\workspace\HKYN\DKY\photovoltaic-vue" />
+          <option name="myCopyRoot" value="E:\workspace\HKYN\DKY\photovoltaic-vue" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\workspace\HKYN\DKY\photovoltaic-vue" />
+          <option name="myCopyRoot" value="E:\workspace\HKYN\DKY\photovoltaic-vue" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a971b98d-f23a-4f65-bdcc-8290d83e37d7" name="Default Changelist" comment="" />
+      <created>1627027896299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627027896299</updated>
+      <workItem from="1627027899924" duration="1210000" />
+      <workItem from="1627030450615" duration="476000" />
+      <workItem from="1627031089449" duration="18709000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog" timestamp="1628643388201">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog/0.0.1536.834@0.0.1536.834" timestamp="1628643388201" />
+    <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1628475876342">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1628475876342" />
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom" timestamp="1627030926128">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1627030926128" />
+    <state width="1515" height="213" key="GridCell.Tab.0.center" timestamp="1627030926128">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1627030926128" />
+    <state width="1515" height="213" key="GridCell.Tab.0.left" timestamp="1627030926128">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1627030926128" />
+    <state width="1515" height="213" key="GridCell.Tab.0.right" timestamp="1627030926128">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1627030926128" />
+    <state x="556" y="119" key="RollbackChangesDialog" timestamp="1628217518148">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="556" y="119" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1628217518148" />
+    <state x="270" y="62" key="SettingsEditor" timestamp="1628475884090">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="270" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1628475884090" />
+    <state x="581" y="257" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1628643472584">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="581" y="257" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1628643472584" />
+    <state x="486" y="226" key="jetbrains.nodejs.interpreters-dialog" timestamp="1627030394544">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="486" y="226" key="jetbrains.nodejs.interpreters-dialog/0.0.1536.834@0.0.1536.834" timestamp="1627030394544" />
+    <state x="371" y="132" width="627" height="510" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1628475882650">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="371" y="132" width="627" height="510" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.834@0.0.1536.834" timestamp="1628475882650" />
+    <state x="564" y="314" key="svn.passwordDialog" timestamp="1628220476314">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="564" y="314" key="svn.passwordDialog/0.0.1536.834@0.0.1536.834" timestamp="1628220476314" />
+    <state x="599" y="208" key="svn.repositoryBrowser" timestamp="1628217269597">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="599" y="208" key="svn.repositoryBrowser/0.0.1536.834@0.0.1536.834" timestamp="1628217269597" />
+  </component>
+</project>
