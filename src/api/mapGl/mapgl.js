@@ -15,3 +15,11 @@ export function mapGuanli(query) {
       params: query
     })
   }
+  // 企业用能管理公司往年燃料对比图信息
+  export function mapGuanFuel(query) {
+    return request({
+      url: '/system/carbon//listByFuelType',
+      method: 'get',
+      params: query
+    })
+  }

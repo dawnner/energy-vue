@@ -9,12 +9,12 @@
     <div class="message">
       <h5
         v-for="(item, index) in mapMessage"
-        :value="item.unit_name"
-        :key="item.unit_name"
+        :value="item.unitName"
+        :key="item.unitName"
         @click="getBaiduMapPoint(item, index)"
         :class="{ active: index === current }"
       >
-        {{ item.unit_name }}
+        {{ item.unitName }}
       </h5>
     </div>
     <bm-control>
@@ -35,11 +35,11 @@
       <bm-marker
         v-for="(item, index) in mapMessage"
         :position="{ lng: item.longitude, lat: item.latitude }"
-        :key="item.unit_name"
+        :key="item.unitName"
         @click="getBaiduMapPoint(item, index)"
       >
         <bm-label
-          :content="item.unit_name"
+          :content="item.unitName"
           :title="corporateName"
           labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
           :offset="{ width: -35, height: 30 }"
@@ -53,9 +53,9 @@
       @open="infoWindowOpen"
     >
       <div class="container">
-        <span>{{ corporateName }}</span>
-        <p>地区:{{ area }}</p>
-        <p>行业:{{ industry }}</p>
+        <span>企业名称：{{ corporateName }}</span>
+        <p>行业类别:{{ industry }}</p>
+        <p>燃料类型:{{ area }}</p>
         <p>所在市区:{{ city }}</p>
       </div>
     </bm-info-window>
@@ -97,7 +97,7 @@ export default {
       infoWindowShow: false,
       longitude: "",
       latitude: "",
-      area: "",
+      area: "", //行业类型
       city: "",
       industry: "",
       point: "",
@@ -133,11 +133,11 @@ export default {
         console.log(item);
         let that = this;
         that.current = i;
-        this.corporateName = item.unit_name;
+        this.corporateName = item.unitName;
         that.area = item.City;
         this.city = item.County;
         that.industry = item.type;
-        let str = item.unit_name ? item.unit_name : this.searchJingwei;
+        let str = item.unitName ? item.unitName : this.searchJingwei;
         let myGeo = new this.BMap.Geocoder();
         myGeo.getPoint(str, function(point) {
           console.log(str);

@@ -1,20 +1,19 @@
 <template>
   <div style="width:100%;height:100%;position: relative;">
-    <div
+    <!-- <div
       style="position: absolute;top:5%;left:5%;width:400px;height:30px;z-index:22"
     >
       <search></search>
-    </div>
+    </div> -->
     <!-- <map-container style="width:100%;height:100%"></map-container> -->
+    <map-cgui style="width:100%;height:70%"></map-cgui>
   </div>
 </template>
 
 <script>
-import { mapGuanliHistogram } from "../../api/mapGl/mapgl";
-// import MapContainer from "./components/MapContainer.vue";
+import { mapGuanliHistogram, mapGuanFuel } from "../../api/mapGl/mapgl";
 import mapCgui from "./components/mapCgui.vue";
 import search from "./components/search.vue";
-// import { mapGuanli } from "../../api/mapGl/mapgl";
 export default {
   data() {
     return {};
@@ -22,12 +21,19 @@ export default {
   components: { mapCgui, search },
   methods: {
     async mapGuanliHistogram() {
-      const commt = await mapGuanliHistogram();
-      console.log(commt);
+      const { rows } = await mapGuanliHistogram();
+      console.log(rows);
+    },
+    async mapGuanFuel() {
+      const { rows } = await mapGuanFuel();
+      console.log(rows);
     }
   },
   created() {
+    // 企业用能管理公司柱状图信息
     this.mapGuanliHistogram();
+    // 企业用能管理公司往年燃料对比图信息
+    this.mapGuanFuel();
   }
 };
 </script>
