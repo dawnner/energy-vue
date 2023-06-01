@@ -124,13 +124,8 @@ export default {
   },
   mounted() {
     this.mapName();
-    this.getdata();
   },
   methods: {
-    getdata() {
-      let xData = ["济南", "青岛", "烟台", "威海", "淄博", "临沂", "菏泽"];
-      this.$refs.dyjrqk.analysisHistogram2(xData);
-    },
     goback() {
       // this.$nextTick(() => {
       this.$refs.mapxz.change();

@@ -1,31 +1,38 @@
 <template>
   <div style="width:100%;height:100%;position: relative;">
-    <!-- <div
-      style="position: absolute;top:5%;left:5%;width:400px;height:30px;z-index:22"
-    >
-      <search></search>
-    </div> -->
-    <!-- <map-container style="width:100%;height:100%"></map-container> -->
     <map-cgui style="width:100%;height:70%"></map-cgui>
+    <div style="width:100%;height:25%;display:flex">
+      <localemissions
+        style="width:50%;height:100%"
+        ref="localEmissions"
+      ></localemissions>
+      <fuelcomparison
+        style="width:50%;height:100%"
+        ref="comparison"
+      ></fuelcomparison>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGuanliHistogram, mapGuanFuel } from "../../api/mapGl/mapgl";
 import mapCgui from "./components/mapCgui.vue";
-import search from "./components/search.vue";
+import localemissions from "./components/localEmissions.vue";
+import fuelcomparison from "./components/fuelComparison.vue";
 export default {
   data() {
     return {};
   },
-  components: { mapCgui, search },
+  components: { mapCgui, localemissions, fuelcomparison },
   methods: {
     async mapGuanliHistogram() {
       const { rows } = await mapGuanliHistogram();
+      this.$refs.localEmissions.localEmissions(rows);
       console.log(rows);
     },
     async mapGuanFuel() {
       const { rows } = await mapGuanFuel();
+      this.$refs.comparison.fuelcomparison(rows);
       console.log(rows);
     }
   },

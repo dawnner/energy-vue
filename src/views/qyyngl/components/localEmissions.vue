@@ -1,10 +1,6 @@
 <template>
-  <div style="height: 100%; position: relative">
-    <div
-      id="analysisHistogram2"
-      style="width: 100%; height: 100%"
-      ref="chart"
-    ></div>
+  <div style="height: 100%; width:100%">
+    <div id="localEmissions" style="width: 100%; height: 100%"></div>
   </div>
 </template>
 
@@ -15,20 +11,35 @@ export default {
     // this.analysisHistogram2();
   },
   methods: {
-    analysisHistogram2(j) {
-      console.log(j);
+    localEmissions(val) {
+      console.log(val);
+      const citys = []; //城市
+      const numbar1 = []; //数据1
+      const numbar2 = []; //数据2
+      const numbar3 = []; //数据2
+      val.forEach(obj => {
+        citys.push(obj.city);
+        numbar1.push(obj.twentyEmissions);
+        numbar2.push(obj.twentyOneEmissions);
+        numbar3.push(obj.twentytWOEmissions);
+      });
 
-      var chartDom = document.getElementById("analysisHistogram2");
+      var chartDom = document.getElementById("localEmissions");
       var myChart = echarts.init(chartDom);
       // var option;
-      // let xData = []; // 类型
-      let xData = ["济南", "青岛", "烟台", "威海", "淄博", "临沂", "菏泽"];
-      var data1Arr = [8, 11, 14, 15, 17, 11, 11]; // 数据1
-      var data2Arr = [7, 10, 10, 9, 11, 7, 7]; // 数据2
-      var data3Arr = [6, 9, 2, 3, 8, 4, 4]; // 数据3
-      //var data4Arr = [720, 700, 810, 815, 800, 580, 900, 720, 700]; // 数据4
-      // xData = j;
-      var dataName = ["新能源", "常规电源", "储能"];
+      let xData = [];
+      var data1Arr = []; // 数据1
+      var data2Arr = []; // 数据2
+      var data3Arr = []; // 数据3
+      xData = citys;
+      data1Arr = numbar1;
+      data2Arr = numbar2;
+      data3Arr = numbar3;
+      var dataName = [
+        "2020年机组排放(tCO2)",
+        "2021年机组排放(tCO2)",
+        "2022年机组排放(tCO2)"
+      ];
       let zoomShow = xData.length > 10;
 
       let dataList = [data1Arr, data2Arr, data3Arr];
@@ -105,13 +116,14 @@ export default {
       });
 
       let option = {
+        backgroundColor: "#fff",
         title: {
           text: "各地市CO2往年对比",
-          left: 20,
-          top: 18,
+          left: "40%",
+          top: 8,
           // bottom: 18,
           textStyle: {
-            fontSize: 22
+            fontSize: 18
           }
         },
 
@@ -154,15 +166,17 @@ export default {
           }
         ],
         legend: {
-          top: 23,
-          right: 10,
+          // top: 23,
+          // right: 10,
+          bottom: 2, // 设置图例距离底部的距离
+          center: "center", // 将图例居中显示
           data: dataName,
           // right: "35%",
           // top: "0",
           //icon: "circle",
           // itemWidth: 24, // 设置宽度
           // itemHeight: 14, // 设置高度
-          itemGap: 10,
+          itemGap: 5,
           textStyle: {
             color: "rgba(0, 0, 0, 0.85)",
             fontFamily: "Source Han Sans CN-Regular",
@@ -173,8 +187,8 @@ export default {
         grid: {
           left: "2%",
           right: "5%",
-          top: 80,
-          bottom: "3%", //下边距,
+          top: 35,
+          bottom: "10%", //下边距,
           containLabel: true
         },
         xAxis: [
@@ -254,7 +268,7 @@ export default {
 </script>
 
 <style>
-#analysisHistogram2 {
+#localEmissions {
   background-size: 100% 100%;
 }
 </style>

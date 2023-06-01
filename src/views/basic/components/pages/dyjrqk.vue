@@ -5,11 +5,7 @@
       src="../../../../assets/images/biaotixia2.png"
       alt=""
     />
-    <div
-      id="analysisHistogram2"
-      style="width: 100%; height: 100%"
-      ref="chart"
-    ></div>
+    <div id="analysisHistogram2" style="width: 100%; height: 100%"></div>
   </div>
 </template>
 
@@ -17,22 +13,16 @@
 import * as echarts from "echarts";
 export default {
   mounted() {
-    // this.analysisHistogram2();
+    this.analysisHistogram2();
   },
   methods: {
-    analysisHistogram2(j) {
-      console.log(j);
-
+    analysisHistogram2() {
       var chartDom = document.getElementById("analysisHistogram2");
       var myChart = echarts.init(chartDom);
-      // var option;
-      // let xData = []; // 类型
       let xData = ["济南", "青岛", "烟台", "威海", "淄博", "临沂", "菏泽"];
       var data1Arr = [8, 11, 14, 15, 17, 11, 11]; // 数据1
       var data2Arr = [7, 10, 10, 9, 11, 7, 7]; // 数据2
       var data3Arr = [6, 9, 2, 3, 8, 4, 4]; // 数据3
-      //var data4Arr = [720, 700, 810, 815, 800, 580, 900, 720, 700]; // 数据4
-      // xData = j;
       var dataName = ["新能源", "常规电源", "储能"];
       let zoomShow = xData.length > 10;
 

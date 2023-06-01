@@ -3,10 +3,11 @@
     class="map"
     ak="YOUR_APP_KEY"
     @ready="getMap2"
+    @mouseover="mouseover"
     :zoom="10"
     :scroll-wheel-zoom="true"
   >
-    <div class="message">
+    <!-- <div class="message">
       <h5
         v-for="(item, index) in mapMessage"
         :value="item.unitName"
@@ -16,11 +17,11 @@
       >
         {{ item.unitName }}
       </h5>
-    </div>
+    </div> -->
     <bm-control>
       <button @click="openDistanceTool">开启测距</button>
     </bm-control>
-    <div style="position:absolute;top: 0px;left: 84px">
+    <!-- <div style="position:absolute;top: 0px;left: 84px">
       <bm-auto-complete v-model="searchJingwei" :sugStyle="{ zIndex: 999999 }">
         <el-input
           v-model="searchJingwei"
@@ -30,13 +31,14 @@
         ></el-input>
       </bm-auto-complete>
       <el-button type="primary" @click="getBaiduMapPoint">搜索</el-button>
-    </div>
+    </div> -->
     <bml-marker-clusterer :averageCenter="true">
       <bm-marker
         v-for="(item, index) in mapMessage"
         :position="{ lng: item.longitude, lat: item.latitude }"
         :key="item.unitName"
-        @click="getBaiduMapPoint(item, index)"
+        @mouseover="getBaiduMapPoint(item, index)"
+        @mouseout="outBaiduMapPoint(item, index)"
       >
         <bm-label
           :content="item.unitName"
@@ -49,14 +51,17 @@
     <bm-info-window
       :position="{ lng: longitude, lat: latitude }"
       :show="infoWindowShow"
+      :offset="{ width: 0, height: -28 }"
+      :autoPan="true"
       @clickclose="infoWindowClose"
       @open="infoWindowOpen"
     >
       <div class="container">
         <span>企业名称：{{ corporateName }}</span>
-        <p>行业类别:{{ industry }}</p>
-        <p>燃料类型:{{ area }}</p>
-        <p>所在市区:{{ city }}</p>
+        <p>行业类别:{{ typeFlag }}</p>
+        <p>燃料类型:{{ fuelType }}</p>
+        <p>碳含量检测方式:{{ carbonContentDetectionMethod }}</p>
+        <p>碳核查机构: {{ greenhouseGasReportingAgency }}</p>
       </div>
     </bm-info-window>
     <bm-boundary
@@ -93,6 +98,10 @@ export default {
       mapMessage: [],
       searchJingwei: "",
       corporateName: "",
+      fuelType: "",
+      carbonContentDetectionMethod: "",
+      greenhouseGasReportingAgency: "",
+      typeFlag: "",
       current: 0,
       infoWindowShow: false,
       longitude: "",
@@ -104,16 +113,6 @@ export default {
       BMap: null, // 百度地图对象
       map: null // 百度地图实例
     };
-  },
-  mounted() {
-    // this.corporateName = this.mapMessage.map(item => {
-    //   return item.name
-    // })
-    // console.log(this.corporateName)
-    // for (let i= 0; i<this.mapMessage.length; i++) {
-    //   this.corporateName = this.mapMessage[i].name
-    //   console.log(this.corporateName)
-    // }
   },
   unmount() {
     distanceTool && distanceTool.close();
@@ -128,27 +127,51 @@ export default {
       this.mapMessage = rows;
       console.log(this.mapMessage);
     },
+    outBaiduMapPoint(item, i) {
+      if (item) {
+        let that = this;
+        that.latitude = item.latitude;
+        that.longitude = item.longitude;
+        that.infoWindowShow = false;
+        //     that.Longitude = item.Longitude;
+        // let str = item.name ? item.name : this.searchJingwei;
+        // let myGeo = new this.BMap.Geocoder();
+        // myGeo.getPoint(str, function(point) {
+        //   console.log(str);
+        //   if (point) {
+        //     console.log(point);
+        //     that.map.centerAndZoom(point, 15);
+        //     that.Latitude = item.Latitude;
+        //     that.Longitude = item.Longitude;
+        //     that.infoWindowShow = true;
+        //   }
+        // });
+      }
+    },
     getBaiduMapPoint(item, i) {
       if (item) {
-        console.log(item);
         let that = this;
-        that.current = i;
-        this.corporateName = item.unitName;
+        that.corporateName = item.unitName;
+        that.typeFlag = item.type;
         that.area = item.City;
-        this.city = item.County;
+        that.city = item.County;
+        that.fuelType = item.fuelType;
+        that.carbonContentDetectionMethod = item.carbonContentDetectionMethod;
+        that.greenhouseGasReportingAgency = item.greenhouseGasReportingAgency;
         that.industry = item.type;
-        let str = item.unitName ? item.unitName : this.searchJingwei;
-        let myGeo = new this.BMap.Geocoder();
-        myGeo.getPoint(str, function(point) {
-          console.log(str);
-          if (point) {
-            console.log(point);
-            that.map.centerAndZoom(point, 15);
-            that.latitude = item.latitude;
-            that.longitude = item.longitude;
-            that.infoWindowShow = true;
-          }
-        });
+        that.latitude = item.latitude;
+        that.longitude = item.longitude;
+        that.infoWindowShow = true;
+        // let myGeo = new this.BMap.Geocoder();
+        // myGeo.getPoint(str, function(point) {
+        //   console.log(str);
+        //   if (point) {
+        //     console.log(point);
+        //     that.map.centerAndZoom(point, 15);
+
+        //   }
+        // });
+        // that.infoWindowShow = true;
       }
     },
     // getLocation(e){
@@ -165,65 +188,11 @@ export default {
     infoWindowOpen() {
       this.infoWindowShow = true;
     },
-    // handler: function ({ BMap, map }) {
-    // 	window.map = map
-    // 	// 赋值，方便调用，本节被用到
-    // 	this.BMap = BMap
-    // 	this.map = map
-    // 	// 测距功能
-    // 	this.distanceTool = new DistanceTool(map, {lineStroke : 2})
-    // 	//监听测距尺关闭的时候触发的事件
-    // 	this.distanceTool.addEventListener("removepolyline", function(e) {
-    // 	  console.log("removepolyline");
-    // 	  console.log(e);
-    // 	});
-    // 	//监听测距尺鼠标点击添加点的时候触发的事件
-    // 	this.distanceTool.addEventListener("addpoint", function(e) {
-    // 		console.log("addpoint");
-    // 		console.log(e.point);
-    // 		console.log(e.pixel);
-    // 		console.log(e.index);
-    // 		console.log(e.distance);
-    // 	});
-    // 	//监听测距尺鼠标右击测距尺添加完成的时候触发的事件
-    // 	this.distanceTool.addEventListener('drawend', function(e) {
-    // 		console.log("drawend");
-    // 		console.log(e.points);
-    // 		console.log(e.overlays);
-    // 		console.log(e.distance);
-    // 	});
-    // },
     getMap2({ BMap, map }) {
-      this.point = new BMap.Point(113.27, 23.13);
+      this.point = new BMap.Point(117.02, 36.4);
       map.centerAndZoom(this.point, 12);
       this.BMap = BMap;
       this.map = map;
-      // 创建地图实例
-      // var map = new BMap.Map('map2');
-      // //设置地图的中心点如成都的坐标
-      // var point = new BMap.Point(117.02, 36.40);
-      // // 初始化地图，设置中心点坐标和地图级别
-      // map.centerAndZoom(point, 7);
-      // // 将地图在水平位置上移动x像素，垂直位置上移动y像素(x,y)
-      // map.panBy(0, 30);
-      // // 允许滚轮缩放
-      // map.enableScrollWheelZoom();
-      // //只显示某个省份的关键代码
-      // var cityName = '山东省';
-      // var bdary = new BMap.Boundary();
-      // bdary.get(cityName, function (rs) {
-      //   let arr = rs.boundaries;
-      //   if (arr.length == 0) return;
-      //   //获取行政区域
-      //   var EN_JW = '180, 90;'; //东北角
-      //   var NW_JW = '-180,  90;'; //西北角
-      //   var WS_JW = '-180, -90;'; //西南角
-      //   var SE_JW = '180, -90;'; //东南角
-      //   let max = arr.reduce((a, b) => (a.length > b.length ? a : b));
-      //   //4.添加环形遮罩层
-      //   var ply1 = new BMap.Polygon(max + SE_JW + SE_JW + WS_JW + NW_JW + EN_JW + SE_JW, { strokeColor: 'none', fillColor: '#0B1D35', fillOpacity: 1, strokeOpacity: 0.5 }); //建立多边形覆盖物
-      //   map.addOverlay(ply1);
-      // });
       this.distanceTool = new DistanceTool(map, { lineStroke: 2 });
       this.addMapOverlay(map, "山东");
     },
@@ -231,6 +200,7 @@ export default {
       const { distanceTool } = this;
       distanceTool && distanceTool.open();
     },
+    mouseover() {},
     addMapOverlay(map, cityName) {
       let bdary = new BMap.Boundary();
       bdary.get(cityName, rs => {
@@ -292,23 +262,36 @@ export default {
   width: 100%;
   height: 550px;
 }
-.message {
-  position: absolute;
-  top: 53px;
-  height: 400px;
-  width: 200px;
-  background: #fff;
-  overflow: auto;
-  color: #0077ca;
-  margin-left: 10px;
-  cursor: pointer;
-}
+// .message {
+//   position: absolute;
+//   top: 53px;
+//   height: 300px;
+//   width: 200px;
+//   background: #fff;
+//   overflow: auto;
+//   color: #0077ca;
+//   margin-left: 10px;
+//   cursor: pointer;
+// }
 .container {
-  height: 200px;
+  height: 300px;
   width: 200px;
-  overflow: auto;
+  overflow-y: scroll;
   span {
     font-weight: 600;
   }
+}
+// ::v-deep .BMap_cpyCtrl {
+//   display: none !important;
+// }
+
+// ::v-deep .anchorBL{
+//     display:none !important;
+//   }
+::v-deep .BMap_cpyCtrl {
+  display: none !important;
+}
+::v-deep .anchorBL {
+  display: none !important;
 }
 </style>
