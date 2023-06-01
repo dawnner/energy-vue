@@ -196,6 +196,7 @@ export default {
     clickName(item, index) {
       this.activelist = index;
       this.$router.push(item.url);
+      this.$emit("openIndex", index);
     },
     toggleSideBar() {
       this.$store.dispatch("app/toggleSideBar");

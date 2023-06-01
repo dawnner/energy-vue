@@ -8,7 +8,7 @@
       <div
         style="flex:1;font-size: 18px;color: #375175;white-space: nowrap;overflow: hidden;"
       >
-        再生能源电力消耗责任权重
+        再生能源电力消纳责任权重
       </div>
       <div id="ring1" style="height: 100%; width: 24%"></div>
     </div>
@@ -18,7 +18,7 @@
       <div
         style="flex:1;font-size: 18px;color: #375175;white-space: nowrap;overflow: hidden;"
       >
-        再生能源电力消耗责任权重
+        风电光伏发电利用率
       </div>
       <div id="ring2" style="height: 100%; width: 24%"></div>
     </div>
@@ -28,7 +28,7 @@
       <div
         style="flex:1;font-size: 18px;color: #375175;white-space: nowrap;overflow: hidden;"
       >
-        再生能源电力消耗责任权重
+        电力系统调节能力占比
       </div>
       <div id="ring3" style="height: 100%; width: 24%"></div>
     </div>
@@ -38,7 +38,7 @@
       <div
         style="flex:1;font-size: 18px;color: #375175;white-space: nowrap;overflow: hidden;"
       >
-        再生能源电力消耗责任权重
+        电能占终端能源消费比重
       </div>
       <div id="ring4" style="height: 100%; width: 24%"></div>
     </div>

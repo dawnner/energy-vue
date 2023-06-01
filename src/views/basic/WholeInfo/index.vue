@@ -13,7 +13,7 @@
           <jhdl></jhdl>
         </div>
         <div class="dyjrqk">
-          <dyjrqk style="width: 100%; height: 100%"></dyjrqk>
+          <dyjrqk ref="dyjrqk" style="width: 100%; height: 100%"></dyjrqk>
         </div>
       </div>
       <!-- 右 -->
@@ -124,8 +124,13 @@ export default {
   },
   mounted() {
     this.mapName();
+    this.getdata();
   },
   methods: {
+    getdata() {
+      let xData = ["济南", "青岛", "烟台", "威海", "淄博", "临沂", "菏泽"];
+      this.$refs.dyjrqk.analysisHistogram2(xData);
+    },
     goback() {
       // this.$nextTick(() => {
       this.$refs.mapxz.change();

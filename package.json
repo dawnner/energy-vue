@@ -36,6 +36,7 @@
     "url": "https://gitee.com/y_project/RuoYi-Vue.git"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@riophae/vue-treeselect": "0.4.0",
     "axios": "0.21.0",
     "bmaplib.distancetool": "^1.0.2",
@@ -57,6 +58,7 @@
     "sortablejs": "1.10.2",
     "vue": "2.6.12",
     "vue-baidu-map": "^0.21.22",
+    "vue-bus": "^1.2.1",
     "vue-count-to": "1.0.13",
     "vue-cropper": "0.5.5",
     "vue-meta": "^2.4.0",

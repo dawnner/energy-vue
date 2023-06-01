@@ -1,47 +1,168 @@
 <template>
-  <div>
-    页面一
-    <div style="width: 1000px; height: 1000px">
-      <div class="reback" @click="back">返回</div>
-      <map-shandong
-        @changeCitys="changeCitys"
-        ref="mapBack"
-        style="width: 100%; height: 60%; margin-top: 12px"
+  <!-- <div class="box">
+    <div class="box-left">
+      <el-menu
+        router
+        :default-active="$route.path"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        background-color="#f6f5f5"
       >
-      </map-shandong>
+        <el-radio-group v-model="isCollapse">
+          <el-radio-button :label="true">{{ "<" }}</el-radio-button>
+          <el-radio-button :label="false">{{ ">" }}</el-radio-button>
+        </el-radio-group>
+        <el-submenu index="1">
+          <template slot="title">
+            <div>
+              <i class="el-icon-location"></i>
+              <span slot="title">一次能源保供能力</span>
+            </div>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/keshihua/inventory">
+              煤电企业库存数据</el-menu-item
+            >
+            <el-menu-item index="/keshihua/oneEnergy">
+              一次能源供应保障能力</el-menu-item
+            >
+          </el-menu-item-group>
+        </el-submenu>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title">分布式电源接入电网承载力</span>
+        </el-menu-item>
+        <el-menu-item index="3">
+          <i class="el-icon-document"></i>
+          <span slot="title">煤电燃机检测分享</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">常规电源项目管理</span>
+        </el-menu-item>
+      </el-menu>
     </div>
+    <div class="box-right">
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </div>
+  </div> -->
+  <div style="height:100%">
+    <el-container>
+      <el-aside :width="isCollapse ? '64px' : '230px'">
+        <el-button
+          type="success"
+          plain
+          style="width:100%"
+          @click="isCollapse = !isCollapse"
+          >|||</el-button
+        >
+        <el-menu
+          default-active="1-4-1"
+          class="el-menu-vertical-demo"
+          :collapse="isCollapse"
+          @select="changeSidebar"
+          :collapse-transition="false"
+        >
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span slot="title">一次能源保供能力</span>
+            </template>
+            <el-menu-item index="1-1">煤电企业库存数据</el-menu-item>
+            <el-menu-item index="1-2">一次能源供应保障能力 </el-menu-item>
+          </el-submenu>
+          <el-menu-item index="2">
+            <i class="el-icon-menu"></i>
+            <span slot="title">分布式电源接入电网承载力</span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-document"></i>
+            <span slot="title">煤电燃机检测分析</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">常规电源项目管理</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <web-map
+          v-if="tabId == '-1'"
+          style="width: 100%;height: 100%;"
+        ></web-map>
+        <keshihuaInventory v-if="tabId == '1-1'"></keshihuaInventory>
+        <oneEnergy v-if="tabId == '1-2'"></oneEnergy>
+        <distributed v-if="tabId == '2'"></distributed>
+        <coalElectricity v-if="tabId == '3'"></coalElectricity>
+        <powerMent v-if="tabId == '4'"></powerMent>
+      </el-main>
+    </el-container>
   </div>
 </template>
-
 <script>
-import MapShandong from "./MapShandong.vue";
+import webMap from "../../views/WebMap/mapCgui.vue";
+import DistanceTool from "bmaplib.distancetool";
+import coalElectricity from "../../views/keshihua/components/CoalElectricity.vue";
+import distributed from "../../views/keshihua/components/Distributed.vue";
+import keshihuaInventory from "../../views/keshihua/components/keshihuaInventory.vue";
+import oneEnergy from "../../views/keshihua/components/oneEnergy.vue";
+import powerMent from "../../views/keshihua/components/PowerMent.vue";
 export default {
+  data() {
+    return {
+      isCollapse: false, //按钮控制菜单栏的展开
+      tabId: "-1"
+    };
+  },
   methods: {
-    changeCitys(e) {
-      this.platformList = e;
-    },
-    back() {
-      this.$refs.mapBack.backUp();
-    },
+    changeSidebar(path) {
+      console.log(path);
+      this.tabId = path;
+    }
   },
   components: {
-    MapShandong,
-  },
+    webMap,
+    distributed,
+    coalElectricity,
+    keshihuaInventory,
+    oneEnergy,
+    powerMent
+  }
 };
 </script>
 
-<style>
-.reback {
-  position: absolute;
-  left: 33%;
-  bottom: 75%;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-  z-index: 999;
-  /* // border: 1px solid #00ffff;
-  // width: 5rem;
-  // height: 2rem;
-  // border-radius: 15px; */
+<style scoped>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 230px;
+  min-height: 100%;
+}
+label /deep/ .el-radio-button__inner {
+  padding: 6px 11px;
+}
+section /deep/ .el-aside {
+  padding: 0;
+  background: none;
+}
+.el-container {
+  height: 100%;
+}
+aside /deep/ .el-menu {
+  background: #ecf6ec;
+}
+/deep/ .el-submenu__title i {
+  color: #909399 !important;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.box-right {
+  flex: 1;
 }
 </style>
+<style></style>

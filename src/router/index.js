@@ -5,9 +5,38 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-import ParentView from '@/components/ParentView';
 import InnerLink from '@/layout/components/InnerLink'
 import webnumber from '@/views/webnumber.vue'
+import web0 from '../utils/webNumber/web0.vue'
+import web1 from '../utils/webNumber/web1.vue'
+import web2 from '../utils/webNumber/web2.vue'
+import web3 from '../utils/webNumber/web3.vue'
+import web4 from '../utils/webNumber/web4.vue'
+import webtwo0 from '../utils/webNumber/web-two0.vue'
+import webtwo1 from '../utils/webNumber/web-two1.vue'
+import webtwo2 from '../utils/webNumber/web-two2.vue'
+import webtwo3 from '../utils/webNumber/web-two3.vue'
+import webtwo4 from '../utils/webNumber/web-two4.vue'
+import webthree0 from '../utils/webNumber/web-three0.vue'
+import webthree1 from '../utils/webNumber/web-three1.vue'
+import webthree2 from '../utils/webNumber/web-three2.vue'
+import webthree3 from '../utils/webNumber/web-three3.vue'
+import webthree4 from '../utils/webNumber/web-three4.vue'
+import webfour0 from '../utils/webNumber/web-four0.vue'
+import webfour1 from '../utils/webNumber/web-four1.vue'
+import webfour2 from '../utils/webNumber/web-four2.vue'
+import webfour3 from '../utils/webNumber/web-four3.vue'
+import webfour4 from '../utils/webNumber/web-four4.vue'
+import webfive0 from '../utils/webNumber/web-five0.vue'
+import webfive1 from '../utils/webNumber/web-five1.vue'
+import webfive2 from '../utils/webNumber/web-five2.vue'
+import webfive3 from '../utils/webNumber/web-five3.vue'
+import webfive4 from '../utils/webNumber/web-five4.vue'
+import websix0 from '../utils/webNumber/web-six0.vue'
+import websix1 from '../utils/webNumber/web-six1.vue'
+import websix2 from '../utils/webNumber/web-six2.vue'
+import websix3 from '../utils/webNumber/web-six3.vue'
+import websix4 from '../utils/webNumber/web-six4.vue'
 
 /**
  * Note: 路由配置项
@@ -33,7 +62,7 @@ export const constantRoutes = [
   {
     path: '/webnumber',
     name: 'webnumber',
-    component: webnumber
+    component: webnumber,
   },
   {
     path: '/redirect',
@@ -49,11 +78,6 @@ export const constantRoutes = [
     component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
-  // {
-  //   path: '/photovoltaic',
-  //   component: (resolve) => require(['@/views/photovoltaic'], resolve),
-  //   hidden: true
-  // },
   {
     path: '/404',
     component: (resolve) => require(['@/views/error/404'], resolve),
@@ -93,11 +117,12 @@ export const constantRoutes = [
         title: '可视化',
         icon: 'user'
       }
-    },{
+    },
+    {
 	    path: '/keshihua',
 	    component: () => import('@/views/keshihua/index'),
 	    name: 'keshihua',
-	    meta: { title: '常规电源', icon: 'dashboard' }
+	    meta: { title: '常规电源', icon: 'dashboard' },
 	  },
 	  {
 	    path: '/page1',
@@ -143,104 +168,33 @@ export const constantRoutes = [
   //   hidden: true,
   //   redirect: 'noredirect',
   //   children: [{
-  //     path: 'photovoltaic',
-  //     component: (resolve) => require(['@/views/basic/photovoltaic/index'], resolve),
-  //     name: 'Photovoltaic',
+  //     path: '/keshihua',
+  //     component: (resolve) => require(['@/views/keshihua/index'], resolve),
+  //     name: 'keshihua',
   //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
-  //   }]
-  // },
-  
-  // {
-  //   path: '/basic',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'platformArea',
-  //     component: (resolve) => require(['@/views/basic/platformArea/index'], resolve),
-  //     name: 'PlatformArea',
+  //       title: '常规电源',
+  //       icon: 'dashboard'
+  //     },
+  //     children:[
+  //     {
+  //     path: '/keshihua/inventory',
+  //     component: () =>import('@/views/keshihua/components/keshihuaInventory/index.vue'),
+  //     name: 'inventory',
   //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
-  //   }]
-  // },
-  // {
-  //   path: '/basic',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'userInfo',
-  //     component: (resolve) => require(['@/views/basic/UserInfo/index'], resolve),
-  //     name: 'userInfo',
+  //       title:'煤电企业库存数据',
+  //       icon: 'dashboard'
+  //       },
+  //     },
+  //     {
+  //       path: '/keshihua/oneEnergy',
+  //     component: () =>import('@/views/keshihua/components/oneEnergy/index.vue'),
+  //     name: 'oneEnergy',
   //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
+  //       title:'一次能源供应保障能力',
+  //       icon: 'dashboard'
+  //       },
   //     }
-  //   }]
-  // },
-  // {
-  //   path: '/WholeMonitore',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'wholeMonitore',
-  //     component: (resolve) => require(['@/views/WholeMonitore/index'], resolve),
-  //     name: 'wholeMonitore',
-  //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
-  //   }]
-  // },
-  // {
-  //   path: '/basic',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'StationMonitoring',
-  //     component: (resolve) => require(['@/views/basic/StationMonitoring/index'], resolve),
-  //     name: 'StationMonitoring',
-  //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
-  //   }]
-  // },
-  // {
-  //   path: '/analysis',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'OperationAnalysis',
-  //     component: (resolve) => require(['@/views/analysis/OperationAnalysis/index'], resolve),
-  //     name: 'OperationAnalysis',
-  //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
-  //   }]
-  // },
-  // {
-  //   path: '/PlanningAccess',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: 'plan',
-  //     component: (resolve) => require(['@/views/PlanningAccess/index'], resolve),
-  //     name: 'plan',
-  //     meta: {
-  //       title: '可视化',
-  //       icon: 'user'
-  //     }
+  //   ]
   //   }]
   // },
 	{
@@ -340,11 +294,163 @@ export const constantRoutes = [
     }]
   }
 ]
-
+//外部网站路由
+export const webnumberRoutes = [
+  {
+    path: '/web0',
+    name: 'web0',
+    component: web0,
+  },
+  {
+    path: '/web1',
+    name: 'web1',
+    component: web1,
+  },
+  {
+    path: '/web2',
+    name: 'web2',
+    component: web2,
+  },
+  {
+    path: '/web3',
+    name: 'web3',
+    component: web3,
+  },
+  {
+    path: '/web4',
+    name: 'web4',
+    component: web4,
+  },
+  {
+    path: '/webtwo0',
+    name: 'webtwo0',
+    component: webtwo0,
+  },
+  {
+    path: '/webtwo1',
+    name: 'webtwo1',
+    component: webtwo1,
+  },
+  {
+    path: '/webtwo2',
+    name: 'webtwo2',
+    component: webtwo2,
+  },
+  {
+    path: '/webtwo3',
+    name: 'webtwo3',
+    component: webtwo3,
+  },
+  {
+    path: '/webtwo4',
+    name: 'webtwo4',
+    component: webtwo4,
+  },
+  {
+    path: '/webthree0',
+    name: 'webthree0',
+    component: webthree0,
+  },
+  {
+    path: '/webthree1',
+    name: 'webthree1',
+    component: webthree1,
+  },
+  {
+    path: '/webthree2',
+    name: 'webthree2',
+    component: webthree2,
+  },
+  {
+    path: '/webthree3',
+    name: 'webthree3',
+    component: webthree3,
+  },
+  {
+    path: '/webthree4',
+    name: 'webthree4',
+    component: webthree4,
+  },
+  {
+    path: '/webfour0',
+    name: 'webfour0',
+    component: webfour0,
+  },
+  {
+    path: '/webfour1',
+    name: 'webfour1',
+    component: webfour1,
+  },
+  {
+    path: '/webfour2',
+    name: 'webfour2',
+    component: webfour2,
+  },
+  {
+    path: '/webfour3',
+    name: 'webfour3',
+    component: webfour3,
+  },
+  {
+    path: '/webfour4',
+    name: 'webfour4',
+    component: webfour4,
+  },
+  {
+    path: '/webfive0',
+    name: 'webfive0',
+    component: webfive0,
+  },
+  {
+    path: '/webfive1',
+    name: 'webfive1',
+    component: webfive1,
+  },
+  {
+    path: '/webfive2',
+    name: 'webfive2',
+    component: webfive2,
+  },
+  {
+    path: '/webfive3',
+    name: 'webfive3',
+    component: webfive3,
+  },
+  {
+    path: '/webfive4',
+    name: 'webfive4',
+    component: webfive4,
+  },
+  {
+    path: '/websix0',
+    name: 'websix0',
+    component: websix0,
+  },
+  {
+    path: '/websix1',
+    name: 'websix1',
+    component: websix1,
+  },
+  {
+    path: '/websix2',
+    name: 'websix2',
+    component: websix2,
+  },
+  {
+    path: '/websix3',
+    name: 'websix3',
+    component: websix3,
+  },
+  {
+    path: '/websix4',
+    name: 'websix4',
+    component: websix4,
+  },
+]
 export default new Router({
   mode: 'history', // 去掉url中的#
   scrollBehavior: () => ({
     y: 0
   }),
-  routes: constantRoutes
+  routes: [...constantRoutes,...webnumberRoutes]
 })

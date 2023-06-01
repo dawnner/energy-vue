@@ -2,7 +2,7 @@
   <div style="height: 100%;">
     <div class="navbar" v-if="!showRouyi">
       <!-- <TopMenu></TopMenu> -->
-      <TopMenu1></TopMenu1>
+      <TopMenu1 @openIndex="openIndex"></TopMenu1>
       <div class="right-menu">
         <template v-if="device !== 'mobile'">
           <!-- <screenfull id="screenfull" class="right-menu-item hover-effect" /> -->
@@ -124,6 +124,7 @@ export default {
       showRouyi: false
     };
   },
+
   computed: {
     ...mapGetters(["sidebar", "avatar", "name", "device"]),
     setting: {
@@ -147,6 +148,10 @@ export default {
     this.wOnload();
   },
   methods: {
+    openIndex(el) {
+      console.log(el);
+      this.openindex = el;
+    },
     wOnload() {
       var that = this;
       var tagTitle1 = this.$store.state.tagsView.visitedViews;

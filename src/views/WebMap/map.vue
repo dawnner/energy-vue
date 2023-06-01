@@ -1,13 +1,11 @@
 <template>
   <baidu-map
     class="map"
-    center="山东"
     ak="YOUR_APP_KEY"
     @ready="getMap2"
-    :zoom=10
+    :zoom="10"
     :scroll-wheel-zoom="true"
   >
-  <bm-view style="width: 100%; height:100%; flex: 1"></bm-view>
     <div class="message">
       <h5
         v-for="(item, index) in mapMessage"
@@ -34,19 +32,19 @@
       <el-button type="primary" @click="getBaiduMapPoint">搜索</el-button>
     </div>
     <bml-marker-clusterer :averageCenter="true">
-    <bm-marker
-      v-for="(item, index) in mapMessage"
-      :position="{ lng: item.Longitude, lat: item.Latitude }"
-      :key="item.name"
-      @click="getBaiduMapPoint(item, index)"
-    >
-      <bm-label
-        :content="item.name"
-        :title="corporateName"
-        labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
-        :offset="{ width: -35, height: 30 }"
-      />
-    </bm-marker>
+      <bm-marker
+        v-for="(item, index) in mapMessage"
+        :position="{ lng: item.Longitude, lat: item.Latitude }"
+        :key="item.name"
+        @click="getBaiduMapPoint(item, index)"
+      >
+        <bm-label
+          :content="item.name"
+          :title="corporateName"
+          labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
+          :offset="{ width: -35, height: 30 }"
+        />
+      </bm-marker>
     </bml-marker-clusterer>
     <bm-info-window
       :position="{ lng: Longitude, lat: Latitude }"
@@ -78,7 +76,7 @@
 
 <script>
 // 写在自己需要用到的组件中src\views\system\user\profile\map.vue
-import {BmlMarkerClusterer} from 'vue-baidu-map'
+import { BmlMarkerClusterer } from "vue-baidu-map";
 import mapJson from "../WebMap/map.json";
 import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 import DistanceTool from "bmaplib.distancetool";
@@ -107,6 +105,8 @@ export default {
     };
   },
   mounted() {
+    console.log(this.mapMessage);
+
     // this.corporateName = this.mapMessage.map(item => {
     //   return item.name
     // })
@@ -117,7 +117,7 @@ export default {
     // }
   },
   unmount() {
-    distanceTool && distanceTool.close()
+    distanceTool && distanceTool.close();
   },
   methods: {
     getBaiduMapPoint(item, i) {
@@ -217,10 +217,64 @@ export default {
       //   map.addOverlay(ply1);
       // });
       this.distanceTool = new DistanceTool(map, { lineStroke: 2 });
+      this.addMapOverlay(map, "山东");
     },
     openDistanceTool(e) {
       const { distanceTool } = this;
       distanceTool && distanceTool.open();
+    },
+    addMapOverlay(map, cityName) {
+      let bdary = new BMap.Boundary();
+      bdary.get(cityName, rs => {
+        //获取行政区域
+
+        let EN_JW = "180, 90;"; //东北角
+        let NW_JW = "-180, 90;"; //西北角
+        let WS_JW = "-180, -90;"; //西南角
+        let SE_JW = "180, -90;"; //东南角
+        // max length index
+        let maxIndex = -1;
+        let maxLength = 0;
+        for (let i = 0; i < rs.boundaries.length; i++) {
+          if (rs.boundaries[i].length > maxLength) {
+            maxLength = rs.boundaries[i].length;
+            maxIndex = i;
+          }
+        }
+
+        // 添加环形遮罩层(圈出最大区域，剩余遮罩)
+        let ply1 = new BMap.Polygon(
+          rs.boundaries[maxIndex] +
+            ";" +
+            rs.boundaries[maxIndex].split(";")[0] +
+            ";" +
+            SE_JW +
+            WS_JW +
+            NW_JW +
+            EN_JW +
+            SE_JW,
+          {
+            strokeColor: "none",
+            fillColor: "#fff",
+            fillOpacity: 1,
+            strokeOpacity: 0.5
+          }
+        );
+        // 建立多边形覆盖物
+        map.addOverlay(ply1);
+        // 添加边界
+        var pointArray = [];
+        for (var i = 0; i < rs.boundaries.length; i++) {
+          var ply = new BMap.Polygon(rs.boundaries[i], {
+            strokeWeight: 3,
+            strokeColor: "#ffff00",
+            fillColor: ""
+          }); //建立多边形覆盖物
+          map.addOverlay(ply); //添加覆盖物
+          pointArray = pointArray.concat(ply.getPath());
+        }
+        map.setViewport(pointArray);
+      });
     }
   }
 };

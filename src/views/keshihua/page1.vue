@@ -1,9 +1,7 @@
 <template>
-	<div>页面二</div>
+  <div>页面二</div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style>
-</style>
+<style></style>

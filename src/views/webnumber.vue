@@ -68,7 +68,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt" href="">
+                        <a @click="jumpPage1(index)" class="textbt">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -88,7 +88,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" @click="jumpPage2(index)">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -108,7 +108,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" @click="jumpPage3(index)">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -128,7 +128,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" @click="jumpPage4(index)">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -148,7 +148,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" @click="jumpPage5(index)">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -168,7 +168,7 @@
                         <img class="imgs-hober" :src="item.img" alt="" />
                       </div>
                       <div class="newspaper-text">
-                        <a class="textbt">
+                        <a class="textbt" @click="jumpPage6(index)">
                           {{ item.textbt }}
                         </a>
                         <div class="textnew">
@@ -586,6 +586,36 @@ export default {
   methods: {
     handleClick(tab, event) {
       console.log(tab, event);
+    },
+    jumpPage1(index) {
+      this.$router.push({
+        path: `/web${index}`
+      });
+    },
+    jumpPage2(index) {
+      this.$router.push({
+        path: `/webtwo${index}`
+      });
+    },
+    jumpPage3(index) {
+      this.$router.push({
+        path: `/webthree${index}`
+      });
+    },
+    jumpPage4(index) {
+      this.$router.push({
+        path: `/webfour${index}`
+      });
+    },
+    jumpPage5(index) {
+      this.$router.push({
+        path: `/webfive${index}`
+      });
+    },
+    jumpPage6(index) {
+      this.$router.push({
+        path: `/websix${index}`
+      });
     }
   },
   components: {

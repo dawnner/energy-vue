@@ -13,8 +13,6 @@ import store from './store'
 import router from './router'
 import BaiduMap from 'vue-baidu-map'//新增1网站地图
 import directive from './directive' //directive
-// import plugins from './plugins' // 新增2plugins
-// import { download } from '@/utils/request'//新增3
 import * as echarts from 'echarts';
 import 'echarts-liquidfill'
 import './assets/icons' // icon
@@ -31,15 +29,10 @@ import Editor from "@/components/Editor"
 import FileUpload from "@/components/FileUpload"
 // 图片上传组件
 import ImageUpload from "@/components/ImageUpload"
-// 图片预览组件
-// import ImagePreview from "@/components/ImagePreview"//新增4
 // 字典标签组件
 import DictTag from '@/components/DictTag'
 // 头部标签组件
 import VueMeta from 'vue-meta'
-// 字典数据组件
-// import DictData from '@/components/DictData'//新增8
-
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getConfigKey = getConfigKey
@@ -70,17 +63,14 @@ Vue.component('RightToolbar', RightToolbar)
 Vue.component('Editor', Editor)
 Vue.component('FileUpload', FileUpload)
 Vue.component('ImageUpload', ImageUpload)
-// Vue.component('ImagePreview', ImagePreview)//新增5
 Vue.prototype.$echarts = echarts
 
 Vue.use(echarts);
 Vue.use(directive)
 Vue.use(BaiduMap , {
   ak:"YOUR_APP_KEY"
-})//新增6
-// Vue.use(plugins)//新增7
+})
 Vue.use(VueMeta)
-// DictData.install()//新增9
 
 /**
  * If you don't want to use mock-server

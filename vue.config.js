@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path')
-
+const url = '172.20.10.3'
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -29,12 +29,12 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     // port: 18088,
-    port: 8088,
+    port: 8081,
     open: true,
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        // target: `http://localhost:8080`,
+        // target: `http://${url}:8081`,
         target: `http://vue.ruoyi.vip`,
         changeOrigin: true,
         pathRewrite: {
