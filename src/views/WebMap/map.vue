@@ -135,9 +135,11 @@ export default {
           console.log(str);
           if (point) {
             console.log(point);
-            that.map.centerAndZoom(point, 15);
+            point.lat = item.Latitude;
+            point.lng = item.Longitude;
             that.Latitude = item.Latitude;
             that.Longitude = item.Longitude;
+            that.map.centerAndZoom(point, 15);
             that.infoWindowShow = true;
           }
         });

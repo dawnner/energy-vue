@@ -18,9 +18,15 @@ export default {
       var myChart = echarts.init(chartDom);
       var option;
       var data = {
-        xData: ["直调电厂", "地方电厂", "自备电厂", "孤网电厂"],
-        yData1: ["40000", "30000", "20000", "30000"],
-        yData2: ["10000", "10000", "10000", "10000"],
+        xData: [
+          "直调公用电厂",
+          "地方公用电厂",
+          "直调自备电厂",
+          "地方自备电厂",
+          "孤网电厂"
+        ],
+        yData1: ["40000", "30000", "20000", "30000", "50000"],
+        yData2: ["10000", "10000", "10000", "10000", "20000"],
         yName1: "监测值",
         yName2: "实际值",
         yLabel: "（个）"
@@ -28,7 +34,7 @@ export default {
 
       option = {
         title: {
-          text: "全省全电源企业数量",
+          text: "电源企业数量",
           left: 20,
           top: 18,
           // bottom: 18,
@@ -78,6 +84,7 @@ export default {
               show: false
             },
             axisLabel: {
+              interval: 0, // 设置x轴名称间隔为2
               textStyle: {
                 color: "#000",
                 fontSize: 14,
@@ -96,7 +103,7 @@ export default {
           {
             // type:'个',
             min: 0,
-            max: 50000,
+            max: 60000,
             splitNumber: 3,
             name: data.yLabel,
             nameTextStyle: {

@@ -29,18 +29,18 @@ export default {
       const { rows } = await mapGuanliHistogram();
       this.$refs.localEmissions.localEmissions(rows);
       console.log(rows);
-    },
-    async mapGuanFuel() {
-      const { rows } = await mapGuanFuel();
-      this.$refs.comparison.fuelcomparison(rows);
-      console.log(rows);
     }
+    // async mapGuanFuel() {
+    //   const { rows } = await mapGuanFuel();
+    //   this.$refs.comparison.fuelcomparison(rows);
+    //   console.log(rows);
+    // }
   },
   created() {
     // 企业用能管理公司柱状图信息
     this.mapGuanliHistogram();
     // 企业用能管理公司往年燃料对比图信息
-    this.mapGuanFuel();
+    // this.mapGuanFuel();
   }
 };
 </script>

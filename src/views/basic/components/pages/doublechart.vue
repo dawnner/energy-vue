@@ -85,7 +85,7 @@ export default {
           top: "9%",
           right: "3%",
           // itemWidth: 30, // 图例标记的图形宽度。
-          itemGap: 10, // 图例每项之间的间隔。
+          itemGap: 5, // 图例每项之间的间隔。
           // itemHeight: 10, //  图例标记的图形高度。
           textStyle: {
             color: "#000",
@@ -288,7 +288,7 @@ export default {
             data: dataValue1
           },
           {
-            name: "储能",
+            name: "新型储能",
             type: "line",
             symbol: "circle", // 默认是空心圆（中间是白色的），改成实心圆
             smooth: true,

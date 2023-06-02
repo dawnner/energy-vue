@@ -51,15 +51,16 @@
     </div>
   </div> -->
   <div style="height:100%">
-    <el-container>
+    <el-container style="position: relative;">
+      <el-button
+        style="position: absolute;top:45%;left:228px;width:20px;height:60px;z-index:15"
+        :style="[
+          isCollapse ? { left: '62px', top: '90px' } : { left: '228px' }
+        ]"
+        @click="isCollapse = !isCollapse"
+        >{{ isCollapse ? ">" : "<" }}</el-button
+      >
       <el-aside :width="isCollapse ? '64px' : '230px'">
-        <el-button
-          type="success"
-          plain
-          style="width:100%"
-          @click="isCollapse = !isCollapse"
-          >|||</el-button
-        >
         <el-menu
           default-active="1-4-1"
           class="el-menu-vertical-demo"
@@ -114,7 +115,7 @@ import powerMent from "../../views/keshihua/components/PowerMent.vue";
 export default {
   data() {
     return {
-      isCollapse: false, //按钮控制菜单栏的展开
+      isCollapse: true, //按钮控制菜单栏的展开
       tabId: "-1"
     };
   },
@@ -153,6 +154,17 @@ section /deep/ .el-aside {
 aside /deep/ .el-menu {
   background: #ecf6ec;
 }
+section /deep/ .el-button {
+  padding: 10px 5px;
+  background: #ecf6ec;
+  border: 1px solid #ecf6ec;
+}
+section /deep/ .el-button:focus {
+  outline: none;
+  box-shadow: none;
+  color: #000;
+}
+
 /deep/ .el-submenu__title i {
   color: #909399 !important;
 }

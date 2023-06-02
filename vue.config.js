@@ -34,11 +34,11 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        target: `http://${url}:8081`,
-        // target: `http://vue.ruoyi.vip`,
+        // target: `http://${url}:8081`,
+        target: `http://vue.ruoyi.vip`,
         changeOrigin: true,
         pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
+          ['^' + process.env.VUE_APP_BASE_API]: '/prod-api'
         }
       }
     },

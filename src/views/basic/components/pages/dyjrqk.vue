@@ -23,7 +23,7 @@ export default {
       var data1Arr = [8, 11, 14, 15, 17, 11, 11]; // 数据1
       var data2Arr = [7, 10, 10, 9, 11, 7, 7]; // 数据2
       var data3Arr = [6, 9, 2, 3, 8, 4, 4]; // 数据3
-      var dataName = ["新能源", "常规电源", "储能"];
+      var dataName = ["新能源", "常规电源", "新型储能"];
       let zoomShow = xData.length > 10;
 
       let dataList = [data1Arr, data2Arr, data3Arr];
@@ -101,8 +101,8 @@ export default {
 
       let option = {
         title: {
-          text: "电源接入情况",
-          left: 20,
+          text: "各地方电源接入情况",
+          left: 12,
           top: 18,
           // bottom: 18,
           textStyle: {
@@ -157,7 +157,7 @@ export default {
           //icon: "circle",
           // itemWidth: 24, // 设置宽度
           // itemHeight: 14, // 设置高度
-          itemGap: 10,
+          itemGap: 0,
           textStyle: {
             color: "rgba(0, 0, 0, 0.85)",
             fontFamily: "Source Han Sans CN-Regular",

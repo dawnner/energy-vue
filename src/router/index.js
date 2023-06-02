@@ -119,7 +119,7 @@ export const constantRoutes = [
       }
     },
     {
-	    path: '/keshihua',
+	    path: '/basic/keshihua',
 	    component: () => import('@/views/keshihua/index'),
 	    name: 'keshihua',
 	    meta: { title: '常规电源', icon: 'dashboard' },
@@ -134,7 +134,7 @@ export const constantRoutes = [
 	    path: '/chuneng',
 	    component: () => import('@/views/chuneng/index'),
 	    name: 'chuneng',
-	    meta: { title: '储能', icon: 'dashboard'}
+	    meta: { title: '新型储能', icon: 'dashboard'}
 	  },
     {
 	    path: '/dwpgfx',

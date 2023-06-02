@@ -20,12 +20,12 @@ export default {
       var legends = [
         "煤电",
         "燃机",
+        "水电",
         "光伏",
         "风电",
         "核电",
         "储能",
         "抽水蓄能",
-        "孤网电厂",
         "生物质",
         "其他"
       ];
@@ -111,6 +111,10 @@ export default {
                 value: 18
               },
               {
+                name: "水电",
+                value: 17
+              },
+              {
                 name: "光伏",
                 value: 17
               },
@@ -129,10 +133,6 @@ export default {
               {
                 name: "抽水蓄能",
                 value: 13
-              },
-              {
-                name: "孤网电厂",
-                value: 12
               },
               {
                 name: "生物质",

@@ -19,7 +19,7 @@
     />
     <top-nav id="topmenu-container" class="topmenu-container" v-if="topNav" /> -->
     <div class="box-center">
-      <nav class="nav-center">
+      <nav class="nav-center" style="cursor:pointer;">
         <div
           :class="activelist == index ? 'active1' : 'morenzhi'"
           v-for="(item, index) in menuList"
@@ -130,7 +130,7 @@ export default {
           name: "首页"
         },
         {
-          url: "/keshihua",
+          url: "/basic/keshihua",
           name: "常规电源"
         },
         {
@@ -139,7 +139,7 @@ export default {
         },
         {
           url: "/chuneng",
-          name: "储能"
+          name: "新型储能"
         },
         {
           url: "/dwpgfx",
