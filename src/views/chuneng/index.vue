@@ -1,14 +1,13 @@
 <template>
   <div style="height:100%">
     <el-container style="position: relative;">
-      <el-button
-        style="position: absolute;top:45%;left:228px;width:20px;height:60px;z-index:15"
-        :style="[
-          isCollapse ? { left: '62px', top: '90px' } : { left: '228px' }
-        ]"
+      <button
+        class="btnbtn"
+        :style="[isCollapse ? { left: '62px' } : { left: '228px' }]"
         @click="isCollapse = !isCollapse"
-        >{{ isCollapse ? ">" : "<" }}</el-button
       >
+        {{ isCollapse ? ">" : "<" }}
+      </button>
       <el-aside :width="isCollapse ? '64px' : '230px'">
         <el-menu
           default-active="1"
@@ -19,11 +18,11 @@
         >
           <el-menu-item index="1">
             <i class="el-icon-document"></i>
-            <span slot="title">煤电燃机检测分析</span>
+            <span slot="title">储能项目规划管理</span>
           </el-menu-item>
           <el-menu-item index="2">
             <i class="el-icon-setting"></i>
-            <span slot="title">常规电源项目管理</span>
+            <span slot="title">储能项目配给计算</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -32,24 +31,19 @@
           v-if="tabId == '1'"
           style="width: 100%;height: 100%;"
         ></web-map>
-        <keshihuaInventory v-else></keshihuaInventory>
+        <planningManagement v-else></planningManagement>
       </el-main>
     </el-container>
   </div>
 </template>
 <script>
 import webMap from "../../views/WebMap/mapCgui.vue";
-import DistanceTool from "bmaplib.distancetool";
-import coalElectricity from "../../views/keshihua/components/CoalElectricity.vue";
-import distributed from "../../views/keshihua/components/Distributed.vue";
-import keshihuaInventory from "../../views/keshihua/components/keshihuaInventory.vue";
-import oneEnergy from "../../views/keshihua/components/oneEnergy.vue";
-import powerMent from "../../views/keshihua/components/PowerMent.vue";
+import planningManagement from "../../views/chuneng/PlanningManagement.vue";
 export default {
   data() {
     return {
       isCollapse: true, //按钮控制菜单栏的展开
-      tabId: ""
+      tabId: "1"
     };
   },
   methods: {
@@ -60,19 +54,18 @@ export default {
   },
   components: {
     webMap,
-    distributed,
-    coalElectricity,
-    keshihuaInventory,
-    oneEnergy,
-    powerMent
+    planningManagement
   }
 };
 </script>
 
 <style scoped>
+.el-main {
+  padding: 0;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;
-  min-height: 100%;
+  height: 100%;
 }
 label /deep/ .el-radio-button__inner {
   padding: 6px 11px;
@@ -87,19 +80,13 @@ section /deep/ .el-aside {
 aside /deep/ .el-menu {
   background: #ecf6ec;
 }
-section /deep/ .el-button {
-  padding: 10px 5px;
-  background: #ecf6ec;
-  border: 1px solid #ecf6ec;
+aside /deep/ .el-menu-vertical-demo {
+  height: 100%;
 }
 section /deep/ .el-button:focus {
   outline: none;
   box-shadow: none;
   color: #000;
-}
-
-/deep/ .el-submenu__title i {
-  color: #909399 !important;
 }
 .box {
   width: 100%;
@@ -108,6 +95,17 @@ section /deep/ .el-button:focus {
 }
 .box-right {
   flex: 1;
+}
+.btnbtn {
+  position: absolute;
+  top: 45%;
+  left: 228px;
+  width: 20px;
+  height: 60px;
+  z-index: 15;
+  background: #ecf6ec;
+  border: 1px solid #ccc;
+  border-left: none;
 }
 </style>
 <style></style>
