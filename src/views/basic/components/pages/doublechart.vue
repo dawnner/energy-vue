@@ -63,7 +63,7 @@ export default {
       var option = {
         // backgroundColor: '#0c2d55',
         title: {
-          text: "全省发电趋势曲线",
+          text: "全网发电趋势曲线",
           left: 20,
           top: 18,
           // bottom: 18,

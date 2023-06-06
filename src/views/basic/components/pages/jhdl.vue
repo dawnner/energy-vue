@@ -80,6 +80,7 @@ export default {
         yAxis: [
           {
             offset: 10,
+            // x轴最小值和最大值分别为0和10
             type: "value",
             min: 0,
             max: 10000,

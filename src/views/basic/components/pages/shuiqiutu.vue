@@ -1,8 +1,8 @@
 <template>
   <div style="height: 100%; width: 100%; display: flex; align-content: center">
     <div id="waterball" style="height: 100%; width: 25%"></div>
-    <div id="water2" style="height: 100%; width: 25%"></div>
     <div id="water3" style="height: 100%; width: 25%"></div>
+    <div id="water2" style="height: 100%; width: 25%"></div>
     <div id="water4" style="height: 100%; width: 25%"></div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
       var chartDom = document.getElementById("waterball");
       var myChart = echarts.init(chartDom);
       var option;
-      let text = "全省发电量";
+      let text = "全网发电量";
       option = {
         title: [
           {

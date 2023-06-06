@@ -27,18 +27,18 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <web-map
+        <planningManagement
           v-if="tabId == '1'"
           style="width: 100%;height: 100%;"
-        ></web-map>
-        <planningManagement v-else></planningManagement>
+        ></planningManagement>
+        <projectPlanning v-else></projectPlanning>
       </el-main>
     </el-container>
   </div>
 </template>
 <script>
-import webMap from "../../views/WebMap/mapCgui.vue";
 import planningManagement from "../../views/chuneng/PlanningManagement.vue";
+import projectPlanning from "./projectPlanning.vue";
 export default {
   data() {
     return {
@@ -53,8 +53,8 @@ export default {
     }
   },
   components: {
-    webMap,
-    planningManagement
+    planningManagement,
+    projectPlanning
   }
 };
 </script>
@@ -82,11 +82,6 @@ aside /deep/ .el-menu {
 }
 aside /deep/ .el-menu-vertical-demo {
   height: 100%;
-}
-section /deep/ .el-button:focus {
-  outline: none;
-  box-shadow: none;
-  color: #000;
 }
 .box {
   width: 100%;

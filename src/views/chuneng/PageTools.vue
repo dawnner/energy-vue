@@ -3,7 +3,7 @@
     type="flex"
     justify="space-between"
     align="middle"
-    style="margin-bottom:10px"
+    style="margin-bottom:10px;padding-bottom: 10px;border-bottom: 1px solid #ccc;"
   >
     <el-col>
       <div v-if="showBefore" class="before">
@@ -11,7 +11,7 @@
         <slot name="before" />
       </div>
     </el-col>
-    <el-col>
+    <el-col style="flex:1">
       <el-row type="flex" justify="end">
         <!-- 定义后面的插槽 -->
         <slot name="after" />
