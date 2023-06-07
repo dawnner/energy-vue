@@ -31,7 +31,6 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <oneEnergy v-if="tabId == '1'"></oneEnergy>
         <distributed v-if="tabId == '2'"></distributed>
         <coalElectricity v-if="tabId == '3'"></coalElectricity>
       </el-main>
@@ -41,7 +40,6 @@
 <script>
 import coalElectricity from "../../views/keshihua/components/CoalElectricity.vue";
 import distributed from "../../views/keshihua/components/Distributed.vue";
-import oneEnergy from "../../views/keshihua/components/oneEnergy.vue";
 export default {
   data() {
     return {
@@ -57,8 +55,7 @@ export default {
   },
   components: {
     distributed,
-    coalElectricity,
-    oneEnergy
+    coalElectricity
   }
 };
 </script>

@@ -3,12 +3,12 @@
     <el-container style="position: relative;">
       <button
         class="btnbtn"
-        :style="[isCollapse ? { left: '62px' } : { left: '228px' }]"
+        :style="[isCollapse ? { left: '43px' } : { left: '209px' }]"
         @click="isCollapse = !isCollapse"
       >
         {{ isCollapse ? ">" : "<" }}
       </button>
-      <el-aside :width="isCollapse ? '64px' : '230px'">
+      <el-aside :width="isCollapse ? '64px' : '235px'">
         <el-menu
           default-active="1-4-1"
           class="el-menu-vertical-demo"
@@ -18,23 +18,24 @@
         >
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span slot="title">一次能源保供能力</span>
+              <!-- <i class="el-icon-location"></i> -->
+              <img src="../../assets/images/nh.png">
+              <span slot="title" class='textFlag'>一次能源保供能力</span>
             </template>
             <el-menu-item index="1-1">煤电企业库存数据</el-menu-item>
             <el-menu-item index="1-2">一次能源供应保障能力 </el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">分布式电源接入电网承载力</span>
+            <img src="../../assets/images/fb.png">
+            <span slot="title" class='textFlag'>分布式电源接入电网承载力</span>
           </el-menu-item>
           <el-menu-item index="3">
-            <i class="el-icon-document"></i>
-            <span slot="title">煤电燃机检测分析</span>
+            <img src="../../assets/images/ny.png">
+            <span slot="title" class='textFlag'>煤电燃机检测分析</span>
           </el-menu-item>
           <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">常规电源项目管理</span>
+            <img src="../../assets/images/gl.png">
+            <span slot="title" class='textFlag'>常规电源项目管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -102,9 +103,6 @@ section /deep/ .el-aside {
 .el-container {
   height: 100%;
 }
-aside /deep/ .el-menu {
-  background: #ecf6ec;
-}
 aside /deep/ .el-menu-vertical-demo {
   height: 100%;
 }
@@ -117,24 +115,18 @@ section /deep/ .el-button:focus {
 /deep/ .el-submenu__title i {
   color: #909399 !important;
 }
-.box {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-.box-right {
-  flex: 1;
-}
 .btnbtn {
   position: absolute;
   top: 45%;
-  left: 228px;
+  /* left: 228px; */
   width: 20px;
   height: 60px;
   z-index: 15;
-  background: #ecf6ec;
+  /* background: #ecf6ec; */
   border: 1px solid #ccc;
   border-left: none;
 }
+.textFlag {
+  padding-left: 11px;
+}
 </style>
-<style></style>

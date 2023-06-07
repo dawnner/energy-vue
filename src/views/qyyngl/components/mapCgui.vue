@@ -3,7 +3,6 @@
     class="map"
     ak="YOUR_APP_KEY"
     @ready="getMap2"
-    @mouseover="mouseover"
     :zoom="10"
     :scroll-wheel-zoom="true"
   >
@@ -133,19 +132,6 @@ export default {
         that.latitude = item.latitude;
         that.longitude = item.longitude;
         that.infoWindowShow = false;
-        //     that.Longitude = item.Longitude;
-        // let str = item.name ? item.name : this.searchJingwei;
-        // let myGeo = new this.BMap.Geocoder();
-        // myGeo.getPoint(str, function(point) {
-        //   console.log(str);
-        //   if (point) {
-        //     console.log(point);
-        //     that.map.centerAndZoom(point, 15);
-        //     that.Latitude = item.Latitude;
-        //     that.Longitude = item.Longitude;
-        //     that.infoWindowShow = true;
-        //   }
-        // });
       }
     },
     getBaiduMapPoint(item, i) {
@@ -200,7 +186,6 @@ export default {
       const { distanceTool } = this;
       distanceTool && distanceTool.open();
     },
-    mouseover() {},
     addMapOverlay(map, cityName) {
       let bdary = new BMap.Boundary();
       bdary.get(cityName, rs => {

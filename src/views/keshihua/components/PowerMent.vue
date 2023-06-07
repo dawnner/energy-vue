@@ -1,5 +1,6 @@
 <template>
   <div style='padding: 0 20px'><!-- 查询条件 -->
+    <web-map style="width: 100%;height: 600px;"></web-map>
     <el-form label-width="130px" class="query-form" ref="queryBody" :model="queryBody">
       <el-form-item label="电源类型一级:" style='width:580px' prop="PowerSource">
         <el-select v-model="queryBody.PowerSource" clearable placeholder="请选择" style='width:100px'>
@@ -166,6 +167,7 @@
 </template>
 
 <script>
+import webMap from "@/views/WebMap/mapCgui.vue";
 export default {
   data () {
   return {
@@ -324,6 +326,9 @@ export default {
       }
     ]
   }
+},
+components: {
+  webMap
 },
 mounted () {
   this.InitIntegrateList()

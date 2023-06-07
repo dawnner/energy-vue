@@ -177,26 +177,26 @@ export default {
             fontSize: 22
           }
         },
-        dataZoom: [
-          {
-            show: true,
-            height: 5,
-            xAxisIndex: [0],
-            bottom: 20,
-            showDetail: false,
-            showDataShadow: false,
-            borderColor: "transparent",
-            textStyle: {
-              fontSize: 0
-            },
-            endValue: 4,//从0开始的相当于5个
-            backgroundColor: "rgba(0,0,0,0)",
-            borderWidth: 0,
-            handleStyle: {
-              color: "#d3dee5"
-            }
-          }
-        ],
+        // dataZoom: [
+        //   {
+        //     show: true,
+        //     height: 5,
+        //     xAxisIndex: [0],
+        //     bottom: 20,
+        //     showDetail: false,
+        //     showDataShadow: false,
+        //     borderColor: "transparent",
+        //     textStyle: {
+        //       fontSize: 0
+        //     },
+        //     endValue: 4,//从0开始的相当于5个
+        //     backgroundColor: "rgba(0,0,0,0)",
+        //     borderWidth: 0,
+        //     handleStyle: {
+        //       color: "#d3dee5"
+        //     }
+        //   }
+        // ],
         tooltip: {
             trigger: 'axis',
             axisPointer: {

@@ -36,7 +36,8 @@
         v-for="(item, index) in mapMessage"
         :position="{ lng: item.Longitude, lat: item.Latitude }"
         :key="item.name"
-        @click="getBaiduMapPoint(item, index)"
+        @mouseover="getBaiduMapPoint(item, index)"
+        @mouseout="outBaiduMapPoint(item, index)"
       >
         <bm-label
           :content="item.name"
@@ -133,6 +134,14 @@ export default {
         });
       }
     },
+    outBaiduMapPoint(item, i) {
+      if (item) {
+        let that = this;
+        that.latitude = item.latitude;
+        that.longitude = item.longitude;
+        that.infoWindowShow = false;
+      }
+    },
     infoWindowClose() {
       this.Latitude = "";
       this.Longitude = "";
@@ -142,8 +151,8 @@ export default {
       this.infoWindowShow = true;
     },
     getMap2({ BMap, map }) {
-      this.point = new BMap.Point(113.27, 23.13);
-      map.centerAndZoom(this.point, 12);
+      this.point = new BMap.Point(117.02, 36.4);
+      map.centerAndZoom(this.point, 15);
       this.BMap = BMap;
       this.map = map;
       this.distanceTool = new DistanceTool(map, { lineStroke: 2 });
@@ -184,10 +193,12 @@ export default {
             EN_JW +
             SE_JW,
           {
-            strokeColor: '#fff',
-            fillColor: "#fff",
+            strokeColor: '#f3feff',
+            fillColor: "#f3feff",
             fillOpacity: 1,
-            strokeOpacity: 1
+            strokeOpacity: 1,
+            width: 300,
+            height: 100,
           }
         );
         // 建立多边形覆盖物

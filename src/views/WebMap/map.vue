@@ -36,7 +36,8 @@
         v-for="(item, index) in mapMessage"
         :position="{ lng: item.Longitude, lat: item.Latitude }"
         :key="item.name"
-        @click="getBaiduMapPoint(item, index)"
+        @mouseover="getBaiduMapPoint(item, index)"
+        @mouseout="outBaiduMapPoint(item, index)"
       >
         <bm-label
           :content="item.name"
@@ -145,12 +146,14 @@ export default {
         });
       }
     },
-    // getLocation(e){
-    //   console.log(e)
-    //   this.Longitude=e.point.lng
-    //   this.Latitude=e.point.lat
-    //   this.infoWindowShow=true
-    // },
+    outBaiduMapPoint(item, i) {
+      if (item) {
+        let that = this;
+        that.latitude = item.latitude;
+        that.longitude = item.longitude;
+        that.infoWindowShow = false;
+      }
+    },
     infoWindowClose() {
       this.Latitude = "";
       this.Longitude = "";
@@ -159,65 +162,11 @@ export default {
     infoWindowOpen() {
       this.infoWindowShow = true;
     },
-    // handler: function ({ BMap, map }) {
-    // 	window.map = map
-    // 	// 赋值，方便调用，本节被用到
-    // 	this.BMap = BMap
-    // 	this.map = map
-    // 	// 测距功能
-    // 	this.distanceTool = new DistanceTool(map, {lineStroke : 2})
-    // 	//监听测距尺关闭的时候触发的事件
-    // 	this.distanceTool.addEventListener("removepolyline", function(e) {
-    // 	  console.log("removepolyline");
-    // 	  console.log(e);
-    // 	});
-    // 	//监听测距尺鼠标点击添加点的时候触发的事件
-    // 	this.distanceTool.addEventListener("addpoint", function(e) {
-    // 		console.log("addpoint");
-    // 		console.log(e.point);
-    // 		console.log(e.pixel);
-    // 		console.log(e.index);
-    // 		console.log(e.distance);
-    // 	});
-    // 	//监听测距尺鼠标右击测距尺添加完成的时候触发的事件
-    // 	this.distanceTool.addEventListener('drawend', function(e) {
-    // 		console.log("drawend");
-    // 		console.log(e.points);
-    // 		console.log(e.overlays);
-    // 		console.log(e.distance);
-    // 	});
-    // },
     getMap2({ BMap, map }) {
-      this.point = new BMap.Point(113.27, 23.13);
+      this.point = new BMap.Point(117.02, 36.4);
       map.centerAndZoom(this.point, 12);
       this.BMap = BMap;
       this.map = map;
-      // 创建地图实例
-      // var map = new BMap.Map('map2');
-      // //设置地图的中心点如成都的坐标
-      // var point = new BMap.Point(117.02, 36.40);
-      // // 初始化地图，设置中心点坐标和地图级别
-      // map.centerAndZoom(point, 7);
-      // // 将地图在水平位置上移动x像素，垂直位置上移动y像素(x,y)
-      // map.panBy(0, 30);
-      // // 允许滚轮缩放
-      // map.enableScrollWheelZoom();
-      // //只显示某个省份的关键代码
-      // var cityName = '山东省';
-      // var bdary = new BMap.Boundary();
-      // bdary.get(cityName, function (rs) {
-      //   let arr = rs.boundaries;
-      //   if (arr.length == 0) return;
-      //   //获取行政区域
-      //   var EN_JW = '180, 90;'; //东北角
-      //   var NW_JW = '-180,  90;'; //西北角
-      //   var WS_JW = '-180, -90;'; //西南角
-      //   var SE_JW = '180, -90;'; //东南角
-      //   let max = arr.reduce((a, b) => (a.length > b.length ? a : b));
-      //   //4.添加环形遮罩层
-      //   var ply1 = new BMap.Polygon(max + SE_JW + SE_JW + WS_JW + NW_JW + EN_JW + SE_JW, { strokeColor: 'none', fillColor: '#0B1D35', fillOpacity: 1, strokeOpacity: 0.5 }); //建立多边形覆盖物
-      //   map.addOverlay(ply1);
-      // });
       this.distanceTool = new DistanceTool(map, { lineStroke: 2 });
       this.addMapOverlay(map, "山东");
     },
