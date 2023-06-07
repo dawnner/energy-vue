@@ -320,6 +320,7 @@ export default {
 </script>
 
 <style scoped lang="scss" >
+  
   ::v-deep .el-table__body-wrapper::-webkit-scrollbar {
     width: 10px !important;
     /*滚动条宽度*/

@@ -125,7 +125,7 @@
         prop="zip"
         align='center'
         label="机组数量"
-        width="120">
+        >
       </el-table-column>
       <el-table-column
         prop="city"

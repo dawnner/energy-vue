@@ -115,7 +115,7 @@
         prop="address"
         align='center'
         label="机组"
-        width="100">
+        >
       </el-table-column>
     </el-table>
 <!-- 分页 -->

@@ -184,10 +184,10 @@ export default {
             EN_JW +
             SE_JW,
           {
-            strokeColor: "#fff",
+            strokeColor: '#fff',
             fillColor: "#fff",
             fillOpacity: 1,
-            strokeOpacity: 0.5
+            strokeOpacity: 1
           }
         );
         // 建立多边形覆盖物
