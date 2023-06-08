@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .app-main {
   /* 50= navbar  50  */
-  height: 89%;
+  height: 93.4%;
   width: 100%;
 }
 

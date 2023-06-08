@@ -10,7 +10,7 @@
       </button>
       <el-aside :width="isCollapse ? '64px' : '230px'">
         <el-menu
-          default-active="1"
+          default-active="2"
           class="el-menu-vertical-demo"
           :collapse="isCollapse"
           @select="changeSidebar"
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       isCollapse: true, //按钮控制菜单栏的展开
-      tabId: "1"
+      tabId: "2"
     };
   },
   methods: {
@@ -62,6 +62,7 @@ export default {
 <style scoped>
 .el-main {
   padding: 0;
+  height: calc(100vh - 70px);
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;

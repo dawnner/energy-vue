@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="box-left">
       <img src="../../assets/images/logo .png" />
-      <div class="bt">山东省新能源云平台</div>
+      <div class="bt">山东省新能源云深化应用</div>
     </div>
     <!-- 控制左侧菜单展开关闭 -->
     <!-- <hamburger
@@ -230,7 +230,7 @@ export default {
   // background-image: url("../../assets/images/navbj.png");
   background-size: 100% 100%;
   .box-left {
-    width: 24%;
+    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -238,11 +238,11 @@ export default {
     img {
       width: 52px;
       height: 54px;
-      margin: 9px 28px;
+      margin: 9px 20px;
     }
   }
   .bt {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
@@ -273,12 +273,13 @@ export default {
     font-weight: 700;
     font-size: 24px;
     height: 100%;
-    background: rgba(255, 255, 255, 0.3);
+    border-bottom: 3px solid #158388;
+    // background: rgba(255, 255, 255, 0.3);
   }
   .morenzhi {
     height: 100%;
     font-size: 23px;
-    color: #158388;
+    color: #000;
   }
   // nav a i {
   //   font-size: 20px;

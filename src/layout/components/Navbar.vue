@@ -197,7 +197,8 @@ export default {
   // align-items: flex-start;
   align-items: center;
   justify-content: space-between;
-  background: url("../../assets/images/navbj.png");
+  // background: url("../../assets/images/navbj.png");
+  background: #fff;
   background-size: 100% 100%;
   // background-repeat: no-repeat;
 
@@ -214,7 +215,7 @@ export default {
     align-items: center;
     height: 100%;
     width: 8%;
-    background: url("../../assets/images/navbj.png");
+    background: #fff;
 
     &:focus {
       outline: none;

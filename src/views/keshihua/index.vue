@@ -3,14 +3,14 @@
     <el-container style="position: relative;">
       <button
         class="btnbtn"
-        :style="[isCollapse ? { left: '43px' } : { left: '209px' }]"
+        :style="[isCollapse ? { left: '62px' } : { left: '228px' }]"
         @click="isCollapse = !isCollapse"
       >
         {{ isCollapse ? ">" : "<" }}
       </button>
-      <el-aside :width="isCollapse ? '64px' : '235px'">
+      <el-aside :width="isCollapse ? '64px' : '230px'">
         <el-menu
-          default-active="1-4-1"
+          default-active="4"
           class="el-menu-vertical-demo"
           :collapse="isCollapse"
           @select="changeSidebar"
@@ -19,23 +19,23 @@
           <el-submenu index="1">
             <template slot="title">
               <!-- <i class="el-icon-location"></i> -->
-              <img src="../../assets/images/nh.png">
-              <span slot="title" class='textFlag'>一次能源保供能力</span>
+              <img src="../../assets/images/nh.png" />
+              <span slot="title" class="textFlag">一次能源保供能力</span>
             </template>
             <el-menu-item index="1-1">煤电企业库存数据</el-menu-item>
             <el-menu-item index="1-2">一次能源供应保障能力 </el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
-            <img src="../../assets/images/fb.png">
-            <span slot="title" class='textFlag'>分布式电源接入电网承载力</span>
+            <img src="../../assets/images/fb.png" />
+            <span slot="title" class="textFlag">分布式电源接入电网承载力</span>
           </el-menu-item>
           <el-menu-item index="3">
-            <img src="../../assets/images/ny.png">
-            <span slot="title" class='textFlag'>煤电燃机检测分析</span>
+            <img src="../../assets/images/ny.png" />
+            <span slot="title" class="textFlag">煤电燃机检测分析</span>
           </el-menu-item>
           <el-menu-item index="4">
-            <img src="../../assets/images/gl.png">
-            <span slot="title" class='textFlag'>常规电源项目管理</span>
+            <img src="../../assets/images/gl.png" />
+            <span slot="title" class="textFlag">常规电源项目管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       isCollapse: true, //按钮控制菜单栏的展开
-      tabId: "-1"
+      tabId: "4"
     };
   },
   methods: {
@@ -118,11 +118,11 @@ section /deep/ .el-button:focus {
 .btnbtn {
   position: absolute;
   top: 45%;
-  /* left: 228px; */
+  left: 228px;
   width: 20px;
   height: 60px;
   z-index: 15;
-  /* background: #ecf6ec; */
+  background: #fff;
   border: 1px solid #ccc;
   border-left: none;
 }

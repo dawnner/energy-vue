@@ -578,7 +578,7 @@ export default {
 }
 .home {
   height: 100%;
-  margin: 20px 24px 0 24px;
+  margin: 11px 10px 0 10px;
   blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;

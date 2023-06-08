@@ -162,41 +162,21 @@ export const constantRoutes = [
 	  }
   ]
   },
-  // {
-  //   path: '/basic',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [{
-  //     path: '/keshihua',
-  //     component: (resolve) => require(['@/views/keshihua/index'], resolve),
-  //     name: 'keshihua',
-  //     meta: {
-  //       title: '常规电源',
-  //       icon: 'dashboard'
-  //     },
-  //     children:[
-  //     {
-  //     path: '/keshihua/inventory',
-  //     component: () =>import('@/views/keshihua/components/keshihuaInventory/index.vue'),
-  //     name: 'inventory',
-  //     meta: {
-  //       title:'煤电企业库存数据',
-  //       icon: 'dashboard'
-  //       },
-  //     },
-  //     {
-  //       path: '/keshihua/oneEnergy',
-  //     component: () =>import('@/views/keshihua/components/oneEnergy/index.vue'),
-  //     name: 'oneEnergy',
-  //     meta: {
-  //       title:'一次能源供应保障能力',
-  //       icon: 'dashboard'
-  //       },
-  //     }
-  //   ]
-  //   }]
-  // },
+  {
+    path: '/basic',
+    component: Layout,
+    hidden: true,
+    redirect: 'policyRelease',
+    children: [{
+      path: 'policyRelease',
+      component: () => import('@/views/PolicyRelease/index.vue'),
+      name: 'policyRelease',
+      meta: {
+        title: '政策发文',
+        icon: 'user'
+      }
+    }]
+  },
 	{
 	  path: '/DevelopmentCapacity',
 	  component: Layout,

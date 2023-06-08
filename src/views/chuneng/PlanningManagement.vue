@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard-container">
-    <div style="width:100%;height:50%">
+    <div style="width:100%;height:80%">
       <web-map style="width:100%;height:100%"></web-map>
     </div>
-    <div class="app-container" style="height:40%">
+    <div class="app-container" style="height:50%">
       <page-tools :show-before="true">
         <el-form
           slot="before"
@@ -60,7 +60,7 @@
       </div>
       <!-- 放置表格和分页 -->
       <template>
-        <el-table :data="tableData" border style="width: 100%;" height="220">
+        <el-table :data="tableData" border style="width: 100%;" height="300">
           <el-table-column type="selection" width="55" align="center">
           </el-table-column>
           <el-table-column prop="date" label="序号" align="center" width="100">
@@ -157,7 +157,7 @@
 </template>
 <script>
 import PageTools from "./PageTools.vue";
-import webMap from "../../views/WebMap/mapCgui.vue";
+import webMap from "@/views/WebMap/mapDemo.vue";
 export default {
   data() {
     return {
@@ -274,7 +274,6 @@ export default {
     border-radius: 10px !important;
     background-color: #ccced2 !important;
   }
-
   ::v-deep.el-table__body-wrapper::-webkit-scrollbar-thumb {
     box-shadow: 0px 1px 3px #caf9db inset !important;
     border-radius: 10px !important;

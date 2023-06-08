@@ -35,8 +35,7 @@
     <bm-marker
       v-for="(item, index) in mapMessage"
       :position="{ lng: item.Longitude, lat: item.Latitude }"
-      :key="item.name"
-      :icon="{ url: item.url, size: { width: 32, height: 32 } }"
+      :key="item.id"
       @mouseover="getBaiduMapPoint(item, index)"
       @mouseout="outBaiduMapPoint(item, index)"
     >
@@ -56,9 +55,9 @@
     >
       <div class="container">
         <span>{{ corporateName }}</span>
-        <p>地区:{{ area }}</p>
+        <!-- <p>地区:{{ area }}</p>
         <p>行业:{{ industry }}</p>
-        <p>所在市区:{{ city }}</p>
+        <p>所在市区:{{ city }}</p> -->
       </div>
     </bm-info-window>
     <bm-boundary
@@ -79,7 +78,8 @@
 <script>
 // 写在自己需要用到的组件中src\views\system\user\profile\map.vue
 import { BmlMarkerClusterer } from "vue-baidu-map";
-import mapJson from "../WebMap/map.json";
+// import mapJson from "../WebMap/map.json";
+import mapDemo from "../WebMap/mapdemo.json";
 import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 import DistanceTool from "bmaplib.distancetool";
 
@@ -91,7 +91,7 @@ export default {
   },
   data() {
     return {
-      mapMessage: mapJson,
+      mapMessage: mapDemo,
       searchJingwei: "",
       corporateName: "",
       current: 0,
@@ -115,7 +115,7 @@ export default {
         console.log(item);
         let that = this;
         that.current = i;
-        this.corporateName = item.name;
+        this.corporateName = item.project;
         that.area = item.City;
         this.city = item.County;
         that.industry = item.type;

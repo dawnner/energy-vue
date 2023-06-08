@@ -31,22 +31,22 @@
       </bm-auto-complete>
       <el-button type="primary" @click="getBaiduMapPoint">搜索</el-button>
     </div>
-    <bml-marker-clusterer :averageCenter="true">
-      <bm-marker
-        v-for="(item, index) in mapMessage"
-        :position="{ lng: item.Longitude, lat: item.Latitude }"
-        :key="item.name"
-        @mouseover="getBaiduMapPoint(item, index)"
-        @mouseout="outBaiduMapPoint(item, index)"
-      >
-        <bm-label
-          :content="item.name"
-          :title="corporateName"
-          labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
-          :offset="{ width: -35, height: 30 }"
-        />
-      </bm-marker>
-    </bml-marker-clusterer>
+    <!-- <bml-marker-clusterer :averageCenter="true"> -->
+    <bm-marker
+      v-for="(item, index) in mapMessage"
+      :position="{ lng: item.Longitude, lat: item.Latitude }"
+      :key="item.name"
+      @mouseover="getBaiduMapPoint(item, index)"
+      @mouseout="outBaiduMapPoint(item, index)"
+    >
+      <bm-label
+        :content="item.name"
+        :title="corporateName"
+        labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
+        :offset="{ width: -35, height: 30 }"
+      />
+    </bm-marker>
+    <!-- </bml-marker-clusterer> -->
     <bm-info-window
       :position="{ lng: Longitude, lat: Latitude }"
       :show="infoWindowShow"

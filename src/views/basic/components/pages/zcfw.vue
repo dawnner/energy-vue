@@ -1,9 +1,12 @@
 <template>
   <div style="width: 100%; height: 100%; padding: 0px 35px">
-    <div class="one">政策发文</div>
+    <div class="one">
+      <div class="one-01">政策发文</div>
+      <div @click="openmore()" style="cursor: pointer;">更多>>></div>
+    </div>
     <div class="right-font-bom" style="width: 100%; height: 84%">
       <div class="font-bom-one" v-for="(item, index) in array2" :key="index">
-        <div class="zcfw-wz">{{ item.name }}</div>
+        <div class="zcfw-wz" @click="openNews(index)">{{ item.name }}</div>
         <div>{{ item.age }}</div>
       </div>
     </div>
@@ -37,6 +40,16 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    openNews(val) {
+      console.log(val);
+    },
+    openmore() {
+      this.$router.push({
+        path: "/basic/policyRelease"
+      });
+    }
   }
 };
 </script>
@@ -45,12 +58,15 @@ export default {
 .one {
   display: flex;
   align-items: center;
-  font-size: 22px;
+  justify-content: space-between;
   height: 16%;
-  color: #304159;
-  font-weight: 700;
   background: url("../../../../assets/images/biaotixia2.png") no-repeat bottom
     left;
+}
+.one-01 {
+  font-size: 22px;
+  color: #304159;
+  font-weight: 700;
 }
 .font-bom-one {
   display: flex;
@@ -64,6 +80,7 @@ export default {
 .zcfw-wz {
   width: 45%;
   margin-right: 2rem;
+  cursor: pointer;
   /* normal：文字显示不开自动换行 */
   /* white-space: normal; */
   /* nowrap：文字显示不开也强制一行内显示 */

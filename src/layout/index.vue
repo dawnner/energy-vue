@@ -10,7 +10,7 @@
       @click="handleClickOutside"
     />
     <div class="main-container" v-if="!isRuoyi">
-      <div style="height: 7.8%;">
+      <div style="height: 6.6%;">
         <navbar @showRuoyi="showRuoyi"></navbar>
         <tags-view ref="closeTag" style="visibility: hidden" />
       </div>
