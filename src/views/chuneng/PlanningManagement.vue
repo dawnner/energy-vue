@@ -157,7 +157,7 @@
 </template>
 <script>
 import PageTools from "./PageTools.vue";
-import webMap from "@/views/WebMap/mapdemo.vue";
+import webMap from "@/views/WebMap/mapDemo.vue";
 export default {
   data() {
     return {

@@ -23,3 +23,10 @@ export function mapGuanli(query) {
       params: query
     })
   }
+  export function mapEnergy(query) {
+    return request({
+      url: '/system/info/list',
+      method: 'get',
+      params: query
+    })
+  }
