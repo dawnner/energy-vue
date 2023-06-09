@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%; height: 100%; padding: 0px 35px">
+  <div style="width: 100%; height: 100%; padding: 0px 25px">
     <div class="one">
       <div class="one-01">政策发文</div>
       <div @click="openmore()" style="cursor: pointer;">更多>>></div>
@@ -26,7 +26,6 @@ export default {
   methods: {
     async openNews(val) {
       const add = await getNotice(val);
-      
     },
     openmore() {
       this.$router.push({

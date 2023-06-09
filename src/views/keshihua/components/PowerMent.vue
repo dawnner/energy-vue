@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 0 20px">
+  <div>
     <!-- 查询条件 -->
     <web-map style="width: 100%;height: 600px;"></web-map>
     <el-form

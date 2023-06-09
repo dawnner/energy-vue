@@ -15,176 +15,136 @@ export default {
       var chartDom = document.getElementById("piechart2");
       var myChart = echarts.init(chartDom);
       var option;
-      var legends = [
-        "煤电",
-        "燃机",
-        "水电",
-        "光伏",
-        "风电",
-        "核电",
-        "储能",
-        "抽水蓄能",
-        "生物质",
-        "其他"
-      ];
-      var colors = [
-        "#4ad2be",
-        "#5fca94",
-        "#86e8b5",
-        "#5e75dd",
-        "#0bb5f3",
-        "#fd9232",
-        "#f7a667",
-        "#f98ba6",
-        "#e070fa",
-        "#a137e2"
-      ].reverse();
-      var data = [
+      var m2R2Data = [
         {
+          value: 80,
+          legendname: "煤电",
           name: "煤电",
-          value: 20
+          itemStyle: { color: "#4ad2be" }
         },
         {
+          value: 150,
+          legendname: "燃机",
           name: "燃机",
-          value: 4
+          itemStyle: { color: "#5fca94" }
         },
         {
+          value: 10,
+          legendname: "水电",
           name: "水电",
-          value: 14
+          itemStyle: { color: "#86e8b5" }
         },
         {
+          value: 45,
+          legendname: "光伏",
           name: "光伏",
-          value: 14
+          itemStyle: { color: "#5e75dd" }
         },
         {
+          value: 150,
+          legendname: "风电",
           name: "风电",
-          value: 6
+          itemStyle: { color: "#0bb5f3" }
         },
         {
+          value: 150,
+          legendname: "核电",
           name: "核电",
-          value: 10
+          itemStyle: { color: "#fd9232" }
         },
         {
+          value: 150,
+          legendname: "储能",
           name: "储能",
-          value: 8
+          itemStyle: { color: "#f7a667" }
         },
         {
+          value: 150,
+          legendname: "抽水蓄能",
           name: "抽水蓄能",
-          value: 7
+          itemStyle: { color: "#f98ba6" }
         },
         {
+          value: 150,
+          legendname: "生物质",
           name: "生物质",
-          value: 5
+          itemStyle: { color: "#e070fa" }
         },
         {
+          value: 150,
+          legendname: "其他",
           name: "其他",
-          value: 2
+          itemStyle: { color: "#a137e2" }
         }
       ];
-      var total = data.reduce((prev, curr) => prev + curr.value, 0);
-      console.log(total);
-      option = {
-        title: {
-          text: "电源发电量占比",
-          left: 19,
-          top: 18,
-          // bottom: 18,
-          textStyle: {
-            fontSize: 20
-          }
-        },
-        color: colors,
-        legend: {
-          orient: "vertical",
-          top: "25%",
-          right: "5%",
-          itemGap: 4,
-          // itemWidth: 16,
-          // itemHeight: 16,
-          textStyle: {
-            color: "#000",
-            fontSize: 12
-          },
-          data: legends
-        },
-        toolbox: {
-          show: false
-        },
 
+      var SumData = 585;
+      option = {
+        title: [
+          {
+            text: "电源发电量占比",
+            left: 19,
+            top: 18,
+            // bottom: 18,
+            textStyle: {
+              fontSize: 20
+            }
+          }
+        ],
         tooltip: {
           trigger: "item",
-          formatter: "{b}: {d}%",
-          backgroundColor: "rgba(47,37,198,0.75)",
-          borderColor: "#2880FF",
-          borderWidth: 1,
-          textStyle: {
-            color: "#fff"
+          formatter: function(parms) {
+            // var str =  parms.seriesName+"</br>"+
+            var str =
+              parms.marker +
+              "" +
+              parms.data.legendname +
+              "</br>" +
+              "数量：" +
+              parms.data.value +
+              " 个</br>" +
+              "占比：" +
+              parms.percent +
+              "%";
+            return str;
           }
+        },
+        legend: {
+          orient: "vertical",
+          left: "65%",
+          align: "left",
+          top: "31.5%",
+          textStyle: {
+            color: "#8C8C8C"
+          },
+          height: 140
         },
         series: [
           {
-            name: "Nightingale Chart",
+            name: "标题",
             type: "pie",
-            radius: ["30%", "70%"],
             center: ["35%", "60%"],
-            roseType: "area",
+            radius: ["60%", "28%"],
+            clockwise: false, //饼图的扇区是否是顺时针排布
+            avoidLabelOverlap: false,
             label: {
-              show: true,
-              position: "inner", //显示在扇形上
-              formatter: "{d}%", //显示内容
-              textStyle: {
-                color: "white", // 改变标示文字的颜色
-                fontSize: 14 //文字大小
+              normal: {
+                show: true,
+                position: "outter",
+                formatter: function(parms) {
+                  return parms.percent + "%";
+                }
               }
             },
-            labelLine: { show: false },
-            selectedOffset: 30,
-            selectedMode: true,
-            itemStyle: {
-              borderRadius: 0
-            },
-            data: [
-              {
-                name: "煤电",
-                value: 20
-              },
-              {
-                name: "燃机",
-                value: 18
-              },
-              {
-                name: "水电",
-                value: 17
-              },
-              {
-                name: "光伏",
-                value: 17
-              },
-              {
-                name: "风电",
-                value: 16
-              },
-              {
-                name: "核电",
-                value: 15
-              },
-              {
-                name: "储能",
-                value: 14
-              },
-              {
-                name: "抽水蓄能",
-                value: 13
-              },
-              {
-                name: "生物质",
-                value: 11
-              },
-              {
-                name: "其他",
-                value: 10
+            labelLine: {
+              show: false,
+              normal: {
+                length: 50,
+                length2: 15,
+                smooth: false
               }
-            ]
+            },
+            data: m2R2Data
           }
         ]
       };
@@ -202,7 +162,7 @@ export default {
 </script>
 
 <style>
-#piechart1 {
+#piechart2 {
   background-size: 100% 100%;
 }
 </style>

@@ -39,7 +39,7 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main>
+      <el-main style="padding:10px">
         <web-map
           v-if="tabId == '-1'"
           style="width: 100%;height: 100%;"
@@ -64,7 +64,7 @@ import powerMent from "../../views/keshihua/components/PowerMent.vue";
 export default {
   data() {
     return {
-      isCollapse: true, //按钮控制菜单栏的展开
+      isCollapse: false, //按钮控制菜单栏的展开
       tabId: "4"
     };
   },

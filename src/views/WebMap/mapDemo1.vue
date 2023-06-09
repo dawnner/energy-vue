@@ -37,7 +37,7 @@
       v-for="(item, index) in mapMessage"
       :position="{ lng: item.Longitude, lat: item.Latitude }"
       :key="item.id"
-      :icon="{ url: item.url, size: { width: 32, height: 32 } }"
+      :icon="{url: item.url, size: {width: 32, height: 32}}"
       @mouseover="getBaiduMapPoint(item, index)"
       @mouseout="outBaiduMapPoint(item, index)"
     >
@@ -56,7 +56,7 @@
       @open="infoWindowOpen"
     >
       <div class="container">
-        <span style=" font-weight: 700;">项目名称:{{ corporateName }}</span>
+        <span>项目名称:{{ corporateName }}</span>
         <p>功率分类:{{ area }}</p>
         <p>能源模式:{{ industry }}</p>
         <p>发电模式:{{ city }}</p>
@@ -99,18 +99,18 @@ export default {
       mapStyle: {
         styleJson: [
           {
-            featureType: "all",
-            elementType: "geometry",
-            stylers: {
-              hue: "#007fff",
-              saturation: 89
+            "featureType": "all",
+            "elementType": "geometry",
+            "stylers": {
+                "hue": "#007fff",
+                "saturation": 89
             }
           },
           {
-            featureType: "water",
-            elementType: "all",
-            stylers: {
-              color: "red"
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": {
+                "color": "red"
             }
           }
         ]
@@ -179,7 +179,7 @@ export default {
         {
           value: "16",
           name: "枣庄"
-        }
+        },
       ],
       mapMessage: mapDemo,
       searchJingwei: "",
@@ -208,11 +208,11 @@ export default {
     //   this.mapMessage = rows;
     //   console.log(this.mapMessage);
     // },
-    getCityMapPoint(item, i) {
-      if (item.name === "菏泽") {
-        i.currentTarget.setFillColor("#9169db");
+    getCityMapPoint (item, i) {
+      if (item.name === '菏泽') {
+        i.currentTarget.setFillColor('#9169db');
       }
-      console.log(item, i);
+      console.log(item, i)
     },
     getBaiduMapPoint(item, i) {
       if (item) {
@@ -259,38 +259,38 @@ export default {
       this.map = map;
       this.distanceTool = new DistanceTool(map, { lineStroke: 2 });
       this.addMapOverlay(map, "山东");
-      this.addPoints();
+      this.addPoints()
     },
-    addPoints() {
-      for (let item of this.mapMessage) {
-        let path = "";
+    addPoints () {
+      for(let item of this.mapMessage){
+        let path = ''
         switch (item.generation) {
-          case "火电":
-            path = require("@/assets/images/tp.png");
+          case '火电':
+            path = require('@/assets/images/tp.png')
             break;
-          case "电化学储能":
-            path = require("@/assets/images/tp.png");
+          case '电化学储能':
+            path = require('@/assets/images/tp.png')
             break;
-          case "太阳能发电":
-            path = require("@/assets/images/tp.png");
+          case '太阳能发电':
+            path = require('@/assets/images/tp.png')
             break;
-          case "生物质发电":
-            path = require("@/assets/images/tp.png");
+          case '生物质发电':
+            path = require('@/assets/images/tp.png')
             break;
-          case "风电":
-            path = require("@/assets/images/tp.png");
+          case '风电':
+            path = require('@/assets/images/tp.png')
             break;
-          case "其他":
-            path = require("@/assets/images/tp.png");
+           case '其他':
+            path = require('@/assets/images/tp.png')
             break;
-          case "电化学储能":
-            path = require("@/assets/images/tp.png");
+           case '电化学储能':
+            path = require('@/assets/images/tp.png')
             break;
-          case "机械（物理）储能":
-            path = require("@/assets/images/tp.png");
+          case '机械（物理）储能':
+            path = require('@/assets/images/tp.png')
             break;
-        }
-        item.url = path;
+          }
+        item.url = path
       }
     },
     openDistanceTool(e) {
@@ -369,7 +369,7 @@ export default {
     font-size: 12px;
     font-weight: 400;
   }
-  p {
+  p{
     font-size: 12px;
     font-weight: 400;
   }

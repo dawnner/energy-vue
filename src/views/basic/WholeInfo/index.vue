@@ -28,10 +28,7 @@
           class="right-box-top"
           style="width: 100%; height: 66%; display: flex"
         >
-          <div
-            class="right-box-top-left"
-            style="width: 65%; height: 100%; position: relative"
-          >
+          <div class="right-box-top-left" style="width: 63.5%; height: 100%;">
             <el-button
               class="back"
               v-if="mapNameList.length > 1"
@@ -54,21 +51,15 @@
               style="width: 100%; height: 97%"
             ></map-plan>
           </div>
-          <div class="right-box-top-right" style="width: 35%; height: 100%">
-            <div class="right-corner-one" style="position: absolute; right: 0">
+          <div class="right-box-top-right" style="width: 36.5%; height: 100%">
+            <div class="right-corner-one">
               <waterball style="width: 100%; height: 100%"></waterball>
             </div>
 
-            <div
-              class="right-corner-two"
-              style="position: absolute; right: 0; top: 27.5%"
-            >
+            <div class="right-corner-two">
               <doublechart style="width: 100%; height: 100%"></doublechart>
             </div>
-            <div
-              class="right-corner-three"
-              style="position: absolute; right: 0; top: 70%"
-            >
+            <div class="right-corner-three">
               <barchart style="width: 100%; height: 100%"></barchart>
             </div>
           </div>
@@ -698,35 +689,35 @@ export default {
       border-radius: 10px;
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
-    .right-box-top-right {
-      position: relative;
-    }
+    // .right-box-top-right {
+    //   position: relative;
+    // }
     .right-corner-one {
-      width: 112%;
+      width: 100%;
       height: 25%;
       margin-top: 3px;
       margin-right: 3px;
       margin-bottom: 15px;
       background: rgba(255, 255, 255, 0.6);
       border-radius: 10px;
-      box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
+      box-shadow: 0px 0px 6px 0px rgba(42, 92, 254, 0.22);
     }
     .right-corner-two {
-      width: 112%;
+      width: 100%;
       height: 40%;
       margin-bottom: 15px;
       margin-right: 3px;
       background: rgba(255, 255, 255, 0.6);
       border-radius: 10px;
-      box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
+      box-shadow: 0px 0px 6px 0px rgba(42, 92, 254, 0.22);
     }
     .right-corner-three {
-      width: 112%;
+      width: 100%;
       height: 30%;
       margin-right: 3px;
       background: rgba(255, 255, 255, 0.6);
       border-radius: 10px;
-      box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
+      box-shadow: 0px 0px 6px 0px rgba(42, 92, 254, 0.22);
     }
     .right-box-bottom {
       width: 100%;
@@ -736,23 +727,23 @@ export default {
       padding-left: 5px;
     }
     .bottom-corner1 {
-      width: 30%;
+      width: 32%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
-      margin-right: 16px;
+      margin-right: 10px;
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner2 {
-      width: 30%;
+      width: 32%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
-      margin-right: 16px;
+      margin-right: 10px;
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner3 {
-      width: 40.5%;
+      width: 36.5%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
