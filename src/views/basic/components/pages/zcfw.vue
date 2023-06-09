@@ -35,9 +35,9 @@ export default {
     async listNotice() {
       const { rows } = await listNotice();
       this.array2 = rows;
-      console.log(this.array2);
+      // console.log(this.array2, 111);
 
-      // console.log(rows);
+      // console.log(rows, 222);
     }
   },
   created() {
