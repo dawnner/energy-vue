@@ -3,21 +3,50 @@
     <div class="zcfw-box">
       <div class="zcfw-one">首页 > 政策发文</div>
       <div class="zcfw-two">
-        <div class="zcfw-xh">
-          <div style="width:100%;height:100%;display:flex;align-items: center;">
-            <div class="zcfw-time"></div>
-            <div class="zcfw-text">
-              <div style="color:#158388;font-size: 16px;margin-bottom:15px">
-                签署从澳门到全球，国网引领数字贸易封口
+        <div
+          class="zcfw-xh"
+          v-for="(item, index) in array2"
+          :key="index"
+          @mouseover="addStyle(item)"
+          @mouseout="removeStyle"
+          @click="goZcfwDateil(item.noticeId)"
+        >
+          <div
+            style="width:100%;height:100%;display:flex;align-items: center;cursor: pointer;"
+          >
+            <div :class="item.noticeId == dataId ? 'myStyle' : 'zcfw-time'">
+              <div
+                :class="item.noticeId == dataId ? 'myTopFontStyle' : 'topfont'"
+              >
+                {{ item.createTime.slice(8, 10) }}
               </div>
-              <div>
-                6月1日，2023第三届数字贸易创新应用峰会在澳门成功举办。本次峰会主题为“携手鲁港澳
-                构建新格局”，由澳门特别行政区政府经科局、山东省工信厅、山东省国资委指导中国信通院工业互联网与物联网研究所主办，浪潮云洲、澳门融贯、融丰科
+              <div
+                :class="
+                  item.noticeId == dataId ? 'myBottomFontStyle' : 'bottomfont'
+                "
+              >
+                {{ item.createTime.slice(0, 7) }}
+              </div>
+            </div>
+            <div class="zcfw-text">
+              <div
+                :class="item.noticeId == dataId ? 'myTitleStyle' : 'titleStyle'"
+              >
+                {{ item.noticeTitle }}
+              </div>
+              <div class="contentStyle">
+                {{ item.noticeContent.replace(/<[^>]*>/g, "") }}
               </div>
             </div>
           </div>
           <span style="margin-right:10px"
-            ><i class="el-icon-arrow-right"></i
+            ><i
+              :class="
+                item.noticeId == dataId
+                  ? 'el-icon-arrow-right mycolor'
+                  : 'el-icon-arrow-right'
+              "
+            ></i
           ></span>
         </div>
       </div>
@@ -26,7 +55,38 @@
 </template>
 
 <script>
-export default {};
+import { listNotice, getNotice } from "@/api/system/notice";
+export default {
+  data() {
+    return {
+      array2: [],
+      dataId: ""
+    };
+  },
+  methods: {
+    async listNotice() {
+      const { rows } = await listNotice();
+      this.array2 = rows;
+      // console.log(this.array2, 111);
+      // console.log(this.array2[0].noticeContent, 222);
+      // console.log(this.array2[1].noticeContent, 222);
+    },
+    addStyle(item) {
+      this.dataId = item.noticeId;
+    },
+    removeStyle() {
+      this.dataId = "";
+    },
+    goZcfwDateil(id) {
+      this.$router.push({
+        path: "/dateils/zcfwDateil?id=" + id
+      });
+    }
+  },
+  created() {
+    this.listNotice();
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,6 +106,7 @@ export default {};
   margin: 10px 0;
 }
 .zcfw-two {
+  height: 100%;
   flex: 1;
   background: #fff;
   padding: 32px 20px;
@@ -57,16 +118,75 @@ export default {};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f5f5f5;
 }
 .zcfw-time {
-  width: 8%;
+  width: 7%;
   height: 100%;
-  background: #158388;
+  background: #f5f5f5;
   border-radius: 10px;
   margin-right: 20px;
 }
 .zcfw-text {
   width: 82%;
+}
+
+.topfont {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 15%;
+  font-weight: bolder;
+  color: #666;
+}
+.bottomfont {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5%;
+  color: #666;
+}
+.titleStyle {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.myStyle {
+  width: 7%;
+  height: 100%;
+  border-radius: 10px;
+  margin-right: 20px;
+  background-color: #158388;
+}
+
+.myTitleStyle {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #158388;
+}
+
+.myTopFontStyle {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 15%;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.myBottomFontStyle {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5%;
+  color: #fff;
+}
+
+.mycolor {
+  color: #158388;
+}
+.contentStyle {
+  height: 90%;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
