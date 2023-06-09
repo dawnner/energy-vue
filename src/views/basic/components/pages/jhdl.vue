@@ -1,10 +1,8 @@
 <template>
   <div style="height: 100%">
-    <img
-      style="position: absolute; top: 20%; left: 5%; z-index: 99"
-      src="../../../../assets/images/biaotixia2.png"
-      alt=""
-    />
+    <span
+      style="position: absolute; top: 20%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
+    ></span>
     <!-- <div class="one8">电量交换</div> -->
     <div
       id="analysisHistogram1"
@@ -29,7 +27,7 @@ export default {
           top: 18,
           // bottom: 18,
           textStyle: {
-            fontSize: 22
+            fontSize: 20
           }
         },
 

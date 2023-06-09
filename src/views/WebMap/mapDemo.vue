@@ -79,7 +79,7 @@
 // 写在自己需要用到的组件中src\views\system\user\profile\map.vue
 import { BmlMarkerClusterer } from "vue-baidu-map";
 // import mapJson from "../WebMap/map.json";
-import mapDemo from "../WebMap/mapdemo.json";
+import mapDemo from "@/views/WebMap/mapdemo.json";
 import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 import DistanceTool from "bmaplib.distancetool";
 

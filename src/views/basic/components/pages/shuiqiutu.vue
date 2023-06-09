@@ -30,17 +30,17 @@ export default {
             textStyle: { fontSize: 16, color: "#158388" },
             textAlign: "center",
             top: "10%",
-            left: "50%",
+            left: "47%",
             bottom: "middle"
           },
           {
             subtext: "19054.12万 KW·h", //副标题
             // itemGap: 80, //主副标题间距
-            left: "8%", //标题的位置 默认是left，其余还有center、right属性
+            left: "4%", //标题的位置 默认是left，其余还有center、right属性
             top: "70%",
             subtextStyle: {
               color: "#D124FA",
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: "600",
               textAlign: "center"
             }
@@ -111,17 +111,17 @@ export default {
             textStyle: { fontSize: 16, color: "#158388" },
             textAlign: "center",
             top: "10%",
-            left: "50%",
+            left: "47%",
             bottom: "middle"
           },
           {
             subtext: "1905.12万 KW·h", //副标题
             // itemGap: 80, //主副标题间距
-            left: "8%", //标题的位置 默认是left，其余还有center、right属性
+            left: "4%", //标题的位置 默认是left，其余还有center、right属性
             top: "70%",
             subtextStyle: {
               color: "#29E8A8",
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: "600",
               textAlign: "center"
             }
@@ -192,17 +192,17 @@ export default {
             textStyle: { fontSize: 16, color: "#158388" },
             textAlign: "center",
             top: "10%",
-            left: "50%",
+            left: "45%",
             bottom: "middle"
           },
           {
             subtext: "1905.12万 KW·h", //副标题
             // itemGap: 80, //主副标题间距
-            left: "8%", //标题的位置 默认是left，其余还有center、right属性
+            left: "4%", //标题的位置 默认是left，其余还有center、right属性
             top: "70%",
             subtextStyle: {
               color: "#24CAFD",
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: "600",
               textAlign: "center"
             }
@@ -273,17 +273,17 @@ export default {
             textStyle: { fontSize: 16, color: "#158388" },
             textAlign: "center",
             top: "10%",
-            left: "50%",
+            left: "47%",
             bottom: "middle"
           },
           {
             subtext: "1905.12万 KW·h", //副标题
             // itemGap: 80, //主副标题间距
-            left: "8%", //标题的位置 默认是left，其余还有center、right属性
+            left: "4%", //标题的位置 默认是left，其余还有center、right属性
             top: "70%",
             subtextStyle: {
               color: "#FEE21D",
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: "600",
               textAlign: "center"
             }

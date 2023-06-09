@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import webMap from "@/views/WebMap/mapDemo.vue";
+import webMap from "@/views/WebMap/mapdemo.vue";
 export default {
   data() {
     return {

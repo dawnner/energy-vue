@@ -1,13 +1,13 @@
 'use strict'
 const path = require('path')
-const url = '172.20.10.3'
+// const url = '221.229.173.95'
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 const name = process.env.VUE_APP_TITLE || '山东省新能源云平台' // 网页标题
 
-const port = process.env.port || process.env.npm_config_port || 80 // 端口
+const port = process.env.port || process.env.npm_config_port || 80  // 端口 
 
 // vue.config.js 配置说明
 //官方vue.config.js 参考文档 https://cli.vuejs.org/zh/config/#css-loaderoptions
@@ -29,16 +29,23 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     // port: 18088,
-    port: 8081,
+    port: port,
     open: true,
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        // target: `http://${url}:8081`,
-        target: `http://vue.ruoyi.vip`,
+        target: 'http://221.229.173.95:8081',
+        // target: `http://vue.ruoyi.vip`,
         changeOrigin: true,
         pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: '/prod-api'
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      },
+      [process.env.VUE_APP_OBD_API]: {
+        target: `http://221.229.173.95:8081`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_OBD_API]: ''
         }
       }
     },

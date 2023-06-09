@@ -4,52 +4,45 @@
       <div class="one-01">政策发文</div>
       <div @click="openmore()" style="cursor: pointer;">更多>>></div>
     </div>
-    <div class="right-font-bom" style="width: 100%; height: 84%">
+    <div class="right-font-bom" style="width: 100%; height: 80%">
       <div class="font-bom-one" v-for="(item, index) in array2" :key="index">
-        <div class="zcfw-wz" @click="openNews(index)">{{ item.name }}</div>
-        <div>{{ item.age }}</div>
+        <div class="zcfw-wz" @click="openNews(item.noticeId)">
+          {{ item.noticeTitle }}
+        </div>
+        <div>{{ item.createTime }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { listNotice, getNotice } from "@/api/system/notice";
 export default {
   data() {
     return {
-      array2: [
-        {
-          name: "再生能源电力消耗责任权重,再生能源电力消耗责任权重",
-          age: "2023-05-06"
-        },
-        {
-          name: "再生能源电力消耗责任权重,再生能源电力消耗责任权重",
-          age: "2023-05-06"
-        },
-        {
-          name: "再生能源电力消耗责任权重,再生能源电力消耗责任权重",
-          age: "2023-05-06"
-        },
-        {
-          name: "再生能源电力消耗责任权重,再生能源电力消耗责任权重",
-          age: "2023-05-06"
-        },
-        {
-          name: "再生能源电力消耗责任权重,再生能源电力消耗责任权重",
-          age: "2023-05-06"
-        }
-      ]
+      array2: []
     };
   },
   methods: {
-    openNews(val) {
-      console.log(val);
+    async openNews(val) {
+      const add = await getNotice(val);
+      
     },
     openmore() {
       this.$router.push({
         path: "/basic/policyRelease"
       });
+    },
+    async listNotice() {
+      const { rows } = await listNotice();
+      this.array2 = rows;
+      console.log(this.array2);
+
+      // console.log(rows);
     }
+  },
+  created() {
+    this.listNotice();
   }
 };
 </script>
@@ -59,12 +52,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 16%;
-  background: url("../../../../assets/images/biaotixia2.png") no-repeat bottom
-    left;
+  height: 20%;
+  border-bottom: 1px solid #ccc;
 }
 .one-01 {
-  font-size: 22px;
+  font-size: 20px;
   color: #304159;
   font-weight: 700;
 }

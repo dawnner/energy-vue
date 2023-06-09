@@ -4,7 +4,12 @@
       <!-- 左 -->
       <div class="box-left" style="width: 25%">
         <div class="zbjk">
-          <div class="one">指标监控</div>
+          <div class="onekk">
+            <span
+              style="width:4px;height:18px;background:#158388;margin-right:5px"
+            ></span
+            >指标监控
+          </div>
           <div class="zbjk-bom">
             <huanxingtu style="width: 100%; height: 100%"></huanxingtu>
           </div>
@@ -21,7 +26,7 @@
         <!-- 右上部 -->
         <div
           class="right-box-top"
-          style="width: 100%; height: 63%; display: flex"
+          style="width: 100%; height: 66%; display: flex"
         >
           <div
             class="right-box-top-left"
@@ -644,16 +649,18 @@ export default {
     .box-left {
       height: 100%;
     }
-    .one {
+    .onekk {
       display: flex;
       align-items: center;
-      font-size: 24px;
+      font-size: 20px;
       // height: 60px;
       height: 16%;
+      padding: 18px 0;
+      border-bottom: 1px solid #ccc;
       // margin-left: 20px;
       color: #304159;
       font-weight: 700;
-      background: url("../../../assets/images/biaotixia1.png") no-repeat bottom;
+      // background: url("../../../assets/images/biaotixia1.png") no-repeat bottom;
     }
     .zbjk {
       width: 100%;
@@ -675,7 +682,7 @@ export default {
       // flex-direction: column;
       position: relative;
       width: 100%;
-      height: 26%;
+      height: 29%;
       // padding: 0 20px;
       margin-bottom: 20px;
       background: #fff;
@@ -684,7 +691,7 @@ export default {
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .dyjrqk {
-      height: 28%;
+      height: 29%;
       width: 100%;
       background: #fff;
       overflow: hidden;
@@ -695,7 +702,7 @@ export default {
       position: relative;
     }
     .right-corner-one {
-      width: 139%;
+      width: 112%;
       height: 25%;
       margin-top: 3px;
       margin-right: 3px;
@@ -723,13 +730,13 @@ export default {
     }
     .right-box-bottom {
       width: 100%;
-      height: 34%;
+      height: 35%;
       display: flex;
       padding-top: 20px;
       padding-left: 5px;
     }
     .bottom-corner1 {
-      width: 27%;
+      width: 30%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
@@ -737,7 +744,7 @@ export default {
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner2 {
-      width: 27%;
+      width: 30%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
@@ -745,7 +752,7 @@ export default {
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner3 {
-      width: 46%;
+      width: 40.5%;
       height: 88%;
       background: #fff;
       border-radius: 10px;

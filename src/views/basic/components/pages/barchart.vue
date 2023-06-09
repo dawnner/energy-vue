@@ -1,10 +1,8 @@
 <template>
   <div style="height: 100%">
-    <img
-      style="position: absolute; top: 50px; left: 5%; z-index: 99"
-      src="../../../../assets/images/biaotixia2.png"
-      alt=""
-    />
+    <span
+      style="position: absolute; top: 28%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
+    ></span>
     <div id="barchart" style="width: 100%; height: 100%"></div>
   </div>
 </template>
@@ -39,7 +37,7 @@ export default {
           top: 18,
           // bottom: 18,
           textStyle: {
-            fontSize: 22
+            fontSize: 20
           }
         },
         // backgroundColor:'rgba(3, 72, 84, 1)',
