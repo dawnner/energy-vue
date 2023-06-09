@@ -6,49 +6,21 @@
     :zoom="15"
     :scroll-wheel-zoom="true"
   >
-    <!-- <div class="message">
-      <h5
-        v-for="(item, index) in mapMessage"
-        :value="item.name"
-        :key="item.name"
-        @click="getBaiduMapPoint(item, index)"
-        :class="{ active: index === current }"
-      >
-        {{ item.name }}
-      </h5>
-    </div> -->
     <bm-control>
       <button @click="openDistanceTool">开启测距</button>
     </bm-control>
-    <!-- <div style="position:absolute;top: 0px;left: 84px">
-      <bm-auto-complete v-model="searchJingwei" :sugStyle="{ zIndex: 999999 }">
-        <el-input
-          v-model="searchJingwei"
-          style="width:300px;margin-right:15px"
-          placeholder="输入地址"
-          clearable
-        ></el-input>
-      </bm-auto-complete>
-      <el-button type="primary" @click="getBaiduMapPoint">搜索</el-button>
-    </div> -->
-    <!-- <bml-marker-clusterer :averageCenter="true"> -->
     <bm-marker
       v-for="(item, index) in mapMessage"
-      :position="{ lng: item.Longitude, lat: item.Latitude }"
+      :position="{ lng: item.longitude, lat: item.latitude }"
+      :icon="{url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: {width: 300, height: 157}}"
       :key="item.id"
       @mouseover="getBaiduMapPoint(item, index)"
       @mouseout="outBaiduMapPoint(item, index)"
     >
-      <!-- <bm-label
-        :content="item.name"
-        :title="corporateName"
-        labelStyle="{color: '#2b4391', border: 'none', boxShadow: '0 0 0 1px #2b4391', fontSize : '14px', borderRadius: '15px',}"
-        :offset="{ width: -35, height: 30 }"
-      /> -->
     </bm-marker>
     <!-- </bml-marker-clusterer> -->
     <bm-info-window
-      :position="{ lng: Longitude, lat: Latitude }"
+      :position="{ lng: longitude, lat: latitude }"
       :show="infoWindowShow"
       @clickclose="infoWindowClose"
       @open="infoWindowOpen"
@@ -63,7 +35,7 @@
     <bm-boundary
       name="山东省"
       :strokeWeight="2"
-      strokeColor="blue"
+      strokeColor="#f9fdff"
       :fillOpacity="0.001"
     ></bm-boundary>
     <bm-geolocation
@@ -78,8 +50,8 @@
 <script>
 // 写在自己需要用到的组件中src\views\system\user\profile\map.vue
 import { BmlMarkerClusterer } from "vue-baidu-map";
-// import mapJson from "../WebMap/map.json";
-import mapDemo from "@/views/WebMap/mapdemo.json";
+import { mapEnergy } from "@/api/mapGl/mapgl";
+import mapDemo from "../WebMap/mapDemo.json";
 import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 import DistanceTool from "bmaplib.distancetool";
 
@@ -91,13 +63,13 @@ export default {
   },
   data() {
     return {
-      mapMessage: mapDemo,
+      mapMessage: [],
       searchJingwei: "",
       corporateName: "",
       current: 0,
       infoWindowShow: false,
-      Longitude: "",
-      Latitude: "",
+      longitude: "",
+      latitude: "",
       area: "",
       city: "",
       industry: "",
@@ -109,27 +81,31 @@ export default {
   unmount() {
     distanceTool && distanceTool.close();
   },
+  created () {
+    this.mapEnergy()
+  },
   methods: {
+    async mapEnergy() {
+      const { rows } = await mapEnergy();
+      this.mapMessage = rows;
+    },
     getBaiduMapPoint(item, i) {
       if (item) {
-        console.log(item);
         let that = this;
         that.current = i;
-        this.corporateName = item.project;
+        this.corporateName = item.enterpriseName;
         that.area = item.City;
         this.city = item.County;
         that.industry = item.type;
         let str = item.name ? item.name : this.searchJingwei;
         let myGeo = new this.BMap.Geocoder();
         myGeo.getPoint(str, function(point) {
-          console.log(str);
           if (point) {
-            console.log(point);
-            point.lat = item.Latitude;
-            point.lng = item.Longitude;
+            point.lat = item.latitude;
+            point.lng = item.longitude;
             that.map.centerAndZoom(point, 15);
-            that.Latitude = item.Latitude;
-            that.Longitude = item.Longitude;
+            that.latitude = item.latitude;
+            that.longitude = item.longitude;
             that.infoWindowShow = true;
           }
         });
@@ -138,14 +114,12 @@ export default {
     outBaiduMapPoint(item, i) {
       if (item) {
         let that = this;
-        that.latitude = item.latitude;
-        that.longitude = item.longitude;
         that.infoWindowShow = false;
       }
     },
     infoWindowClose() {
-      this.Latitude = "";
-      this.Longitude = "";
+      this.latitude = "";
+      this.longitude = "";
       this.infoWindowShow = false;
     },
     infoWindowOpen() {
@@ -197,9 +171,7 @@ export default {
             strokeColor: "#f3feff",
             fillColor: "#f3feff",
             fillOpacity: 1,
-            strokeOpacity: 1,
-            width: 300,
-            height: 100
+            strokeOpacity: 1
           }
         );
         // 建立多边形覆盖物
@@ -209,8 +181,8 @@ export default {
         for (var i = 0; i < rs.boundaries.length; i++) {
           var ply = new BMap.Polygon(rs.boundaries[i], {
             strokeWeight: 3,
-            strokeColor: "#ffff00",
-            fillColor: ""
+            strokeColor: "#f9fdff",
+            fillColor: "#99cdf9"
           }); //建立多边形覆盖物
           map.addOverlay(ply); //添加覆盖物
           pointArray = pointArray.concat(ply.getPath());

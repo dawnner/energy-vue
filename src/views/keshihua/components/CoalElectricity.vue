@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import webMap from "@/views/WebMap/mapdemo.vue";
+import webMap from "@/views/WebMap/mapDemo.vue";
 export default {
   data() {
     return {

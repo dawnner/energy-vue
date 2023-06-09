@@ -221,6 +221,7 @@ export default {
             name: '电力需求',
             data: [150, 230, 224, 218, 135, 147, 1500],
             type: 'bar',
+            barWidth: 12,
             // showBackground: true,
             tooltip: {
               valueFormatter: function (value) {
@@ -229,7 +230,8 @@ export default {
             },
             itemStyle: {
               normal: {
-                color: "#3065a5"
+                barBorderRadius: [60],
+                color: "#4b9bfd"
               }
             }
           },
@@ -237,6 +239,7 @@ export default {
             name: '省内发电',
             data: [110, 23, 60, 290, 435, 347, 500],
             type: 'bar',
+            barWidth: 12,
             // showBackground: true,
             tooltip: {
               valueFormatter: function (value) {
@@ -244,8 +247,10 @@ export default {
               }
             },
             itemStyle: {
+              // barBorderRadius: [40],
               normal: {
-                color: "#c76361"
+                barBorderRadius: [60],
+                color: "#f6d748"
               }
             },
           },
@@ -253,7 +258,7 @@ export default {
             name: '省外来电情况',
             data: [10, 20, 24, 67, 35, 47, 150],
             type: 'bar',
-            // showBackground: true,
+            barWidth: 12,
             tooltip: {
               valueFormatter: function (value) {
                 return value + ' ml';
@@ -261,7 +266,8 @@ export default {
             },
             itemStyle: {
               normal: {
-                color: "#a6c26b"
+                barBorderRadius: [60],
+                color: "#56dcfc"
               }
             },
           },
