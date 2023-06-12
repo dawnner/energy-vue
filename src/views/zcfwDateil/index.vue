@@ -8,9 +8,7 @@
           {{ dataDateil.noticeTitle }}
         </div>
 
-        <div class="dateilContent">
-          {{ dataDateil.noticeContent }}
-        </div>
+        <div class="dateilContent" v-html="dataDateil.noticeContent"></div>
       </div>
     </div>
   </div>
@@ -38,6 +36,7 @@ export default {
       });
     }
   },
+
   created() {
     this.getId();
     this.getNotice();

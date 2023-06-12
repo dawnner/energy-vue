@@ -4,7 +4,36 @@
       <div class="echarts-one">
         <echartsone style="width:100%;height:100%"></echartsone>
       </div>
-      <div class="echarts-two"></div>
+      <div class="echarts-two">
+        <div class="echarts-two-box1">
+          <div class="echarts-two-box01">
+            <img
+              src="@/assets/images/icons1.png"
+              alt=""
+              style="margin-right:10px"
+            />
+            <div style="font-size: 16px;color: #158388;font-weight: 700;">
+              企业煤炭库存量排名TOP10
+            </div>
+          </div>
+          <div>
+            <ul>
+              <li
+                style="display: flex;align-items: center;padding:10px 0;border-bottom: 1px solid #EFF4F7;"
+              >
+                <span
+                  style="font-weight: 700;margin:0px 5px;font-family: PangMenZhengDao;"
+                  >01</span
+                >
+                <div>热电炼厂</div>
+                <span style="margin-left: auto;font-size: 12px;">253万吨</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <div style="width:100%;height:66%">
       <div
@@ -153,6 +182,17 @@ import echartsone from "../components/echartsone.vue";
 export default {
   data() {
     return {
+      top1: [
+        {
+          num: "01",
+          name: "热电炼厂",
+          production: "253万吨"
+        },
+        {},
+        {},
+        {},
+        {}
+      ],
       tableData: [
         {
           date: "2016-05-03",
@@ -286,7 +326,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="scss" scoped>
 // ::v-deep .el-main {
 //   height: 500px;
 // }
@@ -317,6 +357,9 @@ export default {
   background-color: #428ab2 !important;
   /*滚动条的背景颜色*/
 }
+ul {
+  padding: 0;
+}
 .echarts-one {
   width: 49.5%;
   height: 100%;
@@ -328,6 +371,7 @@ export default {
   height: 100%;
   background: red;
   border-radius: 10px;
+  padding: 10px;
 }
 .btnFlag {
   text-align: right;
@@ -350,5 +394,17 @@ export default {
   .query-title {
     margin: 0 10px 0;
   }
+}
+.echarts-two-box1 {
+  width: 33%;
+  height: 100%;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 10px;
+}
+.echarts-two-box01 {
+  display: flex;
+  align-items: center;
+  padding: 7px 0;
 }
 </style>
