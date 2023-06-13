@@ -5,7 +5,12 @@
       <div @click="openmore()" style="cursor: pointer;">更多>>></div>
     </div>
     <div class="right-font-bom" style="width: 100%; height: 80%">
-      <div class="font-bom-one" v-for="(item, index) in array2" :key="index">
+      <div
+        class="font-bom-one"
+        v-for="(item, index) in array2"
+        :key="index"
+        @click="goDetail(item.noticeId)"
+      >
         <div class="zcfw-wz" @click="openNews(item.noticeId)">
           {{ item.noticeTitle }}
         </div>
@@ -38,6 +43,11 @@ export default {
       // console.log(this.array2, 111);
 
       // console.log(rows, 222);
+    },
+    goDetail(id) {
+      this.$router.push({
+        path: "/dateils/zcfwDateil?id=" + id
+      });
     }
   },
   created() {

@@ -22,7 +22,7 @@
           </el-menu-item>
           <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">新能源电站弃电展示</span>
+            <span slot="title">分布式光伏可开放容量</span>
           </el-menu-item>
           <el-menu-item index="3">
             <i class="el-icon-document"></i>
@@ -38,8 +38,8 @@
   </div>
 </template>
 <script>
-import coalElectricity from "../../views/keshihua/components/CoalElectricity.vue";
-import distributed from "../../views/keshihua/components/Distributed.vue";
+import coalElectricity from "./components/CoalElectricity.vue";
+import distributed from "./components/Distributed.vue";
 export default {
   data() {
     return {
@@ -90,9 +90,6 @@ section /deep/ .el-button:focus {
   color: #000;
 }
 
-/deep/ .el-submenu__title i {
-  color: #909399 !important;
-}
 .box {
   width: 100%;
   height: 100%;

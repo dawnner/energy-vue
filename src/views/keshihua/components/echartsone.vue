@@ -96,43 +96,7 @@ export default {
               }
             ]
           },
-          // 带空心的小圆
-          {
-            type: "pie",
-            radius: ["82%", "42%"], // 位置
-            zlevel: 10,
-            silent: true,
-            startAngle: 150, // 修改这个值可以改小圆点的位置（200为起始位置200到-20）
-            endAngle: -20,
-            data: [
-              {
-                name: "",
-                value: 0.68,
-                label: {
-                  show: false
-                },
-                labelLine: {
-                  show: false
-                },
-                itemStyle: {
-                  color: "rgba(255,255,255,0)"
-                }
-              },
-              // 画中间的图标
-              {
-                name: "",
-                value: 0,
-                label: {
-                  position: "inside",
-                  backgroundColor: "rgba(48, 236, 166, 1)",
-                  borderRadius: 10,
-                  padding: 8, // 可以控制圆的大小
-                  borderWidth: 2,
-                  borderColor: "#fff"
-                }
-              }
-            ]
-          },
+
           // 第二层的渐变色
           {
             name: "内层数据刻度",
@@ -221,6 +185,43 @@ export default {
             ],
             silent: false
           }
+          // 带空心的小圆
+          // {
+          //   type: "pie",
+          //   radius: ["82%", "42%"], // 位置
+          //   zlevel: 10,
+          //   silent: true,
+          //   startAngle: 150, // 修改这个值可以改小圆点的位置（200为起始位置200到-20）
+          //   endAngle: -20,
+          //   data: [
+          //     {
+          //       name: "",
+          //       value: 0.68,
+          //       label: {
+          //         show: false
+          //       },
+          //       labelLine: {
+          //         show: false
+          //       },
+          //       itemStyle: {
+          //         color: "rgba(255,255,255,0)"
+          //       }
+          //     },
+          //     // 画中间的图标
+          //     {
+          //       name: "",
+          //       value: 0,
+          //       label: {
+          //         position: "inside",
+          //         backgroundColor: "rgba(48, 236, 166, 1)",
+          //         borderRadius: 10,
+          //         padding: 8, // 可以控制圆的大小
+          //         borderWidth: 2,
+          //         borderColor: "#fff"
+          //       }
+          //     }
+          //   ]
+          // }
         ]
       };
       option && myChart.setOption(option);

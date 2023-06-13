@@ -132,7 +132,7 @@ export const constantRoutes = [
       },
       {
         path: "/page1",
-        component: () => import("@/views/keshihua/page1"),
+        component: () => import("@/views/newEnergy/index"),
         name: "page1",
         meta: { title: "新能源", icon: "dashboard" }
       },
