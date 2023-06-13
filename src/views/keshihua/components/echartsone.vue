@@ -14,104 +14,131 @@ export default {
     echartsone() {
       var chartDom = document.getElementById("echartsone");
       var myChart = echarts.init(chartDom);
+      // const chartData = { min: 0, max: 100, value: 50 };
       let option = {
         backgroundColor: "#fff",
         series: [
+          // 外侧灰色轴线
           {
             type: "gauge",
-            name: "外层辅助",
-            radius: "95%",
-            startAngle: "180",
-            endAngle: "0",
+            radius: "90%", // 位置
             center: ["50%", "70%"],
-            //splitNumber: '120',
-            detail: {
-              show: false
-            },
-            data: [
-              {
-                value: 1
-              }
-            ],
-            // data: [{value: 1, name: 90}],
-            title: {
-              show: true,
-              offsetCenter: [0, 30],
-              textStyle: {
-                color: "#fff",
-                fontStyle: "normal",
-                fontWeight: "normal",
-                fontFamily: "微软雅黑",
-                fontSize: 10
-              }
-            },
+            min: 0,
+            max: 100,
+            startAngle: 200,
+            endAngle: -20,
             axisLine: {
               show: true,
               lineStyle: {
+                // 轴线样式
+                width: 3, // 宽度
                 color: [
-                  [0, "rgb(228,93,11)"],
                   [
-                    0.5,
-                    new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                      {
-                        offset: 0,
-                        color: "rgb(228,93,11)"
-                      },
-                      {
-                        offset: 0.8,
-                        color: "rgb(235,205,6)"
-                      }
-                    ])
+                    1,
+                    {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 1,
+                      y2: 1,
+                      colorStops: [
+                        {
+                          offset: 0,
+                          color: "#40E050" // 0% 处的颜色
+                        },
+                        {
+                          offset: 0.3,
+                          color: "#A7DE70" // 0% 处的颜色
+                        },
+                        {
+                          offset: 0.5,
+                          color: "#EDA944" // 0% 处的颜色
+                        },
+                        {
+                          offset: 1,
+                          color: "#D72626" // 100% 处的颜色
+                        }
+                      ],
+                      global: false // 缺省为 false
+                    }
                   ],
-                  [
-                    0.9,
-                    new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                      {
-                        offset: 0,
-                        color: "rgb(13,211,97)"
-                      },
-                      {
-                        offset: 0.6,
-                        color: "rgb(235,205,6)"
-                      }
-                    ])
-                  ],
-                  [1, "rgb(13,211,97)"]
-                ],
-                width: 2,
-                opacity: 1
+                  [1, "#E6EBF8"]
+                ]
               }
             },
             axisTick: {
+              // 刻度
               show: false
             },
             splitLine: {
-              show: true,
-              length: 20,
-              lineStyle: {
-                color: "#051932",
-                width: 0,
-                type: "solid"
-              }
+              // 分割线
+              show: false
             },
             axisLabel: {
+              // 刻度标签
               show: false
             },
             pointer: {
-              // icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z', // 箭头图标
-              length: "10%",
-              width: 8,
-              offsetCenter: [0, "-65%"], // 箭头位置
-              itemStyle: {
-                color: "#f64649" // 箭头颜色
+              // 仪表盘指针
+              show: false
+            },
+            detail: {
+              fontSize: 16,
+              color: "#FFFF",
+              offsetCenter: ["0%", "-50%"],
+              formatter: value => {
+                return "绵阳.涪城区";
               }
-            }
+            },
+            data: [
+              {
+                value: 45.5
+              }
+            ]
           },
+          // 带空心的小圆
+          {
+            type: "pie",
+            radius: ["82%", "42%"], // 位置
+            zlevel: 10,
+            silent: true,
+            startAngle: 150, // 修改这个值可以改小圆点的位置（200为起始位置200到-20）
+            endAngle: -20,
+            data: [
+              {
+                name: "",
+                value: 0.68,
+                label: {
+                  show: false
+                },
+                labelLine: {
+                  show: false
+                },
+                itemStyle: {
+                  color: "rgba(255,255,255,0)"
+                }
+              },
+              // 画中间的图标
+              {
+                name: "",
+                value: 0,
+                label: {
+                  position: "inside",
+                  backgroundColor: "rgba(48, 236, 166, 1)",
+                  borderRadius: 10,
+                  padding: 8, // 可以控制圆的大小
+                  borderWidth: 2,
+                  borderColor: "#fff"
+                }
+              }
+            ]
+          },
+          // 第二层的渐变色
           {
             name: "内层数据刻度",
             type: "gauge",
-            startAngle: "180",
-            endAngle: "0",
+            startAngle: 200,
+            endAngle: -20,
             radius: "79%",
             min: 0,
             max: 25,
@@ -121,34 +148,36 @@ export default {
               lineStyle: {
                 width: 10,
                 color: [
-                  [0, "rgb(228,93,11)"],
                   [
-                    0.5,
-                    new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                      {
-                        offset: 0,
-                        color: "rgb(228,93,11)"
-                      },
-                      {
-                        offset: 0.8,
-                        color: "rgb(235,205,6)"
-                      }
-                    ])
+                    1,
+                    {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 1,
+                      y2: 1,
+                      colorStops: [
+                        {
+                          offset: 0,
+                          color: "#40E050" // 0% 处的颜色
+                        },
+                        {
+                          offset: 0.3,
+                          color: "#A7DE70" // 0% 处的颜色
+                        },
+                        {
+                          offset: 0.5,
+                          color: "#EDA944" // 0% 处的颜色
+                        },
+                        {
+                          offset: 1,
+                          color: "#D72626" // 100% 处的颜色
+                        }
+                      ],
+                      global: false // 缺省为 false
+                    }
                   ],
-                  [
-                    0.9,
-                    new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                      {
-                        offset: 0,
-                        color: "rgb(13,211,97)"
-                      },
-                      {
-                        offset: 0.6,
-                        color: "rgb(235,205,6)"
-                      }
-                    ])
-                  ],
-                  [1, "rgb(13,211,97)"]
+                  [1, "#E6EBF8"]
                 ]
               }
             },
@@ -169,13 +198,21 @@ export default {
               fontSize: 10,
               color: "rgb(0,191,255)"
             },
-            itemStyle: {
-              normal: {
-                color: "rgb(0,191,255)"
-              }
-            },
+            // itemStyle: {
+            //   normal: {
+            //     color: "rgb(0,191,255)"
+            //   }
+            // },
             pointer: {
-              show: false
+              show: true,
+              icon: "triangle",
+              offsetCenter: [0, "-70%"],
+              itemStyle: {
+                color: "#f64649"
+                // color: "auto"
+              },
+              length: "20",
+              width: "10"
             },
             data: [
               {
@@ -183,43 +220,9 @@ export default {
               }
             ],
             silent: false
-          },
-          {
-            name: "最内层线",
-            type: "gauge",
-            radius: "55%", // 位置
-            center: ["50%", "70%"],
-            min: 0,
-            max: 100,
-            startAngle: 180,
-            endAngle: 0,
-            axisLine: {
-              show: true,
-              lineStyle: {
-                // 轴线样式
-                width: 120, // 宽度
-                color: "#fff"
-              }
-            },
-            axisTick: {
-              // 刻度
-              show: false
-            },
-            splitLine: {
-              // 分割线
-              show: false
-            },
-            axisLabel: {
-              // 刻度标签
-              show: false
-            },
-            pointer: {
-              show: false
-            }
           }
         ]
       };
-
       option && myChart.setOption(option);
       window.onresize = function() {
         setTimeout(function() {
@@ -231,7 +234,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #echartsone {
   background-size: 100% 100%;
 }
