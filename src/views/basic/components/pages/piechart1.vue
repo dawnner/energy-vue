@@ -82,7 +82,7 @@ export default {
       option = {
         title: [
           {
-            text: "电源发电量占比",
+            text: "电源装机量占比",
             left: 19,
             top: 18,
             // bottom: 18,
