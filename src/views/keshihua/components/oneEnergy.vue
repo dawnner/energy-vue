@@ -31,7 +31,7 @@
             <div class="leftContentTop">
               <div style="display: flex;align-items: center;">
                 <img src="../../../assets/gdbz/centent1.png" alt="" />
-                <span class="fontStyle">新能源</span>
+                <span class="fontStyle">其他保供电源</span>
               </div>
             </div>
 

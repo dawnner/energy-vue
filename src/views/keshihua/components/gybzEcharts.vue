@@ -115,11 +115,11 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: "rgba(125,72,255,0.2)"
+                    color: "rgba(41,186,211,0.2)"
                   },
                   {
                     offset: 1,
-                    color: "rgba(0,180,255,0)"
+                    color: "rgba(41,186,211,0)"
                   }
                 ],
                 global: false
