@@ -727,7 +727,7 @@ export default {
       padding-left: 5px;
     }
     .bottom-corner1 {
-      width: 32%;
+      width: 31%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
@@ -735,7 +735,7 @@ export default {
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner2 {
-      width: 32%;
+      width: 31%;
       height: 88%;
       background: #fff;
       border-radius: 10px;

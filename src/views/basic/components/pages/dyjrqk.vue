@@ -1,15 +1,25 @@
 <template>
-  <div style="height: 100%; position: relative">
+  <div style="height: 100%; width: 600px;position: relative;">
     <span
       style="position: absolute; top: 20%; left: 5%;width:90%;height:1px;background:#ccc; z-index: 99"
     ></span>
-    <div id="analysisHistogram2" style="width: 100%; height: 100%"></div>
+    <div id="analysisHistogram2" style="width: 100%; height: 100%;"></div>
   </div>
 </template>
 
 <script>
 import * as echarts from "echarts";
+
 export default {
+  data() {
+    return {
+      data: {},
+      datas: [],
+      arr1: [],
+      arr2: [],
+      arr3: []
+    };
+  },
   mounted() {
     this.analysisHistogram2();
   },
@@ -17,13 +27,35 @@ export default {
     analysisHistogram2() {
       var chartDom = document.getElementById("analysisHistogram2");
       var myChart = echarts.init(chartDom);
-      let xData = ["济南", "青岛", "烟台", "威海", "淄博", "临沂", "菏泽"];
-      var data1Arr = [8, 11, 14, 15, 17, 11, 11]; // 数据1
-      var data2Arr = [7, 10, 10, 9, 11, 7, 7]; // 数据2
-      var data3Arr = [6, 9, 2, 3, 8, 4, 4]; // 数据3
+      let xData = this.datas;
+      var data1Arr = this.arr1; // 数据1
+
+      var data2Arr = this.arr2; // 数据2
+      var data3Arr = this.arr3; // 数据3
       var dataName = ["常规电源", "新能源", "新型储能"];
       let zoomShow = xData.length > 10;
-
+      this.data = JSON.parse(localStorage.getItem("name"));
+      // console.log(JSON.parse(localStorage.getItem("name")), 666);
+      console.log(this.data, "666");
+      this.data.forEach(item => {
+        console.log(item, 9999);
+        this.datas.push(item.acceptancePowerUnit);
+        this.arr1.push(item.conventionData);
+        this.arr2.push(item.newEnergyData);
+        this.arr3.push(item.storedEnergyData);
+      });
+      console.log(this.datas, "888");
+      // let arr = Object.values(this.data);
+      // console.log(arr, "666");
+      // console.log(this.datas, "666");
+      // arr.forEach((item, index) => {
+      //   console.log(item.常规电源);
+      //   if (item.常规电源 == "") {
+      //     item[index] = 0;
+      //   }
+      //   this.arr1.push(item.常规电源);
+      // });
+      // console.log(this.arr1);
       let dataList = [data1Arr, data2Arr, data3Arr];
       //let colorList = ["#667BFF", "#29ACFF", "#FDAD59", ];
       let colorList = [
