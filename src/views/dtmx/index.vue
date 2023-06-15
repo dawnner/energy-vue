@@ -25,13 +25,15 @@
       <el-main style="padding:10px">
         <div style="width:100%;height:100%">
           <map-cgui style="width:100%;height:70%"></map-cgui>
-          <div style="width:100%;height:30%;display:flex">
+          <div
+            style="width:100%;height:30%;display:flex;justify-content: space-between;padding:10px 0"
+          >
             <localemissions
-              style="width:50%;height:100%"
+              style="width:49%;height:100%;background:#fff"
               ref="localEmissions"
             ></localemissions>
             <fuelcomparison
-              style="width:50%;height:100%"
+              style="width:49%;height:100%;background:#fff"
               ref="comparison"
             ></fuelcomparison>
           </div>
