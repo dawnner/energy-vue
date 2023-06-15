@@ -297,6 +297,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dashboard-container {
+  width: 100%;
+  height: 100%;
+}
 /**
 自定义el-table表格滚动栏样式
 */
@@ -325,6 +329,39 @@ export default {
   /*滚动条的圆角*/
   background-color: #428ab2 !important;
   /*滚动条的背景颜色*/
+}
+
+.contentImg {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1377.png");
+}
+.contentImg2 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1378.png");
+}
+.contentImg3 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1379.png");
+}
+.contentImg4 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1380.png");
+}
+.contentTitle {
+  margin-top: 10%;
+  margin-left: 7%;
+  font-size: 18px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: #333333;
 }
 ::v-deep.el-table__header-wrapper .el-checkbox:last-of-type {
   display: none;
@@ -482,27 +519,8 @@ export default {
   border-radius: 4px;
   color: #fff;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn span {
-  margin-left: 5px;
-}
-.tableCenter {
-  width: 96%;
-  height: 75%;
-
-  margin-top: 1%;
-  margin-left: 2%;
-  overflow-y: scroll;
-}
-.pageBox {
-  width: 96%;
-  height: 10%;
-  margin-left: 2%;
-  /* background-color: #ffa00a; */
-  display: flex;
-  align-items: center;
-  justify-content: right;
+  .query-title {
+    margin: 0 95px 0;
+  }
 }
 </style>
