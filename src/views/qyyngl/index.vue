@@ -10,16 +10,12 @@
       </button>
       <el-aside :width="isCollapse ? '64px' : '230px'">
         <el-menu
-          default-active="1"
+          default-active="2"
           class="el-menu-vertical-demo"
           :collapse="isCollapse"
           @select="changeSidebar"
           :collapse-transition="false"
         >
-          <el-menu-item index="1">
-            <i class="el-icon-document"></i>
-            <span slot="title">全省各单位数据展示</span>
-          </el-menu-item>
           <el-menu-item index="2">
             <i class="el-icon-setting"></i>
             <span slot="title">各单位能耗报表填报</span>
@@ -69,9 +65,9 @@
 
 <script>
 import { mapGuanliHistogram, mapGuanFuel } from "../../api/mapGl/mapgl";
-import mapCgui from "./components/mapCgui.vue";
-import localemissions from "./components/localEmissions.vue";
-import fuelcomparison from "./components/fuelComparison.vue";
+// import mapCgui from "./components/mapCgui.vue";
+// import localemissions from "./components/localEmissions.vue";
+// import fuelcomparison from "./components/fuelComparison.vue";
 import energyTable from "./components/energyTable/index.vue";
 import carbonManagement from "./components/carbonManagement/index.vue";
 import greenManagement from "./components/GreenManagement/index.vue";
@@ -79,25 +75,25 @@ import carbonAssets from "./components/carbonAssets/index.vue";
 export default {
   data() {
     return {
-      isCollapse: true, //按钮控制菜单栏的展开
-      tabId: "1"
+      isCollapse: false, //按钮控制菜单栏的展开
+      tabId: "2"
     };
   },
   components: {
-    mapCgui,
-    localemissions,
-    fuelcomparison,
+    // mapCgui,
+    // localemissions,
+    // fuelcomparison,
     energyTable,
     carbonManagement,
     greenManagement,
     carbonAssets
   },
   methods: {
-    async mapGuanliHistogram() {
-      const { rows } = await mapGuanliHistogram();
-      this.$refs.localEmissions.localEmissions(rows);
-      console.log(rows);
-    },
+    // async mapGuanliHistogram() {
+    //   const { rows } = await mapGuanliHistogram();
+    //   this.$refs.localEmissions.localEmissions(rows);
+    //   console.log(rows);
+    // },
     changeSidebar(path) {
       console.log(path);
       this.tabId = path;
@@ -110,7 +106,7 @@ export default {
   },
   created() {
     // 企业用能管理公司柱状图信息
-    this.mapGuanliHistogram();
+    // this.mapGuanliHistogram();
     // 企业用能管理公司往年燃料对比图信息
     // this.mapGuanFuel();
   }
@@ -166,7 +162,7 @@ section /deep/ .el-aside {
   height: 100%;
 }
 aside /deep/ .el-menu {
-  background: #ecf6ec;
+  background: #fff;
 }
 aside /deep/ .el-menu-vertical-demo {
   height: 100%;
@@ -178,7 +174,7 @@ aside /deep/ .el-menu-vertical-demo {
   width: 20px;
   height: 60px;
   z-index: 15;
-  background: #ecf6ec;
+  background: #fff;
   border: 1px solid #ccc;
   border-left: none;
 }

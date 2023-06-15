@@ -2,12 +2,7 @@
   <div class="dashboard-container">
     <div class="app-container">
       <page-tools :show-before="true">
-        <el-form
-          slot="before"
-          :inline="true"
-          :model="formInline"
-          class="demo-form-inline"
-        >
+        <el-form slot="before" :inline="true" class="demo-form-inline">
           <el-form-item label="所属行业 : ">
             <el-input v-model="input" placeholder="请输入内容"></el-input>
           </el-form-item>
@@ -78,11 +73,7 @@
       </template>
       <!-- 分页组件 -->
       <el-row type="flex" justify="end" align="middle" style="height: 61px">
-        <el-pagination
-          background="#ecf6ec"
-          layout="prev, pager, next"
-          :total="100"
-        />
+        <el-pagination layout="prev, pager, next" :total="100" />
       </el-row>
     </div>
   </div>

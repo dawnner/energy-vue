@@ -146,11 +146,7 @@
       </template>
       <!-- 分页组件 -->
       <el-row type="flex" justify="end" align="middle" style="height: 61px">
-        <el-pagination
-          background="#ecf6ec"
-          layout="prev, pager, next"
-          :total="100"
-        />
+        <el-pagination layout="prev, pager, next" :total="100" />
       </el-row>
     </div>
   </div>

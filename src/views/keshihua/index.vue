@@ -25,13 +25,14 @@
             <el-menu-item index="1-1">煤电企业库存数据分析</el-menu-item>
             <el-menu-item index="1-2">电力供应保障能力 </el-menu-item>
           </el-submenu>
-          <el-menu-item index="4">
-            <img src="../../assets/images/gl.png" />
-            <span slot="title" class="textFlag">常规电源项目管理</span>
-          </el-menu-item>
+
           <el-menu-item index="3">
             <img src="../../assets/images/ny.png" />
             <span slot="title" class="textFlag">煤电燃机检测分析</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <img src="../../assets/images/gl.png" />
+            <span slot="title" class="textFlag">常规电源项目管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -104,7 +105,9 @@ section /deep/ .el-button:focus {
   box-shadow: none;
   color: #000;
 }
-
+aside /deep/ .el-submenu__title i {
+  color: #141414;
+}
 .btnbtn {
   position: absolute;
   top: 45%;
