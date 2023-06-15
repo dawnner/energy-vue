@@ -124,7 +124,7 @@ export default {
 @import "~@/assets/styles/mixin.scss";
 @import "~@/assets/styles/variables.scss";
 .main-container {
-  background: url("../assets/images/beijing1.png") no-repeat left;
+  background: #f5f5f5;
   background-size: 100% 100%;
 }
 ::-webkit-scrollbar {

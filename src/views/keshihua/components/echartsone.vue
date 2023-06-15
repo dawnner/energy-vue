@@ -17,6 +17,26 @@ export default {
       // const chartData = { min: 0, max: 100, value: 50 };
       let option = {
         backgroundColor: "#fff",
+        title: [
+          {
+            text: "全省煤电供应保障能力",
+            left: 30,
+            top: 25,
+            // bottom: 18,
+            textStyle: {
+              fontSize: 20
+            }
+          },
+          {
+            text: "天",
+            left: "53%",
+            top: "65%",
+            // bottom: 18,
+            textStyle: {
+              fontSize: 15
+            }
+          }
+        ],
         series: [
           // 外侧灰色轴线
           {
@@ -83,20 +103,9 @@ export default {
               show: false
             },
             detail: {
-              fontSize: 16,
-              color: "#FFFF",
-              offsetCenter: ["0%", "-50%"],
-              formatter: value => {
-                return "绵阳.涪城区";
-              }
-            },
-            data: [
-              {
-                value: 45.5
-              }
-            ]
+              show: false
+            }
           },
-
           // 第二层的渐变色
           {
             name: "内层数据刻度",
@@ -158,15 +167,10 @@ export default {
             },
             detail: {
               show: true,
-              offsetCenter: ["0", "-20%"],
-              fontSize: 10,
-              color: "rgb(0,191,255)"
+              offsetCenter: ["-5%", "-12%"],
+              fontSize: 60,
+              color: "#53BF61"
             },
-            // itemStyle: {
-            //   normal: {
-            //     color: "rgb(0,191,255)"
-            //   }
-            // },
             pointer: {
               show: true,
               icon: "triangle",
@@ -178,12 +182,67 @@ export default {
               length: "20",
               width: "10"
             },
+            title: {
+              offsetCenter: ["0%", "15%"],
+              fontSize: 15,
+              color: "#ccc"
+            },
             data: [
               {
-                value: 15
+                value: 15,
+                name: "全省煤电供应保障能力"
               }
             ],
             silent: false
+          },
+          {
+            startAngle: 200,
+            endAngle: -20,
+            name: "实际完成",
+            type: "gauge",
+            center: ["50%", "71%"], // 默认全局居中
+            radius: "58%",
+            min: 0,
+            max: 100,
+            splitNumber: 0,
+            axisLine: {
+              // 坐标轴线
+              lineStyle: {
+                color: [
+                  [0.66, "#dddddd"],
+                  [1, "#dddddd"]
+                ], // 属性lineStyle控制线条样式
+                width: 4
+              }
+            },
+
+            axisLabel: {
+              // 坐标轴小标记
+              textStyle: {
+                // 属性lineStyle控制线条样式
+                fontWeight: "bolder",
+                fontSize: 16,
+                color: "rgba(30,144,255,0)"
+              }
+            },
+            splitLine: {
+              // 分隔线
+              length: 10, // 属性length控制线长
+              lineStyle: {
+                // 属性lineStyle（详见lineStyle）控制线条样式
+                width: 0,
+                color: "#444"
+              }
+            },
+            pointer: {
+              // 分隔线 指针
+              color: "#666666",
+              width: 0,
+              length: 230
+            },
+            detail: {
+              show: false
+            }
           }
           // 带空心的小圆
           // {

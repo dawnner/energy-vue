@@ -1,280 +1,305 @@
 <template>
-  <div class="dashboard-container">
-    <div style="width:100%;height:80%">
-      <web-map style="width:100%;height:100%"></web-map>
-    </div>
-    <div style="padding: 0 20px">
-      <!-- 查询条件 -->
-      <el-form
-        label-width="130px"
-        class="query-form"
-        ref="queryBody"
-        :model="queryBody"
-      >
-        <el-form-item label="电厂名称:" class="query-title" prop="name">
-          <el-input v-model="queryBody.name" placeholder="请输入" clearable />
-        </el-form-item>
-        <el-form-item label="机组状态:" class="query-title" prop="status">
-          <el-input v-model="queryBody.status" placeholder="请输入" clearable />
-        </el-form-item>
-      </el-form>
-      <div class="btnFlag">
-        <el-button type="success" size="small" @click="queryIntegrateList">
-          查询
-        </el-button>
-        <el-button type="success" size="small" @click="resetIntegrateList">
-          重置
-        </el-button>
-        <el-button type="success" size="small" @click="exportIntegrateList">
-          导出
-        </el-button>
-        <el-button type="success" size="small" @click="printIntegrateList">
-          打印
-        </el-button>
+  <div class="coalBox">
+    <!-- 上 -->
+    <div class="topBox">
+      <div class="topLeft">
+        <!-- 左上边标题 -->
+        <div class="topLeftTitle">
+          全网调峰能力
+        </div>
+
+        <div class="topLeftContent">
+          <div class="contentImg">
+            <div class="contentTitle">
+              装机总量
+            </div>
+            <div class="contentNum">232<span>台</span></div>
+          </div>
+          <div class="contentImg2">
+            <div class="contentTitle">
+              额定功率
+            </div>
+            <div class="contentNum" style="color:#6D9AF9">
+              232<span>万千瓦</span>
+            </div>
+          </div>
+          <div class="contentImg3">
+            <div class="contentTitle">
+              供热期新增调峰
+            </div>
+            <div class="contentNum" style="color:#FF6C6D">
+              232<span>万千瓦</span>
+            </div>
+          </div>
+          <div class="contentImg4">
+            <div class="contentTitle">
+              非供热期新增调峰
+            </div>
+            <div class="contentNum" style="color:#02C3A1">
+              232<span>万千瓦</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- 列表表格区域 -->
-      <el-table
-        :data="tableData"
-        style="width: 100%"
-        border
-        :header-cell-style="{
-          background: '#99cccc',
-          color: '#000000'
-        }"
-        @selection-change="handleSelectionChange"
-        height="400"
-      >
-        <el-table-column align="center" type="selection" width="55">
-        </el-table-column>
-        <el-table-column align="center" label="序号" width="50">
-          <template slot-scope="scope">
-            {{ scope.$index + 1 }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="电厂名称"
-          align="center"
-          width="120"
+
+      <div class="topRight">
+        <!-- 右上边标题 -->
+        <div class="topLeftTitle">
+          机组类型占比
+        </div>
+
+        <!-- 饼状图 -->
+        <div class="cakeImgBox">
+          <!-- <cakeEcharts style="width: 100%;height: 100%;"></cakeEcharts> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 下 -->
+    <div class="tableBox">
+      <div class="tableTop">
+        <div class="tableTopLeft">
+          <div>电厂名称 <input type="text" /></div>
+          <div>机组类型 <input type="text" /></div>
+          <div class="btn">
+            <button>
+              <img src="../../../assets/CoalElectricity/6.png" alt="" />
+              <span>查询</span>
+            </button>
+            <button
+              style="background-color: #F2F3F5;color: #333333;border:none;margin-left: 20px;"
+            >
+              <img src="../../../assets/CoalElectricity/7.png" alt="" />
+              <span>重置</span>
+            </button>
+          </div>
+        </div>
+        <div class="tableTopRight">
+          <button
+            style="background-color: #158388; color:#fff;border-radius: 4px;"
+          >
+            导出
+          </button>
+          <button
+            style="background-color: #F5BA49; color:#fff;border-radius: 4px;margin-left: 10px;"
+          >
+            打印
+          </button>
+        </div>
+      </div>
+
+      <!-- 表格 -->
+      <div class="tableCenter">
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          border
+          :header-cell-style="{
+            color: '#000000'
+          }"
+          @selection-change="handleSelectionChange"
+          height="600"
         >
-        </el-table-column>
-        <el-table-column
-          prop="province"
-          align="center"
-          label="机组容量(万千瓦)"
-          width="130"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="city"
-          align="center"
-          label="日发电量(万千瓦)"
-          width="130"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          align="center"
-          label="供热量(GJ)"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="zip"
-          align="center"
-          label="煤炭库存(万吨)"
-          width="110"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="city"
-          align="center"
-          label="日供煤量(万吨)"
-          width="130"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          align="center"
-          label="日耗煤量(万吨)"
-          width="130"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="zip"
-          align="center"
-          label="电煤可用天数(天数)"
-          width="140"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="city"
-          align="center"
-          label="机组状态"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column prop="address" align="center" label="机组">
-        </el-table-column>
-      </el-table>
+          <el-table-column align="center" type="selection" width="55">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            label="序号"
+            type="index"
+            :index="indexFn"
+            width="50"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="projectNo"
+            label="项目编号"
+            align="center"
+            width="150"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="projectName"
+            label="项目名称"
+            align="center"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="subprojectNum"
+            align="center"
+            label="子项目数量"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="maxGroup"
+            align="center"
+            label="最高集团"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="enterpriseName"
+            align="center"
+            label="企业名称"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="acceptancePowerUnit"
+            align="center"
+            label="受理电力公司"
+            width="100"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="applyTime"
+            align="center"
+            label="申请时间"
+            width="130"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="powerType"
+            align="center"
+            label="电源类型"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="electricPowerType"
+            align="center"
+            label="发电类型"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="powerType"
+            align="center"
+            label="项目类型"
+            width="150"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="engineeringType"
+            align="center"
+            label="工程类型"
+            width="100"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="projectUri"
+            align="center"
+            label="项目地址"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="periodInstalledCapacity"
+            align="center"
+            label="本期装机量"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="finalInstalledCapacity"
+            align="center"
+            label="终期装机量"
+          >
+          </el-table-column>
+        </el-table>
+      </div>
+
       <!-- 分页 -->
       <el-pagination
-        :current-page="queryParams.pages"
-        :page-sizes="[10, 20, 30]"
         style="text-align:right;padding-top:10px"
-        :page-size="queryParams.size"
-        :total="total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-      />
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 30]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      >
+      </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import webMap from "@/views/WebMap/mapDemo.vue";
+// import cakeEcharts from "./cakeEcharts.vue";
+import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
 export default {
+  name: "oneEnergy",
+  components: {
+    // cakeEcharts
+  },
   data() {
     return {
-      // 大栏目列表数据
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        }
-      ],
+      tableData: [],
       total: 0,
-
-      // 查询参数对象1(放在请求的params里,以？形式拼接)
-      queryParams: {
-        pages: 1,
-        size: 10
-      },
-      selectData: [],
-      // 查询参数对象
-      queryBody: {
-        name: "",
-        status: ""
-      }
+      pageNum: 1,
+      pageSize: 10,
+      deatlsit: {}
     };
   },
-  mounted() {
-    this.InitIntegrateList();
+  created() {
+    // this.getdata();
+    //获取列表的方法
+    this.getList();
   },
   methods: {
-    InitIntegrateList() {
-      //调用接口，初始化大栏目列表
+    //获取列表的方法
+    async getList() {
+      this.deatlsit = {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize,
+        powerType: "新能源"
+      };
+      const { rows, total } = await getListApi(this.deatlsit);
+      const arr = [];
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i].powerType == "新能源") {
+          arr.push(rows[i]);
+        }
+      }
+      this.tableData = arr;
+      this.total = total;
+      console.log("常规", this.tableData);
     },
-    // 打印
-    printIntegrateList() {},
-    //点击查询按钮触发
-    queryIntegrateList() {
-      this.queryParams.pages = 1;
-      this.InitIntegrateList();
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.pageNum - 1) * this.pageSize;
     },
-    //重置
-    resetIntegrateList() {
-      this.$refs.queryBody.resetFields();
-      this.queryBody.PowerType = "";
-      this.InitIntegrateList();
+    // 更新每页条数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.getList();
     },
-    // 导出
-    exportIntegrateList() {},
-    //页面数据条数发生变化触发
-    handleSizeChange(newPageSize) {
-      this.queryParams.size = newPageSize;
-      this.InitIntegrateList();
+    // 获取新的页码的数据
+    handleCurrentChange(val) {
+      this.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.getList();
     },
-
-    //页码发生变化触发
-    handleCurrentChange(newPageNum) {
-      this.queryParams.pages = newPageNum;
-      this.InitIntegrateList();
-    },
-
     handleSelectionChange(val) {
       this.selectData = val;
     }
-  },
-  components: {
-    webMap
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.dashboard-container {
-  width: 100%;
-  height: 100%;
-}
+/**
+自定义el-table表格滚动栏样式
+*/
 ::v-deep .el-table__body-wrapper::-webkit-scrollbar {
   width: 10px !important;
   /*滚动条宽度*/
@@ -301,27 +326,183 @@ export default {
   background-color: #428ab2 !important;
   /*滚动条的背景颜色*/
 }
-.btnFlag {
-  text-align: right;
-  margin: 10px;
+::v-deep.el-table__header-wrapper .el-checkbox:last-of-type {
+  display: none;
 }
-.demo-table-expand {
-  font-size: 0;
+.coalBox {
+  width: 100%;
+  height: 100%;
 }
-.demo-table-expand label {
-  width: 90px;
-  color: #99a9bf;
-}
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-}
-.query-form {
-  margin-top: 30px;
+.topBox {
+  width: 100%;
+  height: 30%;
   display: flex;
-  .query-title {
-    margin: 0 95px 0;
-  }
+}
+.topLeft {
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+}
+.topLeftTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid #158388;
+  margin: 20px;
+  font-size: 20px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: #333333;
+  padding-left: 9px;
+}
+.topLeftContent {
+  width: 96%;
+  height: 65%;
+  margin-left: 3%;
+  margin-top: 25px;
+  /* background-color: #158388; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentImg {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1377.png");
+}
+.contentImg2 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1378.png");
+}
+.contentImg3 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1379.png");
+}
+.contentImg4 {
+  width: 24%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/CoalElectricity/1380.png");
+}
+.contentTitle {
+  margin-top: 10%;
+  margin-left: 7%;
+  font-size: 18px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: #333333;
+}
+.contentNum {
+  margin-top: 30%;
+  text-align: right;
+  margin-right: 20%;
+  font-size: 50px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: #ffa00a;
+  line-height: 48px;
+}
+.contentNum span {
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+.topRight {
+  width: 49%;
+  height: 100%;
+  background-color: #fff;
+  margin-left: 1%;
+}
+.cakeImgBox {
+  width: 80%;
+  height: 80%;
+  /* background-color: #158388; */
+  margin-left: 10%;
+}
+.tableBox {
+  width: 100%;
+  height: 70%;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.tableTop {
+  width: 96%;
+  height: 10%;
+  border-bottom: 1px solid #f5f5f5;
+  margin-left: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableTopLeft {
+  width: 50%;
+  height: 100%;
+  /* background-color: #ffa00a; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tableTopLeft div {
+  font-size: 14px;
+}
+.tableTopLeft input {
+  width: 210px;
+  border: none;
+  height: 30px;
+  background-color: #f7f8fa;
+  margin-left: 10px;
+}
+.tableTopRight {
+  width: 20%;
+  height: 100%;
+  /* background-color: #158388; */
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.tableTopRight button {
+  width: 84px;
+  height: 32px;
+  border: none;
+}
+.btn {
+  display: flex;
+}
+.btn button {
+  width: 84px;
+  height: 32px;
+  background-color: #158388;
+  border: 1px solid #158388;
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn span {
+  margin-left: 5px;
+}
+.tableCenter {
+  width: 96%;
+  height: 75%;
+
+  margin-top: 1%;
+  margin-left: 2%;
+  overflow-y: scroll;
+}
+.pageBox {
+  width: 96%;
+  height: 10%;
+  margin-left: 2%;
+  /* background-color: #ffa00a; */
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 </style>

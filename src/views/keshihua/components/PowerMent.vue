@@ -2,266 +2,246 @@
   <div>
     <!-- 查询条件 -->
     <web-map style="width: 100%;height: 600px;"></web-map>
-    <el-form
-      label-width="130px"
-      class="query-form"
-      ref="queryBody"
-      :model="queryBody"
-    >
-      <el-form-item
-        label="电源类型一级:"
-        style="width:580px"
-        prop="PowerSource"
+    <div style="background: #FFF;border-radius: 10px;">
+      <div
+        style="padding-top: 1px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E2E2E2;"
       >
-        <el-select
-          v-model="queryBody.PowerSource"
-          clearable
-          placeholder="请选择"
-          style="width:100px"
+        <el-form
+          label-width="130px"
+          class="query-form"
+          ref="queryBody"
+          :model="queryBody"
         >
-          <el-option
-            v-for="item in PowerSourceList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-        <el-select
-          v-model="queryBody.PowerType"
-          clearable
-          placeholder="请选择"
-          style="width:100px;margin-left:20px"
+          <el-form-item
+            label="电源类型一级:"
+            style="width:400px"
+            prop="PowerSource"
+          >
+            <el-select
+              v-model="queryBody.PowerSource"
+              clearable
+              placeholder="请选择"
+              style="width:100px"
+            >
+              <el-option
+                v-for="item in PowerSourceList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+            <el-select
+              v-model="queryBody.PowerType"
+              clearable
+              placeholder="请选择"
+              style="width:100px;margin-left:20px"
+            >
+              <el-option
+                v-for="item in PowerTypeList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="项目前期工作进展:" prop="WorkDevelopment">
+            <el-select
+              v-model="queryBody.WorkDevelopment"
+              clearable
+              placeholder="请选择"
+            >
+              <el-option
+                v-for="item in WorkDevelopmentList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="电厂名称:" class="query-title" prop="name">
+            <el-input v-model="queryBody.name" placeholder="请输入" clearable />
+          </el-form-item>
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-search"
+            style="margin-left:30px"
+            @click="queryIntegrateList"
+          >
+            查询
+          </el-button>
+          <el-button
+            type="succ"
+            size="small"
+            icon="el-icon-refresh-left"
+            @click="resetIntegrateList"
+          >
+            重置
+          </el-button>
+        </el-form>
+      </div>
+      <div class="btnFlag">
+        <el-button type="primary" size="small" @click="exportIntegrateList">
+          导出
+        </el-button>
+        <el-button type="ess" size="small" @click="printIntegrateList">
+          打印
+        </el-button>
+      </div>
+      <!-- 列表表格区域 -->
+      <el-table
+        :data="tableData"
+        style="width: 100%"
+        border
+        :header-cell-style="{
+          color: '#000000'
+        }"
+        @selection-change="handleSelectionChange"
+        height="400"
+      >
+        <el-table-column align="center" type="selection" width="55">
+        </el-table-column>
+        <el-table-column
+          align="center"
+          label="序号"
+          type="index"
+          :index="indexFn"
+          width="50"
         >
-          <el-option
-            v-for="item in PowerTypeList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="项目前期工作发展:" prop="WorkDevelopment">
-        <el-select
-          v-model="queryBody.WorkDevelopment"
-          clearable
-          placeholder="请选择"
+        </el-table-column>
+        <el-table-column
+          prop="projectNo"
+          label="项目编号"
+          align="center"
+          width="150"
         >
-          <el-option
-            v-for="item in WorkDevelopmentList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="电厂名称:" class="query-title" prop="name">
-        <el-input v-model="queryBody.name" placeholder="请输入" clearable />
-      </el-form-item>
-    </el-form>
-    <div class="btnFlag">
-      <el-button type="success" size="small" @click="queryIntegrateList">
-        查询
-      </el-button>
-      <el-button type="success" size="small" @click="resetIntegrateList">
-        重置
-      </el-button>
-      <el-button type="success" size="small" @click="exportIntegrateList">
-        导出
-      </el-button>
-      <el-button type="success" size="small" @click="printIntegrateList">
-        打印
-      </el-button>
+        </el-table-column>
+        <el-table-column
+          prop="projectName"
+          label="项目名称"
+          align="center"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="subprojectNum"
+          align="center"
+          label="子项目数量"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="maxGroup"
+          align="center"
+          label="最高集团"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="enterpriseName"
+          align="center"
+          label="企业名称"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="acceptancePowerUnit"
+          align="center"
+          label="受理电力公司"
+          width="100"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="applyTime"
+          align="center"
+          label="申请时间"
+          width="130"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="powerType"
+          align="center"
+          label="电源类型"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="electricPowerType"
+          align="center"
+          label="发电类型"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="powerType"
+          align="center"
+          label="项目类型"
+          width="150"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="engineeringType"
+          align="center"
+          label="工程类型"
+          width="100"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="projectUri"
+          align="center"
+          label="项目地址"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="periodInstalledCapacity"
+          align="center"
+          label="本期装机量"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="finalInstalledCapacity"
+          align="center"
+          label="终期装机量"
+        >
+        </el-table-column>
+      </el-table>
+      <!-- 分页 -->
+      <el-pagination
+        style="text-align:right;padding-top:10px"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 30]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      >
+      </el-pagination>
     </div>
-    <!-- 列表表格区域 -->
-    <el-table
-      :data="tableData"
-      style="width: 100%"
-      border
-      :header-cell-style="{
-        background: '#99cccc',
-        color: '#000000'
-      }"
-      @selection-change="handleSelectionChange"
-      height="400"
-    >
-      <el-table-column align="center" type="selection" width="55">
-      </el-table-column>
-      <el-table-column align="center" label="序号" width="50">
-        <template slot-scope="scope">
-          {{ scope.$index + 1 }}
-        </template>
-      </el-table-column>
-      <el-table-column prop="date" label="电厂代码" align="center" width="150">
-      </el-table-column>
-      <el-table-column prop="name" label="电厂名称" align="center" width="120">
-      </el-table-column>
-      <el-table-column
-        prop="province"
-        align="center"
-        label="电厂地址"
-        width="120"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="city"
-        align="center"
-        label="电源类型一级"
-        width="120"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="电源类型二级"
-        width="120"
-      >
-      </el-table-column>
-      <el-table-column prop="zip" align="center" label="电厂性质" width="100">
-      </el-table-column>
-      <el-table-column
-        prop="city"
-        align="center"
-        label="项目前期工作进展"
-        width="130"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="接网工程进展"
-        width="120"
-      >
-      </el-table-column>
-      <el-table-column prop="zip" align="center" label="机组数量">
-      </el-table-column>
-      <el-table-column
-        prop="city"
-        align="center"
-        label="电厂装机容量(万千瓦)"
-        width="150"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="建设状态"
-        width="100"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="zip"
-        align="center"
-        label="机组核准状态"
-        width="120"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="zip"
-        align="center"
-        label="机组投产状态"
-        width="120"
-      >
-      </el-table-column>
-    </el-table>
-    <!-- 分页 -->
-    <el-pagination
-      :current-page="queryParams.pages"
-      :page-sizes="[10, 20, 30]"
-      style="text-align:right;padding-top:10px"
-      :page-size="queryParams.size"
-      :total="total"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
   </div>
 </template>
 
 <script>
 import webMap from "@/views/WebMap/mapDemo.vue";
+import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
       // 大栏目列表数据
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        }
-      ],
+      tableData: [],
       total: 0,
 
       // 查询参数对象1(放在请求的params里,以？形式拼接)
-      queryParams: {
-        pages: 1,
-        size: 10
+
+      pageNum: 1,
+      pageSize: 10,
+      deatlsit: {
+        // pageNum: this.pageNum,
+        // pageSize: this.pageSize,
+        // type: "常规电源",
       },
       selectData: [],
       // 查询参数对象
@@ -293,24 +273,7 @@ export default {
           label: "已完成可研查看"
         }
       ],
-      PowerSourceList: [
-        {
-          value: "1",
-          label: "火电"
-        },
-        {
-          value: "2",
-          label: "水电"
-        },
-        {
-          value: "3",
-          label: "核电"
-        },
-        {
-          value: "4",
-          label: "其它"
-        }
-      ],
+      PowerSourceList: [],
       PowerTypeList: [
         {
           value: "1",
@@ -350,10 +313,39 @@ export default {
   components: {
     webMap
   },
+  created() {
+    this.getdata();
+    //获取列表的方法
+    this.getList();
+  },
   mounted() {
     this.InitIntegrateList();
   },
   methods: {
+    // 加载电源一级类型
+    async getdata() {
+      const res1 = await getdataApi();
+      console.log(res1);
+      // this.subjectNa = res1;
+    },
+    //获取列表的方法
+    async getList() {
+      this.deatlsit = {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize,
+        powerType: "常规电源"
+      };
+      const { rows, total } = await getListApi(this.deatlsit);
+      const arr = [];
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i].powerType == "常规电源") {
+          arr.push(rows[i]);
+        }
+      }
+      this.tableData = arr;
+      this.total = total;
+      console.log("常规", this.tableData);
+    },
     InitIntegrateList() {
       //调用接口，初始化大栏目列表
     },
@@ -372,16 +364,28 @@ export default {
     },
     // 导出
     exportIntegrateList() {},
-    //页面数据条数发生变化触发
-    handleSizeChange(newPageSize) {
-      this.queryParams.size = newPageSize;
-      this.InitIntegrateList();
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.pageNum - 1) * this.pageSize;
     },
-
-    //页码发生变化触发
-    handleCurrentChange(newPageNum) {
-      this.queryParams.pages = newPageNum;
-      this.InitIntegrateList();
+    // 更新每页条数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.getList();
+    },
+    // 获取新的页码的数据
+    handleCurrentChange(val) {
+      this.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.getList();
     },
 
     handleSelectionChange(val) {
@@ -421,9 +425,25 @@ export default {
   background-color: #428ab2 !important;
   /*滚动条的背景颜色*/
 }
+.el-button--primary {
+  //需要更改的按钮类型
+  background: #158388 !important;
+  border-color: #158388 !important;
+}
+.el-button--succ {
+  //需要更改的按钮类型
+  background: #f2f3f5 !important;
+  border-color: #f2f3f5 !important;
+}
+.el-button--ess {
+  //需要更改的按钮类型
+  background: #f5ba49 !important;
+  border-color: #f5ba49 !important;
+  color: #fff;
+}
 .btnFlag {
-  text-align: right;
-  margin-bottom: 10px;
+  text-align: left;
+  margin: 20px 30px;
 }
 .demo-table-expand {
   font-size: 0;
@@ -437,11 +457,11 @@ export default {
   margin-bottom: 0;
   width: 50%;
 }
+.el-form-item {
+  margin-bottom: 0;
+}
 .query-form {
   margin-top: 30px;
   display: flex;
-  .query-title {
-    margin: 0 95px 0;
-  }
 }
 </style>

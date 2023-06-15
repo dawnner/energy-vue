@@ -211,5 +211,8 @@ export default {
 }
 .tableBox {
   margin-top: 10px;
+  background-color: #fff;
+  padding: 23px 20px;
+  border-radius: 10px;
 }
 </style>

@@ -42,7 +42,7 @@ import projectPlanning from "./projectPlanning.vue";
 export default {
   data() {
     return {
-      isCollapse: true, //按钮控制菜单栏的展开
+      isCollapse: false, //按钮控制菜单栏的展开
       tabId: "2"
     };
   },
@@ -79,7 +79,7 @@ section /deep/ .el-aside {
   height: 100%;
 }
 aside /deep/ .el-menu {
-  background: #ecf6ec;
+  background: #fff;
 }
 aside /deep/ .el-menu-vertical-demo {
   height: 100%;
@@ -99,7 +99,7 @@ aside /deep/ .el-menu-vertical-demo {
   width: 20px;
   height: 60px;
   z-index: 15;
-  background: #ecf6ec;
+  background: #fff;
   border: 1px solid #ccc;
   border-left: none;
 }
