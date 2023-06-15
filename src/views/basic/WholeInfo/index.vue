@@ -18,7 +18,7 @@
           <jhdl></jhdl>
         </div>
         <div class="dyjrqk">
-          <dyjrqk ref="dyjrqk" style=" height: 100%"></dyjrqk>
+          <dyjrqk ref="dyjrqk" style="width: 100%; height: 100%"></dyjrqk>
         </div>
       </div>
       <!-- 右 -->
@@ -93,7 +93,7 @@ import barchart from "../components/pages/barchart.vue";
 import piechart1 from "../components/pages/piechart1.vue";
 import piechart2 from "../components/pages/piechart2.vue";
 import zcfw from "../components/pages/zcfw.vue";
-import { gsdyData, dyzjData } from "../components/qingqiu/gsdyjk";
+
 export default {
   name: "Index",
   components: {
@@ -110,8 +110,6 @@ export default {
   },
   data() {
     return {
-      shuzu: [],
-      listData: [],
       mapNameList: [
         {
           name: "山东省"
@@ -122,24 +120,8 @@ export default {
   },
   mounted() {
     this.mapName();
-    this.gsdyData();
-    this.dyzjData();
   },
   methods: {
-    async gsdyData() {
-      const { data } = await gsdyData();
-      this.shuzu = data;
-      //this.$refs.localEmissions.localEmissions(rows);
-      console.log(this.shuzu, "电源");
-      localStorage.setItem("name", JSON.stringify(this.shuzu));
-    },
-    async dyzjData() {
-      const { data } = await dyzjData();
-      this.listData = data;
-      //this.$refs.localEmissions.localEmissions(rows);
-      console.log(data, "装机");
-      localStorage.setItem("listData", JSON.stringify(this.listData));
-    },
     goback() {
       // this.$nextTick(() => {
       this.$refs.mapxz.change();
@@ -701,9 +683,9 @@ export default {
     }
     .dyjrqk {
       height: 29%;
-      width: 500px;
+      width: 100%;
       background: #fff;
-      overflow-x: scroll;
+      overflow: hidden;
       border-radius: 10px;
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
@@ -745,7 +727,7 @@ export default {
       padding-left: 5px;
     }
     .bottom-corner1 {
-      width: 32%;
+      width: 31%;
       height: 88%;
       background: #fff;
       border-radius: 10px;
@@ -753,7 +735,7 @@ export default {
       box-shadow: 0px 0px 13px 0px rgba(42, 92, 254, 0.22);
     }
     .bottom-corner2 {
-      width: 32%;
+      width: 31%;
       height: 88%;
       background: #fff;
       border-radius: 10px;

@@ -41,6 +41,7 @@
   </div>
 </template>
 <script>
+import { mapGuanliHistogram, mapGuanFuel } from "../../api/mapGl/mapgl";
 import mapCgui from "../qyyngl/components/mapCgui.vue";
 import localemissions from "../qyyngl/components/localEmissions.vue";
 import fuelcomparison from "../qyyngl/components/fuelComparison.vue";
@@ -51,16 +52,32 @@ export default {
       tabId: "3"
     };
   },
-  methods: {
-    changeSidebar(path) {
-      console.log(path);
-      this.tabId = path;
-    }
-  },
   components: {
     mapCgui,
     localemissions,
     fuelcomparison
+  },
+  methods: {
+    async mapGuanliHistogram() {
+      const { rows } = await mapGuanliHistogram();
+      this.$refs.localEmissions.localEmissions(rows);
+      console.log(rows);
+    },
+    changeSidebar(path) {
+      console.log(path);
+      this.tabId = path;
+    }
+    // async mapGuanFuel() {
+    //   const { rows } = await mapGuanFuel();
+    //   this.$refs.comparison.fuelcomparison(rows);
+    //   console.log(rows);
+    // }
+  },
+  created() {
+    // 企业用能管理公司柱状图信息;
+    this.mapGuanliHistogram();
+    // 企业用能管理公司往年燃料对比图信息;
+    // this.mapGuanFuel();
   }
 };
 </script>

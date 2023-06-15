@@ -68,16 +68,10 @@
             size="small"
             icon="el-icon-search"
             style="margin-left:30px"
-            @click="queryIntegrateList"
           >
             查询
           </el-button>
-          <el-button
-            type="succ"
-            size="small"
-            icon="el-icon-refresh-left"
-            @click="resetIntegrateList"
-          >
+          <el-button type="succ" size="small" icon="el-icon-refresh-left">
             重置
           </el-button>
         </el-form>
@@ -333,12 +327,12 @@ export default {
       this.deatlsit = {
         pageNum: this.pageNum,
         pageSize: this.pageSize,
-        powerType: "新型储能"
+        powerType: "新能源"
       };
       const { rows, total } = await getListApi(this.deatlsit);
       this.tableData = rows;
       this.total = total;
-      console.log("储能", this.tableData);
+      console.log("新能源", this.tableData);
     },
     InitIntegrateList() {
       //调用接口，初始化大栏目列表

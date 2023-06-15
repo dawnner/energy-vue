@@ -126,7 +126,7 @@ export default {
           textStyle: {
             color: "#8C8C8C"
           },
-          height: 140
+          height: 180
         },
         color: [
           "#F9CD33",

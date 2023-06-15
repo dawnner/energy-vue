@@ -336,13 +336,7 @@ export default {
         powerType: "常规电源"
       };
       const { rows, total } = await getListApi(this.deatlsit);
-      const arr = [];
-      for (let i = 0; i < rows.length; i++) {
-        if (rows[i].powerType == "常规电源") {
-          arr.push(rows[i]);
-        }
-      }
-      this.tableData = arr;
+      this.tableData = rows;
       this.total = total;
       console.log("常规", this.tableData);
     },

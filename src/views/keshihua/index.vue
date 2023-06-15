@@ -51,8 +51,8 @@
 </template>
 <script>
 import webMap from "../../views/WebMap/mapCgui.vue";
-import DistanceTool from "bmaplib.distancetool";
-import coalElectricity from "../newEnergy/components/CoalElectricity.vue";
+// import DistanceTool from "bmaplib.distancetool";
+import coalElectricity from "./components/CoalElectricity.vue";
 import keshihuaInventory from "../../views/keshihua/components/keshihuaInventory.vue";
 import oneEnergy from "../../views/keshihua/components/oneEnergy.vue";
 import powerMent from "../../views/keshihua/components/PowerMent.vue";
