@@ -1,5 +1,5 @@
 <template>
-  <div style="width:100%;height:100%;padding:10px">
+  <div style="width:100%;height:100%;">
     <div class="newtop">
       <div class="newtop-one">
         <div style="font-size: 24px;font-weight: 500;">全省可开放总容量</div>
@@ -11,7 +11,11 @@
           ><span>兆伏安</span>
         </div>
       </div>
-      <div>2</div>
+      <div style="flex:1">
+        <MapAnalysis
+          style="width: 95%;height: 100%;margin:0 auto;"
+        ></MapAnalysis>
+      </div>
       <div class="newtop-therr">
         <div class="newtop-therr-one">
           <span
@@ -111,6 +115,7 @@
   </div>
 </template>
 <script>
+import MapAnalysis from "../../dashboard/analysis/MapAnalysis.vue";
 export default {
   data() {
     return {
@@ -218,6 +223,9 @@ export default {
         name: ""
       };
     }
+  },
+  components: {
+    MapAnalysis
   }
 };
 </script>

@@ -50,7 +50,7 @@
 
         <!-- 饼状图 -->
         <div class="cakeImgBox">
-          <!-- <cakeEcharts style="width: 100%;height: 100%;"></cakeEcharts> -->
+          <!-- <bingTu style="width: 100%;height: 100%;"></bingTu> -->
         </div>
       </div>
     </div>
@@ -61,18 +61,17 @@
         <div class="tableTopLeft">
           <div>电厂名称 <input type="text" /></div>
           <div>机组类型 <input type="text" /></div>
-          <div class="btn">
-            <button>
-              <img src="../../../assets/CoalElectricity/6.png" alt="" />
-              <span>查询</span>
-            </button>
-            <button
-              style="background-color: #F2F3F5;color: #333333;border:none;margin-left: 20px;"
-            >
-              <img src="../../../assets/CoalElectricity/7.png" alt="" />
-              <span>重置</span>
-            </button>
-          </div>
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-search"
+            style="margin-left:30px"
+          >
+            查询
+          </el-button>
+          <el-button type="succ" size="small" icon="el-icon-refresh-left">
+            重置
+          </el-button>
         </div>
         <div class="tableTopRight">
           <button
@@ -98,7 +97,7 @@
             color: '#000000'
           }"
           @selection-change="handleSelectionChange"
-          height="600"
+          height="580"
         >
           <el-table-column align="center" type="selection" width="55">
           </el-table-column>
@@ -226,12 +225,11 @@
 </template>
 
 <script>
-// import cakeEcharts from "./cakeEcharts.vue";
+// import bingTu from "../components/3dbt1.vue";
 import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
 export default {
-  name: "oneEnergy",
   components: {
-    // cakeEcharts
+    // bingTu
   },
   data() {
     return {
@@ -372,13 +370,14 @@ export default {
 }
 .topBox {
   width: 100%;
-  height: 30%;
+  height: 28%;
   display: flex;
 }
 .topLeft {
   width: 50%;
   height: 100%;
   background-color: #fff;
+  border-radius: 10px;
 }
 .topLeftTitle {
   width: 100%;
@@ -454,6 +453,7 @@ export default {
   height: 100%;
   background-color: #fff;
   margin-left: 1%;
+  border-radius: 10px;
 }
 .cakeImgBox {
   width: 80%;
@@ -463,9 +463,9 @@ export default {
 }
 .tableBox {
   width: 100%;
-  height: 70%;
   background-color: #fff;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 .tableTop {
@@ -475,6 +475,7 @@ export default {
   margin-left: 2%;
   display: flex;
   justify-content: space-between;
+  padding: 20px 0;
 }
 
 .tableTopLeft {
