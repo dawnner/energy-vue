@@ -186,6 +186,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: "/keshihua",
+    component: Layout,
+    hidden: true,
+    redirect: "components",
+    children: [
+      {
+        path: "components",
+        component: () => import("../views/keshihua/components/CoalRanking.vue"),
+        name: "CoalRanking"
+      }
+    ]
+  },
+  {
     path: "/dateils",
     component: Layout,
     hidden: true,

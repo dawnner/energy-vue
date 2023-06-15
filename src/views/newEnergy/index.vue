@@ -28,11 +28,16 @@
             <i class="el-icon-document"></i>
             <span slot="title">新能源项目管理</span>
           </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-document"></i>
+            <span slot="title">电源接入情况</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>
         <distributed v-if="tabId == '2'"></distributed>
         <coalElectricity v-if="tabId == '3'"></coalElectricity>
+        <Poweqingkuang v-if="tabId == '4'"></Poweqingkuang>
       </el-main>
     </el-container>
   </div>
@@ -40,6 +45,7 @@
 <script>
 import coalElectricity from "./components/CoalElectricity.vue";
 import distributed from "./components/Distributed.vue";
+import Poweqingkuang from "./components/Poweqingkuang.vue";
 export default {
   data() {
     return {
@@ -55,7 +61,8 @@ export default {
   },
   components: {
     distributed,
-    coalElectricity
+    coalElectricity,
+    Poweqingkuang
   }
 };
 </script>

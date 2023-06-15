@@ -54,11 +54,11 @@ export default {
           colorStops: [
             {
               offset: 0,
-              color: "#589cd6"
+              color: "#ABCFFF"
             },
             {
               offset: 1,
-              color: "#589cd6"
+              color: "#3288FC"
             }
           ]
         },
@@ -71,11 +71,11 @@ export default {
           colorStops: [
             {
               offset: 0,
-              color: "#f67c2a"
+              color: "#FED599"
             },
             {
               offset: 1,
-              color: "#f67c2a"
+              color: "#FFA60D"
             }
           ]
         },
@@ -88,11 +88,11 @@ export default {
           colorStops: [
             {
               offset: 0,
-              color: "#D8F5CB"
+              color: "#BCE5AB"
             },
             {
               offset: 1,
-              color: "#a5a5a5"
+              color: "#9ED386"
             }
           ]
         }
@@ -117,15 +117,15 @@ export default {
 
       let option = {
         backgroundColor: "#fff",
-        title: {
-          text: "各地市CO2往年对比",
-          left: "40%",
-          top: 8,
-          // bottom: 18,
-          textStyle: {
-            fontSize: 18
-          }
-        },
+        // title: {
+        //   text: "各地市CO2往年对比",
+        //   left: "40%",
+        //   top: 8,
+        //   // bottom: 18,
+        //   textStyle: {
+        //     fontSize: 18
+        //   }
+        // },
 
         tooltip: {
           trigger: "axis",
@@ -224,6 +224,9 @@ export default {
               align: "left",
               padding: [0, 0, -5, 0]
             },
+            min: 0,
+            max: 20000000,
+            splitNumber: 10,
             type: "value",
             splitLine: {
               //y轴网格线

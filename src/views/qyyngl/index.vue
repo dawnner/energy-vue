@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%">
+  <div style="height:100%;overflow-y: scroll;">
     <el-container style="position: relative;">
       <button
         class="btnbtn"
@@ -40,16 +40,22 @@
       </el-aside>
       <el-main>
         <div style="width:100%;height:100%" v-if="tabId == '1'">
-          <map-cgui style="width:100%;height:70%"></map-cgui>
-          <div style="width:100%;height:30%;display:flex">
-            <localemissions
-              style="width:50%;height:100%"
-              ref="localEmissions"
-            ></localemissions>
-            <fuelcomparison
-              style="width:50%;height:100%"
-              ref="comparison"
-            ></fuelcomparison>
+          <map-cgui style="width:100%;height:65%"></map-cgui>
+          <div style="width:100%;height:35%;display:flex">
+            <div class="leftImg">
+              <div class="leftTitle">各地市火电企业往年碳排历史数据</div>
+              <localemissions
+                style="width:100%;height:80%"
+                ref="localEmissions"
+              ></localemissions>
+            </div>
+            <div class="rightImg">
+              <div class="leftTitle">碳排因子趋势分析</div>
+              <fuelcomparison
+                style="width:100%;height:100%"
+                ref="comparison"
+              ></fuelcomparison>
+            </div>
           </div>
         </div>
         <energy-table v-if="tabId == '2'"></energy-table>
@@ -112,6 +118,36 @@ export default {
 </script>
 
 <style scoped>
+.leftImg {
+  width: 49%;
+  height: 100%;
+  background-color: #fff;
+  margin-left: 1%;
+  margin-top: 1%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rightImg {
+  width: 48%;
+  height: 100%;
+  background-color: #fff;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+  border-radius: 10px;
+}
+
+.leftTitle {
+  border-left: 4px solid #158388;
+  font-size: 20px;
+  font-family: SimHei;
+  font-weight: 400;
+  margin-top: 22px;
+  margin-bottom: -3px;
+  margin-left: 22px;
+  padding-left: 10px;
+  color: #333333;
+}
 .el-main {
   padding: 0;
 }
