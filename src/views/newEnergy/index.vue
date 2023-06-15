@@ -35,6 +35,7 @@
         </el-menu>
       </el-aside>
       <el-main>
+        <qixiang v-if="tabId == '1'"></qixiang>
         <distributed v-if="tabId == '2'"></distributed>
         <coalElectricity v-if="tabId == '3'"></coalElectricity>
         <Poweqingkuang v-if="tabId == '4'"></Poweqingkuang>
@@ -46,6 +47,7 @@
 import coalElectricity from "./components/CoalElectricity.vue";
 import distributed from "./components/Distributed.vue";
 import Poweqingkuang from "./components/Poweqingkuang.vue";
+import qixiang from "./components/qixiang.vue";
 export default {
   data() {
     return {
@@ -62,7 +64,8 @@ export default {
   components: {
     distributed,
     coalElectricity,
-    Poweqingkuang
+    Poweqingkuang,
+    qixiang
   }
 };
 </script>

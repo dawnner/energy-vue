@@ -8,7 +8,17 @@
           {{ dataDateil.noticeTitle }}
         </div>
 
-        <div class="dateilContent" v-html="dataDateil.noticeContent"></div>
+        <div class="dateilContent">
+          <div
+            style="text-align: center;color:#999;font-size: 14px;margin-top:10px"
+          >
+            {{ contentData }}
+          </div>
+          <div v-html="content" class="content"></div>
+          <div style="text-align: center; width: 100%;">
+            <img src="../../assets/CoalElectricity/组 1364.png" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +31,8 @@ export default {
     return {
       noticeId: "",
       dataDateil: {},
-      contentData: ""
+      contentData: "",
+      content: ""
     };
   },
   methods: {
@@ -33,6 +44,13 @@ export default {
       getNotice(this.noticeId).then(response => {
         console.log(response, "111");
         this.dataDateil = response.data;
+        this.contentData = this.dataDateil.noticeContent.split("<strong>")[0];
+        this.content = this.dataDateil.noticeContent
+          .split("<strong>")[1]
+          .split("&nbsp")[0];
+        console.log(
+          this.dataDateil.noticeContent.split("<strong>")[1].split("&nbsp")
+        );
       });
     }
   },
@@ -72,5 +90,10 @@ export default {
   font-weight: bold;
   color: #333333;
   text-align: center;
+}
+.content {
+  width: 90%;
+  line-height: 30px;
+  margin: 20px auto;
 }
 </style>

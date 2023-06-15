@@ -67,7 +67,7 @@
             type="primary"
             size="small"
             icon="el-icon-search"
-            style="margin-left:30px"
+            style="margin-left:30px;"
             @click="queryIntegrateList"
           >
             查询
