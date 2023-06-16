@@ -18,20 +18,22 @@
         >
           <el-menu-item index="3">
             <i class="el-icon-document"></i>
-            <span slot="title">全省各单位数据展示</span>
+            <span slot="title">重点行业碳排放核对</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main style="padding:10px">
         <div style="width:100%;height:100%">
           <map-cgui style="width:100%;height:70%"></map-cgui>
-          <div style="width:100%;height:30%;display:flex">
+          <div
+            style="width:100%;height:30%;display:flex;justify-content: space-between;padding:10px 0"
+          >
             <localemissions
-              style="width:50%;height:100%"
+              style="width:49%;height:100%;background:#fff"
               ref="localEmissions"
             ></localemissions>
             <fuelcomparison
-              style="width:50%;height:100%"
+              style="width:49%;height:100%;background:#fff"
               ref="comparison"
             ></fuelcomparison>
           </div>

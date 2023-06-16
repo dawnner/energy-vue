@@ -106,103 +106,66 @@
             label="序号"
             type="index"
             :index="indexFn"
-            width="50"
           >
           </el-table-column>
-          <el-table-column
-            prop="projectNo"
-            label="项目编号"
-            align="center"
-            width="150"
-          >
+          <el-table-column prop="projectNo" label="电厂名称" align="center">
           </el-table-column>
           <el-table-column
             prop="projectName"
-            label="项目名称"
+            label="机组容量(万千瓦)"
             align="center"
-            width="120"
           >
           </el-table-column>
           <el-table-column
             prop="subprojectNum"
             align="center"
-            label="子项目数量"
-            width="120"
+            label="日发电量(万千瓦)"
           >
           </el-table-column>
-          <el-table-column
-            prop="maxGroup"
-            align="center"
-            label="最高集团"
-            width="120"
-          >
+          <el-table-column prop="maxGroup" align="center" label="供热量(GJ)">
           </el-table-column>
           <el-table-column
             prop="enterpriseName"
             align="center"
-            label="企业名称"
-            width="120"
+            label="煤炭库存(万吨)"
           >
           </el-table-column>
           <el-table-column
             prop="acceptancePowerUnit"
             align="center"
-            label="受理电力公司"
-            width="100"
+            label="日供煤量(万吨)"
           >
           </el-table-column>
           <el-table-column
             prop="applyTime"
             align="center"
-            label="申请时间"
-            width="130"
+            label="日耗煤量(万吨)"
           >
           </el-table-column>
           <el-table-column
             prop="powerType"
             align="center"
-            label="电源类型"
-            width="120"
+            label="电煤可用天数(天数)"
           >
           </el-table-column>
           <el-table-column
             prop="electricPowerType"
             align="center"
-            label="发电类型"
+            label="机组状态"
           >
           </el-table-column>
-          <el-table-column
-            prop="powerType"
-            align="center"
-            label="项目类型"
-            width="150"
-          >
+          <el-table-column prop="powerType" align="center" label="机组">
           </el-table-column>
           <el-table-column
             prop="engineeringType"
             align="center"
-            label="工程类型"
-            width="100"
+            label="供热期新增调峰(万千瓦)"
           >
           </el-table-column>
           <el-table-column
             prop="projectUri"
             align="center"
-            label="项目地址"
-            width="120"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="periodInstalledCapacity"
-            align="center"
-            label="本期装机量"
-            width="120"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="finalInstalledCapacity"
-            align="center"
-            label="终期装机量"
+            label="非供热期新增调峰(万千瓦)"
           >
           </el-table-column>
         </el-table>

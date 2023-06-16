@@ -30,11 +30,15 @@
         <div class="newtop-therr-two" style="margin:0px 5px">
           <template>
             <el-table :data="tableData" style="width: 100%;">
-              <el-table-column prop="date" label="排名" align="center">
+              <el-table-column prop="id" label="排名" align="center">
               </el-table-column>
-              <el-table-column prop="name" label="地区" align="center">
+              <el-table-column prop="regionName" label="地区" align="center">
               </el-table-column>
-              <el-table-column prop="address" label="容量(MVA)" align="center">
+              <el-table-column
+                prop="regionSum"
+                label="容量(MVA)"
+                align="center"
+              >
               </el-table-column>
             </el-table>
           </template>
@@ -78,36 +82,60 @@
       <div style="margin:0 30px 20px 30px;border-bottom: 1px solid #ccc;"></div>
       <div style="margin:0 30px">
         <el-table :data="table" stripe style="width: 100%">
-          <el-table-column prop="date" label="序号" align="center">
+          <el-table-column
+            prop="date"
+            label="序号"
+            type="index"
+            :index="indexFn"
+            align="center"
+          >
           </el-table-column>
-          <el-table-column prop="name" label="所属单位" align="center">
+          <el-table-column prop="unit" label="单位" align="center">
           </el-table-column>
-          <el-table-column prop="name" label="所属馈线" align="center">
-          </el-table-column>
-          <el-table-column prop="name" label="公变台区名称" align="center">
+          <el-table-column prop="placeRegion" label="所属变电站" align="center">
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="powerSupplyRegion"
+            label="供电所"
+            align="center"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="placeFeederLine"
+            label="所属馈线"
+            align="center"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="courtsName"
+            label="公变台区名称"
+            align="center"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="courtsTransformerCapacity"
             label="台区变压器容量(KVA)"
             align="center"
           >
           </el-table-column>
           <el-table-column
-            prop="address"
+            prop="openCapacity"
             label="分布式电源可开放容量(KVA)"
             align="center"
           >
+          </el-table-column>
+          <el-table-column prop="regionId" label="地区id" align="center">
           </el-table-column>
         </el-table>
         <el-pagination
           style="text-align:right;padding-top:10px"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="queryParams.pages"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="queryParams.size"
+          :current-page="pageNum"
+          :page-sizes="[10, 20, 30]"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="total"
         >
         </el-pagination>
       </div>
@@ -116,106 +144,77 @@
 </template>
 <script>
 import MapAnalysis from "../../dashboard/analysis/MapAnalysis.vue";
+import {
+  newSumApi,
+  newRankingListApi,
+  newcapacityApi
+} from "@/api/newny/newny.js";
 export default {
   data() {
     return {
-      value: "9000",
-      // 查询参数对象1(放在请求的params里,以？形式拼接)
-      queryParams: {
-        pages: 1,
-        size: 10
-      },
-      tableData: [
-        {
-          date: "1",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "2",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "3",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "4",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "5",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "6",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "7",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "8",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "9",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "10",
-          name: "济南市",
-          address: "3526.3"
-        },
-        {
-          date: "11",
-          name: "济南市",
-          address: "3526.3"
-        }
-      ],
+      value: "",
+      pageNum: 1,
+      pageSize: 10,
+      total: 0,
+      //排名
+      tableData: [],
       // 查询参数对象
       from: {
         name: ""
       },
-      table: [
-        {
-          date: "1",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "3",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "4",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      //列表
+      table: [],
+      deatlsit: {}
     };
   },
+  created() {
+    this.newSumApi();
+    this.newRankingListApi();
+    this.newcapacityApi();
+  },
   methods: {
+    // 全省可开放总容量
+    async newSumApi() {
+      const { data } = await newSumApi();
+      this.value = data;
+    },
+    //排名
+    async newRankingListApi() {
+      const { data } = await newRankingListApi();
+      this.tableData = data;
+    },
+    //分布式光伏信息
+    async newcapacityApi() {
+      this.deatlsit = {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize
+      };
+      const { rows, total } = await newcapacityApi(this.deatlsit);
+      this.table = rows;
+      this.total = total;
+    },
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.pageNum - 1) * this.pageSize;
+    },
+    // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.newcapacityApi();
     },
+    // 获取新的页码的数据
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      this.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.newcapacityApi();
     },
     //重置按钮
     delFn() {
@@ -241,7 +240,6 @@ export default {
 }
 .newbottom {
   width: 100%;
-  height: 39%;
   background: #fff;
   border-radius: 10px;
 }

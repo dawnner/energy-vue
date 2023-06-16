@@ -10,84 +10,63 @@
 <script>
 import * as echarts from "echarts";
 export default {
-  data() {
-    return {
-      arr1: []
-    };
-  },
   methods: {
     piechart1() {
       var chartDom = document.getElementById("piechart1");
       var myChart = echarts.init(chartDom);
       var option;
-      let arr = JSON.parse(localStorage.getItem("listData"));
-      // console.log(arr, "88");
-      // arr.forEach(item => {
-      //   console.log(item);
-      //   this.arr1.push(item.electric_power_type)
-      // });
-      // var m2R2Data = [
-      //   {
-      //     value: arr[0].sum,
-      //     name: arr[0].electric_power_type,
-      //     itemStyle: { color: "#4ad2be" }
-      //   },
-      //   {
-      //     value: 150,
-      //     name: "燃机",
-      //     itemStyle: { color: "#5fca94" }
-      //   },
-      //   {
-      //     value: 10,
-      //     legendname: "水电",
-      //     name: "水电",
-      //     itemStyle: { color: "#86e8b5" }
-      //   },
-      //   {
-      //     value: 45,
-      //     legendname: "光伏",
-      //     name: "光伏",
-      //     itemStyle: { color: "#5e75dd" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "风电",
-      //     name: "风电",
-      //     itemStyle: { color: "#0bb5f3" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "核电",
-      //     name: "核电",
-      //     itemStyle: { color: "#fd9232" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "储能",
-      //     name: "储能",
-      //     itemStyle: { color: "#f7a667" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "抽水蓄能",
-      //     name: "抽水蓄能",
-      //     itemStyle: { color: "#f98ba6" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "生物质",
-      //     name: "生物质",
-      //     itemStyle: { color: "#e070fa" }
-      //   },
-      //   {
-      //     value: 150,
-      //     legendname: "其他",
-      //     name: "其他",
-      //     itemStyle: { color: "#a137e2" }
-      //   }
-      // ];
+      var m2R2Data = [
+        {
+          value: 35959.52,
+          legendname: "风电",
+          name: "风电",
+          itemStyle: { color: "#4ad2be" }
+        },
+        {
+          value: 4675.61,
+          legendname: "生物质发电",
+          name: "生物质发电",
+          itemStyle: { color: "#5fca94" }
+        },
+        {
+          value: 30090.78,
+          legendname: "太阳能发电",
+          name: "太阳能发电",
+          itemStyle: { color: "#86e8b5" }
+        },
+        {
+          value: 417.0,
+          legendname: "其他",
+          name: "其他",
+          itemStyle: { color: "#5e75dd" }
+        },
+        {
+          value: 5637.65,
+          legendname: "储能",
+          name: "储能",
+          itemStyle: { color: "#0bb5f3" }
+        },
+        {
+          value: 87886.65,
+          legendname: "火电",
+          name: "火电",
+          itemStyle: { color: "#fd9232" }
+        },
+        {
+          value: 1880.47,
+          legendname: "水电",
+          name: "水电",
+          itemStyle: { color: "#a137e2" }
+        },
+        {
+          value: 450.0,
+          legendname: "核电",
+          name: "核电",
+          itemStyle: { color: "#f98ba6" }
+        }
+      ];
 
-      var SumData = 585;
+      // var SumData = 585;
       option = {
         title: [
           {
@@ -120,23 +99,14 @@ export default {
         },
         legend: {
           orient: "vertical",
-          left: "65%",
+          left: "70%",
           align: "left",
-          top: "31.5%",
+          top: "25%",
           textStyle: {
             color: "#8C8C8C"
           },
-          height: 180
+          height: 190
         },
-        color: [
-          "#F9CD33",
-          "#F86846",
-          "#5ED8A9",
-          "#83E7B5",
-          "#78C446",
-          "#605AD8",
-          "#FFA304"
-        ],
         series: [
           {
             name: "标题",
@@ -162,19 +132,7 @@ export default {
                 smooth: false
               }
             },
-            data: (function() {
-              // console.log(arr, "data");
-              let arr1 = arr.map(item => {
-                // console.log(item);
-                return {
-                  value: item.sum,
-                  name: item.electric_power_type,
-                  legendname: item.electric_power_type
-                };
-              });
-              // console.log(arr1, "888");
-              return arr1;
-            })()
+            data: m2R2Data
           }
         ]
       };

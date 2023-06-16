@@ -93,7 +93,6 @@ import barchart from "../components/pages/barchart.vue";
 import piechart1 from "../components/pages/piechart1.vue";
 import piechart2 from "../components/pages/piechart2.vue";
 import zcfw from "../components/pages/zcfw.vue";
-
 export default {
   name: "Index",
   components: {

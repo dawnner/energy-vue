@@ -1,81 +1,86 @@
 <template>
-  <div style="height: 100%; width: 600px;position: relative;">
-    <span
-      style="position: absolute; top: 20%; left: 5%;width:90%;height:1px;background:#ccc; z-index: 99"
-    ></span>
-    <div id="analysisHistogram2" style="width: 100%; height: 100%;"></div>
+  <div style="height: 100%; position: relative">
+    <img
+      style="position: absolute; top: 50px; left: 4%; z-index: 99"
+      src="../../../../assets/images/biaotixia2.png"
+      alt=""
+    />
+    <div
+      id="analysisHistogram2"
+      style="width: 100%; height: 100%"
+      ref="chart"
+    ></div>
   </div>
 </template>
 
 <script>
 import * as echarts from "echarts";
-
 export default {
-  data() {
-    return {
-      data: {},
-      datas: [],
-      arr1: [],
-      arr2: [],
-      arr3: []
-    };
-  },
-  mounted() {
-    this.analysisHistogram2();
-  },
   methods: {
     analysisHistogram2() {
       var chartDom = document.getElementById("analysisHistogram2");
       var myChart = echarts.init(chartDom);
-      let xData = this.datas;
-      var data1Arr = this.arr1; // 数据1
+      // var option;
+      let xData = [
+        "德州",
+        "临沂",
+        "烟台",
+        "聊城",
+        "菏泽",
+        "潍坊",
+        "淄博",
+        "本部",
+        "泰安",
+        "枣庄",
+        "济南"
+      ]; // 类型
+      var data1Arr = [
+        7640.46,
+        2838.0,
+        13733.29,
+        3462.0,
+        5784.65,
+        9233.45,
+        1392.02,
+        1115.0,
+        2688.1,
+        2503.0,
+        1978.9
+      ]; // 数据1
+      var data2Arr = [
+        3256.0,
+        3147.84,
+        19640.94,
+        5755.0,
+        3489.5,
+        1325.98,
+        2827.5,
+        4000.0,
+        5522.2,
+        4853.0,
+        0
+      ]; // 数据2
+      var data3Arr = [
+        470.4,
+        522.3,
+        703.0,
+        151.35,
+        211.0,
+        240.0,
+        0.0,
+        100.0,
+        950.0,
+        1350.0,
+        0
+      ]; // 数据3
+      //var data4Arr = [720, 700, 810, 815, 800, 580, 900, 720, 700]; // 数据4
 
-      var data2Arr = this.arr2; // 数据2
-      var data3Arr = this.arr3; // 数据3
       var dataName = ["常规电源", "新能源", "新型储能"];
       let zoomShow = xData.length > 10;
-      this.data = JSON.parse(localStorage.getItem("name"));
-      // console.log(JSON.parse(localStorage.getItem("name")), 666);
-      console.log(this.data, "666");
-      this.data.forEach(item => {
-        console.log(item, 9999);
-        this.datas.push(item.acceptancePowerUnit);
-        this.arr1.push(item.conventionData);
-        this.arr2.push(item.newEnergyData);
-        this.arr3.push(item.storedEnergyData);
-      });
-      console.log(this.datas, "888");
-      // let arr = Object.values(this.data);
-      // console.log(arr, "666");
-      // console.log(this.datas, "666");
-      // arr.forEach((item, index) => {
-      //   console.log(item.常规电源);
-      //   if (item.常规电源 == "") {
-      //     item[index] = 0;
-      //   }
-      //   this.arr1.push(item.常规电源);
-      // });
-      // console.log(this.arr1);
-      let dataList = [data1Arr, data2Arr, data3Arr];
+
+      let dataList = [data2Arr, data1Arr, data3Arr];
       //let colorList = ["#667BFF", "#29ACFF", "#FDAD59", ];
       let colorList = [
-        {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 0,
-          y2: 1,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#657AFF"
-            },
-            {
-              offset: 1,
-              color: "#B2C3FF"
-            }
-          ]
-        },
         {
           type: "linear",
           x: 0,
@@ -93,6 +98,24 @@ export default {
             }
           ]
         },
+        {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#657AFF"
+            },
+            {
+              offset: 1,
+              color: "#B2C3FF"
+            }
+          ]
+        },
+
         {
           type: "linear",
           x: 0,
@@ -131,12 +154,12 @@ export default {
 
       let option = {
         title: {
-          text: "各市电源接入情况",
-          left: 12,
+          text: "电源接入情况",
+          left: 20,
           top: 18,
           // bottom: 18,
           textStyle: {
-            fontSize: 20
+            fontSize: 22
           }
         },
 
@@ -187,7 +210,7 @@ export default {
           //icon: "circle",
           // itemWidth: 24, // 设置宽度
           // itemHeight: 14, // 设置高度
-          itemGap: 0,
+          itemGap: 10,
           textStyle: {
             color: "rgba(0, 0, 0, 0.85)",
             fontFamily: "Source Han Sans CN-Regular",
@@ -196,9 +219,9 @@ export default {
           }
         },
         grid: {
-          left: "3%",
+          left: "2%",
           right: "5%",
-          top: 90,
+          top: 80,
           bottom: "3%", //下边距,
           containLabel: true
         },
@@ -274,6 +297,9 @@ export default {
         }, 10);
       };
     }
+  },
+  mounted() {
+    this.analysisHistogram2();
   }
 };
 </script>

@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import echarts from "echarts";
+// import echarts from "echarts";
+import * as echarts from "echarts";
 const animationDuration = 3000;
 
 export default {
@@ -164,241 +165,424 @@ export default {
         this.mchart1.hideLoading();
         var option = {
           backgroundColor: "transparent",
-          tooltip: {
-            show: true,
-            trigger: "item",
-            backgroundColor: "rgba(2,7,51,0.8)",
-            borderColor: "rgb(42,102,180)",
-            borderRadius: 8,
-            borderWidth: 1,
-            padding: 10,
-            textStyle: {
-              fontSize: 12
-            },
-            formatter: function(params) {
-              return (
-                params.name + "<br/>" + "容量" + " : " + params.data.value[2]
-              );
-            },
-            axisPointer: {
-              type: "shadow",
-              shadowStyle: {
-                color: "rgba(59,146,252,0.1)"
-              }
-            }
-          },
+          // tooltip: {
+          //   show: true,
+          //   trigger: "item",
+          //   backgroundColor: "rgba(2,7,51,0.8)",
+          //   borderColor: "rgb(42,102,180)",
+          //   borderRadius: 8,
+          //   borderWidth: 1,
+          //   padding: 10,
+          //   textStyle: {
+          //     fontSize: 12
+          //   },
+          //   formatter: function(params) {
+          //     return (
+          //       params.name + "<br/>" + "容量" + " : " + params.data.value[2]
+          //     );
+          //   },
+          //   axisPointer: {
+          //     type: "shadow",
+          //     shadowStyle: {
+          //       color: "rgba(59,146,252,0.1)"
+          //     }
+          //   }
+          // },
           geo: [
+            // {
+            //   map: "shandong",
+            //   silent: true,
+            //   roam: false,
+            //   z: 0,
+            //   zoom: 0.9,
+            //   width: "100%",
+            //   height: "95%",
+            //   layoutCenter: ["center", "50%"],
+            //   itemStyle: {
+            //     normal: {
+            //       areaColor: "transparent",
+            //       areaColor: {
+            //         image: domImg,
+            //         repeat: "repeat"
+            //       },
+            //       borderColor: "transparent",
+            //       borderWidth: 0
+            //     }
+            //   }
+            // },
+            // {
+            //   map: "shandong",
+            //   zlevel: -2,
+            //   layoutCenter: ["50.2%", "50.1%"],
+            //   zoom: 0.9,
+            //   width: "100%",
+            //   height: "96%",
+            //   roam: false,
+            //   itemStyle: {
+            //     normal: {
+            //       areaColor: "transparent",
+            //       borderColor: "#78A3E4",
+            //       borderWidth: 1.2,
+            //       shadowColor: "#166BF7",
+            //       shadowBlur: 10
+            //     },
+            //     emphasis: {
+            //       areaColor: "#10b5f4",
+            //       borderWidth: 0,
+            //       color: "#fff",
+            //       label: {
+            //         show: false
+            //       }
+            //     }
+            //   }
+            // },
+            // {
+            //   map: "shandong",
+            //   zlevel: -3,
+            //   layoutCenter: ["50.3%", "50.6%"],
+            //   zoom: 0.9,
+            //   width: "100%",
+            //   height: "97.5%",
+            //   roam: false,
+            //   itemStyle: {
+            //     normal: {
+            //       areaColor: "transparent",
+            //       borderColor: "#78A3E4",
+            //       borderWidth: 1.2,
+            //       shadowColor: "#166BF7",
+            //       shadowBlur: 10
+            //       // shadowOffsetX: 0,
+            //       // shadowOffsetY: 2,
+            //     },
+            //     emphasis: {
+            //       areaColor: "#10b5f4",
+            //       borderWidth: 0,
+            //       color: "#fff",
+            //       label: {
+            //         show: false
+            //       }
+            //     }
+            //   }
+            // },
+            // {
+            //   map: "shandong",
+            //   zlevel: -5,
+            //   layoutCenter: ["50.3%", "50.3%"],
+            //   zoom: 0.9,
+            //   width: "100%",
+            //   height: "99%",
+            //   roam: false,
+            //   itemStyle: {
+            //     normal: {
+            //       areaColor: "transparent",
+
+            //       borderColor: "#78A3E4",
+            //       borderWidth: 1.2,
+            //       shadowColor: "#166BF7",
+            //       shadowBlur: 10
+            //       // shadowOffsetX: 0,
+            //       // shadowOffsetY: 2,
+            //     },
+            //     emphasis: {
+            //       areaColor: "#10b5f4",
+            //       borderWidth: 0,
+            //       color: "#fff",
+            //       label: {
+            //         show: false
+            //       }
+            //     }
+            //   }
+            // }
             {
+              show: true,
               map: "shandong",
-              silent: true,
+              label: {
+                show: false
+              },
               roam: false,
-              z: 0,
-              zoom: 0.9,
-              width: "100%",
-              height: "95%",
-              layoutCenter: ["center", "50%"],
               itemStyle: {
                 normal: {
-                  areaColor: "transparent",
                   areaColor: {
-                    image: domImg,
-                    repeat: "repeat"
+                    type: "linear",
+                    x: 0.2,
+                    y: 0,
+                    x2: 1,
+                    y2: 1,
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "#3C9640"
+                      },
+                      {
+                        offset: 0.3,
+                        color: "#A6BD11"
+                      },
+                      {
+                        offset: 0.6,
+                        color: "#A67509"
+                      },
+                      {
+                        offset: 1,
+                        color: "#9A0909"
+                      }
+                    ],
+
+                    global: false
                   },
-                  borderColor: "transparent",
-                  borderWidth: 0
-                }
-              }
-            },
-            {
-              map: "shandong",
-              zlevel: -2,
-              layoutCenter: ["50.2%", "50.1%"],
-              zoom: 0.9,
-              width: "100%",
-              height: "96%",
-              roam: false,
-              itemStyle: {
-                normal: {
-                  areaColor: "transparent",
-                  borderColor: "#78A3E4",
-                  borderWidth: 1.2,
-                  shadowColor: "#166BF7",
-                  shadowBlur: 10
+                  borderWidth: 4, //设置外层边框
+                  borderColor: "#f8911b"
+                  // shadowColor: 'rgba(0,54,255, 1)',
+                  // shadowColor: 'rgba(3, 36, 117, 1)',
+                  // shadowBlur: 150
                 },
                 emphasis: {
-                  areaColor: "#10b5f4",
-                  borderWidth: 0,
-                  color: "#fff",
+                  show: true,
                   label: {
                     show: false
-                  }
-                }
-              }
-            },
-            {
-              map: "shandong",
-              zlevel: -3,
-              layoutCenter: ["50.3%", "50.6%"],
-              zoom: 0.9,
-              width: "100%",
-              height: "97.5%",
-              roam: false,
-              itemStyle: {
-                normal: {
-                  areaColor: "transparent",
-                  borderColor: "#78A3E4",
-                  borderWidth: 1.2,
-                  shadowColor: "#166BF7",
-                  shadowBlur: 10
-                  // shadowOffsetX: 0,
-                  // shadowOffsetY: 2,
-                },
-                emphasis: {
-                  areaColor: "#10b5f4",
-                  borderWidth: 0,
+                  },
                   color: "#fff",
-                  label: {
-                    show: false
-                  }
-                }
-              }
-            },
-            {
-              map: "shandong",
-              zlevel: -5,
-              layoutCenter: ["50.3%", "50.3%"],
-              zoom: 0.9,
-              width: "100%",
-              height: "99%",
-              roam: false,
-              itemStyle: {
-                normal: {
-                  areaColor: "transparent",
-                  borderColor: "#78A3E4",
-                  borderWidth: 1.2,
-                  shadowColor: "#166BF7",
-                  shadowBlur: 10
-                  // shadowOffsetX: 0,
-                  // shadowOffsetY: 2,
-                },
-                emphasis: {
-                  areaColor: "#10b5f4",
-                  borderWidth: 0,
-                  color: "#fff",
-                  label: {
-                    show: false
-                  }
+                  areaColor: "#1472F5",
+                  borderColor: "#fff",
+                  shadowColor: "rgba(76, 178, 181,1)"
                 }
               }
             }
           ],
           series: [
+            // {
+            //   type: "map",
+            //   roam: true,
+            //   layoutCenter: ["50%", "50%"],
+            //   zoom: 0.9,
+            //   width: "99%",
+            //   height: "95%",
+            //   roam: false,
+            //   map: "shandong", //使用
+            //   label: {
+            //     normal: {
+            //       show: true,
+            //       textStyle: {
+            //         color: "#fff"
+            //       },
+            //       padding: [20, 0, 0, 0]
+            //     },
+            //     emphasis: {
+            //       color: "fff",
+            //       areaColor: "#10b5f4"
+            //     }
+            //   },
+            //   itemStyle: {
+            //     normal: {
+            //       areaColor: {
+            //         color: {
+            //           type: "linear",
+            //           x: 0,
+            //           y: 0,
+            //           x2: 1,
+            //           y2: 1,
+            //           colorStops: [
+            //             {
+            //               offset: 0,
+            //               color: "#24a0fa"
+            //             },
+            //             {
+            //               offset: 1,
+            //               color: "#15072a"
+            //             }
+            //           ],
+            //           global: false
+            //         }
+            //       },
+            //       borderColor: "#a18a3a",
+            //       borderWidth: 1
+            //     },
+            //     emphasis: {
+            //       show: false,
+            //       areaColor: null
+            //     }
+            //   },
+            //   // itemStyle: {
+            //   //   emphasis: {
+            //   //     color: "fff",
+            //   //     areaColor: "#10b5f4"
+            //   //   },
+            //   //   normal: {
+            //   //     borderColor: "#b4d1f9",
+            //   //     borderWidth: 1.5,
+            //   //     // areaColor: "transparent",
+            //   //     shadowColor: "#166BF7",
+            //   //     shadowBlur: 20,
+            //   //     areaColor: {
+            //   //       color: {
+            //   //         type: "linear",
+            //   //         x: 0,
+            //   //         y: 0,
+            //   //         x2: 1,
+            //   //         y2: 1,
+            //   //         colorStops: [
+            //   //           {
+            //   //             offset: 0,
+            //   //             color: "#24a0fa"
+            //   //           },
+            //   //           {
+            //   //             offset: 1,
+            //   //             color: "#15072a"
+            //   //           }
+            //   //         ],
+            //   //         global: false
+            //   //       },
+
+            //   //       borderColor: "#a18a3a",
+            //   //       borderWidth: 1
+            //   //     }
+
+            //   //     // areaColor: {
+            //   //     //   image: domImg,
+            //   //     //   repeat: 'repeat',
+            //   //     // },
+            //   //   },
+            //   //   emphasis: {
+            //   //     show: false,
+            //   //     areaColor: null
+            //   //   }
+            //   // },
+
+            //   data: convertData(data)
+            // }
+
             {
               type: "map",
-              roam: true,
-              layoutCenter: ["50%", "50%"],
-              zoom: 0.9,
-              width: "99%",
-              height: "95%",
-              roam: false,
-              map: "shandong", //使用
+              map: "shandong",
               label: {
+                show: true,
                 normal: {
+                  show: true
+                },
+                emphasis: {
                   show: true,
                   textStyle: {
                     color: "#fff"
-                  },
-                  padding: [20, 0, 0, 0]
-                },
-                emphasis: {
-                  color: "fff",
-                  areaColor: "#10b5f4"
-                }
-              },
-
-              itemStyle: {
-                emphasis: {
-                  color: "fff",
-                  areaColor: "#10b5f4"
-                },
-                normal: {
-                  borderColor: "#b4d1f9",
-                  borderWidth: 1.5,
-                  areaColor: "transparent",
-                  shadowColor: "#166BF7",
-                  shadowBlur: 20
-                  // areaColor: {
-                  //   image: domImg,
-                  //   repeat: 'repeat',
-                  // },
-                }
-              },
-
-              data: convertData(data)
-            },
-
-            {
-              name: "",
-              type: "scatter",
-              coordinateSystem: "geo",
-              symbol: function(value, params) {
-                if (params.value) {
-                  if (params.value[2] < 3000) {
-                    return img1;
-                  }
-                  if (params.value[2] >= 4000 && params.value[2] <= 5000) {
-                    return img3;
-                  }
-                  if (params.value[2] >= 3000 && params.value[2] <= 4000) {
-                    return img2;
-                  }
-                  if (params.value[2] > 5000) {
-                    return img4;
                   }
                 }
               },
-              symbolSize: [33, 31],
-              symbolOffset: [0, -10],
-              z: 999,
-              data: convertData(data)
-            },
-            {
-              type: "effectScatter",
-              coordinateSystem: "geo",
-              z: 12,
-              symbolOffset: [0, -7],
-              symbolSize: [10, 7],
-              showEffectOn: "render",
-              rippleEffect: {
-                period: 2,
-                scale: 5,
-                brushType: "fill"
-              },
-              hoverAnimation: true,
-              data: convertData(data),
+              roam: false,
               itemStyle: {
                 normal: {
-                  show: true,
-                  color: function(params) {
-                    if (params.value) {
-                      if (params.value[2] < 3000) {
-                        return "#139071";
-                      }
-                      if (params.value[2] >= 4000 && params.value[2] <= 5000) {
-                        return "#BB963F";
-                      }
-                      if (params.value[2] >= 3000 && params.value[2] <= 4000) {
-                        return "#33ABC9";
-                      }
-                      if (params.value[2] > 5000) {
-                        return "#d04132";
-                      }
+                  areaColor: {
+                    color: {
+                      type: "linear",
+                      x: 0.2,
+                      y: 0,
+                      x2: 1,
+                      y2: 1,
+                      // colorStops: [
+                      //   {
+                      //     offset: 0,
+                      //     color: "#24a0fa"
+                      //   },
+                      //   {
+                      //     offset: 1,
+                      //     color: "#15072a"
+                      //   }
+                      // ],
+                      colorStops: [
+                        {
+                          offset: 0,
+                          color: "#3C9640"
+                        },
+                        {
+                          offset: 0.3,
+                          color: "#A6BD11"
+                        },
+                        {
+                          offset: 0.6,
+                          color: "#A67509"
+                        },
+                        {
+                          offset: 1,
+                          color: "#9A0909"
+                        }
+                      ],
+                      global: false
                     }
-                  }
+                  },
+                  borderColor: "#a18a3a",
+                  borderWidth: 1
+                },
+                emphasis: {
+                  show: true,
+                  label: {
+                    show: false
+                  },
+                  color: "#fff",
+                  areaColor: "#1472F5",
+                  borderColor: "#fff",
+                  shadowColor: "rgba(76, 178, 181,1)"
                 }
               }
             }
           ]
+          // {
+          //   name: "",
+          //   type: "scatter",
+          //   coordinateSystem: "geo",
+          //   symbol: function(value, params) {
+          //     if (params.value) {
+          //       if (params.value[2] < 3000) {
+          //         return img1;
+          //       }
+          //       if (params.value[2] >= 4000 && params.value[2] <= 5000) {
+          //         return img3;
+          //       }
+          //       if (params.value[2] >= 3000 && params.value[2] <= 4000) {
+          //         return img2;
+          //       }
+          //       if (params.value[2] > 5000) {
+          //         return img4;
+          //       }
+          //     }
+          //   },
+          //   symbolSize: [33, 31],
+          //   symbolOffset: [0, -10],
+          //   z: 999,
+          //   data: convertData(data)
+          // },
+          // {
+          //   type: "effectScatter",
+          //   coordinateSystem: "geo",
+          //   z: 12,
+          //   symbolOffset: [0, -7],
+          //   symbolSize: [10, 7],
+          //   showEffectOn: "render",
+          //   rippleEffect: {
+          //     period: 2,
+          //     scale: 5,
+          //     brushType: "fill"
+          //   },
+          //   hoverAnimation: true,
+          //   data: convertData(data),
+          //   itemStyle: {
+          //     normal: {
+          //       show: true,
+          //       color: function(params) {
+          //         if (params.value) {
+          //           if (params.value[2] < 3000) {
+          //             return "#139071";
+          //           }
+          //           if (params.value[2] >= 4000 && params.value[2] <= 5000) {
+          //             return "#BB963F";
+          //           }
+          //           if (params.value[2] >= 3000 && params.value[2] <= 4000) {
+          //             return "#33ABC9";
+          //           }
+          //           if (params.value[2] > 5000) {
+          //             return "#d04132";
+          //           }
+          //         }
+          //       }
+          //     }
+          //   }
+          // }
         };
         this.mchart1.setOption(option);
         // });

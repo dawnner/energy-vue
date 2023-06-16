@@ -38,6 +38,7 @@
         <qixiang v-if="tabId == '1'"></qixiang>
         <distributed v-if="tabId == '2'"></distributed>
         <newenergyManagement v-if="tabId == '3'"></newenergyManagement>
+        <Poweqingkuang v-if="tabId == '4'"></Poweqingkuang>
       </el-main>
     </el-container>
   </div>
@@ -45,7 +46,8 @@
 <script>
 import newenergyManagement from "./components/newenergyManagement.vue";
 import distributed from "./components/Distributed.vue";
-// import Poweqingkuang from "./components/Poweqingkuang.vue";
+import Poweqingkuang from "./components/Poweqingkuang.vue";
+import qixiang from "./components/qixiang.vue";
 export default {
   data() {
     return {
@@ -61,7 +63,9 @@ export default {
   },
   components: {
     distributed,
-    newenergyManagement
+    newenergyManagement,
+    qixiang,
+    Poweqingkuang
   }
 };
 </script>

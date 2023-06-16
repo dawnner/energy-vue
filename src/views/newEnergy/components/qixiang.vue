@@ -39,42 +39,70 @@
           </div>
         </div>
       </div>
+      <div class="topright">
+        <map-shandong style="width: 100%;height:100%;"></map-shandong>
+      </div>
     </div>
 
     <div class="bottomBox">
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column fixed type="selection" width="55"> </el-table-column>
-        <el-table-column prop="date" label="日期" width="150">
+        <el-table-column prop="date" label="太阳直接辐射" width="150">
         </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
+        <el-table-column prop="name" label="太阳总辐射(水平面)" width="120">
         </el-table-column>
-        <el-table-column prop="province" label="省份" width="120">
+        <el-table-column
+          prop="province"
+          label="太阳散射辐射(水平面)"
+          width="120"
+        >
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="预报小时" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="经纬度位置" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="数据更新时间" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="气温" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="相对湿度" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120"> </el-table-column
-        ><el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="风速(地面10米)" width="120">
+        </el-table-column
+        ><el-table-column prop="city" label="风向角度(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="风力等级(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="市区" width="120">
+        <el-table-column prop="city" label="阵风风速(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="address" label="地址" width="300">
+        <el-table-column prop="address" label="降水量(1小时累计)" width="300">
         </el-table-column>
-        <el-table-column prop="zip" label="邮编" width="120"> </el-table-column>
-        <el-table-column label="操作" width="100">
+        <el-table-column prop="zip" label="地面气压" width="120">
+        </el-table-column>
+        <el-table-column label="能见度" width="100">
           <!-- <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
         <el-button type="text" size="small">编辑</el-button>
       </template> -->
+        </el-table-column>
+        <el-table-column prop="zip" label="云量" width="120"> </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="紫外线UV辐照度(1小时累计)"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column prop="zip" label="紫外线UV辐照指数" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="降水相态" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="天气现象代码" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="风向角度(地面100米)" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="风速(地面100米)" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="风力等级(地面100米)" width="120">
         </el-table-column>
       </el-table>
     </div>
@@ -82,6 +110,7 @@
 </template>
 
 <script>
+import MapShandong from "../../dashboard/MapShandong.vue";
 export default {
   data() {
     return {
@@ -102,63 +131,66 @@ export default {
       ],
       tableData: [
         {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         },
         {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          date: "1",
+          name: "2020",
+          province: "0.4",
+          city: "4.7",
+          address: "10.6",
+          zip: 22.1
         }
       ]
     };
+  },
+  components: {
+    MapShandong
   }
 };
 </script>
@@ -189,16 +221,21 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
+
 .topBox {
   width: 99%;
   height: 55%;
   /* background-color: aqua; */
   margin: 10px;
+  display: flex;
 }
 .topLeft {
   width: 25%;
   height: 100%;
   /* background-color: aquamarine; */
+}
+.topright {
+  flex: 1;
 }
 .topLeftNum {
   width: 100%;

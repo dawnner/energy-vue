@@ -74,41 +74,121 @@
       </div>
       <!-- 表格 -->
       <div class="tableCenter">
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column type="selection" width="55"> </el-table-column>
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          border
+          :header-cell-style="{
+            color: '#000000'
+          }"
+          @selection-change="handleSelectionChange"
+          height="400"
+        >
+          <el-table-column align="center" type="selection" width="55">
+          </el-table-column>
           <el-table-column
-            prop="date"
+            align="center"
+            label="序号"
+            type="index"
+            :index="indexFn"
+            width="50"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="projectNo"
             label="项目编号"
-            width="80"
             align="center"
+            width="150"
           >
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="projectName"
             label="项目名称"
-            width="180"
             align="center"
+            width="120"
           >
-          </el-table-column>
-          <el-table-column prop="address" label="电源分类" align="center">
-          </el-table-column>
-          <el-table-column prop="address" label="发电类型" align="center">
-          </el-table-column>
-          <el-table-column prop="address" label="项目类型" align="center">
-          </el-table-column>
-          <el-table-column prop="address" label="企业名称" align="center">
           </el-table-column>
           <el-table-column
-            prop="address"
-            label="统一社会信用代码"
+            prop="subprojectNum"
             align="center"
+            label="子项目数量"
+            width="120"
           >
-          </el-table-column
-          ><el-table-column prop="address" label="所属最高集团" align="center">
           </el-table-column>
-          <el-table-column prop="address" label="接入电压等级" align="center">
+          <el-table-column
+            prop="maxGroup"
+            align="center"
+            label="最高集团"
+            width="120"
+          >
           </el-table-column>
-          <el-table-column prop="address" label="流程状态" align="center">
+          <el-table-column
+            prop="enterpriseName"
+            align="center"
+            label="企业名称"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="acceptancePowerUnit"
+            align="center"
+            label="受理电力公司"
+            width="100"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="applyTime"
+            align="center"
+            label="申请时间"
+            width="130"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="powerType"
+            align="center"
+            label="电源类型"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="electricPowerType"
+            align="center"
+            label="发电类型"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="powerType"
+            align="center"
+            label="项目类型"
+            width="150"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="engineeringType"
+            align="center"
+            label="工程类型"
+            width="100"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="projectUri"
+            align="center"
+            label="项目地址"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="periodInstalledCapacity"
+            align="center"
+            label="本期装机量"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="finalInstalledCapacity"
+            align="center"
+            label="终期装机量"
+          >
           </el-table-column>
         </el-table>
       </div>
@@ -116,13 +196,14 @@
       <!-- 分页 -->
       <div class="pageBox">
         <el-pagination
+          style="text-align:right;padding-top:10px"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :current-page="pageNum"
+          :page-sizes="[10, 20, 30]"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="total"
         >
         </el-pagination>
       </div>
@@ -131,62 +212,95 @@
 </template>
 
 <script>
+import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
-      tableData: [
-        {
-          date: "用电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "发电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        }
-      ],
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4
+      tableData: [],
+      total: 0,
+      pageNum: 1,
+      pageSize: 10,
+      deatlsit: {}
     };
+  },
+  created() {
+    // this.getdata();
+    //获取列表的方法
+    this.getList();
+  },
+  methods: {
+    //获取列表的方法
+    async getList() {
+      this.deatlsit = {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize
+      };
+      const { rows, total } = await getListApi(this.deatlsit);
+      this.tableData = rows;
+      this.total = total;
+      console.log("常规", this.tableData);
+    },
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.pageNum - 1) * this.pageSize;
+    },
+    // 更新每页条数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.getList();
+    },
+    // 获取新的页码的数据
+    handleCurrentChange(val) {
+      this.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.getList();
+    },
+    handleSelectionChange(val) {
+      this.selectData = val;
+    }
   }
 };
 </script>
 
-<style scoped>
-/deep/.el-table__header-wrapper .el-checkbox:last-of-type {
+<style lang="scss" scoped>
+/**
+自定义el-table表格滚动栏样式
+*/
+::v-deep .el-table__body-wrapper::-webkit-scrollbar {
+  width: 10px !important;
+  /*滚动条宽度*/
+  height: 10px !important;
+  /*滚动条高度*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::v-deep .el-table__body-wrapper::-webkit-scrollbar-track {
+  box-shadow: 0px 1px 3px #ccced2 inset !important;
+  /*滚动条的背景区域的内阴影*/
+  border-radius: 10px !important;
+  /*滚动条的背景区域的圆角*/
+  background-color: #ccced2 !important;
+  /*滚动条的背景颜色*/
+}
+
+/*定义滑块 内阴影+圆角*/
+::v-deep .el-table__body-wrapper::-webkit-scrollbar-thumb {
+  box-shadow: 0px 1px 3px #428ab2 inset !important;
+  /*滚动条的内阴影*/
+  border-radius: 10px !important;
+  /*滚动条的圆角*/
+  background-color: #428ab2 !important;
+  /*滚动条的背景颜色*/
+}
+::v-deep.el-table__header-wrapper .el-checkbox:last-of-type {
   display: none;
 }
 .tableCenter {
