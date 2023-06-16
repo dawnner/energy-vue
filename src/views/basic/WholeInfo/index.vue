@@ -118,10 +118,12 @@ export default {
       value1: ""
     };
   },
-  mounted() {
-    this.mapName();
+  created() {
     this.gsdyData();
     this.dyzjData();
+  },
+  mounted() {
+    this.mapName();
   },
   methods: {
     async gsdyData() {
