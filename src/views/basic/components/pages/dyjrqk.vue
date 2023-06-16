@@ -21,58 +21,22 @@ export default {
       var chartDom = document.getElementById("analysisHistogram2");
       var myChart = echarts.init(chartDom);
       // var option;
-      let xData = [
-        "德州",
-        "临沂",
-        "烟台",
-        "聊城",
-        "菏泽",
-        "潍坊",
-        "淄博",
-        "本部",
-        "泰安",
-        "枣庄",
-        "济南"
-      ]; // 类型
-      var data1Arr = [
-        7640.46,
-        2838.0,
-        13733.29,
-        3462.0,
-        5784.65,
-        9233.45,
-        1392.02,
-        1115.0,
-        2688.1,
-        2503.0,
-        1978.9
-      ]; // 数据1
-      var data2Arr = [
-        3256.0,
-        3147.84,
-        19640.94,
-        5755.0,
-        3489.5,
-        1325.98,
-        2827.5,
-        4000.0,
-        5522.2,
-        4853.0,
-        0
-      ]; // 数据2
-      var data3Arr = [
-        470.4,
-        522.3,
-        703.0,
-        151.35,
-        211.0,
-        240.0,
-        0.0,
-        100.0,
-        950.0,
-        1350.0,
-        0
-      ]; // 数据3
+      let shuju = JSON.parse(localStorage.getItem("name"));
+      console.log(shuju, "名字");
+      let name = [];
+      let arr1 = [];
+      let arr2 = [];
+      let arr3 = [];
+      shuju.forEach(item => {
+        name.push(item.acceptancePowerUnit);
+        arr1.push(item.conventionData);
+        arr2.push(item.newEnergyData);
+        arr3.push(item.storedEnergyData);
+      });
+      let xData = name; // 类型
+      var data1Arr = arr1; // 数据1
+      var data2Arr = arr2; // 数据2
+      var data3Arr = arr3; // 数据3
       //var data4Arr = [720, 700, 810, 815, 800, 580, 900, 720, 700]; // 数据4
 
       var dataName = ["常规电源", "新能源", "新型储能"];

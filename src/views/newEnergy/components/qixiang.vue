@@ -22,7 +22,7 @@
         <div class="topLeftBottom">
           <div class="topLeftData">
             <img src="../../../assets/CoalElectricity/组 1380.png" alt="" />
-            <input type="text" />
+            <input type="text" placeholder="2017" />
             <img src="../../../assets/CoalElectricity/组 1381.png" alt="" />
           </div>
           <div class="bottomMonth">
@@ -287,6 +287,7 @@ export default {
   background-color: #f5f5f5;
   margin: 0 20px;
   border-radius: 4px;
+  text-align: center;
 }
 .bottomMonth {
   width: 100%;
