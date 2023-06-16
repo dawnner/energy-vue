@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import { gsdyData, dyzjData } from "../components/qingqiu/gsdyjk";
 import Imgss from "../../../assets/images/shujukuai.png";
 import huanxingtu from "../components/pages/huanxingtu.vue";
 import Jhdl from "../components/pages/jhdl.vue";
@@ -119,8 +120,22 @@ export default {
   },
   mounted() {
     this.mapName();
+    this.gsdyData();
+    this.dyzjData();
   },
   methods: {
+    async gsdyData() {
+      const { data } = await gsdyData();
+      // console.log(data, "shuju");
+      let arr = JSON.stringify(data);
+      localStorage.setItem("name", arr);
+    },
+    async dyzjData() {
+      const { data } = await dyzjData();
+      console.log(data, "shuju");
+      let arr1 = JSON.stringify(data);
+      localStorage.setItem("listData", arr1);
+    },
     goback() {
       // this.$nextTick(() => {
       this.$refs.mapxz.change();

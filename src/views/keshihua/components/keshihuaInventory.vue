@@ -191,7 +191,7 @@
         >
         </el-table-column>
         <el-table-column
-          prop="city"
+          prop="name"
           align="center"
           label="省外来电情况"
           width="130"
@@ -212,7 +212,7 @@
         >
         </el-table-column>
         <el-table-column
-          prop="city"
+          prop="rcml"
           align="center"
           label="入场煤量(万吨)"
           width="130"
@@ -233,27 +233,27 @@
         >
         </el-table-column>
         <el-table-column
-          prop="city"
+          prop="kyts"
           align="center"
           label="可用天数"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="city"
+          prop="qymt"
           align="center"
           label="企业煤炭库存量排名"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="city"
+          prop="gbnl"
           align="center"
           label="供保能力天数排名"
           width="120"
         >
         </el-table-column>
-        <el-table-column prop="address" align="center" label="电量供应能力">
+        <el-table-column prop="gbnl" align="center" label="电量供应能力">
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -361,75 +361,111 @@ export default {
       tableData: [
         {
           date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
+          name: "中国大唐托克托电站",
+          province: "ZGDT001",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "365584",
+          zip: 491495,
+          rcml: 382384,
+          kyts: "325天",
+          qymt: 2,
+          gbnl: 1
         },
         {
           date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
+          name: "天津陈塘热电有限公司 ",
+          province: "TJCT002",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "651499",
+          zip: 640658,
+          rcml: 531547,
+          kyts: "255天",
+          qymt: 6,
+          gbnl: 2
         },
         {
           date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
+          name: "华北电网有限公司",
+          province: "HBDW003",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "156874",
+          zip: 282965,
+          rcml: 256987,
+          kyts: "325天",
+          qymt: 5,
+          gbnl: 3
         },
         {
           date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
+          name: "唐山发电联营公司",
+          province: "TSFD004",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "365791",
+          zip: 159658,
+          rcml: 142368,
+          kyts: "266天",
+          qymt: 1,
+          gbnl: 4
         },
         {
           date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
+          name: "沧州华瑞热电有限责任公司",
+          province: "CZHR005",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "956475",
+          zip: 195610,
+          rcml: 135784,
+          kyts: "330天",
+          qymt: 7,
+          gbnl: 5
         },
         {
           date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
+          name: "北京炼焦化学厂 ",
+          province: "BJLJ006",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "211578",
+          zip: 176614,
+          rcml: 165743,
+          kyts: "500天",
+          qymt: 4,
+          gbnl: 6
         },
         {
           date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
+          name: "中电国华电力股份有限公司",
+          province: "ZDGH007",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "523978",
+          zip: 183530,
+          rcml: 163005,
+          kyts: "420天",
+          qymt: 5,
+          gbnl: 7
         },
         {
           date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
+          name: "北京东方石油化工有限公司",
+          province: "BJDF008",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "312640",
+          zip: 199540,
+          rcml: 183245,
+          kyts: "300天",
+          qymt: 8,
+          gbnl: 8
         },
         {
           date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
+          name: "静海热电厂 ",
+          province: "JHRD009",
           city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+          address: "846649",
+          zip: 137749,
+          rcml: 120369,
+          kyts: "563天",
+          qymt: 9,
+          gbnl: 9
         }
       ],
       total: 0,
