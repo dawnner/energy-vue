@@ -126,7 +126,7 @@ export default {
   methods: {
     async gsdyData() {
       const { data } = await gsdyData();
-      // console.log(data, "shuju");
+      console.log(data, "shuju");
       let arr = JSON.stringify(data);
       localStorage.setItem("name", arr);
     },
