@@ -5,7 +5,7 @@
       <div class="topLeft">
         <!-- 左上边标题 -->
         <div class="topLeftTitle">
-          全网调峰能力
+          火电调峰能力
         </div>
 
         <div class="topLeftContent">
@@ -39,20 +39,47 @@
               232<span>万千瓦</span>
             </div>
           </div>
+          <div class="contentImg">
+            <div class="contentTitle">
+              煤电灵活性改造台数
+            </div>
+            <div class="contentNum">98<span>台</span></div>
+          </div>
+          <div class="contentImg2">
+            <div class="contentTitle">
+              煤电改造规模
+            </div>
+            <div class="contentNum" style="color:#6D9AF9">
+              232<span>MW</span>
+            </div>
+          </div>
+          <div class="contentImg3">
+            <div class="contentTitle">
+              灵活性改造机组占比
+            </div>
+            <div class="contentNum" style="color:#FF6C6D">
+              42%
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="topRight">
-        <!-- 右上边标题 -->
+      <!-- <div class="topLeft">
+        右上边标题
         <div class="topLeftTitle">
-          机组类型占比
+          火电调峰能力
         </div>
-
-        <!-- 饼状图 -->
-        <div class="cakeImgBox">
-          <!-- <bingTu style="width: 100%;height: 100%;"></bingTu> -->
+        <div class="topLeftContent">
+          <div class="contentImg4">
+            <div class="contentTitle">
+              非供热期新增调峰
+            </div>
+            <div class="contentNum" style="color:#02C3A1">
+              232<span>万千瓦</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- 下 -->
@@ -337,7 +364,7 @@ export default {
   display: flex;
 }
 .topLeft {
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-color: #fff;
   border-radius: 10px;
@@ -397,9 +424,9 @@ export default {
   color: #333333;
 }
 .contentNum {
-  margin-top: 30%;
+  margin-top: 20%;
   text-align: right;
-  margin-right: 20%;
+  margin-right: 30%;
   font-size: 50px;
   font-family: SimHei;
   font-weight: 400;

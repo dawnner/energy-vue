@@ -5,7 +5,7 @@
         <echartsone style="width:100%;height:100%"></echartsone>
       </div>
       <div class="echarts-two">
-        <div class="echarts-two-box1">
+        <div class="echarts-two-box1" @click="goDetail(top1)">
           <div class="echarts-two-box01">
             <img
               src="@/assets/images/icons1.png"
@@ -15,6 +15,9 @@
             <div style="font-size: 16px;color: #158388;font-weight: 700;">
               企业煤炭库存量排名TOP10
             </div>
+          </div>
+          <div>
+            <img src="../../../assets/CoalElectricity/greenyou.png" alt="" />
           </div>
           <div>
             <ul>
@@ -35,7 +38,7 @@
             </ul>
           </div>
         </div>
-        <div class="echarts-two-box2">
+        <div class="echarts-two-box2" @click="goDetail(top2)">
           <div class="echarts-two-box02">
             <img
               src="@/assets/images/icons2.png"
@@ -45,6 +48,9 @@
             <div style="font-size: 16px;color: #E38223;font-weight: 700;">
               企业保供天数排名TOP10
             </div>
+          </div>
+          <div>
+            <img src="../../../assets/CoalElectricity/yellowyou.png" alt="" />
           </div>
           <div>
             <ul>
@@ -65,7 +71,7 @@
             </ul>
           </div>
         </div>
-        <div class="echarts-two-box3">
+        <div class="echarts-two-box3" @click="goDetail(top3)">
           <div class="echarts-two-box03">
             <img
               src="@/assets/images/icons3.png"
@@ -75,6 +81,9 @@
             <div style="font-size: 16px;color: #2398E3;font-weight: 700;">
               企业电量供应能力排名TOP10
             </div>
+          </div>
+          <div>
+            <img src="../../../assets/CoalElectricity/blueyou.png" alt="" />
           </div>
           <div>
             <ul>
@@ -480,13 +489,17 @@ export default {
       queryBody: {
         name: "",
         type: ""
-      }
+      },
+      one: 1
     };
   },
   mounted() {
     this.InitIntegrateList();
   },
   methods: {
+    goDetail(top1) {
+      this.$emit("change", this.one, top1);
+    },
     InitIntegrateList() {
       //调用接口，初始化大栏目列表
     },
@@ -605,6 +618,10 @@ ul {
   background: #f8fbfb;
   padding: 10px;
   margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .echarts-two-box2 {
   width: 32%;
@@ -613,6 +630,10 @@ ul {
   background: #fefbf8;
   padding: 10px;
   margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .echarts-two-box3 {
   flex: 1;
@@ -620,6 +641,10 @@ ul {
   border-radius: 10px;
   background: #f8fcfe;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .echarts-two-box01 {
   display: flex;

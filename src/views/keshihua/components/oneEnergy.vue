@@ -52,7 +52,7 @@
             <div class="leftContentTop">
               <div style="display: flex;align-items: center;">
                 <img src="../../../assets/gdbz/right1.png" alt="" />
-                <span class="fontStyle">外电入鲁</span>
+                <span class="fontStyle">用电缺口</span>
               </div>
             </div>
 

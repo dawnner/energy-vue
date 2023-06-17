@@ -15,7 +15,7 @@
           :model="queryBody"
         >
           <el-form-item
-            label="电源类型一级:"
+            label="发电类型:"
             style="width:400px"
             prop="PowerSource"
           >
@@ -46,7 +46,7 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="项目前期工作进展:" prop="WorkDevelopment">
+          <el-form-item label="状态:" prop="WorkDevelopment">
             <el-select
               v-model="queryBody.WorkDevelopment"
               clearable
@@ -60,9 +60,7 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="电厂名称:" class="query-title" prop="name">
-            <el-input v-model="queryBody.name" placeholder="请输入" clearable />
-          </el-form-item>
+
           <el-button
             type="primary"
             size="small"

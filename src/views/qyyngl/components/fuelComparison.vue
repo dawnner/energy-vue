@@ -1,6 +1,12 @@
 <template>
   <div style="height: 100%;width: 100%;">
-    <div id="echartsone" style="width: 100%; height: 100%;"></div>
+    <div class="titles">
+      <span>碳排因子趋势分析</span>
+    </div>
+    <div
+      id="echartsone"
+      style="width: 100%; height: 85%;margin-top:-20px"
+    ></div>
   </div>
 </template>
 
@@ -234,5 +240,18 @@ export default {
 <style>
 #echartsone {
   background-size: 100% 100%;
+}
+.titles {
+  width: 98%;
+  height: 15%;
+  /* background-color: aqua; */
+  margin-left: 2%;
+  display: flex;
+  align-items: flex-end;
+}
+.titles span {
+  border-left: 4px solid #158388;
+  font-size: 20px;
+  padding-left: 10px;
 }
 </style>

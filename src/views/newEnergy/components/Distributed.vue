@@ -36,7 +36,7 @@
               </el-table-column>
               <el-table-column
                 prop="regionSum"
-                label="容量(MVA)"
+                label="容量(KVA)"
                 align="center"
               >
               </el-table-column>
