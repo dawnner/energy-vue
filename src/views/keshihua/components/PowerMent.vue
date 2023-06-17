@@ -14,9 +14,13 @@
           ref="queryBody"
           :model="queryBody"
         >
-          <el-form-item label="发电类型:" style="width:400px" prop="PowerType">
+          <el-form-item
+            label="发电类型:"
+            style="width:400px"
+            prop="electricPowerType"
+          >
             <el-select
-              v-model="queryBody.PowerType"
+              v-model="queryBody.electricPowerType"
               clearable
               placeholder="请选择"
               style="width:100px"
@@ -24,28 +28,28 @@
             >
               <el-option
                 v-for="item in PowerSourceList"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
+                :key="item.index"
+                :label="item"
+                :value="item"
               />
             </el-select>
             <el-select
-              v-model="queryBody.electricPowerType"
+              v-model="queryBody.projectType"
               clearable
               placeholder="请选择"
               style="width:100px;margin-left:20px"
             >
               <el-option
                 v-for="item in PowerTypeList"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
+                :key="item.index"
+                :label="item"
+                :value="item"
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="状态:" prop="projectType">
+          <el-form-item label="状态:" prop="Type">
             <el-select
-              v-model="queryBody.projectType"
+              v-model="queryBody.Type"
               clearable
               placeholder="请选择"
               @focus="getstate"
@@ -161,7 +165,8 @@ import {
   getdataApi,
   getListApi,
   getstateApi,
-  exportPostApi
+  exportPostApi,
+  getdatatwoApi
 } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
@@ -184,9 +189,10 @@ export default {
       queryBody: {
         pageNum: 1,
         pageSize: 10,
-        PowerType: "",
+        PowerType: "常规电源",
         electricPowerType: "",
         projectType: ""
+        // Type: ""
       },
       WorkDevelopmentList: [],
       //发电类型
@@ -209,12 +215,16 @@ export default {
     // 加载电源一级类型
     async getdata(val) {
       console.log("val", val);
-      const { rows } = await getdataApi({ parentId: 0 });
-      console.log(rows);
-      this.PowerSourceList = rows;
+      const { data } = await getdataApi({ powerType: "常规电源" });
+      console.log(data);
+      this.PowerSourceList = data;
       if (val) {
-        const res1 = await getdataApi({ parentId: val });
-        this.PowerTypeList = res1.rows;
+        const res1 = await getdatatwoApi({
+          powerType: "常规电源",
+          electricPowerType: val
+        });
+        console.log(res1);
+        this.PowerTypeList = res1.data;
       } else {
         this.PowerTypeList = [];
       }
@@ -262,34 +272,35 @@ export default {
           return exportPostApi(queryParams);
         })
         .catch(() => {});
-    }
-  },
-  //序号
-  indexFn(index) {
-    // 前面返回的序号  前面有多少条数据
-    // 前面一共有多少条 = 前面的多少页 * 每页条数
-    return index + 1 + (this.pageNum - 1) * this.pageSize;
-  },
-  // 更新每页条数
-  handleSizeChange(val) {
-    console.log(`每页 ${val} 条`);
-    this.pageSize = val;
-    // 更新每页条数，页码重置为第一页
-    // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-    this.pageNum = 1;
-    // 根据新的页码以及最新的数据条数，请求最新的数据
-    this.getList();
-  },
-  // 获取新的页码的数据
-  handleCurrentChange(val) {
-    this.pageNum = val;
-    // console.log(`当前页:${val}`)
-    // 重新获取新的页码的数据
-    this.getList();
-  },
+    },
 
-  handleSelectionChange(val) {
-    this.selectData = val;
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.pageNum - 1) * this.pageSize;
+    },
+    // 更新每页条数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.getList();
+    },
+    // 获取新的页码的数据
+    handleCurrentChange(val) {
+      this.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.getList();
+    },
+
+    handleSelectionChange(val) {
+      this.selectData = val;
+    }
   }
 };
 </script>
