@@ -58,23 +58,33 @@
             :model="from"
           >
             <el-form-item label="所属地市:" class="query-title" prop="name">
-              <el-input v-model="from.name" placeholder="请输入" clearable />
+              <el-input
+                v-model="from.powerSupplyRegion"
+                placeholder="请输入"
+                clearable
+              />
             </el-form-item>
           </el-form>
-          <el-button type="primary" size="small" icon="el-icon-search">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-search"
+            style="margin-left:30px;"
+            @click="queryIntegrateList"
+          >
             查询
           </el-button>
           <el-button
             type="succ"
             size="small"
             icon="el-icon-refresh-left"
-            @click="delFn"
+            @click="resetIntegrateList"
           >
             重置
           </el-button>
         </div>
         <div class="btnFlag">
-          <el-button type="primary" size="small">
+          <el-button type="primary" size="small" @click="exportIntegrateList">
             导出
           </el-button>
         </div>
@@ -147,7 +157,8 @@ import MapAnalysis from "../../dashboard/analysis/MapAnalysis.vue";
 import {
   newSumApi,
   newRankingListApi,
-  newcapacityApi
+  newcapacityApi,
+  exportcapacityApi
 } from "@/api/newny/newny.js";
 export default {
   data() {
@@ -160,7 +171,9 @@ export default {
       tableData: [],
       // 查询参数对象
       from: {
-        name: ""
+        pageNum: 1,
+        pageSize: 10,
+        powerSupplyRegion: ""
       },
       //列表
       table: [],
@@ -193,6 +206,22 @@ export default {
       this.table = rows;
       this.total = total;
     },
+    // 导出
+    exportIntegrateList() {
+      const queryParams = this.from;
+      this.$confirm("是否确认导出所有数据项?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return exportcapacityApi(queryParams);
+        })
+        .then(response => {
+          this.download(response.msg);
+        })
+        .catch(() => {});
+    },
     //序号
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
@@ -216,11 +245,22 @@ export default {
       // 重新获取新的页码的数据
       this.newcapacityApi();
     },
-    //重置按钮
-    delFn() {
+    //点击查询按钮触发
+    queryIntegrateList() {
+      this.from.pageNum = 1;
+      newcapacityApi(this.from).then(response => {
+        console.log(response);
+        this.table = response.rows;
+        this.total = response.total;
+      });
+    },
+    //重置
+    resetIntegrateList() {
+      this.$refs.from.resetFields();
       this.from = {
-        name: ""
+        powerSupplyRegion: ""
       };
+      this.newcapacityApi();
     }
   },
   components: {
@@ -274,5 +314,21 @@ export default {
 }
 .btnFlag {
   text-align: right;
+}
+.el-button--primary {
+  //需要更改的按钮类型
+  background: #158388 !important;
+  border-color: #158388 !important;
+}
+.el-button--succ {
+  //需要更改的按钮类型
+  background: #f2f3f5 !important;
+  border-color: #f2f3f5 !important;
+}
+.el-button--ess {
+  //需要更改的按钮类型
+  background: #f5ba49 !important;
+  border-color: #f5ba49 !important;
+  color: #fff;
 }
 </style>

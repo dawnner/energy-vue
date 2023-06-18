@@ -21,3 +21,11 @@ export function newcapacityApi(query) {
       params: query
     })
   }
+  // 导出
+export function exportcapacityApi(query) {
+  return request({
+    url: '/system/capacity/export',
+    method: 'get',
+    params: query
+  })
+}

@@ -898,6 +898,7 @@ export default {
         })
         .then(response => {
           this.download(response.msg);
+
           this.exportLoading = false;
         })
         .catch(() => {});

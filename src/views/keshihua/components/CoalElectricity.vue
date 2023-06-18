@@ -69,19 +69,36 @@
     <div class="tableBox">
       <div class="tableTop">
         <div class="tableTopLeft">
-          <div>电厂名称 <input type="text" /></div>
-          <div>机组类型 <input type="text" /></div>
-          <el-button
-            type="primary"
-            size="small"
-            icon="el-icon-search"
-            style="margin-left:30px"
+          <el-form
+            ref="form"
+            :model="form"
+            label-width="130px"
+            class="query-form"
           >
-            查询
-          </el-button>
-          <el-button type="succ" size="small" icon="el-icon-refresh-left">
-            重置
-          </el-button>
+            <el-form-item label="电厂名称">
+              <el-input v-model="form.maxGroup"></el-input>
+            </el-form-item>
+            <el-form-item label="机组类型">
+              <el-input v-model="form.type"></el-input>
+            </el-form-item>
+            <el-button
+              type="primary"
+              size="small"
+              icon="el-icon-search"
+              style="margin-left:30px;"
+              @click="queryIntegrateList"
+            >
+              查询
+            </el-button>
+            <el-button
+              type="succ"
+              size="small"
+              icon="el-icon-refresh-left"
+              @click="resetIntegrateList"
+            >
+              重置
+            </el-button>
+          </el-form>
         </div>
         <div class="tableTopRight">
           <button
@@ -201,6 +218,13 @@ export default {
   },
   data() {
     return {
+      // 查询参数
+      form: {
+        pageNum: 1,
+        pageSize: 10,
+        maxGroup: "",
+        typeof: ""
+      },
       tableData: [],
       total: 0,
       pageNum: 1,
@@ -225,6 +249,23 @@ export default {
       this.tableData = rows;
       this.total = total;
       console.log("新能源", this.tableData);
+    },
+    //点击查询按钮触发
+    queryIntegrateList() {
+      this.form.pageNum = 1;
+      getListApi(this.form).then(response => {
+        console.log(response);
+        this.tableData = response.rows;
+      });
+    },
+    //重置
+    resetIntegrateList() {
+      this.$refs.form.resetFields();
+      this.form = {
+        name: "",
+        type: ""
+      };
+      this.getList();
     },
     //序号
     indexFn(index) {
@@ -290,7 +331,18 @@ export default {
   background-color: #428ab2 !important;
   /*滚动条的背景颜色*/
 }
-
+.el-button--primary {
+  //需要更改的按钮类型
+  height: 35px;
+  background: #158388 !important;
+  border-color: #158388 !important;
+}
+.el-button--succ {
+  //需要更改的按钮类型
+  height: 35px;
+  background: #f2f3f5 !important;
+  border-color: #f2f3f5 !important;
+}
 .contentImg {
   width: 24%;
   height: 100%;
@@ -485,5 +537,8 @@ export default {
   .query-title {
     margin: 0 95px 0;
   }
+}
+.query-form {
+  display: flex;
 }
 </style>

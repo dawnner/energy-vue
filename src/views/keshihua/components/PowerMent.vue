@@ -171,7 +171,6 @@ export default {
       // 大栏目列表数据
       tableData: [],
       total: 0,
-
       // 查询参数对象1(放在请求的params里,以？形式拼接)
 
       pageNum: 1,
@@ -272,6 +271,9 @@ export default {
       })
         .then(() => {
           return exportPostApi(queryParams);
+        })
+        .then(response => {
+          this.download(response.msg);
         })
         .catch(() => {});
     },

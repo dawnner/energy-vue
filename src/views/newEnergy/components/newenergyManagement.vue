@@ -17,46 +17,48 @@
           <el-form-item
             label="发电类型:"
             style="width:400px"
-            prop="PowerSource"
+            prop="electricPowerType"
           >
             <el-select
-              v-model="queryBody.PowerSource"
+              v-model="queryBody.electricPowerType"
               clearable
               placeholder="请选择"
               style="width:100px"
+              @change="getdata"
             >
               <el-option
                 v-for="item in PowerSourceList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                :key="item.index"
+                :label="item"
+                :value="item"
               />
             </el-select>
             <el-select
-              v-model="queryBody.PowerType"
+              v-model="queryBody.projectType"
               clearable
               placeholder="请选择"
               style="width:100px;margin-left:20px"
             >
               <el-option
                 v-for="item in PowerTypeList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                :key="item.index"
+                :label="item"
+                :value="item"
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="状态:" prop="WorkDevelopment">
+          <el-form-item label="状态:" prop="Type">
             <el-select
-              v-model="queryBody.WorkDevelopment"
+              v-model="queryBody.Type"
               clearable
               placeholder="请选择"
+              @focus="getstate"
             >
               <el-option
                 v-for="item in WorkDevelopmentList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                :key="item.index"
+                :label="item.name"
+                :value="item.id"
               />
             </el-select>
           </el-form-item>
@@ -64,11 +66,17 @@
             type="primary"
             size="small"
             icon="el-icon-search"
-            style="margin-left:30px"
+            style="margin-left:30px;"
+            @click="queryIntegrateList"
           >
             查询
           </el-button>
-          <el-button type="succ" size="small" icon="el-icon-refresh-left">
+          <el-button
+            type="succ"
+            size="small"
+            icon="el-icon-refresh-left"
+            @click="resetIntegrateList"
+          >
             重置
           </el-button>
         </el-form>
@@ -76,9 +84,6 @@
       <div class="btnFlag">
         <el-button type="primary" size="small" @click="exportIntegrateList">
           导出
-        </el-button>
-        <el-button type="ess" size="small" @click="printIntegrateList">
-          打印
         </el-button>
       </div>
       <!-- 列表表格区域 -->
@@ -102,65 +107,37 @@
           width="50"
         >
         </el-table-column>
-        <el-table-column prop="enterpriseName" align="center" label="企业名称">
+        <el-table-column prop="enterpriseName" label="企业名称" align="center">
         </el-table-column>
-        <el-table-column
-          prop="powerType"
-          align="center"
-          label="电源类型"
-          width="120"
-        >
+        <el-table-column prop="powerType" label="电源分类" align="center">
         </el-table-column>
         <el-table-column
           prop="electricPowerType"
           align="center"
           label="发电类型"
-          width="150"
         >
         </el-table-column>
-        <el-table-column
-          prop="powerType"
-          align="center"
-          label="项目类型"
-          width="150"
-        >
+        <el-table-column prop="projectType" align="center" label="项目类型">
         </el-table-column>
-        <el-table-column prop="maxGroup" align="center" label="最高集团">
+        <el-table-column prop="maxGroup" align="center" label="所属最高集团">
         </el-table-column>
         <el-table-column
-          prop="maxGroup"
+          prop="voltageClasses"
           align="center"
           label="接入电压等级"
-          width="120"
         >
         </el-table-column>
-        <el-table-column
-          prop="projectUri"
-          align="center"
-          label="项目地址"
-          width="120"
-        >
+        <el-table-column prop="projectUri" align="center" label="项目地址">
         </el-table-column>
         <el-table-column
-          prop="projectUri"
+          prop="periodInstalledCapacity"
           align="center"
-          label="本期申报接入模型(MW)"
-          width="120"
+          label="本期申报接入规模(MW)"
         >
         </el-table-column>
-        <el-table-column
-          prop="projectUri"
-          align="center"
-          label="并网时间"
-          width="120"
-        >
+        <el-table-column prop="togetherTime" align="center" label="并网时间">
         </el-table-column>
-        <el-table-column
-          prop="projectUri"
-          align="center"
-          label="状态"
-          width="120"
-        >
+        <el-table-column prop="type" align="center" label="状态">
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -181,7 +158,13 @@
 
 <script>
 import webMap from "@/views/WebMap/mapDemo.vue";
-import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
+import {
+  getdataApi,
+  getListApi,
+  getstateApi,
+  exportPostApi,
+  getdatatwoApi
+} from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
@@ -201,87 +184,46 @@ export default {
       selectData: [],
       // 查询参数对象
       queryBody: {
-        name: "",
-        PowerType: "",
-        PowerSource: "",
-        WorkDevelopment: ""
+        pageNum: 1,
+        pageSize: 10,
+        PowerType: "新能源",
+        electricPowerType: "",
+        projectType: ""
+        // Type: ""
       },
-      WorkDevelopmentList: [
-        {
-          value: "1",
-          label: "未启动预可研"
-        },
-        {
-          value: "2",
-          label: "已启动预可研"
-        },
-        {
-          value: "3",
-          label: "已完成预可研查看"
-        },
-        {
-          value: "4",
-          label: "已启动可研"
-        },
-        {
-          value: "5",
-          label: "已完成可研查看"
-        }
-      ],
+      WorkDevelopmentList: [],
       PowerSourceList: [],
-      PowerTypeList: [
-        {
-          value: "1",
-          label: "燃煤"
-        },
-        {
-          value: "2",
-          label: "燃油"
-        },
-        {
-          value: "3",
-          label: "燃气"
-        },
-        {
-          value: "4",
-          label: "余热余压余气"
-        },
-        {
-          value: "5",
-          label: "常规水电"
-        },
-        {
-          value: "6",
-          label: "抽水蓄能"
-        },
-        {
-          value: "7",
-          label: "小水电"
-        },
-        {
-          value: "8",
-          label: "核电"
-        }
-      ]
+      //发电类型二级下拉菜单
+      PowerTypeList: []
     };
   },
   components: {
     webMap
   },
   created() {
-    this.getdata();
     //获取列表的方法
     this.getList();
   },
   mounted() {
-    this.InitIntegrateList();
+    this.getdata();
   },
   methods: {
     // 加载电源一级类型
-    async getdata() {
-      const res1 = await getdataApi();
-      console.log(res1);
-      // this.subjectNa = res1;
+    async getdata(val) {
+      console.log("val", val);
+      const { data } = await getdataApi({ powerType: "新能源" });
+      console.log(data);
+      this.PowerSourceList = data;
+      if (val) {
+        const res1 = await getdatatwoApi({
+          powerType: "新能源",
+          electricPowerType: val
+        });
+        console.log(res1);
+        this.PowerTypeList = res1.data;
+      } else {
+        this.PowerTypeList = [];
+      }
     },
     //获取列表的方法
     async getList() {
@@ -295,24 +237,49 @@ export default {
       this.total = total;
       console.log("新能源", this.tableData);
     },
-    InitIntegrateList() {
-      //调用接口，初始化大栏目列表
+    //获取状态的方法
+    async getstate() {
+      const { rows } = await getstateApi();
+      this.WorkDevelopmentList = rows;
     },
     // 打印
     printIntegrateList() {},
     //点击查询按钮触发
     queryIntegrateList() {
-      this.queryParams.pages = 1;
-      this.InitIntegrateList();
+      this.queryBody.pageNum = 1;
+      getListApi(this.queryBody).then(response => {
+        console.log(response);
+        this.tableData = response.rows;
+      });
     },
     //重置
     resetIntegrateList() {
       this.$refs.queryBody.resetFields();
-      this.queryBody.PowerType = "";
-      this.InitIntegrateList();
+      this.queryBody = {
+        PowerType: "新能源",
+        electricPowerType: "",
+        projectType: "",
+        Type: ""
+      };
+      this.getList();
     },
     // 导出
-    exportIntegrateList() {},
+    exportIntegrateList() {
+      const queryParams = this.queryBody;
+      this.$confirm("是否确认导出所有数据项?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return exportPostApi(queryParams);
+        })
+        .then(response => {
+          this.download(response.msg);
+        })
+        .catch(() => {});
+    },
+
     //序号
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
