@@ -3,98 +3,58 @@
     style="height: 100%; width: 100%; display: flex; align-items: center;justify-content: space-around;"
   >
     <div class="shuiqiuone">
-      <div class="shuiqiuOneBox">
-        <img
-          src="../../../../assets/CoalElectricity/组 1371.png"
-          alt=""
-          style="margin: 5px 0px;"
-        />
+      <div class="ImgBox">
+        <img src="../../../../assets/CoalElectricity/组 1371.png" alt="" />
       </div>
-      <div
-        style="text-align: center;font-weight: bolder;color:#333;margin-bottom: 5px;"
-      >
+      <div class="titleBox">
         全网发电量
       </div>
-      <h2
-        style="text-align: center;font-weight: bolder;color:#47D4BB;margin-top: -1px;"
-      >
+      <div class="numBox">
         15666.12
-      </h2>
-      <div
-        style="color: #666; font-size: 12px;text-align: center;margin-top: -15px;"
-      >
+      </div>
+      <div class="danwei">
         (万KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF6F8;">
-      <div class="shuiqiuOneBox">
-        <img
-          src="../../../../assets/CoalElectricity/1372.png"
-          alt=""
-          style="margin: 5px 0px;"
-        />
+      <div class="ImgBox">
+        <img src="../../../../assets/CoalElectricity/1372.png" alt="" />
       </div>
-      <div
-        style="text-align: center;font-weight: bolder;color:#333;margin-bottom: 5px;"
-      >
+      <div class="titleBox">
         常规电源发电量
       </div>
-      <h2
-        style="text-align: center;font-weight: bolder;color:#FA6C8D;margin-top: -1px;"
-      >
+      <div class="numBox" style="color: #FA6C8D;">
         14666.12
-      </h2>
-      <div
-        style="color: #666; font-size: 12px;text-align: center;margin-top: -15px;"
-      >
+      </div>
+      <div class="danwei">
         (万KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #F8F3FF;">
-      <div class="shuiqiuOneBox">
-        <img
-          src="../../../../assets/CoalElectricity/1373.png"
-          alt=""
-          style="margin: 5px 0px;"
-        />
+      <div class="ImgBox">
+        <img src="../../../../assets/CoalElectricity/1373.png" alt="" />
       </div>
-      <div
-        style="text-align: center;font-weight: bolder;color:#333;margin-bottom: 5px;"
-      >
+      <div class="titleBox">
         新能源发电量
       </div>
-      <h2
-        style="text-align: center;font-weight: bolder;color:#9B6CEF;margin-top: -1px;"
-      >
-        14666.12
-      </h2>
-      <div
-        style="color: #666; font-size: 12px;text-align: center;margin-top: -15px;"
-      >
+      <div class="numBox" style="color: #9B6CEF;">
+        13666.12
+      </div>
+      <div class="danwei">
         (万KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF7F3;">
-      <div class="shuiqiuOneBox">
-        <img
-          src="../../../../assets/CoalElectricity/1374.png"
-          alt=""
-          style="margin: 5px 0px;"
-        />
+      <div class="ImgBox">
+        <img src="../../../../assets/CoalElectricity/1374.png" alt="" />
       </div>
-      <div
-        style="text-align: center;font-weight: bolder;color:#333;margin-bottom: 5px;"
-      >
+      <div class="titleBox">
         储能发电量
       </div>
-      <h2
-        style="text-align: center;font-weight: bolder;color:#F8925A;margin-top: -1px;"
-      >
-        14666.12
-      </h2>
-      <div
-        style="color: #666; font-size: 12px;text-align: center;margin-top: -15px;"
-      >
+      <div class="numBox" style="color: #F8925A;">
+        12666.12
+      </div>
+      <div class="danwei">
         (万KW·h)
       </div>
     </div>
@@ -110,8 +70,44 @@
   background-color: #eefffa;
   border-bottom: 0px;
 }
-.shuiqiuOneBox {
-  display: flex;
-  justify-content: center;
+.ImgBox {
+  width: 100%;
+  height: 42%;
+  /* background-color: aqua; */
+  /* margin: 0 auto; */
+  text-align: center;
+}
+.titleBox {
+  width: 100%;
+  height: 13%;
+  /* background-color: aquamarine; */
+  margin-top: 5px;
+  text-align: center;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #333333;
+}
+.numBox {
+  width: 100%;
+  height: 15%;
+  /* background-color: violet; */
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #47d4bb;
+  text-align: center;
+}
+.danwei {
+  width: 100%;
+  height: 15%;
+  /* background-color: tomato; */
+  font-size: 14px;
+  font-family: SimHei;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+  margin-top: 5px;
 }
 </style>

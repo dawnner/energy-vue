@@ -47,62 +47,56 @@
     <div class="bottomBox">
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column fixed type="selection" width="55"> </el-table-column>
-        <el-table-column prop="date" label="太阳直接辐射" width="150">
+        <el-table-column prop="dni" label="太阳直接辐射" width="150">
         </el-table-column>
-        <el-table-column prop="name" label="太阳总辐射(水平面)" width="120">
+        <el-table-column prop="ghi" label="太阳总辐射(水平面)" width="120">
         </el-table-column>
-        <el-table-column
-          prop="province"
-          label="太阳散射辐射(水平面)"
-          width="120"
-        >
+        <el-table-column prop="dhi" label="太阳散射辐射(水平面)" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="预报小时" width="120">
+        <el-table-column prop="time" label="预报小时" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="经纬度位置" width="120">
+        <el-table-column prop="tem" label="气温" width="120"> </el-table-column>
+        <el-table-column prop="rhu" label="相对湿度" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="数据更新时间" width="120">
-        </el-table-column>
-        <el-table-column prop="city" label="气温" width="120">
-        </el-table-column>
-        <el-table-column prop="city" label="相对湿度" width="120">
-        </el-table-column>
-        <el-table-column prop="city" label="风速(地面10米)" width="120">
+        <el-table-column prop="wns" label="风速(地面10米)" width="120">
         </el-table-column
-        ><el-table-column prop="city" label="风向角度(地面10米)" width="120">
+        ><el-table-column prop="wnd" label="风向角度(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="风力等级(地面10米)" width="120">
+        <el-table-column prop="wnsGrd" label="风力等级(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="city" label="阵风风速(地面10米)" width="120">
+        <el-table-column prop="gust" label="阵风风速(地面10米)" width="120">
         </el-table-column>
-        <el-table-column prop="address" label="降水量(1小时累计)" width="300">
+        <el-table-column prop="pre" label="降水量(1小时累计)">
         </el-table-column>
-        <el-table-column prop="zip" label="地面气压" width="120">
+        <el-table-column prop="prsQfe" label="地面气压" width="120">
         </el-table-column>
-        <el-table-column label="能见度" width="100">
+        <el-table-column prop="vis" label="vis" width="100">
           <!-- <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
         <el-button type="text" size="small">编辑</el-button>
       </template> -->
         </el-table-column>
-        <el-table-column prop="zip" label="云量" width="120"> </el-table-column>
         <el-table-column
-          prop="zip"
+          prop="uvb"
           label="紫外线UV辐照度(1小时累计)"
           width="120"
         >
         </el-table-column>
-        <el-table-column prop="zip" label="紫外线UV辐照指数" width="120">
+        <el-table-column prop="uvi" label="紫外线UV辐照指数" width="120">
         </el-table-column>
-        <el-table-column prop="zip" label="降水相态" width="120">
+        <el-table-column prop="phs" label="降水相态" width="120">
         </el-table-column>
-        <el-table-column prop="zip" label="天气现象代码" width="120">
+        <el-table-column prop="wep" label="天气现象代码" width="120">
         </el-table-column>
-        <el-table-column prop="zip" label="风向角度(地面100米)" width="120">
+        <el-table-column prop="wnd100m" label="风向角度(地面100米)" width="120">
         </el-table-column>
-        <el-table-column prop="zip" label="风速(地面100米)" width="120">
+        <el-table-column prop="wns" label="风速(地面100米)" width="120">
         </el-table-column>
-        <el-table-column prop="zip" label="风力等级(地面100米)" width="120">
+        <el-table-column
+          prop="wnsGrd100m"
+          label="风力等级(地面100米)"
+          width="120"
+        >
         </el-table-column>
       </el-table>
     </div>
@@ -110,6 +104,7 @@
 </template>
 
 <script>
+import { qixiangData } from "./qingqiu/qixiang";
 import MapShandong from "../../dashboard/MapShandong.vue";
 export default {
   data() {
@@ -129,65 +124,76 @@ export default {
         { id: 11, name: "11月" },
         { id: 12, name: "12月" }
       ],
-      tableData: [
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        },
-        {
-          date: "1",
-          name: "2020",
-          province: "0.4",
-          city: "4.7",
-          address: "10.6",
-          zip: 22.1
-        }
-      ]
+      // tableData: [
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   },
+      //   {
+      //     date: "1",
+      //     name: "2020",
+      //     province: "0.4",
+      //     city: "4.7",
+      //     address: "10.6",
+      //     zip: 22.1
+      //   }
+      // ]
+      tableData: []
     };
+  },
+  created() {
+    this.qixiangData();
+  },
+  methods: {
+    async qixiangData() {
+      const { rows } = await qixiangData();
+      this.tableData = rows;
+      console.log(this.tableData, "qixiang");
+    }
   },
   components: {
     MapShandong

@@ -11,53 +11,26 @@
 import * as echarts from "echarts";
 export default {
   methods: {
-    doublechart() {
+    doublechart(data) {
+      console.log(data, "shuju");
       var chartDom = document.getElementById("doublechart");
       var myChart = echarts.init(chartDom);
       var option;
-      let xLabel = [
-        "1月",
-        "2月",
-        "3月",
-        "4月",
-        "5月",
-        "6月",
-        "7月",
-        "8月",
-        "9月",
-        "10月",
-        "11月",
-        "12月"
-      ];
-      let dataValue = [
-        200,
-        180,
-        120,
-        130,
-        180,
-        200,
-        200,
-        180,
-        160,
-        130,
-        100,
-        50
-      ];
-      let dataValue1 = [50, 55, 60, 65, 70, 70, 71, 80, 90, 100, 110, 105];
-      let dataValue2 = [
-        130,
-        120,
-        115,
-        120,
-        130,
-        135,
-        150,
-        155,
-        140,
-        130,
-        140,
-        150
-      ];
+      let name = [];
+      let arr1 = [];
+      let arr2 = [];
+      let arr3 = [];
+      data.forEach(item => {
+        name.push(item.date);
+        arr1.push(item.sum);
+        // arr2.push(item.newEnergyData);
+        // arr3.push(item.storedEnergyData);
+      });
+      let xLabel = name;
+      let dataValue = arr1;
+      console.log(dataValue);
+      let dataValue1 = ["5000", "1155", "6010", "1065", "44470"];
+      let dataValue2 = [13000, 11520, 22115, 14120, 10030];
       var option = {
         // backgroundColor: '#0c2d55',
         title: {
@@ -110,7 +83,7 @@ export default {
             },
             axisLabel: {
               //坐标轴刻度标签的相关设置
-              rotate: 45, //代表逆时针旋转
+              // rotate: 45, //代表逆时针旋转
               textStyle: {
                 color: "#000",
                 fontSize: 12
@@ -132,7 +105,7 @@ export default {
           {
             name: "",
             min: 0, //取0为最小刻度
-            max: 200, //取100为最大刻度
+            max: 40000, //取100为最大刻度
             splitNumber: 2,
             nameTextStyle: {
               color: "#000",
@@ -155,6 +128,7 @@ export default {
               }
             },
             axisLabel: {
+              interval: 0,
               show: true,
               textStyle: {
                 color: "#000",
@@ -352,10 +326,10 @@ export default {
       };
       window.addEventListener("resize", listener);
     }
-  },
-  mounted() {
-    this.doublechart();
   }
+  // mounted() {
+  //   this.doublechart();
+  // }
 };
 </script>
 
