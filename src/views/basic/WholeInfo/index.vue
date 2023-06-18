@@ -57,7 +57,10 @@
             </div>
 
             <div class="right-corner-two">
-              <doublechart style="width: 100%; height: 100%"></doublechart>
+              <doublechart
+                ref="doublechart"
+                style="width: 100%; height: 100%"
+              ></doublechart>
             </div>
             <div class="right-corner-three">
               <barchart style="width: 100%; height: 100%"></barchart>
@@ -86,6 +89,7 @@
 
 <script>
 import { gsdyData, dyzjData } from "../components/qingqiu/gsdyjk";
+import { fdqsData } from "../components/qingqiu/fdqs";
 import Imgss from "../../../assets/images/shujukuai.png";
 import huanxingtu from "../components/pages/huanxingtu.vue";
 import Jhdl from "../components/pages/jhdl.vue";
@@ -124,6 +128,7 @@ export default {
   created() {
     this.gsdyData();
     this.dyzjData();
+    this.fdqsData();
   },
   mounted() {
     this.mapName();
@@ -136,6 +141,11 @@ export default {
     async dyzjData() {
       const { data } = await dyzjData();
       this.$refs.piechart1.piechart1(data);
+    },
+    async fdqsData() {
+      const { data } = await fdqsData();
+      // console.log(data, "shuju");
+      this.$refs.doublechart.doublechart(data);
     },
     goback() {
       // this.$nextTick(() => {
