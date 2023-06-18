@@ -15,7 +15,7 @@
           :model="queryBody"
         >
           <el-form-item
-            label="电源类型一级:"
+            label="发电类型:"
             style="width:400px"
             prop="PowerSource"
           >
@@ -46,7 +46,7 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="项目前期工作进展:" prop="WorkDevelopment">
+          <el-form-item label="状态:" prop="WorkDevelopment">
             <el-select
               v-model="queryBody.WorkDevelopment"
               clearable
@@ -59,9 +59,6 @@
                 :value="item.value"
               />
             </el-select>
-          </el-form-item>
-          <el-form-item label="电厂名称:" class="query-title" prop="name">
-            <el-input v-model="queryBody.name" placeholder="请输入" clearable />
           </el-form-item>
           <el-button
             type="primary"
@@ -111,54 +108,7 @@
           width="50"
         >
         </el-table-column>
-        <el-table-column
-          prop="projectNo"
-          label="项目编号"
-          align="center"
-          width="150"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="projectName"
-          label="项目名称"
-          align="center"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="subprojectNum"
-          align="center"
-          label="子项目数量"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="maxGroup"
-          align="center"
-          label="最高集团"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="enterpriseName"
-          align="center"
-          label="企业名称"
-          width="120"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="acceptancePowerUnit"
-          align="center"
-          label="受理电力公司"
-          width="100"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="applyTime"
-          align="center"
-          label="申请时间"
-          width="130"
-        >
+        <el-table-column prop="enterpriseName" align="center" label="企业名称">
         </el-table-column>
         <el-table-column
           prop="powerType"
@@ -171,6 +121,7 @@
           prop="electricPowerType"
           align="center"
           label="发电类型"
+          width="150"
         >
         </el-table-column>
         <el-table-column
@@ -180,11 +131,13 @@
           width="150"
         >
         </el-table-column>
+        <el-table-column prop="maxGroup" align="center" label="最高集团">
+        </el-table-column>
         <el-table-column
-          prop="engineeringType"
+          prop="maxGroup"
           align="center"
-          label="工程类型"
-          width="100"
+          label="接入电压等级"
+          width="120"
         >
         </el-table-column>
         <el-table-column
@@ -195,16 +148,24 @@
         >
         </el-table-column>
         <el-table-column
-          prop="periodInstalledCapacity"
+          prop="projectUri"
           align="center"
-          label="本期装机量"
+          label="本期申报接入模型(MW)"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="finalInstalledCapacity"
+          prop="projectUri"
           align="center"
-          label="终期装机量"
+          label="并网时间"
+          width="120"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="projectUri"
+          align="center"
+          label="状态"
+          width="120"
         >
         </el-table-column>
       </el-table>

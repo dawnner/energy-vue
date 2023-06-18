@@ -16,23 +16,26 @@
 <script>
 import * as echarts from "echarts";
 export default {
+  data() {
+    return {};
+  },
   methods: {
-    analysisHistogram2() {
-      var chartDom = document.getElementById("analysisHistogram2");
-      var myChart = echarts.init(chartDom);
-      // var option;
-      let shuju = JSON.parse(localStorage.getItem("name"));
-      console.log(shuju, "名字");
+    dyjrqk(val) {
+      console.log(val, "shuju ");
       let name = [];
       let arr1 = [];
       let arr2 = [];
       let arr3 = [];
-      shuju.forEach(item => {
+      val.forEach(item => {
         name.push(item.acceptancePowerUnit);
         arr1.push(item.conventionData);
         arr2.push(item.newEnergyData);
         arr3.push(item.storedEnergyData);
       });
+      var chartDom = document.getElementById("analysisHistogram2");
+      var myChart = echarts.init(chartDom);
+      // var option;
+
       let xData = name; // 类型
       var data1Arr = arr1; // 数据1
       var data2Arr = arr2; // 数据2
@@ -118,7 +121,7 @@ export default {
 
       let option = {
         title: {
-          text: "电源接入情况",
+          text: "在建电源接入情况",
           left: 20,
           top: 18,
           // bottom: 18,
@@ -214,7 +217,7 @@ export default {
         ],
         yAxis: [
           {
-            name: "(亿kW·h)",
+            name: "(亿kW)",
             nameTextStyle: {
               color: "#808080",
               fontSize: 12,
@@ -263,7 +266,7 @@ export default {
     }
   },
   mounted() {
-    this.analysisHistogram2();
+    // this.analysisHistogram2();
   }
 };
 </script>

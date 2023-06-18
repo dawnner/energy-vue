@@ -67,7 +67,10 @@
         <!-- 右下部 -->
         <div class="right-box-bottom">
           <div class="bottom-corner1">
-            <piechart1 style="width: 100%; height: 100%"></piechart1>
+            <piechart1
+              ref="piechart1"
+              style="width: 100%; height: 100%"
+            ></piechart1>
           </div>
           <div class="bottom-corner2">
             <piechart2 style="width: 100%; height: 100%"></piechart2>
@@ -128,15 +131,11 @@ export default {
   methods: {
     async gsdyData() {
       const { data } = await gsdyData();
-      console.log(data, "shuju");
-      let arr = JSON.stringify(data);
-      localStorage.setItem("name", arr);
+      this.$refs.dyjrqk.dyjrqk(data);
     },
     async dyzjData() {
       const { data } = await dyzjData();
-      console.log(data, "shuju");
-      let arr1 = JSON.stringify(data);
-      localStorage.setItem("listData", arr1);
+      this.$refs.piechart1.piechart1(data);
     },
     goback() {
       // this.$nextTick(() => {

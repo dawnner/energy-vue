@@ -85,9 +85,6 @@
         <el-button type="primary" size="small" @click="exportIntegrateList">
           导出
         </el-button>
-        <el-button type="ess" size="small" @click="printIntegrateList">
-          打印
-        </el-button>
       </div>
       <!-- 列表表格区域 -->
       <el-table
@@ -246,19 +243,24 @@ export default {
       const { rows } = await getstateApi();
       this.WorkDevelopmentList = rows;
     },
-    // 打印
-    printIntegrateList() {},
     //点击查询按钮触发
     queryIntegrateList() {
       this.queryBody.pageNum = 1;
       getListApi(this.queryBody).then(response => {
         console.log(response);
+        this.tableData = response.rows;
       });
     },
     //重置
     resetIntegrateList() {
       this.$refs.queryBody.resetFields();
-      this.queryBody.PowerType = "";
+      this.queryBody = {
+        PowerType: "常规电源",
+        electricPowerType: "",
+        projectType: "",
+        Type: ""
+      };
+      this.getList();
     },
     // 导出
     exportIntegrateList() {

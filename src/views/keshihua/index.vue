@@ -41,15 +41,20 @@
           v-if="tabId == '-1'"
           style="width: 100%;height: 100%;"
         ></web-map>
-        <keshihuaInventory v-if="tabId == '1-1'"></keshihuaInventory>
+        <keshihuaInventory
+          v-if="tabId == '1-1'"
+          @change="change"
+        ></keshihuaInventory>
         <oneEnergy v-if="tabId == '1-2'"></oneEnergy>
         <coalElectricity v-if="tabId == '3'"></coalElectricity>
         <powerMent v-if="tabId == '4'"></powerMent>
+        <CoalRanking v-if="tabId == '1'" :datas="datas"></CoalRanking>
       </el-main>
     </el-container>
   </div>
 </template>
 <script>
+import CoalRanking from "./components/CoalRanking.vue";
 import webMap from "../../views/WebMap/mapCgui.vue";
 // import DistanceTool from "bmaplib.distancetool";
 import coalElectricity from "./components/CoalElectricity.vue";
@@ -60,21 +65,28 @@ export default {
   data() {
     return {
       isCollapse: false, //按钮控制菜单栏的展开
-      tabId: "4"
+      tabId: "4",
+      datas: []
     };
-  },
-  methods: {
-    changeSidebar(path) {
-      console.log(path);
-      this.tabId = path;
-    }
   },
   components: {
     webMap,
     coalElectricity,
     keshihuaInventory,
     oneEnergy,
-    powerMent
+    powerMent,
+    CoalRanking
+  },
+  methods: {
+    changeSidebar(path) {
+      console.log(path);
+      this.tabId = path;
+    },
+    change(val, val2) {
+      this.tabId = val;
+      this.datas = val2;
+      console.log(val, this.datas, "val");
+    }
   }
 };
 </script>

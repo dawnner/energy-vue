@@ -22,7 +22,7 @@
           </el-menu-item>
           <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">分布式光伏可开放容量</span>
+            <span slot="title">分布式电源接入电网承载力</span>
           </el-menu-item>
           <el-menu-item index="3">
             <i class="el-icon-document"></i>

@@ -5,7 +5,7 @@
       <div class="topLeft">
         <!-- 左上边标题 -->
         <div class="topLeftTitle">
-          全网调峰能力
+          火电调峰能力
         </div>
 
         <div class="topLeftContent">
@@ -39,18 +39,28 @@
               232<span>万千瓦</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="topRight">
-        <!-- 右上边标题 -->
-        <div class="topLeftTitle">
-          机组类型占比
-        </div>
-
-        <!-- 饼状图 -->
-        <div class="cakeImgBox">
-          <!-- <bingTu style="width: 100%;height: 100%;"></bingTu> -->
+          <div class="contentImg">
+            <div class="contentTitle">
+              煤电灵活性改造台数
+            </div>
+            <div class="contentNum">98<span>台</span></div>
+          </div>
+          <div class="contentImg2">
+            <div class="contentTitle">
+              煤电改造规模
+            </div>
+            <div class="contentNum" style="color:#6D9AF9">
+              232<span>MW</span>
+            </div>
+          </div>
+          <div class="contentImg3">
+            <div class="contentTitle">
+              灵活性改造机组占比
+            </div>
+            <div class="contentNum" style="color:#FF6C6D">
+              42%
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,11 +88,6 @@
             style="background-color: #158388; color:#fff;border-radius: 4px;"
           >
             导出
-          </button>
-          <button
-            style="background-color: #F5BA49; color:#fff;border-radius: 4px;margin-left: 10px;"
-          >
-            打印
           </button>
         </div>
       </div>
@@ -217,15 +222,9 @@ export default {
         powerType: "新能源"
       };
       const { rows, total } = await getListApi(this.deatlsit);
-      const arr = [];
-      for (let i = 0; i < rows.length; i++) {
-        if (rows[i].powerType == "新能源") {
-          arr.push(rows[i]);
-        }
-      }
-      this.tableData = arr;
+      this.tableData = rows;
       this.total = total;
-      console.log("常规", this.tableData);
+      console.log("新能源", this.tableData);
     },
     //序号
     indexFn(index) {
@@ -337,7 +336,7 @@ export default {
   display: flex;
 }
 .topLeft {
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-color: #fff;
   border-radius: 10px;
@@ -397,9 +396,9 @@ export default {
   color: #333333;
 }
 .contentNum {
-  margin-top: 30%;
+  margin-top: 20%;
   text-align: right;
-  margin-right: 20%;
+  margin-right: 30%;
   font-size: 50px;
   font-family: SimHei;
   font-weight: 400;

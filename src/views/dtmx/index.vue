@@ -24,9 +24,61 @@
       </el-aside>
       <el-main style="padding:10px">
         <div style="width:100%;height:100%">
-          <map-cgui style="width:100%;height:70%"></map-cgui>
+          <div class="mapTop">
+            <div class="topData">
+              <div class="topDataContent">
+                <div class="contentTitle">
+                  煤电机组CO2排放总量:
+                  <span style="color:#49C2BB;font-size: 30px;margin-left: 10px;"
+                    >1126633</span
+                  ><span
+                    style="color: #49C2BB;font-size: 15px;font-weight: normal;margin-top: 18px;margin-left: 5px;"
+                  >
+                    吨CO<sapn style="font-size: 12px;">2</sapn></span
+                  >
+                </div>
+              </div>
+              <div class="topDataContent">
+                <div class="contentTitle">
+                  煤电机组CO2强度:
+                  <span style="color:#49C2BB;font-size: 30px;margin-left: 10px;"
+                    >16266</span
+                  ><span
+                    style="color: #49C2BB;font-size: 15px;font-weight: normal;margin-top: 18px;margin-left: 5px;"
+                  >
+                    吨CO<sapn style="font-size: 12px;">2</sapn>/MW.H</span
+                  >
+                </div>
+              </div>
+              <div class="topDataContent">
+                <div class="contentTitle">
+                  纳入监管企业排放总量:
+                  <span style="color:#49C2BB;font-size: 30px;margin-left: 10px;"
+                    >1566633</span
+                  ><span
+                    style="color: #49C2BB;font-size: 15px;font-weight: normal;margin-top: 18px;margin-left: 5px;"
+                  >
+                    吨CO<sapn style="font-size: 12px;">2</sapn></span
+                  >
+                </div>
+              </div>
+              <div class="topDataContent">
+                <div class="contentTitle">
+                  纳入监管企业数量:
+                  <span style="color:#49C2BB;font-size: 30px;margin-left: 10px;"
+                    >56231</span
+                  ><span
+                    style="color: #49C2BB;font-size: 15px;font-weight: normal;margin-top: 18px;margin-left: 5px;"
+                  >
+                    个</span
+                  >
+                </div>
+              </div>
+            </div>
+            <map-cgui style="width:100%;height:80%"></map-cgui>
+          </div>
           <div
-            style="width:100%;height:30%;display:flex;justify-content: space-between;padding:10px 0"
+            style="width:100%;height:40%;display:flex;justify-content: space-between;padding:10px 0"
           >
             <localemissions
               style="width:49%;height:100%;background:#fff"
@@ -85,6 +137,41 @@ export default {
 </script>
 
 <style scoped>
+.mapTop {
+  width: 100%;
+  height: 70%;
+  background-color: #eefffa;
+}
+.topData {
+  width: 100%;
+  height: 20%;
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.topDataContent {
+  width: 24%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.contentTitle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #333333;
+}
+.titleImg {
+  width: 100%;
+  height: 20%;
+  background-color: aqua;
+}
 .el-main {
   padding: 0;
 }

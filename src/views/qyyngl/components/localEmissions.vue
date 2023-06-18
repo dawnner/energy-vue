@@ -1,6 +1,9 @@
 <template>
   <div style="height: 100%; width:100%">
-    <div id="localEmissions" style="width: 100%; height: 100%"></div>
+    <div class="titles">
+      <span>各地市火电企业往年碳排历史数据</span>
+    </div>
+    <div id="localEmissions" style="width: 100%; height: 85%"></div>
   </div>
 </template>
 
@@ -273,5 +276,18 @@ export default {
 <style>
 #localEmissions {
   background-size: 100% 100%;
+}
+.titles {
+  width: 98%;
+  height: 15%;
+  /* background-color: aqua; */
+  margin-left: 2%;
+  display: flex;
+  align-items: flex-end;
+}
+.titles span {
+  border-left: 4px solid #158388;
+  font-size: 20px;
+  padding-left: 10px;
 }
 </style>
