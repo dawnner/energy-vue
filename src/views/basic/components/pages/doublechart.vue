@@ -121,6 +121,7 @@ export default {
                 type: "dashed"
               }
             },
+
             axisLine: {
               show: true,
               lineStyle: {

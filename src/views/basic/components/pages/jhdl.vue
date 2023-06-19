@@ -16,10 +16,20 @@
 import * as echarts from "echarts";
 export default {
   methods: {
-    analysisHistogram1() {
+    analysisHistogram1(val) {
       var chartDom = document.getElementById("analysisHistogram1");
       var myChartjhdl = echarts.init(chartDom);
       var option;
+      console.log(val, 23);
+      let name = [];
+      let arr1 = [];
+      let arr2 = [];
+      val.forEach(item => {
+        name.push(item.targetName);
+        arr1.push(item.thisMonthData);
+        arr2.push(item.thisMonthRatio * 100);
+      });
+      // console.log(arr2, 32);
       option = {
         title: {
           text: "电量交换",
@@ -72,7 +82,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ["直流1000kv", "交流±800", "直流±800", "直流500kv"]
+            data: name
           }
         ],
         yAxis: [
@@ -80,8 +90,8 @@ export default {
             offset: 10,
             // x轴最小值和最大值分别为0和10
             type: "value",
-            min: 0,
-            max: 10000,
+            // min: 0,
+            // max: 10000,
             splitNumber: 5,
             splitLine: {
               show: true,
@@ -165,7 +175,7 @@ export default {
                 shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
               }
             },
-            data: [5000, 4500, 8500, 6500]
+            data: arr2
           },
           {
             name: "调入电量",
@@ -186,7 +196,7 @@ export default {
                 color: "#3BAFFF"
               }
             },
-            data: [3900, 1800, 9800, 7800]
+            data: arr1
           }
         ]
       };
@@ -196,10 +206,10 @@ export default {
       };
       window.addEventListener("resize", listener);
     }
-  },
-  mounted() {
-    this.analysisHistogram1();
   }
+  // mounted() {
+  //   this.analysisHistogram1();
+  // }
 };
 </script>
 

@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="jhdl">
-          <jhdl></jhdl>
+          <jhdl ref="jhdl"></jhdl>
         </div>
         <div class="dyjrqk">
           <dyjrqk ref="dyjrqk" style="width: 100%; height: 100%"></dyjrqk>
@@ -53,7 +53,10 @@
           </div>
           <div class="right-box-top-right" style="width: 36.5%; height: 100%">
             <div class="right-corner-one">
-              <waterball style="width: 100%; height: 100%"></waterball>
+              <waterball
+                ref="waterball"
+                style="width: 100%; height: 100%"
+              ></waterball>
             </div>
 
             <div class="right-corner-two">
@@ -63,7 +66,10 @@
               ></doublechart>
             </div>
             <div class="right-corner-three">
-              <barchart style="width: 100%; height: 100%"></barchart>
+              <barchart
+                ref="barchart"
+                style="width: 100%; height: 100%"
+              ></barchart>
             </div>
           </div>
         </div>
@@ -89,7 +95,12 @@
 
 <script>
 import { gsdyData, dyzjData } from "../components/qingqiu/gsdyjk";
-import { fdqsData } from "../components/qingqiu/fdqs";
+import {
+  fdqsData,
+  fdlData,
+  dyqyData,
+  dljhData
+} from "../components/qingqiu/fdqs";
 import Imgss from "../../../assets/images/shujukuai.png";
 import huanxingtu from "../components/pages/huanxingtu.vue";
 import Jhdl from "../components/pages/jhdl.vue";
@@ -129,6 +140,9 @@ export default {
     this.gsdyData();
     this.dyzjData();
     this.fdqsData();
+    this.fdlData();
+    this.dyqyData();
+    this.dljhData();
   },
   mounted() {
     this.mapName();
@@ -137,6 +151,25 @@ export default {
     async gsdyData() {
       const { data } = await gsdyData();
       this.$refs.dyjrqk.dyjrqk(data);
+    },
+    async dljhData() {
+      const { data } = await dljhData();
+      // console.log(data);
+      this.$refs.jhdl.analysisHistogram1(data);
+    },
+    async dyqyData() {
+      const { rows } = await dyqyData();
+      console.log(rows, "shuju");
+      this.$refs.barchart.barchart(rows);
+    },
+    async fdlData() {
+      let date = new Date();
+      let newData =
+        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+      console.log(newData);
+      const { rows } = await fdlData(newData);
+      // console.log(rows, "数据");
+      this.$refs.waterball.waterball(rows);
     },
     async dyzjData() {
       const { data } = await dyzjData();
