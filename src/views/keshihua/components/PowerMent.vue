@@ -232,7 +232,7 @@ export default {
         pageSize: this.pageSize,
         powerType: "常规电源"
       };
-      const { rows, total } = await getListApi(this.deatlsit);
+      const { rows, total } = await getListApi(this.queryBody);
       this.tableData = rows;
       this.total = total;
       console.log("常规", this.tableData);
@@ -248,6 +248,7 @@ export default {
       getListApi(this.queryBody).then(response => {
         console.log(response);
         this.tableData = response.rows;
+        this.total = response.total;
       });
     },
     //重置
@@ -282,7 +283,7 @@ export default {
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
       // 前面一共有多少条 = 前面的多少页 * 每页条数
-      return index + 1 + (this.pageNum - 1) * this.pageSize;
+      return index + 1 + (this.queryBody.pageNum - 1) * this.queryBody.pageSize;
     },
     // 更新每页条数
     handleSizeChange(val) {
@@ -296,7 +297,7 @@ export default {
     },
     // 获取新的页码的数据
     handleCurrentChange(val) {
-      this.pageNum = val;
+      this.queryBody.pageNum = val;
       // console.log(`当前页:${val}`)
       // 重新获取新的页码的数据
       this.getList();

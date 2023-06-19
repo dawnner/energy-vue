@@ -156,14 +156,6 @@
           <el-button type="primary" size="small" @click="exportIntegrateList">
             导出
           </el-button>
-          <el-button
-            type="ess"
-            size="small"
-            style="color:#fff"
-            @click="printIntegrateList"
-          >
-            打印
-          </el-button>
         </div>
       </div>
       <!-- 列表表格区域 -->
@@ -503,8 +495,7 @@ export default {
     InitIntegrateList() {
       //调用接口，初始化大栏目列表
     },
-    // 打印
-    printIntegrateList() {},
+
     //点击查询按钮触发
     queryIntegrateList() {
       this.queryParams.pages = 1;
@@ -513,8 +504,10 @@ export default {
     //重置
     resetIntegrateList() {
       this.$refs.queryBody.resetFields();
-      this.queryBody.PowerType = "";
-      this.InitIntegrateList();
+      this.queryBody = {
+        name: "",
+        type: ""
+      };
     },
     // 导出
     exportIntegrateList() {},
