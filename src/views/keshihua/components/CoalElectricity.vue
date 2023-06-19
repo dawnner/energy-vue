@@ -11,13 +11,13 @@
         <div class="topLeftContent">
           <div class="contentImg">
             <div class="contentTitle">
-              装机总量
+              装机数量
             </div>
             <div class="contentNum">232<span>台</span></div>
           </div>
           <div class="contentImg2">
             <div class="contentTitle">
-              额定功率
+              装机规模
             </div>
             <div class="contentNum" style="color:#6D9AF9">
               232<span>万千瓦</span>
@@ -145,30 +145,6 @@
           >
           </el-table-column>
           <el-table-column prop="maxGroup" align="center" label="供热量(GJ)">
-          </el-table-column>
-          <el-table-column
-            prop="enterpriseName"
-            align="center"
-            label="煤炭库存(万吨)"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="acceptancePowerUnit"
-            align="center"
-            label="日供煤量(万吨)"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="applyTime"
-            align="center"
-            label="日耗煤量(万吨)"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="powerType"
-            align="center"
-            label="电煤可用天数(天数)"
-          >
           </el-table-column>
           <el-table-column
             prop="electricPowerType"

@@ -176,8 +176,7 @@ export default {
         powerSupplyRegion: ""
       },
       //列表
-      table: [],
-      deatlsit: {}
+      table: []
     };
   },
   created() {
@@ -198,11 +197,7 @@ export default {
     },
     //分布式光伏信息
     async newcapacityApi() {
-      this.deatlsit = {
-        pageNum: this.pageNum,
-        pageSize: this.pageSize
-      };
-      const { rows, total } = await newcapacityApi(this.deatlsit);
+      const { rows, total } = await newcapacityApi(this.from);
       this.table = rows;
       this.total = total;
     },
@@ -226,21 +221,21 @@ export default {
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
       // 前面一共有多少条 = 前面的多少页 * 每页条数
-      return index + 1 + (this.pageNum - 1) * this.pageSize;
+      return index + 1 + (this.from.pageNum - 1) * this.from.pageSize;
     },
     // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-      this.pageSize = val;
+      this.from.pageSize = val;
       // 更新每页条数，页码重置为第一页
       // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-      this.pageNum = 1;
+      this.from.pageNum = 1;
       // 根据新的页码以及最新的数据条数，请求最新的数据
       this.newcapacityApi();
     },
     // 获取新的页码的数据
     handleCurrentChange(val) {
-      this.pageNum = val;
+      this.from.pageNum = val;
       // console.log(`当前页:${val}`)
       // 重新获取新的页码的数据
       this.newcapacityApi();

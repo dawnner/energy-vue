@@ -72,7 +72,7 @@ export default {
             axisTick: {
               show: false
             },
-            data: ["直流1000kv", "交流±800", "直流±800", "直流500kv"]
+            data: ["华北通道", "银东直流", "鲁固直流", "昭沂直流"]
           }
         ],
         yAxis: [

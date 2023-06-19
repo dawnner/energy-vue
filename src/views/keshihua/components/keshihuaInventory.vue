@@ -120,16 +120,24 @@
             ref="queryBody"
             :model="queryBody"
           >
-            <el-form-item label="电厂名称:" class="query-title" prop="name">
+            <el-form-item
+              label="电厂名称:"
+              class="query-title"
+              prop="factoryName"
+            >
               <el-input
-                v-model="queryBody.name"
+                v-model="queryBody.factoryName"
                 placeholder="请输入"
                 clearable
               />
             </el-form-item>
-            <el-form-item label="机组类型:" class="query-title" prop="type">
+            <el-form-item
+              label="机组类型:"
+              class="query-title"
+              prop="machineId"
+            >
               <el-input
-                v-model="queryBody.type"
+                v-model="queryBody.machineId"
                 placeholder="请输入"
                 clearable
               />
@@ -172,89 +180,96 @@
       >
         <el-table-column align="center" type="selection" width="55">
         </el-table-column>
-        <el-table-column align="center" label="序号" width="50">
-          <template slot-scope="scope">
-            {{ scope.$index + 1 }}
-          </template>
+        <el-table-column
+          align="center"
+          label="序号"
+          type="index"
+          :index="indexFn"
+          width="50"
+        >
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="factoryName"
           label="电厂名称"
           align="center"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="province"
+          prop="machineId"
           align="center"
           label="机组编号"
           width="130"
         >
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="externalElectricity"
           align="center"
           label="省外来电情况"
           width="130"
         >
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="sumGeneratingCapacity"
           align="center"
           label="总发电量(万千瓦时)"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="zip"
+          prop="repertoryCoalQuantity"
           align="center"
           label="库存煤量(万吨)"
           width="110"
         >
         </el-table-column>
         <el-table-column
-          prop="rcml"
+          prop="entranceCoalQuantity"
           align="center"
           label="入场煤量(万吨)"
           width="130"
         >
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="dailyCoalQuantity"
           align="center"
           label="日耗煤量(万吨)"
           width="130"
         >
         </el-table-column>
         <el-table-column
-          prop="zip"
+          prop="gcCoalQuantity"
           align="center"
           label="发电煤耗(g/kwh)"
           width="140"
         >
         </el-table-column>
         <el-table-column
-          prop="kyts"
+          prop="availableDay"
           align="center"
           label="可用天数"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="qymt"
+          prop="coalRanking"
           align="center"
           label="企业煤炭库存量排名"
           width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="gbnl"
+          prop="capacityRanking"
           align="center"
           label="供保能力天数排名"
           width="120"
         >
         </el-table-column>
-        <el-table-column prop="gbnl" align="center" label="电量供应能力">
+        <el-table-column
+          prop="eqDeliverability"
+          align="center"
+          label="电量供应能力"
+        >
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -262,9 +277,9 @@
         style="text-align:right;padding-top:10px"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="queryParams.pages"
+        :current-page="pageNum"
         :page-sizes="[10, 20, 30]"
-        :page-size="queryParams.size"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       >
@@ -275,6 +290,7 @@
 
 <script>
 import echartsone from "../components/echartsone.vue";
+import { getanalysisApi, exportPostApi } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
@@ -469,21 +485,24 @@ export default {
           gbnl: 9
         }
       ],
+      pageNum: 1,
+      pageSize: 10,
       total: 0,
 
       // 查询参数对象1(放在请求的params里,以？形式拼接)
-      queryParams: {
-        pages: 1,
-        size: 10
-      },
       selectData: [],
       // 查询参数对象
       queryBody: {
-        name: "",
-        type: ""
+        pageNum: 1,
+        pageSize: 10,
+        factoryName: "",
+        machineId: ""
       },
       one: 1
     };
+  },
+  created() {
+    this.getanalysisList();
   },
   mounted() {
     this.InitIntegrateList();
@@ -495,11 +514,21 @@ export default {
     InitIntegrateList() {
       //调用接口，初始化大栏目列表
     },
-
+    //获取列表
+    async getanalysisList() {
+      const { rows, total } = await getanalysisApi(this.queryBody);
+      this.tableData = rows;
+      this.total = total;
+      console.log("常规", this.tableData);
+    },
     //点击查询按钮触发
     queryIntegrateList() {
-      this.queryParams.pages = 1;
-      this.InitIntegrateList();
+      this.queryBody.pageNum = 1;
+      getanalysisApi(this.queryBody).then(response => {
+        console.log(response);
+        this.tableData = response.rows;
+        this.total = response.total;
+      });
     },
     //重置
     resetIntegrateList() {
@@ -508,21 +537,47 @@ export default {
         name: "",
         type: ""
       };
+      this.getanalysisList();
+    },
+    //序号
+    indexFn(index) {
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.queryBody.pageNum - 1) * this.queryBody.pageSize;
     },
     // 导出
-    exportIntegrateList() {},
-    //页面数据条数发生变化触发
-    handleSizeChange(newPageSize) {
-      this.queryParams.size = newPageSize;
-      this.InitIntegrateList();
+    exportIntegrateList() {
+      const queryParams = this.queryBody;
+      this.$confirm("是否确认导出所有数据项?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return exportPostApi(queryParams);
+        })
+        .then(response => {
+          this.download(response.msg);
+        })
+        .catch(() => {});
     },
-
-    //页码发生变化触发
-    handleCurrentChange(newPageNum) {
-      this.queryParams.pages = newPageNum;
-      this.InitIntegrateList();
+    // 更新每页条数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.queryBody.pageSize = val;
+      // 更新每页条数，页码重置为第一页
+      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+      this.queryBody.pageNum = 1;
+      // 根据新的页码以及最新的数据条数，请求最新的数据
+      this.getanalysisList();
     },
-
+    // 获取新的页码的数据
+    handleCurrentChange(val) {
+      this.queryBody.pageNum = val;
+      // console.log(`当前页:${val}`)
+      // 重新获取新的页码的数据
+      this.getanalysisList();
+    },
     handleSelectionChange(val) {
       this.selectData = val;
     }

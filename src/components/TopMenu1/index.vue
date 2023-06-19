@@ -230,7 +230,7 @@ export default {
   // background-image: url("../../assets/images/navbj.png");
   background-size: 100% 100%;
   .box-left {
-    width: 25%;
+    width: 27%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -271,14 +271,14 @@ export default {
   .active1 {
     color: #158388;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 18px;
     height: 100%;
     border-bottom: 3px solid #158388;
     // background: rgba(255, 255, 255, 0.3);
   }
   .morenzhi {
     height: 100%;
-    font-size: 23px;
+    font-size: 18px;
     color: #000;
   }
   // nav a i {

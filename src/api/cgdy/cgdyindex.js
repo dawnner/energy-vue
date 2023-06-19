@@ -39,3 +39,11 @@ export function exportPostApi(query) {
     params: query
   })
 }
+  // 获取煤电企业库存数据分析
+  export function getanalysisApi(data) {
+    return request({
+      url: '/system/analysis/list',
+      method: 'get',
+      params: data
+    })
+  }
