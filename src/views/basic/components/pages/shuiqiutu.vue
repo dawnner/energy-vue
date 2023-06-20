@@ -10,7 +10,7 @@
         全网发电量
       </div>
       <div class="numBox">
-        15666.12
+        {{ qwfdl }}
       </div>
       <div class="danwei">
         (万KW·h)
@@ -24,7 +24,7 @@
         常规电源发电量
       </div>
       <div class="numBox" style="color: #FA6C8D;">
-        14666.12
+        {{ cgdy }}
       </div>
       <div class="danwei">
         (万KW·h)
@@ -38,7 +38,7 @@
         新能源发电量
       </div>
       <div class="numBox" style="color: #9B6CEF;">
-        13666.12
+        {{ xnyfdl }}
       </div>
       <div class="danwei">
         (万KW·h)
@@ -52,7 +52,7 @@
         储能发电量
       </div>
       <div class="numBox" style="color: #F8925A;">
-        12666.12
+        {{ cn }}
       </div>
       <div class="danwei">
         (万KW·h)
@@ -61,7 +61,33 @@
   </div>
 </template>
 
-<script></script>
+<script>
+// import { getCodeImg } from "@/api/login";
+// import Cookies from "js-cookie";
+// import { encrypt, decrypt } from "@/utils/jsencrypt";
+
+export default {
+  data() {
+    return {
+      qwfdl: "",
+      xnyfdl: "",
+      cgdy: "",
+      cn: ""
+    };
+  },
+  methods: {
+    waterball(val) {
+      val.forEach(item => {
+        console.log(item);
+        this.qwfdl = item.qwfdl;
+        this.xnyfdl = item.xnyfdl;
+        this.cgdy = item.cgdy;
+        this.cn = item.cn;
+      });
+    }
+  }
+};
+</script>
 
 <style scoped>
 .shuiqiuone {
@@ -92,7 +118,7 @@
   width: 100%;
   height: 15%;
   /* background-color: violet; */
-  margin-top: 10px;
+  margin-top: 7px;
   font-size: 18px;
   font-family: Microsoft YaHei;
   font-weight: bold;

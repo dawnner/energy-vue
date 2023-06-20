@@ -11,10 +11,19 @@
 import * as echarts from "echarts";
 export default {
   methods: {
-    barchart() {
+    barchart(val) {
       var chartDom = document.getElementById("barchart");
       var myChart = echarts.init(chartDom);
       var option;
+      console.log(val, "18");
+      let name = [];
+      let arr1 = [];
+      let arr2 = [];
+      val.forEach(item => {
+        name.push(item.targetName);
+        arr1.push(item.addUpGeneratingCapacity);
+        arr2.push(item.mergeMachineCapacity);
+      });
       var data = {
         // xData: [
         //   "直调公用电厂",
@@ -26,18 +35,12 @@ export default {
         // yData1: ["40000", "30000", "20000", "30000", "50000"],
         // yData2: ["10000", "10000", "10000", "10000", "20000"],
 
-        xData: [
-          "直调公用电厂",
-          "地方公用电厂",
-          "直调自备电厂",
-          "地方自备电厂",
-          "孤网电厂"
-        ],
-        yData1: ["40000", "30000", "20000", "30000", "50000"],
-        yData2: ["10000", "10000", "10000", "10000", "20000"],
-        yName1: "企业数量",
+        xData: name,
+        yData1: arr1,
+        yData2: arr2,
+        yName1: "发电量",
         yName2: "装机容量",
-        yLabel: "（个）"
+        yLabel: "(万KW·h)"
       };
 
       option = {
@@ -110,10 +113,47 @@ export default {
         yAxis: [
           {
             // type:'个',
-            min: 0,
-            max: 30000,
+            // min: 0,
+            // max: 50000,
             splitNumber: 3,
+            yAxisIndex: 0,
             name: data.yLabel,
+            nameTextStyle: {
+              color: "#000"
+            },
+            boundaryGap: false,
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              showMaxLabel: false,
+              textStyle: {
+                color: "#000",
+                fontSize: 14,
+                fontWeight: 400
+              }
+            },
+            splitLine: {
+              show: false,
+              lineStyle: {
+                type: "dotted",
+                color: "rgba(12,116,123,0.5)"
+              }
+            },
+            axisLine: {
+              show: false,
+              lineStyle: {
+                color: "rgba(12,116,123,0.5)"
+              }
+            }
+          },
+          {
+            // type: "kw",
+            min: 0,
+            max: 10000,
+            yAxisIndex: 1,
+            splitNumber: 3,
+            name: "(万KW)",
             nameTextStyle: {
               color: "#000"
             },
@@ -193,9 +233,6 @@ export default {
       };
       window.addEventListener("resize", listener);
     }
-  },
-  mounted() {
-    this.barchart();
   }
 };
 </script>
