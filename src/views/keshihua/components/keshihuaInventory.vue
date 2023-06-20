@@ -324,12 +324,12 @@ export default {
       top2: [
         {
           num: "01",
-          name: "热电炼厂",
+          name: "山东柠檬生化有限公司",
           day: "52天"
         },
         {
           num: "02",
-          name: "山东柠檬生化有限公司",
+          name: "热电炼厂",
           day: "51天"
         },
         {
@@ -351,7 +351,7 @@ export default {
       top3: [
         {
           num: "01",
-          name: "热电炼厂",
+          name: "山东黄海有限公司",
           unit: "566万KW·h"
         },
         {
@@ -366,7 +366,7 @@ export default {
         },
         {
           num: "04",
-          name: "山东黄海有限公司",
+          name: "热电炼厂",
           unit: "32万KW·h"
         },
         {

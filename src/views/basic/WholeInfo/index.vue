@@ -167,9 +167,9 @@ export default {
       let newData =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
       console.log(newData);
-      const { rows } = await fdlData(newData);
+      const { data } = await fdlData({ extDateTime: newData });
       // console.log(rows, "数据");
-      this.$refs.waterball.waterball(rows);
+      this.$refs.waterball.waterball(data);
     },
     async dyzjData() {
       const { data } = await dyzjData();

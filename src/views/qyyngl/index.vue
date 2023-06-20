@@ -10,7 +10,7 @@
       </button>
       <el-aside :width="isCollapse ? '64px' : '230px'">
         <el-menu
-          default-active="2"
+          default-active="7"
           class="el-menu-vertical-demo"
           :collapse="isCollapse"
           @select="changeSidebar"
@@ -58,6 +58,7 @@
         <carbonManagement v-if="tabId == '3'"></carbonManagement>
         <greenManagement v-if="tabId == '4'"></greenManagement>
         <carbonAssets v-if="tabId == '5'"></carbonAssets>
+        <qynycockpit v-if="tabId == '7'"></qynycockpit>
       </el-main>
     </el-container>
   </div>
@@ -72,11 +73,12 @@ import energyTable from "./components/energyTable/index.vue";
 import carbonManagement from "./components/carbonManagement/index.vue";
 import greenManagement from "./components/GreenManagement/index.vue";
 import carbonAssets from "./components/carbonAssets/index.vue";
+import qynycockpit from "./components/qynycockpit.vue";
 export default {
   data() {
     return {
       isCollapse: false, //按钮控制菜单栏的展开
-      tabId: "2"
+      tabId: "7"
     };
   },
   components: {
@@ -86,7 +88,8 @@ export default {
     energyTable,
     carbonManagement,
     greenManagement,
-    carbonAssets
+    carbonAssets,
+    qynycockpit
   },
   methods: {
     // async mapGuanliHistogram() {

@@ -10,10 +10,10 @@
         全网发电量
       </div>
       <div class="numBox">
-        {{ qwfdl }}
+        {{ datas.qwfdl }}
       </div>
       <div class="danwei">
-        (万KW·h)
+        (亿KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF6F8;">
@@ -24,10 +24,10 @@
         常规电源发电量
       </div>
       <div class="numBox" style="color: #FA6C8D;">
-        {{ cgdy }}
+        {{ datas.cgdy }}
       </div>
       <div class="danwei">
-        (万KW·h)
+        (亿KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #F8F3FF;">
@@ -38,10 +38,10 @@
         新能源发电量
       </div>
       <div class="numBox" style="color: #9B6CEF;">
-        {{ xnyfdl }}
+        {{ datas.xnyfdl }}
       </div>
       <div class="danwei">
-        (万KW·h)
+        (亿KW·h)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF7F3;">
@@ -52,10 +52,10 @@
         储能发电量
       </div>
       <div class="numBox" style="color: #F8925A;">
-        {{ cn }}
+        {{ datas.cn }}
       </div>
       <div class="danwei">
-        (万KW·h)
+        (亿KW·h)
       </div>
     </div>
   </div>
@@ -69,21 +69,12 @@
 export default {
   data() {
     return {
-      qwfdl: "",
-      xnyfdl: "",
-      cgdy: "",
-      cn: ""
+      datas: {}
     };
   },
   methods: {
     waterball(val) {
-      val.forEach(item => {
-        console.log(item);
-        this.qwfdl = item.qwfdl;
-        this.xnyfdl = item.xnyfdl;
-        this.cgdy = item.cgdy;
-        this.cn = item.cn;
-      });
+      this.datas = val;
     }
   }
 };

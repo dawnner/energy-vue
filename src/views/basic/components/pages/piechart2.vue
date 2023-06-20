@@ -17,25 +17,25 @@ export default {
       var option;
       var m2R2Data = [
         {
-          value: 80,
+          value: 1849.13,
           legendname: "煤电",
           name: "煤电",
           itemStyle: { color: "#4ad2be" }
         },
         {
-          value: 150,
+          value: 1.82,
           legendname: "燃机",
           name: "燃机",
           itemStyle: { color: "#5fca94" }
         },
         {
-          value: 10,
+          value: 16.3,
           legendname: "水电",
           name: "水电",
           itemStyle: { color: "#86e8b5" }
         },
         {
-          value: 45,
+          value: 237.44,
           legendname: "光伏",
           name: "光伏",
           itemStyle: { color: "#5e75dd" }
@@ -47,13 +47,13 @@ export default {
           itemStyle: { color: "#0bb5f3" }
         },
         {
-          value: 150,
+          value: 74.87,
           legendname: "核电",
           name: "核电",
           itemStyle: { color: "#fd9232" }
         },
         {
-          value: 150,
+          value: 1.67,
           legendname: "储能",
           name: "储能",
           itemStyle: { color: "#f7a667" }
@@ -100,9 +100,9 @@ export default {
               "" +
               parms.data.legendname +
               "</br>" +
-              "数量：" +
+              "发电量：" +
               parms.data.value +
-              " 个</br>" +
+              " 亿KW·h</br>" +
               "占比：" +
               parms.percent +
               "%";

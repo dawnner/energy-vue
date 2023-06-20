@@ -89,7 +89,7 @@ export default {
       var chartDom = document.getElementById("ring1");
       var myChart1 = echarts.init(chartDom);
       var option;
-      var data = "75";
+      var data = "19.34";
       option = {
         title: {
           text: data + "%",
@@ -175,7 +175,7 @@ export default {
       var chartDom = document.getElementById("ring2");
       var myChart = echarts.init(chartDom);
       var option;
-      var data = "75";
+      var data = "96.7";
       option = {
         title: {
           text: data + "%",
@@ -261,7 +261,7 @@ export default {
       var chartDom = document.getElementById("ring3");
       var myChart = echarts.init(chartDom);
       var option;
-      var data = "75";
+      var data = "32.5";
       option = {
         title: {
           text: data + "%",
@@ -347,7 +347,7 @@ export default {
       var chartDom = document.getElementById("ring4");
       var myChart = echarts.init(chartDom);
       var option;
-      var data = "75";
+      var data = "20.4";
       option = {
         title: {
           text: data + "%",
