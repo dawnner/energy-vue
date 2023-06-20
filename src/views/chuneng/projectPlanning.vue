@@ -176,11 +176,6 @@ export default {
 
       pageNum: 1,
       pageSize: 10,
-      deatlsit: {
-        // pageNum: this.pageNum,
-        // pageSize: this.pageSize,
-        // type: "常规电源",
-      },
       selectData: [],
       // 查询参数对象
       queryBody: {
@@ -228,12 +223,7 @@ export default {
     },
     //获取列表的方法
     async getList() {
-      this.deatlsit = {
-        pageNum: this.pageNum,
-        pageSize: this.pageSize,
-        powerType: "新型储能"
-      };
-      const { rows, total } = await getListApi(this.deatlsit);
+      const { rows, total } = await getListApi(this.queryBody);
       this.tableData = rows;
       this.total = total;
       console.log("新型储能", this.tableData);
@@ -249,6 +239,7 @@ export default {
       getListApi(this.queryBody).then(response => {
         console.log(response);
         this.tableData = response.rows;
+        this.total = response.total;
       });
     },
     //重置
@@ -282,21 +273,21 @@ export default {
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
       // 前面一共有多少条 = 前面的多少页 * 每页条数
-      return index + 1 + (this.pageNum - 1) * this.pageSize;
+      return index + 1 + (this.queryBody.pageNum - 1) * this.queryBody.pageSize;
     },
     // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-      this.pageSize = val;
+      this.queryBody.pageSize = val;
       // 更新每页条数，页码重置为第一页
       // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-      this.pageNum = 1;
+      this.queryBody.pageNum = 1;
       // 根据新的页码以及最新的数据条数，请求最新的数据
       this.getList();
     },
     // 获取新的页码的数据
     handleCurrentChange(val) {
-      this.pageNum = val;
+      this.queryBody.pageNum = val;
       // console.log(`当前页:${val}`)
       // 重新获取新的页码的数据
       this.getList();

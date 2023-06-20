@@ -175,11 +175,6 @@ export default {
 
       pageNum: 1,
       pageSize: 10,
-      deatlsit: {
-        // pageNum: this.pageNum,
-        // pageSize: this.pageSize,
-        // type: "常规电源",
-      },
       selectData: [],
       // 查询参数对象
       queryBody: {
@@ -227,11 +222,6 @@ export default {
     },
     //获取列表的方法
     async getList() {
-      this.deatlsit = {
-        pageNum: this.pageNum,
-        pageSize: this.pageSize,
-        powerType: "常规电源"
-      };
       const { rows, total } = await getListApi(this.queryBody);
       this.tableData = rows;
       this.total = total;
@@ -288,10 +278,10 @@ export default {
     // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-      this.pageSize = val;
+      this.queryBody.pageSize = val;
       // 更新每页条数，页码重置为第一页
       // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-      this.pageNum = 1;
+      this.queryBody.pageNum = 1;
       // 根据新的页码以及最新的数据条数，请求最新的数据
       this.getList();
     },
@@ -302,7 +292,6 @@ export default {
       // 重新获取新的页码的数据
       this.getList();
     },
-
     handleSelectionChange(val) {
       this.selectData = val;
     }

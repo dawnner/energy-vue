@@ -28,7 +28,7 @@
 
           <el-menu-item index="3">
             <img src="../../assets/images/ny.png" />
-            <span slot="title" class="textFlag">煤电燃机检测分析</span>
+            <span slot="title" class="textFlag">煤电燃机监测分析</span>
           </el-menu-item>
           <el-menu-item index="4">
             <img src="../../assets/images/gl.png" />
