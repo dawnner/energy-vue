@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
 // const url = '221.229.173.95'
-const url = "172.20.10.7";
+// const url = "172.20.10.7";
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -35,8 +35,8 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        // target: 'http://221.229.173.95:8081',
-        target: `http://${url}:8081`,
+        target: "http://221.229.173.95:8081",
+        // target: `http://${url}:8081`,
         // target: `http://vue.ruoyi.vip`,
         changeOrigin: true,
         pathRewrite: {
