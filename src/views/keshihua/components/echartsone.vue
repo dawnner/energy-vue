@@ -189,7 +189,7 @@ export default {
             },
             data: [
               {
-                value: 15,
+                value: 31,
                 name: "全省煤电供应保障能力"
               }
             ],

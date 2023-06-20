@@ -75,7 +75,8 @@
                 </div>
               </div>
             </div>
-            <map-cgui style="width:100%;height:80%"></map-cgui>
+            <!-- <map-cgui style="width:100%;height:80%"></map-cgui> -->
+            <siji-map style="width:100%;height:80%"></siji-map>
           </div>
           <div
             style="width:100%;height:40%;display:flex;justify-content: space-between;padding:10px 0"
@@ -97,6 +98,7 @@
 <script>
 import { mapGuanliHistogram, mapGuanFuel } from "../../api/mapGl/mapgl";
 import mapCgui from "../qyyngl/components/mapCgui.vue";
+import sijiMap from "../qyyngl/components/sijimap.vue";
 import localemissions from "../qyyngl/components/localEmissions.vue";
 import fuelcomparison from "../qyyngl/components/fuelComparison.vue";
 export default {
@@ -108,6 +110,7 @@ export default {
   },
   components: {
     mapCgui,
+    sijiMap,
     localemissions,
     fuelcomparison
   },

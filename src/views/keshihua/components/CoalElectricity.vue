@@ -13,14 +13,14 @@
             <div class="contentTitle">
               装机数量
             </div>
-            <div class="contentNum">232<span>台</span></div>
+            <div class="contentNum">678<span>台</span></div>
           </div>
           <div class="contentImg2">
             <div class="contentTitle">
               装机规模
             </div>
             <div class="contentNum" style="color:#6D9AF9">
-              232<span>万千瓦</span>
+              10747.95<span>万千瓦</span>
             </div>
           </div>
           <div class="contentImg3">
@@ -28,7 +28,7 @@
               供热期新增调峰
             </div>
             <div class="contentNum" style="color:#FF6C6D">
-              232<span>万千瓦</span>
+              636.125<span>万千瓦</span>
             </div>
           </div>
           <div class="contentImg4">
@@ -36,21 +36,21 @@
               非供热期新增调峰
             </div>
             <div class="contentNum" style="color:#02C3A1">
-              232<span>万千瓦</span>
+              545.25<span>万千瓦</span>
             </div>
           </div>
           <div class="contentImg">
             <div class="contentTitle">
               煤电灵活性改造台数
             </div>
-            <div class="contentNum">98<span>台</span></div>
+            <div class="contentNum">38<span>台</span></div>
           </div>
           <div class="contentImg2">
             <div class="contentTitle">
               煤电改造规模
             </div>
             <div class="contentNum" style="color:#6D9AF9">
-              232<span>MW</span>
+              1817.5<span>MW</span>
             </div>
           </div>
           <div class="contentImg3">
@@ -58,7 +58,7 @@
               灵活性改造机组占比
             </div>
             <div class="contentNum" style="color:#FF6C6D">
-              42%
+              16.91%
             </div>
           </div>
         </div>
@@ -426,15 +426,15 @@ export default {
 .contentNum {
   margin-top: 20%;
   text-align: right;
-  margin-right: 30%;
-  font-size: 50px;
+  margin-right: 20%;
+  font-size: 30px;
   font-family: SimHei;
   font-weight: 400;
   color: #ffa00a;
   line-height: 48px;
 }
 .contentNum span {
-  font-size: 16px;
+  font-size: 10px;
   color: #333;
   font-weight: 400;
 }

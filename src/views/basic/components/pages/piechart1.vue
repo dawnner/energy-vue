@@ -100,7 +100,7 @@ export default {
         },
         legend: {
           orient: "vertical",
-          left: "70%",
+          left: "55%",
           align: "left",
           top: "25%",
           textStyle: {
@@ -112,7 +112,7 @@ export default {
           {
             name: "标题",
             type: "pie",
-            center: ["35%", "60%"],
+            center: ["30%", "60%"],
             radius: ["60%", "28%"],
             clockwise: false, //饼图的扇区是否是顺时针排布
             avoidLabelOverlap: false,

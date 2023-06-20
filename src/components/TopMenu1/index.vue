@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="box-left">
       <img src="../../assets/images/logo .png" />
-      <div class="bt">山东省新能源云深化应用</div>
+      <div class="bt">新能源云碳中和支撑服务平台（山东）</div>
     </div>
     <!-- 控制左侧菜单展开关闭 -->
     <!-- <hamburger
@@ -230,7 +230,7 @@ export default {
   // background-image: url("../../assets/images/navbj.png");
   background-size: 100% 100%;
   .box-left {
-    width: 27%;
+    width: 32%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -238,18 +238,18 @@ export default {
     img {
       width: 52px;
       height: 54px;
-      margin: 9px 20px;
+      margin: 9px 10px;
     }
   }
   .bt {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     color: #158388;
   }
   .box-center {
-    width: 76%;
+    width: 68%;
     height: 100%;
     display: flex;
     justify-content: space-between;

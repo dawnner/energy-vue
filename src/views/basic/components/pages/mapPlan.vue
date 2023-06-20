@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapTypeApi } from "@/api/mapGl/mapgl.js";
 // import resize from '../dashboard/mixins/resize.js'
 import * as echarts from "echarts";
 const animationDuration = 3000;
@@ -29,13 +30,15 @@ export default {
 
   data() {
     return {
-      mchart1: null
+      mchart1: null,
+      maplist: []
     };
   },
   mounted() {
     // this.$nextTick(() => {
     // 	this.initChart()
     // });
+    this.getmapType();
     window.addEventListener("resize", () => {
       if (this.mchart1) {
         this.mchart1.resize();
@@ -50,6 +53,13 @@ export default {
     this.mchart1 = null;
   },
   methods: {
+    //首页地图信息加载
+    async getmapType() {
+      const { data } = await mapTypeApi();
+      // console.log("地图", ree);
+      this.maplist = data;
+      console.log("地图", this.maplist);
+    },
     change() {
       if (this.mchart1 !== undefined) {
         this.mchart1.dispose();
@@ -58,488 +68,489 @@ export default {
     initChart(name, mapNameList) {
       var img1 = require("../../../../assets/images/shujukuai.png");
       var img2 = require("../../../../assets/images/biaotixia3.png");
-      var data = [
-        {
-          name: "济南市",
-          value: 83,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "菏泽市",
-          value: 4500,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "济宁市",
-          value: 3200,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "德州市",
-          value: 4169,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "聊城市",
-          value: 2589,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "泰安市",
-          value: 4500,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "临沂市",
-          value: 6768,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "淄博市",
-          value: 2589,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "枣庄市",
-          value: 2500,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "滨州市",
-          value: 3768,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "潍坊市",
-          value: 3589,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "东营市",
-          value: 1500,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "青岛市",
-          value: 8768,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "烟台市",
-          value: 5589,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "日照市",
-          value: 4590,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        },
-        {
-          name: "威海市",
-          value: 3793,
-          list: [
-            {
-              name: "常规电源装机量",
-              number: "650万 kW"
-            },
-            {
-              name: "常规电源发电量",
-              number: "4500万 kW·h"
-            },
-            {
-              name: "新能源装机量",
-              number: "500万 kW"
-            },
-            {
-              name: "新能源发电量",
-              number: "3000万 kW·h"
-            },
-            {
-              name: "储能装机量",
-              number: "70亿万 kW"
-            },
-            {
-              name: "储能发电量",
-              number: "9.15亿万 kW·h"
-            }
-          ]
-        }
-      ];
+      // var data = [
+      //   {
+      //     name: "济南市",
+      //     value: 83,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "菏泽市",
+      //     value: 4500,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "济宁市",
+      //     value: 3200,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "德州市",
+      //     value: 4169,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "聊城市",
+      //     value: 2589,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "泰安市",
+      //     value: 4500,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "临沂市",
+      //     value: 6768,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "淄博市",
+      //     value: 2589,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "枣庄市",
+      //     value: 2500,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "滨州市",
+      //     value: 3768,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "潍坊市",
+      //     value: 3589,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "东营市",
+      //     value: 1500,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "青岛市",
+      //     value: 8768,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "烟台市",
+      //     value: 5589,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "日照市",
+      //     value: 4590,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: "威海市",
+      //     value: 3793,
+      //     list: [
+      //       {
+      //         name: "常规电源装机量",
+      //         number: "650万 kW"
+      //       },
+      //       {
+      //         name: "常规电源发电量",
+      //         number: "4500万 kW·h"
+      //       },
+      //       {
+      //         name: "新能源装机量",
+      //         number: "500万 kW"
+      //       },
+      //       {
+      //         name: "新能源发电量",
+      //         number: "3000万 kW·h"
+      //       },
+      //       {
+      //         name: "储能装机量",
+      //         number: "70亿万 kW"
+      //       },
+      //       {
+      //         name: "储能发电量",
+      //         number: "9.15亿万 kW·h"
+      //       }
+      //     ]
+      //   }
+      // ];
+      var data = this.maplist;
       var geowidth = "90%";
       var geoheight = "90%";
       console.log("地图页面接收传值", name, mapNameList);
@@ -645,7 +656,7 @@ export default {
           this.mchart1.dispose();
         }
         console.log("params------------", params);
-        this.$emit("mapName", params.name, mapname);
+        this.$emit("mapName", params.data, mapname);
       });
       // echarts.registerMap('shandong', mapname);
       setTimeout(function() {
@@ -733,7 +744,7 @@ export default {
               fontSize: 12
             },
             formatter: function(params) {
-              console.log("666666", params.data);
+              console.log("666666", params);
               // return "容量" + "<br/>" + params;
               //   return (
               //     `<div>
@@ -753,51 +764,27 @@ export default {
                 img2 +
                 `)no-repeat;background-position: left 80% bottom;">
                       <div style="position:absolute;bottom:20%;color:#22F3E2;font-size:22px;">` +
-                params.data.name +
+                params.data.acceptancePowerUnit +
                 `</div>
                     </div>
                   </div>
                     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;color:#fff;padding-left:2.5rem;padding-bottom:2.5rem;font-size:16px;">
                       <div> ` +
-                params.data.list[0].name +
-                ": " +
+                "常规电源装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.list[0].number +
+                params.data.conventionData +
                 `</span>
                       </div>
                       <div> ` +
-                params.data.list[1].name +
-                ": " +
+                "新能源装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.list[1].number +
+                params.data.newEnergyData +
                 `</span>
                       </div>
                       <div> ` +
-                params.data.list[2].name +
-                ": " +
+                "新型储能装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.list[2].number +
-                `</span>
-                      </div>
-                      <div> ` +
-                params.data.list[3].name +
-                ": " +
-                `<span style="color:#F6A23A">` +
-                params.data.list[3].number +
-                `</span>
-                      </div>
-                      <div> ` +
-                params.data.list[4].name +
-                ": " +
-                `<span style="color:#F6A23A">` +
-                params.data.list[4].number +
-                `</span>
-                      </div>
-                      <div> ` +
-                params.data.list[5].name +
-                ": " +
-                `<span style="color:#F6A23A">` +
-                params.data.list[5].number +
+                params.data.storedEnergyData +
                 `</span>
                       </div>
                     </div>

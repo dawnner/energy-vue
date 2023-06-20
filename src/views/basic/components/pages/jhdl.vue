@@ -128,17 +128,17 @@ export default {
             name: "外电通道完成占比",
             type: "line",
             smooth: true, //是否平滑曲线显示
-            symbol: "circle", // 默认是空心圆（中间是白色的），改成实心圆
+            // symbol: "circle", // 默认是空心圆（中间是白色的），改成实心圆
             showAllSymbol: true,
             // symbol: 'emptyCircle',
             symbolSize: 6,
             lineStyle: {
               normal: {
-                color: "#158388" // 线条颜色
+                color: "#E9C57A" // 线条颜色
               }
             },
             itemStyle: {
-              color: "#545D77"
+              color: "#E9C57A"
             },
             label: {
               show: false,
@@ -162,7 +162,7 @@ export default {
                   [
                     {
                       offset: 0,
-                      color: "rgba(109,207,246,1)"
+                      color: "rgba(233,197,122,1)"
                     },
                     {
                       offset: 1,
@@ -171,7 +171,7 @@ export default {
                   ],
                   false
                 ),
-                shadowColor: "rgba(109,207,246,0.6)", //阴影颜色
+                shadowColor: "rgba(255,255,255,0.1)", //阴影颜色
                 shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
               }
             },

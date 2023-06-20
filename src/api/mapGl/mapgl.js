@@ -23,6 +23,14 @@ export function mapGuanli(query) {
       params: query
     })
   }
+  // 首页地图信息
+  export function mapTypeApi(query) {
+    return request({
+      url: '/system/info/powerTypeInstalledCapacity',
+      method: 'get',
+      params: query
+    })
+  }
   export function mapEnergy(query) {
     return request({
       url: '/system/info/list',

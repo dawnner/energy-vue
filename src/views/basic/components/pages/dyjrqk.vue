@@ -1,10 +1,8 @@
 <template>
   <div style="height: 100%; position: relative">
-    <img
-      style="position: absolute; top: 50px; left: 4%; z-index: 99"
-      src="../../../../assets/images/biaotixia2.png"
-      alt=""
-    />
+    <span
+      style="position: absolute; top: 20%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
+    ></span>
     <div
       id="analysisHistogram2"
       style="width: 100%; height: 100%"
@@ -126,7 +124,7 @@ export default {
           top: 18,
           // bottom: 18,
           textStyle: {
-            fontSize: 22
+            fontSize: 20
           }
         },
 
@@ -188,7 +186,7 @@ export default {
         grid: {
           left: "2%",
           right: "5%",
-          top: 80,
+          top: 85,
           bottom: "3%", //下边距,
           containLabel: true
         },
@@ -217,7 +215,7 @@ export default {
         ],
         yAxis: [
           {
-            name: "(亿kW)",
+            name: "(万kW)",
             nameTextStyle: {
               color: "#808080",
               fontSize: 12,

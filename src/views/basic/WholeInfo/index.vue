@@ -159,14 +159,14 @@ export default {
     },
     async dyqyData() {
       const { rows } = await dyqyData();
-      console.log(rows, "shuju");
+      // console.log(rows, "shuju");
       this.$refs.barchart.barchart(rows);
     },
     async fdlData() {
       let date = new Date();
       let newData =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-      console.log(newData);
+      // console.log(newData);
       const { rows } = await fdlData(newData);
       // console.log(rows, "数据");
       this.$refs.waterball.waterball(rows);
@@ -204,7 +204,7 @@ export default {
       this.mapNameList.splice(index + 1, this.mapNameList.length - 1 - index);
     },
     mapName(e, mapname) {
-      console.log("index页面接收传值", mapname);
+      // console.log("index页面接收传值", mapname);
       var name = "";
       if (e) {
         name = e;
