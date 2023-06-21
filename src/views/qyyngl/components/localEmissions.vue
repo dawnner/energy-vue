@@ -227,8 +227,8 @@ export default {
               align: "left",
               padding: [0, 0, -5, 0]
             },
-            min: 0,
-            max: 20000000,
+            // min: 0,
+            // max: 20000000,
             splitNumber: 10,
             type: "value",
             splitLine: {

@@ -140,8 +140,8 @@ export default {
                 console.log(item);
                 res.push({
                   value: item.sum,
-                  legendname: item.electric_power_type,
-                  name: item.electric_power_type
+                  legendname: item.electricPowerType,
+                  name: item.electricPowerType
                 });
               });
               return res;

@@ -29,7 +29,7 @@
         </div>
         <div class="newtop-therr-two" style="margin:0px 5px">
           <template>
-            <el-table :data="tableData" style="width: 100%;">
+            <el-table :data="tableData" style="width: 100%;" height="500">
               <el-table-column prop="id" label="排名" align="center">
               </el-table-column>
               <el-table-column prop="regionName" label="地区" align="center">
