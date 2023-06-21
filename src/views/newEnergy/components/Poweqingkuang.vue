@@ -5,7 +5,7 @@
         <div class="tableTopLeft">
           <div>电源类型 <input type="text" /></div>
           <div>发电类型 <input type="text" /></div>
-          <div>流程类型 <input type="text" /></div>
+          <div>项目类型 <input type="text" /></div>
           <div class="btn">
             <button>
               <img src="../../../assets/CoalElectricity/6.png" alt="" />
@@ -108,13 +108,7 @@
             width="120"
           >
           </el-table-column>
-          <el-table-column
-            prop="subprojectNum"
-            align="center"
-            label="子项目数量"
-            width="120"
-          >
-          </el-table-column>
+
           <el-table-column
             prop="maxGroup"
             align="center"
@@ -136,13 +130,7 @@
             width="100"
           >
           </el-table-column>
-          <el-table-column
-            prop="applyTime"
-            align="center"
-            label="申请时间"
-            width="130"
-          >
-          </el-table-column>
+
           <el-table-column
             prop="powerType"
             align="center"
@@ -163,13 +151,7 @@
             width="150"
           >
           </el-table-column>
-          <el-table-column
-            prop="engineeringType"
-            align="center"
-            label="工程类型"
-            width="100"
-          >
-          </el-table-column>
+
           <el-table-column
             prop="projectUri"
             align="center"
@@ -350,7 +332,7 @@ export default {
 }
 
 .tableTopLeft {
-  width: 60%;
+  width: 75%;
   height: 100%;
   /* background-color: #ffa00a; */
   display: flex;
