@@ -393,25 +393,25 @@ export default {
 }
 
 .contentImg {
-  width: 24%;
+  width: 20%;
   height: 100%;
   background-repeat: no-repeat;
   background-image: url("../../../assets/CoalElectricity/1377.png");
 }
 .contentImg2 {
-  width: 24%;
+  width: 20%;
   height: 100%;
   background-repeat: no-repeat;
   background-image: url("../../../assets/CoalElectricity/1378.png");
 }
 .contentImg3 {
-  width: 24%;
+  width: 20%;
   height: 100%;
   background-repeat: no-repeat;
   background-image: url("../../../assets/CoalElectricity/1379.png");
 }
 .contentImg4 {
-  width: 24%;
+  width: 20%;
   height: 100%;
   background-repeat: no-repeat;
   background-image: url("../../../assets/CoalElectricity/1380.png");
@@ -425,19 +425,22 @@ export default {
   color: #333333;
 }
 .contentNum {
-  margin-top: 20%;
-  text-align: right;
-  margin-right: 20%;
   font-size: 30px;
   font-family: SimHei;
   font-weight: 400;
   color: #ffa00a;
-  line-height: 48px;
+  width: 190px;
+  height: 70%;
+  word-wrap: break-word;
+  text-align: center;
+  margin-top: 10%;
 }
 .contentNum span {
   font-size: 10px;
   color: #333;
   font-weight: 400;
+  margin-top: 8%;
+  margin-left: 2%;
 }
 .topRight {
   width: 49%;
