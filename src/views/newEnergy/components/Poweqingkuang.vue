@@ -3,15 +3,41 @@
     <div class="topBox">
       <div class="topTwo">
         <div class="tableTopLeft">
-          <div>电源类型 <input type="text" /></div>
-          <div>发电类型 <input type="text" /></div>
-          <div>项目类型 <input type="text" /></div>
+          <el-form
+            label-width="80px"
+            class="query-form"
+            ref="from"
+            :model="from"
+          >
+            <el-form-item label="电源类型:" class="query-title" prop="name">
+              <el-input
+                v-model="from.powerType"
+                placeholder="请输入"
+                clearable
+              />
+            </el-form-item>
+            <el-form-item label="发电类型:" class="query-title" prop="name">
+              <el-input
+                v-model="from.electricPowerType"
+                placeholder="请输入"
+                clearable
+              />
+            </el-form-item>
+            <el-form-item label="项目类型:" class="query-title" prop="name">
+              <el-input
+                v-model="from.projectType"
+                placeholder="请输入"
+                clearable
+              />
+            </el-form-item>
+          </el-form>
           <div class="btn">
-            <button>
+            <button @click="queryIntegrateList">
               <img src="../../../assets/CoalElectricity/6.png" alt="" />
               <span>查询</span>
             </button>
             <button
+              @click="resetIntegrateList"
               style="background-color: #F2F3F5;color: #333333;border:none;margin-left: 20px;"
             >
               <img src="../../../assets/CoalElectricity/7.png" alt="" />
@@ -21,14 +47,10 @@
         </div>
         <div class="tableTopRight">
           <button
+            @click="exportIntegrateList"
             style="background-color: #158388; color:#fff;border-radius: 4px;"
           >
             导出
-          </button>
-          <button
-            style="background-color: #F5BA49; color:#fff;border-radius: 4px;margin-left: 10px;"
-          >
-            打印
           </button>
           <button
             style="background-color: #5D7CE0; color:#fff;border-radius: 4px;margin-left: 10px;"
@@ -145,7 +167,7 @@
           >
           </el-table-column>
           <el-table-column
-            prop="powerType"
+            prop="projectType"
             align="center"
             label="项目类型"
             width="150"
@@ -194,7 +216,7 @@
 </template>
 
 <script>
-import { getdataApi, getListApi } from "@/api/cgdy/cgdyindex.js";
+import { getListApi, exportPostApi } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
@@ -202,7 +224,13 @@ export default {
       total: 0,
       pageNum: 1,
       pageSize: 10,
-      deatlsit: {}
+      from: {
+        pageNum: 1,
+        pageSize: 10,
+        powerType: "",
+        electricPowerType: "",
+        projectType: ""
+      }
     };
   },
   created() {
@@ -213,34 +241,67 @@ export default {
   methods: {
     //获取列表的方法
     async getList() {
-      this.deatlsit = {
-        pageNum: this.pageNum,
-        pageSize: this.pageSize
-      };
-      const { rows, total } = await getListApi(this.deatlsit);
+      const { rows, total } = await getListApi(this.from);
       this.tableData = rows;
       this.total = total;
-      console.log("常规", this.tableData);
+      // console.log("常规", this.tableData);
+    },
+    //点击查询按钮触发
+    queryIntegrateList() {
+      this.from.pageNum = 1;
+      getListApi(this.from).then(response => {
+        console.log(response);
+        this.tableData = response.rows;
+        this.total = response.total;
+      });
+    },
+    //重置
+    resetIntegrateList() {
+      // this.$refs.queryBody.resetFields();
+      this.from = {
+        pageNum: 1,
+        pageSize: 10,
+        powerType: "",
+        electricPowerType: "",
+        projectType: ""
+      };
+      this.getList();
+    },
+    // 导出
+    exportIntegrateList() {
+      const queryParams = this.from;
+      this.$confirm("是否确认导出所有数据项?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return exportPostApi(queryParams);
+        })
+        .then(response => {
+          this.download(response.msg);
+        })
+        .catch(() => {});
     },
     //序号
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
       // 前面一共有多少条 = 前面的多少页 * 每页条数
-      return index + 1 + (this.pageNum - 1) * this.pageSize;
+      return index + 1 + (this.from.pageNum - 1) * this.from.pageSize;
     },
     // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-      this.pageSize = val;
+      this.from.pageSize = val;
       // 更新每页条数，页码重置为第一页
       // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-      this.pageNum = 1;
+      this.from.pageNum = 1;
       // 根据新的页码以及最新的数据条数，请求最新的数据
       this.getList();
     },
     // 获取新的页码的数据
     handleCurrentChange(val) {
-      this.pageNum = val;
+      this.from.pageNum = val;
       // console.log(`当前页:${val}`)
       // 重新获取新的页码的数据
       this.getList();
@@ -432,5 +493,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.query-form {
+  display: flex;
+  margin-top: 25px;
 }
 </style>

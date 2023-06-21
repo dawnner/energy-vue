@@ -532,8 +532,10 @@ export default {
     },
     //重置
     resetIntegrateList() {
-      this.$refs.queryBody.resetFields();
+      // this.$refs.queryBody.resetFields();
       this.queryBody = {
+        pageNum: 1,
+        pageSize: 10,
         name: "",
         type: ""
       };

@@ -47,9 +47,9 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="状态:" prop="Type">
+          <el-form-item label="状态:" prop="type">
             <el-select
-              v-model="queryBody.Type"
+              v-model="queryBody.type"
               clearable
               placeholder="请选择"
               @focus="getstate"
@@ -183,8 +183,8 @@ export default {
         pageSize: 10,
         PowerType: "新型储能",
         electricPowerType: "",
-        projectType: ""
-        // Type: ""
+        projectType: "",
+        type: ""
       },
       WorkDevelopmentList: [],
       //发电类型
@@ -206,6 +206,7 @@ export default {
   methods: {
     // 加载电源一级类型
     async getdata(val) {
+      this.queryBody.projectType = "";
       console.log("val", val);
       const { data } = await getdataApi({ powerType: "新型储能" });
       console.log(data);
@@ -244,8 +245,10 @@ export default {
     },
     //重置
     resetIntegrateList() {
-      this.$refs.queryBody.resetFields();
+      // this.$refs.queryBody.resetFields();
       this.queryBody = {
+        pageNum: 1,
+        pageSize: 10,
         PowerType: "新型储能",
         electricPowerType: "",
         projectType: "",
