@@ -26,7 +26,14 @@ export default {
       // arr2.push(item.newEnergyData);
       // arr3.push(item.storedEnergyData);
       // });
-      let xLabel = ["2023-01", "2023-02", "2023-03", "2023-04", "2023-05"];
+      let xLabel = [
+        "2023-01",
+        "2023-02",
+        "2023-03",
+        "2023-04",
+        "2023-05",
+        "2023-06"
+      ];
       let dataValue = ["450.57", "456.7", "420.51", "392.67", "397.89"];
       // console.log(dataValue);
       let dataValue1 = ["93.46", "92.05", "127.78", "132.4", "124.46"];
