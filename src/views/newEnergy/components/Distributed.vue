@@ -5,7 +5,7 @@
         <div style="font-size: 24px;font-weight: 500;">全省可开放总容量</div>
         <img src="../../../assets/images/c.png" alt="" />
         <div>
-          <span style="font-size: 72px;color: #49C2BB;font-weight: 700;">{{
+          <span style="font-size: 45px;color: #49C2BB;font-weight: 700;">{{
             value
           }}</span
           ><span>兆伏安</span>
@@ -36,7 +36,7 @@
               </el-table-column>
               <el-table-column
                 prop="regionSum"
-                label="容量(KVA)"
+                label="容量(MVA)"
                 align="center"
               >
               </el-table-column>
@@ -57,12 +57,8 @@
             ref="from"
             :model="from"
           >
-            <el-form-item label="所属地市:" class="query-title" prop="name">
-              <el-input
-                v-model="from.powerSupplyRegion"
-                placeholder="请输入"
-                clearable
-              />
+            <el-form-item label="所属单位:" class="query-title" prop="name">
+              <el-input v-model="from.unit" placeholder="请输入" clearable />
             </el-form-item>
           </el-form>
           <el-button
@@ -100,7 +96,7 @@
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="unit" label="单位" align="center">
+          <el-table-column prop="unit" label="所属单位" align="center">
           </el-table-column>
           <el-table-column prop="placeRegion" label="所属变电站" align="center">
           </el-table-column>
@@ -134,8 +130,8 @@
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="regionId" label="地区id" align="center">
-          </el-table-column>
+          <!-- <el-table-column prop="regionId" label="地区id" align="center">
+          </el-table-column> -->
         </el-table>
         <el-pagination
           style="text-align:right;padding-top:10px"
@@ -173,7 +169,7 @@ export default {
       from: {
         pageNum: 1,
         pageSize: 10,
-        powerSupplyRegion: ""
+        unit: ""
       },
       //列表
       table: []
@@ -253,7 +249,9 @@ export default {
     resetIntegrateList() {
       this.$refs.from.resetFields();
       this.from = {
-        powerSupplyRegion: ""
+        pageNum: 1,
+        pageSize: 10,
+        unit: ""
       };
       this.newcapacityApi();
     }

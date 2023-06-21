@@ -212,38 +212,38 @@ export default {
   created() {
     // this.getdata();
     //获取列表的方法
-    this.getList();
+    // this.getList();
   },
   methods: {
     //获取列表的方法
-    async getList() {
-      this.deatlsit = {
-        pageNum: this.pageNum,
-        pageSize: this.pageSize,
-        powerType: "新能源"
-      };
-      const { rows, total } = await getListApi(this.deatlsit);
-      this.tableData = rows;
-      this.total = total;
-      console.log("新能源", this.tableData);
-    },
+    // async getList() {
+    //   this.deatlsit = {
+    //     pageNum: this.pageNum,
+    //     pageSize: this.pageSize,
+    //     powerType: "新能源"
+    //   };
+    //   const { rows, total } = await getListApi(this.deatlsit);
+    //   this.tableData = rows;
+    //   this.total = total;
+    //   console.log("新能源", this.tableData);
+    // },
     //点击查询按钮触发
-    queryIntegrateList() {
-      this.form.pageNum = 1;
-      getListApi(this.form).then(response => {
-        console.log(response);
-        this.tableData = response.rows;
-      });
-    },
+    // queryIntegrateList() {
+    //   this.form.pageNum = 1;
+    //   getListApi(this.form).then(response => {
+    //     console.log(response);
+    //     this.tableData = response.rows;
+    //   });
+    // },
     //重置
-    resetIntegrateList() {
-      this.$refs.form.resetFields();
-      this.form = {
-        name: "",
-        type: ""
-      };
-      this.getList();
-    },
+    // resetIntegrateList() {
+    //   this.$refs.form.resetFields();
+    //   this.form = {
+    //     name: "",
+    //     type: ""
+    //   };
+    //   this.getList();
+    // },
     //序号
     indexFn(index) {
       // 前面返回的序号  前面有多少条数据
@@ -251,22 +251,22 @@ export default {
       return index + 1 + (this.pageNum - 1) * this.pageSize;
     },
     // 更新每页条数
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-      this.pageSize = val;
-      // 更新每页条数，页码重置为第一页
-      // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
-      this.pageNum = 1;
-      // 根据新的页码以及最新的数据条数，请求最新的数据
-      this.getList();
-    },
+    // handleSizeChange(val) {
+    //   console.log(`每页 ${val} 条`);
+    //   this.pageSize = val;
+    //   // 更新每页条数，页码重置为第一页
+    //   // 原因：每页条数的变化后，当前页已经不是之前的当前页，需要重置
+    //   this.pageNum = 1;
+    //   // 根据新的页码以及最新的数据条数，请求最新的数据
+    //   this.getList();
+    // },
     // 获取新的页码的数据
-    handleCurrentChange(val) {
-      this.pageNum = val;
-      // console.log(`当前页:${val}`)
-      // 重新获取新的页码的数据
-      this.getList();
-    },
+    // handleCurrentChange(val) {
+    //   this.pageNum = val;
+    //   // console.log(`当前页:${val}`)
+    //   // 重新获取新的页码的数据
+    //   this.getList();
+    // },
     handleSelectionChange(val) {
       this.selectData = val;
     }
@@ -433,7 +433,9 @@ export default {
   height: 70%;
   word-wrap: break-word;
   text-align: center;
-  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .contentNum span {
   font-size: 10px;

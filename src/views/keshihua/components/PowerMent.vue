@@ -243,10 +243,19 @@ export default {
         this.total = response.total;
       });
     },
+    //序号
+    indexFn(index) {
+      console.log(index);
+      // 前面返回的序号  前面有多少条数据
+      // 前面一共有多少条 = 前面的多少页 * 每页条数
+      return index + 1 + (this.queryBody.pageNum - 1) * this.queryBody.pageSize;
+    },
     //重置
     resetIntegrateList() {
-      this.$refs.queryBody.resetFields();
+      // this.$refs.queryBody.resetFields();
       this.queryBody = {
+        pageNum: 1,
+        pageSize: 10,
         PowerType: "常规电源",
         electricPowerType: "",
         projectType: "",
@@ -271,12 +280,6 @@ export default {
         .catch(() => {});
     },
 
-    //序号
-    indexFn(index) {
-      // 前面返回的序号  前面有多少条数据
-      // 前面一共有多少条 = 前面的多少页 * 每页条数
-      return index + 1 + (this.queryBody.pageNum - 1) * this.queryBody.pageSize;
-    },
     // 更新每页条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);

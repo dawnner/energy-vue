@@ -13,7 +13,7 @@
         {{ datas.qwfdl }}
       </div>
       <div class="danwei">
-        (亿KW·h)
+        (亿千瓦·时)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF6F8;">
@@ -27,7 +27,7 @@
         {{ datas.cgdy }}
       </div>
       <div class="danwei">
-        (亿KW·h)
+        (亿千瓦·时)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #F8F3FF;">
@@ -41,7 +41,7 @@
         {{ datas.xnyfdl }}
       </div>
       <div class="danwei">
-        (亿KW·h)
+        (亿千瓦·时)
       </div>
     </div>
     <div class="shuiqiuone" style="background-color: #FFF7F3;">
@@ -55,7 +55,7 @@
         {{ datas.cn }}
       </div>
       <div class="danwei">
-        (亿KW·h)
+        (亿千瓦·时)
       </div>
     </div>
   </div>

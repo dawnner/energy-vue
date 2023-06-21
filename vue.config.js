@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const name = process.env.VUE_APP_TITLE || "新能源云碳中和支撑服务平台（山东）"; // 网页标题
+const name = process.env.VUE_APP_TITLE || "山东省新能源云深化应用"; // 网页标题
 
 const port = process.env.port || process.env.npm_config_port || 80; // 端口
 

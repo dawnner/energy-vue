@@ -22,7 +22,7 @@ export default {
       val.forEach(item => {
         name.push(item.targetName);
         arr1.push(item.addUpGeneratingCapacity);
-        arr2.push(item.mergeMachineCapacity);
+        arr2.push((item.mergeMachineCapacity / 10000).toFixed(2));
       });
       var data = {
         // xData: [
@@ -40,7 +40,7 @@ export default {
         yData2: arr2,
         yName1: "发电量",
         yName2: "装机容量",
-        yLabel: "(亿KW·h)"
+        yLabel: "(亿千瓦·时)"
       };
 
       option = {
@@ -144,6 +144,10 @@ export default {
               lineStyle: {
                 color: "rgba(12,116,123,0.5)"
               }
+            },
+            nameTextStyle: {
+              color: "#000",
+              padding: [0, 0, -10, 0]
             }
           },
           {
@@ -151,7 +155,7 @@ export default {
             // min: 0,
             // max: 10000,
             splitNumber: 3,
-            name: "(亿KW)",
+            name: "(亿千瓦)",
             nameTextStyle: {
               color: "#000"
             },
