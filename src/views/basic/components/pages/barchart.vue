@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%;position: relative;">
     <span
-      style="position: absolute; top: 28%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
+      style="position: absolute; top: 20%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
     ></span>
     <div id="barchart" style="width: 100%; height: 100%"></div>
   </div>
@@ -40,14 +40,14 @@ export default {
         yData2: arr2,
         yName1: "发电量",
         yName2: "装机容量",
-        yLabel: "(万KW·h)"
+        yLabel: "(亿KW·h)"
       };
 
       option = {
         title: {
-          text: "电源企业数量",
+          text: "在运电源企业类别",
           left: 20,
-          top: 18,
+          top: 23,
           // bottom: 18,
           textStyle: {
             fontSize: 20
@@ -55,7 +55,7 @@ export default {
         },
         // backgroundColor:'rgba(3, 72, 84, 1)',
         legend: {
-          top: "11%",
+          top: "9%",
           right: "5%",
           show: true,
           itemGap: 30,
@@ -81,9 +81,9 @@ export default {
           }
         },
         grid: {
-          top: "52%",
+          top: "35%",
           left: "1%",
-          right: "5%",
+          right: "3%",
           bottom: "5%",
           containLabel: true
         },
@@ -115,8 +115,7 @@ export default {
             // type:'个',
             // min: 0,
             // max: 50000,
-            splitNumber: 3,
-            yAxisIndex: 0,
+            splitNumber: 6,
             name: data.yLabel,
             nameTextStyle: {
               color: "#000"
@@ -149,11 +148,10 @@ export default {
           },
           {
             // type: "kw",
-            min: 0,
-            max: 10000,
-            yAxisIndex: 1,
+            // min: 0,
+            // max: 10000,
             splitNumber: 3,
-            name: "(万KW)",
+            name: "(亿KW)",
             nameTextStyle: {
               color: "#000"
             },
@@ -193,18 +191,19 @@ export default {
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 {
-                  offset: 0,
-                  color: "#B4C5FF"
+                  offset: 1,
+                  color: "#2F5FFE"
                 },
                 {
-                  offset: 1,
-                  color: "#3060FE"
+                  offset: 0,
+                  color: "#2F5FFE"
                 }
               ])
             }
           },
           {
             name: data.yName2,
+            yAxisIndex: 1,
             type: "bar",
             data: data.yData2,
             barWidth: 24,

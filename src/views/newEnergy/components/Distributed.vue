@@ -294,6 +294,8 @@ export default {
   height: 100%;
   border-radius: 10px;
   background: #fff;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 .newtop-therr-one {
   display: flex;

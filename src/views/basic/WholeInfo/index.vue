@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="jhdl">
-          <jhdl ref="jhdl"></jhdl>
+          <barchart ref="barchart" style="width: 100%; height: 100%"></barchart>
         </div>
         <div class="dyjrqk">
           <dyjrqk ref="dyjrqk" style="width: 100%; height: 100%"></dyjrqk>
@@ -66,10 +66,7 @@
               ></doublechart>
             </div>
             <div class="right-corner-three">
-              <barchart
-                ref="barchart"
-                style="width: 100%; height: 100%"
-              ></barchart>
+              <jhdl ref="jhdl"></jhdl>
             </div>
           </div>
         </div>
@@ -95,6 +92,7 @@
 
 <script>
 import { gsdyData, dyzjData } from "../components/qingqiu/gsdyjk";
+import { mapTypeApi } from "@/api/mapGl/mapgl.js";
 import {
   fdqsData,
   fdlData,
@@ -133,7 +131,8 @@ export default {
           name: "山东省"
         }
       ],
-      value1: ""
+      value1: "",
+      maplist: []
     };
   },
   created() {
@@ -145,9 +144,18 @@ export default {
     this.dljhData();
   },
   mounted() {
-    this.mapName();
+    this.getmapType();
   },
   methods: {
+    //首页地图信息加载
+    async getmapType() {
+      const { data } = await mapTypeApi();
+      // console.log("地图ddd", data);
+      this.maplist = data;
+      this.$refs.mapxz.getmaplist(this.maplist);
+      console.log("地图", this.maplist);
+      this.mapName();
+    },
     async gsdyData() {
       const { data } = await gsdyData();
       this.$refs.dyjrqk.dyjrqk(data);
@@ -166,10 +174,10 @@ export default {
       let date = new Date();
       let newData =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-      // console.log(newData);
-      const { rows } = await fdlData(newData);
+      console.log(newData);
+      const { data } = await fdlData({ extDateTime: newData });
       // console.log(rows, "数据");
-      this.$refs.waterball.waterball(rows);
+      this.$refs.waterball.waterball(data);
     },
     async dyzjData() {
       const { data } = await dyzjData();
@@ -199,7 +207,7 @@ export default {
     clickName(e, index) {
       this.$nextTick(() => {
         this.$refs.mapxz.change();
-        this.$refs.mapxz.initChart(e.name, this.mapNameList);
+        this.$refs.mapxz.initChart(e.name, this.mapNameList, this.maplist);
       });
       this.mapNameList.splice(index + 1, this.mapNameList.length - 1 - index);
     },
@@ -222,7 +230,7 @@ export default {
 
       this.mapname = mapname;
       this.$nextTick(() => {
-        this.$refs.mapxz.initChart(name, this.mapNameList);
+        this.$refs.mapxz.initChart(name, this.mapNameList, this.maplist);
       });
     }
   }

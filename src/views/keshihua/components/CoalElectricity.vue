@@ -23,22 +23,7 @@
               10747.95<span>万千瓦</span>
             </div>
           </div>
-          <div class="contentImg3">
-            <div class="contentTitle">
-              供热期新增调峰
-            </div>
-            <div class="contentNum" style="color:#FF6C6D">
-              636.125<span>万千瓦</span>
-            </div>
-          </div>
-          <div class="contentImg4">
-            <div class="contentTitle">
-              非供热期新增调峰
-            </div>
-            <div class="contentNum" style="color:#02C3A1">
-              545.25<span>万千瓦</span>
-            </div>
-          </div>
+
           <div class="contentImg">
             <div class="contentTitle">
               煤电灵活性改造台数
@@ -59,6 +44,22 @@
             </div>
             <div class="contentNum" style="color:#FF6C6D">
               16.91%
+            </div>
+          </div>
+          <div class="contentImg3">
+            <div class="contentTitle">
+              供热期新增调峰
+            </div>
+            <div class="contentNum" style="color:#FF6C6D">
+              636.125<span>万千瓦</span>
+            </div>
+          </div>
+          <div class="contentImg4">
+            <div class="contentTitle">
+              非供热期新增调峰
+            </div>
+            <div class="contentNum" style="color:#02C3A1">
+              545.25<span>万千瓦</span>
             </div>
           </div>
         </div>
@@ -144,7 +145,7 @@
             label="日发电量(万千瓦)"
           >
           </el-table-column>
-          <el-table-column prop="maxGroup" align="center" label="供热量(GJ)">
+          <el-table-column prop="maxGroup" align="center" label="供热量(吉焦)">
           </el-table-column>
           <el-table-column
             prop="electricPowerType"

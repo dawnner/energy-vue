@@ -113,23 +113,7 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        {
-          date: "用电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "发电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "外电负荷(kw)",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        }
-      ]
+      tableData: [{}, {}, {}]
     };
   }
 };

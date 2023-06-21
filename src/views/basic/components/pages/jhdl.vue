@@ -1,8 +1,8 @@
 <template>
   <div style="height: 100%">
-    <span
+    <!-- <span
       style="position: absolute; top: 20%; left: 5%;width:89%;height:1px;background:#ccc; z-index: 99"
-    ></span>
+    ></span> -->
     <!-- <div class="one8">电量交换</div> -->
     <div
       id="analysisHistogram1"

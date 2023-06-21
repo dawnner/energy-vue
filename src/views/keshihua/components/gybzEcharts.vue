@@ -41,8 +41,9 @@ export default {
               name: "全省用电负荷曲线",
               icon: "roundRect"
             },
-            { name: "用电缺口负荷曲线", icon: "roundRect" },
-            { name: "全省发电负荷曲线", icon: "roundRect" }
+
+            { name: "全省发电负荷曲线", icon: "roundRect" },
+            { name: "用电缺口负荷曲线", icon: "roundRect" }
           ],
           itemWidth: 20,
           itemHeight: 10

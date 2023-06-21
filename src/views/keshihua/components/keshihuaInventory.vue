@@ -12,7 +12,7 @@
               alt=""
               style="margin-right:10px"
             />
-            <div style="font-size: 16px;color: #158388;font-weight: 700;">
+            <div style="font-size: 14px;color: #158388;font-weight: 700;">
               企业煤炭库存量排名TOP10
             </div>
           </div>
@@ -45,7 +45,7 @@
               alt=""
               style="margin-right:10px"
             />
-            <div style="font-size: 16px;color: #E38223;font-weight: 700;">
+            <div style="font-size: 14px;color: #E38223;font-weight: 700;">
               企业保供天数排名TOP10
             </div>
           </div>
@@ -78,7 +78,7 @@
               alt=""
               style="margin-right:10px"
             />
-            <div style="font-size: 16px;color: #2398E3;font-weight: 700;">
+            <div style="font-size: 14px;color: #2398E3;font-weight: 700;">
               企业电量供应能力排名TOP10
             </div>
           </div>
@@ -240,7 +240,7 @@
         <el-table-column
           prop="gcCoalQuantity"
           align="center"
-          label="发电煤耗(g/kwh)"
+          label="发电煤耗(克/千瓦时)"
           width="140"
         >
         </el-table-column>
@@ -324,12 +324,12 @@ export default {
       top2: [
         {
           num: "01",
-          name: "热电炼厂",
+          name: "山东柠檬生化有限公司",
           day: "52天"
         },
         {
           num: "02",
-          name: "山东柠檬生化有限公司",
+          name: "热电炼厂",
           day: "51天"
         },
         {
@@ -351,7 +351,7 @@ export default {
       top3: [
         {
           num: "01",
-          name: "热电炼厂",
+          name: "山东黄海有限公司",
           unit: "566万KW·h"
         },
         {
@@ -366,7 +366,7 @@ export default {
         },
         {
           num: "04",
-          name: "山东黄海有限公司",
+          name: "热电炼厂",
           unit: "32万KW·h"
         },
         {
@@ -670,6 +670,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 .echarts-two-box2 {
   width: 32%;
@@ -682,6 +683,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 .echarts-two-box3 {
   flex: 1;
@@ -693,6 +695,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 .echarts-two-box01 {
   display: flex;

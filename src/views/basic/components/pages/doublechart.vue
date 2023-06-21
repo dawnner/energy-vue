@@ -12,25 +12,32 @@ import * as echarts from "echarts";
 export default {
   methods: {
     doublechart(data) {
-      console.log(data, "shuju");
+      // console.log(data, "shuju");
       var chartDom = document.getElementById("doublechart");
       var myChart = echarts.init(chartDom);
       var option;
-      let name = [];
-      let arr1 = [];
-      let arr2 = [];
-      let arr3 = [];
-      data.forEach(item => {
-        name.push(item.date);
-        arr1.push(item.sum);
-        // arr2.push(item.newEnergyData);
-        // arr3.push(item.storedEnergyData);
-      });
-      let xLabel = name;
-      let dataValue = arr1;
-      console.log(dataValue);
-      let dataValue1 = ["5000", "1155", "6010", "1065", "44470"];
-      let dataValue2 = [13000, 11520, 22115, 14120, 10030];
+      // let name = [];
+      // let arr1 = [];
+      // let arr2 = [];
+      // let arr3 = [];
+      // data.forEach(item => {
+      //   name.push(item.date);
+      //   arr1.push(item.sum);
+      // arr2.push(item.newEnergyData);
+      // arr3.push(item.storedEnergyData);
+      // });
+      let xLabel = [
+        "2023-01",
+        "2023-02",
+        "2023-03",
+        "2023-04",
+        "2023-05",
+        "2023-06"
+      ];
+      let dataValue = ["450.57", "456.7", "420.51", "392.67", "397.89"];
+      // console.log(dataValue);
+      let dataValue1 = ["93.46", "92.05", "127.78", "132.4", "124.46"];
+      let dataValue2 = [0.38, 0.22, 0.45, 0.38, 0.39];
       var option = {
         // backgroundColor: '#0c2d55',
         title: {
@@ -103,10 +110,10 @@ export default {
         ],
         yAxis: [
           {
-            name: "",
-            min: 0, //取0为最小刻度
-            max: 40000, //取100为最大刻度
-            splitNumber: 2,
+            // name: "",
+            // min: 0, //取0为最小刻度
+            // max: 40000, //取100为最大刻度
+            // splitNumber: 2,
             nameTextStyle: {
               color: "#000",
               fontSize: 12,
@@ -261,7 +268,7 @@ export default {
             data: dataValue1
           },
           {
-            name: "新型储能",
+            name: "储能",
             type: "line",
             symbol: "circle", // 默认是空心圆（中间是白色的），改成实心圆
             smooth: true,

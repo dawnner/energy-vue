@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { mapTypeApi } from "@/api/mapGl/mapgl.js";
 // import resize from '../dashboard/mixins/resize.js'
 import * as echarts from "echarts";
 const animationDuration = 3000;
@@ -31,14 +30,14 @@ export default {
   data() {
     return {
       mchart1: null,
-      maplist: []
+      maplists: []
     };
   },
   mounted() {
     // this.$nextTick(() => {
     // 	this.initChart()
     // });
-    this.getmapType();
+
     window.addEventListener("resize", () => {
       if (this.mchart1) {
         this.mchart1.resize();
@@ -53,19 +52,29 @@ export default {
     this.mchart1 = null;
   },
   methods: {
-    //首页地图信息加载
-    async getmapType() {
-      const { data } = await mapTypeApi();
-      // console.log("地图", ree);
-      this.maplist = data;
-      console.log("地图", this.maplist);
+    getmaplist(val) {
+      console.log("valval", val);
+      this.maplists = val;
     },
     change() {
       if (this.mchart1 !== undefined) {
         this.mchart1.dispose();
       }
     },
-    initChart(name, mapNameList) {
+    initChart(name, mapNameList, val) {
+      console.log("打印3.3.....", val);
+      var datass = [];
+      var value = "";
+      for (var i = 0; i < val.length; i++) {
+        datass.push({
+          name: val[i].acceptancePowerUnit,
+          value: val[i].conventionData,
+          value1: val[i].newEnergyData,
+          value2: val[i].storedEnergyData
+        });
+      }
+      console.log("有没有数据", datass);
+
       var img1 = require("../../../../assets/images/shujukuai.png");
       var img2 = require("../../../../assets/images/biaotixia3.png");
       // var data = [
@@ -550,7 +559,8 @@ export default {
       //     ]
       //   }
       // ];
-      var data = this.maplist;
+      var data = [];
+      data = val;
       var geowidth = "90%";
       var geoheight = "90%";
       console.log("地图页面接收传值", name, mapNameList);
@@ -651,14 +661,14 @@ export default {
         maskColor: "#12585f",
         textColor: "#fff"
       });
-      this.mchart1.on("click", params => {
-        if (this.mchart1 !== undefined) {
-          this.mchart1.dispose();
-        }
-        console.log("params------------", params);
-        this.$emit("mapName", params.data, mapname);
-      });
-      // echarts.registerMap('shandong', mapname);
+      // this.mchart1.on("click", params => {
+      //   if (this.mchart1 !== undefined) {
+      //     this.mchart1.dispose();
+      //   }
+      //   console.log("params------------", params);
+      //   this.$emit("mapName", params.data, mapname);
+      // });
+      // echarts.registerMap("shandong", mapname);
       setTimeout(function() {
         mapInit();
       }, 100);
@@ -717,7 +727,7 @@ export default {
           backgroundColor: "transparent",
           tooltip: {
             //这里加true是为了让地图重新绘制，不然如果你有筛选的时候地图会飞出去
-            show: true,
+            show: false,
             // position: "right",
             // position: ["50%", "right"],
             position: function(point, params, dom, rect, size) {
@@ -764,7 +774,7 @@ export default {
                 img2 +
                 `)no-repeat;background-position: left 80% bottom;">
                       <div style="position:absolute;bottom:20%;color:#22F3E2;font-size:22px;">` +
-                params.data.acceptancePowerUnit +
+                params.data.name +
                 `</div>
                     </div>
                   </div>
@@ -772,19 +782,22 @@ export default {
                       <div> ` +
                 "常规电源装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.conventionData +
+                params.data.value +
+                "亿千瓦/时" +
                 `</span>
                       </div>
                       <div> ` +
                 "新能源装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.newEnergyData +
+                params.data.value1 +
+                "亿千瓦/时" +
                 `</span>
                       </div>
                       <div> ` +
                 "新型储能装机量: " +
                 `<span style="color:#F6A23A">` +
-                params.data.storedEnergyData +
+                params.data.value2 +
+                "亿千瓦/时" +
                 `</span>
                       </div>
                     </div>
@@ -945,7 +958,7 @@ export default {
                   shadowColor: "rgba(76, 178, 181,1)"
                 }
               },
-              data: data
+              data: datass
             }
           ]
         };

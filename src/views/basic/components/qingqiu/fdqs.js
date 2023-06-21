@@ -8,11 +8,11 @@ export function fdqsData() {
   });
 }
 
-export function fdlData(extDateTime) {
+export function fdlData(query) {
   return request({
-    url: "/system/day/list",
+    url: "/system/day/provinceGeneratingCapacity",
     method: "get",
-    params: extDateTime
+    params: query
   });
 }
 

@@ -89,9 +89,9 @@ export default {
               "" +
               parms.data.legendname +
               "</br>" +
-              "数量：" +
+              "装机量：" +
               parms.data.value +
-              " 个</br>" +
+              " 万千瓦</br>" +
               "占比：" +
               parms.percent +
               "%";
@@ -100,19 +100,19 @@ export default {
         },
         legend: {
           orient: "vertical",
-          left: "55%",
+          left: "60%",
           align: "left",
-          top: "25%",
+          top: "31.5%",
           textStyle: {
             color: "#8C8C8C"
           },
-          height: 190
+          height: 120
         },
         series: [
           {
             name: "标题",
             type: "pie",
-            center: ["30%", "60%"],
+            center: ["33%", "60%"],
             radius: ["60%", "28%"],
             clockwise: false, //饼图的扇区是否是顺时针排布
             avoidLabelOverlap: false,
