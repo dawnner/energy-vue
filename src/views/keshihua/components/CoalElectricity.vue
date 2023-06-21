@@ -433,7 +433,9 @@ export default {
   height: 70%;
   word-wrap: break-word;
   text-align: center;
-  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .contentNum span {
   font-size: 10px;

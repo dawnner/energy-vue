@@ -1,7 +1,7 @@
 {
   "name": "ruoyi",
   "version": "3.6.0",
-  "description": "新能源云碳中和支撑服务平台（山东）",
+  "description": "山东省新能源云深化应用",
   "author": "若依",
   "license": "MIT",
   "scripts": {

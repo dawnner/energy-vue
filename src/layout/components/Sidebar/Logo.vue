@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      title: "新能源云碳中和支撑服务平台（山东）",
+      title: "山东省新能源云深化应用",
       logo: logoImg
     };
   }

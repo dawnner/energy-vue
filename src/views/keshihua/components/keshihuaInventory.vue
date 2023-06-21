@@ -290,7 +290,7 @@
 
 <script>
 import echartsone from "../components/echartsone.vue";
-import { getanalysisApi, exportPostApi } from "@/api/cgdy/cgdyindex.js";
+// import { getanalysisApi, exportPostApi } from "@/api/cgdy/cgdyindex.js";
 export default {
   data() {
     return {
@@ -514,13 +514,13 @@ export default {
     InitIntegrateList() {
       //调用接口，初始化大栏目列表
     },
-    //获取列表
-    async getanalysisList() {
-      const { rows, total } = await getanalysisApi(this.queryBody);
-      this.tableData = rows;
-      this.total = total;
-      console.log("常规", this.tableData);
-    },
+    // //获取列表
+    // async getanalysisList() {
+    //   const { rows, total } = await getanalysisApi(this.queryBody);
+    //   this.tableData = rows;
+    //   this.total = total;
+    //   console.log("常规", this.tableData);
+    // },
     //点击查询按钮触发
     queryIntegrateList() {
       this.queryBody.pageNum = 1;

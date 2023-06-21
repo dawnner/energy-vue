@@ -162,7 +162,7 @@ export default {
         var option = {
           backgroundColor: "transparent",
           tooltip: {
-            show: true,
+            show: false,
             trigger: "item",
             backgroundColor: "#fff",
             borderColor: "rgb(42,102,180)",

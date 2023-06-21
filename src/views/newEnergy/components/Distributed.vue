@@ -5,7 +5,7 @@
         <div style="font-size: 24px;font-weight: 500;">全省可开放总容量</div>
         <img src="../../../assets/images/c.png" alt="" />
         <div>
-          <span style="font-size: 72px;color: #49C2BB;font-weight: 700;">{{
+          <span style="font-size: 45px;color: #49C2BB;font-weight: 700;">{{
             value
           }}</span
           ><span>兆伏安</span>
@@ -36,7 +36,7 @@
               </el-table-column>
               <el-table-column
                 prop="regionSum"
-                label="容量(KVA)"
+                label="容量(MVA)"
                 align="center"
               >
               </el-table-column>
@@ -130,8 +130,8 @@
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="regionId" label="地区id" align="center">
-          </el-table-column>
+          <!-- <el-table-column prop="regionId" label="地区id" align="center">
+          </el-table-column> -->
         </el-table>
         <el-pagination
           style="text-align:right;padding-top:10px"
@@ -249,6 +249,8 @@ export default {
     resetIntegrateList() {
       this.$refs.from.resetFields();
       this.from = {
+        pageNum: 1,
+        pageSize: 10,
         unit: ""
       };
       this.newcapacityApi();

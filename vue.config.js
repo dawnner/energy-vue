@@ -1,12 +1,12 @@
 "use strict";
 const path = require("path");
 // const url = '221.229.173.95'
-const url = "172.20.10.7";
+// const url = "172.20.10.7";
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const name = process.env.VUE_APP_TITLE || "新能源云碳中和支撑服务平台（山东）"; // 网页标题
+const name = process.env.VUE_APP_TITLE || "山东省新能源云深化应用"; // 网页标题
 
 const port = process.env.port || process.env.npm_config_port || 80; // 端口
 
@@ -35,8 +35,8 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        // target: "http://221.229.173.95:8081",
-        target: `http://${url}:8081`,
+        target: "http://221.229.173.95:8081",
+        // target: `http://${url}:8081`,
         // target: `http://vue.ruoyi.vip`,
         changeOrigin: true,
         pathRewrite: {
